@@ -7,53 +7,43 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    //Michael Robinson
-    //GameObject
-    //Represents a basic object in the game.
-    //This encompasses the player, walls, enemies, 
-    //weapons, etc. 
-    //All GameObjects have a texture, a rectangle, 
-    //collision boxes, and a variable to determine if they are active.
-    //They also have methods to draw themselves, update their info,
-    //and check for collisions.
     class GameObject
     {
         //Fields
-        protected bool active;
-        protected Rectangle transform;
-        protected  Texture2D texture;
-        protected List<Rectangle> collisionBoxes;
+        private bool active;
+        private Rectangle rect;
+        private Texture2D texture;
+        private List<Rectangle> collisionBoxes;
 
         //Properties
         public int X
         {
             get
             {
-                return transform.X;
+                return rect.X;
             }
             set
             {
-                transform.X = value;
+                rect.X = value;
             }
         }
         public int Y
         {
             get
             {
-                return transform.Y;
+                return rect.Y;
             }
             set
             {
-                transform.Y = value;
+                rect.Y = value;
             }
         }
 
         //Constructor 
-        public GameObject(Texture2D texture, Rectangle transform, 
-                          List<Rectangle> collisionBoxes, bool active)
+        public GameObject(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active)
         {
             this.texture = texture;
-            this.transform = transform;
+            this.rect = transform;
             this.collisionBoxes = collisionBoxes;
             this.active = active;
         }
@@ -61,14 +51,9 @@ namespace BankShot
         //Methods
         public virtual void Update() { }
 
-        /// <summary>
-        /// Takes in a spritebatch and calls its draw method to draw 
-        /// a texture to the screen.
-        /// </summary>
-        /// <param name="spriteBatch">The spritebatch used to draw the texture.</param>
         public virtual void Draw(SpriteBatch spriteBatch) 
         {
-            spriteBatch.Draw(texture, transform, Color.White);
+            spriteBatch.Draw(texture, rect, Color.White);
         }
 
         //There should be a method to check collisons
