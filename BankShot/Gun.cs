@@ -13,7 +13,10 @@ namespace BankShot
         //Fields
 
         //Projectile Base Fields:
-
+        private Texture2D projectileTexture;
+        private Rectangle projectileTransform;
+        private List<Rectangle> projectileCollisionBoxes;
+        private bool projectileActive;
         //Projectile Stats:
         private bool interceptable;
         private double lifeSpan;
@@ -40,7 +43,12 @@ namespace BankShot
         //using the Gun's fields as parameters.
         public override void Attack() 
         { 
-            //projectiles.Add(new Projectile())
+            projectiles.Add(new Projectile(projectileTexture, 
+                                           projectileTransform, 
+                                           projectileCollisionBoxes, 
+                                           projectileActive, interceptable, 
+                                           damage, knockback, lifeSpan, 
+                                           velocity, false, projectiles));
             base.Attack(); 
         }
     }

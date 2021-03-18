@@ -20,7 +20,7 @@ namespace BankShot
 
         }
         //Methods
-        public void DealDamage(IDamagable target)) { }
+        public void DealDamage(IDamagable target) { }
 
         /// <summary>
         /// Sets velocity in the direction of the player
@@ -42,9 +42,9 @@ namespace BankShot
             }
         }
 
-        public void Move()
+        public override void Move()
         {
-            rect.X += velocity.X;
+            base.Move();
         }
         //I'm not sure that we know what these methods do yet
         //so I am just including the list we had in the 

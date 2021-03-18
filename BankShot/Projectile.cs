@@ -16,6 +16,7 @@ namespace BankShot
         private double lifeSpan;
         private Vector2 velocity;
         private bool fromEnemy;
+        //The Projectile should remove itself from this list when it dies.
         private List<Projectile> projectiles;
 
         //Parameterized Contructor
