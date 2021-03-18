@@ -11,7 +11,7 @@ namespace BankShot
     {
         //Fields
         private bool active;
-        private Rectangle transform;
+        private Rectangle rect;
         private Texture2D texture;
         private List<Rectangle> collisionBoxes;
 
@@ -20,22 +20,22 @@ namespace BankShot
         {
             get
             {
-                return transform.X;
+                return rect.X;
             }
             set
             {
-                transform.X = value;
+                rect.X = value;
             }
         }
         public int Y
         {
             get
             {
-                return transform.Y;
+                return rect.Y;
             }
             set
             {
-                transform.Y = value;
+                rect.Y = value;
             }
         }
 
@@ -43,7 +43,7 @@ namespace BankShot
         public GameObject(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active)
         {
             this.texture = texture;
-            this.transform = transform;
+            this.rect = transform;
             this.collisionBoxes = collisionBoxes;
             this.active = active;
         }
@@ -53,7 +53,7 @@ namespace BankShot
 
         public virtual void Draw(SpriteBatch spriteBatch) 
         {
-            spriteBatch.Draw(texture, transform, Color.White);
+            spriteBatch.Draw(texture, rect, Color.White);
         }
 
         //There should be a method to check collisons

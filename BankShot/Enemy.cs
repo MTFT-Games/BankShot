@@ -14,8 +14,8 @@ namespace BankShot
         //Enemy Stats will be included as Fields
 
         //Constructor
-        public Enemy(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active, int maxHealth, Vector2 velocity)
-            : base(texture,transform,collisionBoxes,active,maxHealth,velocity)
+        public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active, int maxHealth, Vector2 velocity)
+            : base(texture,rect,collisionBoxes,active,maxHealth,velocity)
         {
 
         }
@@ -34,7 +34,7 @@ namespace BankShot
             //Determines whether target is to the left or the right of the enemy
             if (distanceX < 0)//target is to the left of enemy
             {
-                velocity = new Vector2(-1, 0);//placeholder until final velocity
+                velocity = new Vector2(-1, 0);
             }
             else if (distanceX > 0)//target is to the right of enemy
             {
@@ -42,7 +42,10 @@ namespace BankShot
             }
         }
 
-
+        public void Move()
+        {
+            rect.X
+        }
         //I'm not sure that we know what these methods do yet
         //so I am just including the list we had in the 
         //diagram.
