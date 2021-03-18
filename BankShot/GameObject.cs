@@ -11,7 +11,7 @@ namespace BankShot
     {
         //Fields
         private bool active;
-        private Rectangle rect;
+        protected Rectangle rect;
         private Texture2D texture;
         private List<Rectangle> collisionBoxes;
 

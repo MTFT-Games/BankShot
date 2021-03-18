@@ -34,21 +34,21 @@ namespace BankShot
             //Determines whether target is to the left or the right of the enemy
             if (distanceX < 0)//target is to the left of enemy
             {
-                velocity = new Vector2(-1, 0);
+                velocity.X = -1;
             }
             else if (distanceX > 0)//target is to the right of enemy
             {
-                velocity = new Vector2(1, 0);
+                velocity.X = -1;
             }
         }
 
-        public void Move()
+        public override void Move()
         {
-            rect.X += velocity.X;
+            base.Move();
         }
         //I'm not sure that we know what these methods do yet
         //so I am just including the list we had in the 
         //diagram.
-        //Move at player, Target player, General ai functions, Attack player
+        // Attack player
     }
 }
