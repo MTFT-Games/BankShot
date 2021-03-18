@@ -61,30 +61,54 @@ namespace BankShot
         /// modifier should be interpreted as a percent multiplier or a value 
         /// to add.</param>
         /// <param name="damageModifier"></param>
-        /// <param name="projectileCountIsMultiplier"></param>
+        /// <param name="projectileCountIsMultiplier">Denotes weather the 
+        /// projectile count modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="projectileCountModifier"></param>
-        /// <param name="rateOfFireIsMultiplier"></param>
+        /// <param name="rateOfFireIsMultiplier">Denotes weather the 
+        /// rate of fire modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="rateOfFireModifier"></param>
-        /// <param name="projectileSpeedIsMultiplier"></param>
+        /// <param name="projectileSpeedIsMultiplier">Denotes weather the 
+        /// projectile speed modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="projectileSpeedModifier"></param>
         /// <param name="projectileSizeModifier"></param>
-        /// <param name="projectileSpreadIsMultiplier"></param>
+        /// <param name="projectileSpreadIsMultiplier">Denotes weather the 
+        /// projectile spread modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="projectileSpreadModifier"></param>
-        /// <param name="projectileHomingIsMultiplier"></param>
+        /// <param name="projectileHomingIsMultiplier">Denotes weather the 
+        /// projectile homing modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="projectileHomingModifier"></param>
-        /// <param name="shieldHealthIsMultiplier"></param>
+        /// <param name="shieldHealthIsMultiplier">Denotes weather the 
+        /// shield health modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="shieldHealthModifier"></param>
-        /// <param name="shieldRegenIsMultiplier"></param>
+        /// <param name="shieldRegenIsMultiplier">Denotes weather the 
+        /// shield regen modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="shieldRegenModifier"></param>
-        /// <param name="shieldCooldownIsMultiplier"></param>
+        /// <param name="shieldCooldownIsMultiplier">Denotes weather the 
+        /// shield cooldown modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="shieldCooldownModifier"></param>
-        /// <param name="healthIsMultiplier"></param>
+        /// <param name="healthIsMultiplier">Denotes weather the 
+        /// health modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="healthModifier"></param>
-        /// <param name="healthRegenIsMultiplier"></param>
+        /// <param name="healthRegenIsMultiplier">Denotes weather the 
+        /// health regen modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="healthRegenModifier"></param>
-        /// <param name="knockbackIsMultiplier"></param>
+        /// <param name="knockbackIsMultiplier">Denotes weather the 
+        /// knockback modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="knockbackModifier"></param>
-        /// <param name="knockbackResistIsMultiplier"></param>
+        /// <param name="knockbackResistIsMultiplier">Denotes weather the 
+        /// knockback resist modifier should be interpreted as a percent 
+        /// multiplier or a value  to add.</param>
         /// <param name="knockbackResistModifier"></param>
         /// <param name="icon"></param>
         /// <param name="name"></param>
