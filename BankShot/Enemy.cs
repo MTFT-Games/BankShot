@@ -22,18 +22,26 @@ namespace BankShot
         //Methods
         public void DealDamage(IDamagable target)) { }
 
-        
+        /// <summary>
+        /// Sets velocity in the direction of the player
+        /// </summary>
+        /// <param name="target"></param>
         public void Pathfind(GameObject target)
         {
             //determines difference between enemy position and target position
             int distanceX = this.X - target.X;
 
             //Determines whether target is to the left or the right of the enemy
-            if (distanceX < 0)//target is to the left of player
+            if (distanceX < 0)//target is to the left of enemy
             {
-                this.velocity *= -1;
+                velocity = new Vector2(-1, 0);//placeholder until final velocity
+            }
+            else if (distanceX > 0)//target is to the right of enemy
+            {
+                velocity = new Vector2(1, 0);
             }
         }
+
 
         //I'm not sure that we know what these methods do yet
         //so I am just including the list we had in the 
