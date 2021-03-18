@@ -43,7 +43,8 @@ namespace BankShot
         }
 
         //Parameterized Constructor
-        public Character(int maxHealth, Vector2 velocity)
+        public Character(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active, int maxHealth, Vector2 velocity)
+            : base(texture, transform, collisionBoxes, active)
         {
             this.maxHealth = maxHealth;
             health = maxHealth;

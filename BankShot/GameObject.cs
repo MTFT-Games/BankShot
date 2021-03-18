@@ -39,10 +39,22 @@ namespace BankShot
             }
         }
 
+        //Constructor 
+        public GameObject(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active)
+        {
+            this.texture = texture;
+            this.transform = transform;
+            this.collisionBoxes = collisionBoxes;
+            this.active = active;
+        }
+
         //Methods
         public virtual void Update() { }
 
-        public virtual void Draw() { }
+        public virtual void Draw(SpriteBatch spriteBatch) 
+        {
+            spriteBatch.Draw(texture, transform, Color.White);
+        }
 
         //There should be a method to check collisons
         //We just don't have it explicitly written yet.
