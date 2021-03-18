@@ -10,8 +10,18 @@ namespace BankShot
     class Weapon : GameObject, IMovable
     {
         //Fields
-        private int damage;
-        private int knockback;
+        protected int damage;
+        protected int knockback;
+
+        //Parameterized Constructor
+        public Weapon(Texture2D texture, Rectangle transform, 
+                      List<Rectangle> collisionBoxes, bool active, 
+                      int damage, int knockback) 
+                      : base(texture, transform, collisionBoxes, active)
+        {
+            this.damage = damage;
+            this.knockback = knockback;
+        }
 
         //Methods
         public virtual void Attack() { }

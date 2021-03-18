@@ -16,10 +16,28 @@ namespace BankShot
         private double lifeSpan;
         private Vector2 velocity;
         private bool fromEnemy;
+        private List<Projectile> projectiles;
+
+        //Parameterized Contructor
+        public Projectile(Texture2D texture, Rectangle transform,
+                          List<Rectangle> collisionBoxes, bool active,
+                          bool interceptable, int damage, int knockback, 
+                          double lifeSpan, Vector2 velocity, bool fromEnemy,
+                          List<Projectile> projectiles)
+                          : base(texture, transform, collisionBoxes, active)
+        {
+            this.interceptable = interceptable;
+            this.damage = damage;
+            this.knockback = knockback;
+            this.lifeSpan = lifeSpan;
+            this.velocity = velocity;
+            this.fromEnemy = fromEnemy;
+            this.projectiles = projectiles;
+        }
 
         //Methods
         public void Move() { }
 
-        public void DealDamage(IDamagable target)) { }
+        public void DealDamage(IDamagable target) { }
     }
 }

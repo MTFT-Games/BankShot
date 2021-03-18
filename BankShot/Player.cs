@@ -17,12 +17,16 @@ namespace BankShot
         //Player Stats will also be included as Fields
 
         //Default Contructor
-        public Player(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active, int maxHealth, Vector2 velocity) 
-            : base(texture, transform, collisionBoxes, active, maxHealth, velocity) { }
+        public Player(Texture2D texture, Rectangle transform, 
+                      List<Rectangle> collisionBoxes, bool active, 
+                      int maxHealth, Vector2 velocity) 
+                      : base(texture, transform, collisionBoxes, active, 
+                             maxHealth, velocity) { }
 
         //Methods
         public override void Update()
         {
+            this.Move();
             base.Update();
         }
 

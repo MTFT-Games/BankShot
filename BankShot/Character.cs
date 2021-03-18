@@ -7,6 +7,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
+    //Michael Robinson
+    //Character
+    //Represents a character in the game.
+    //This encompasses both the Player and Enemies.
+    //All Characters have he
     class Character : GameObject, IMovable, IDamagable
     {
         //Fields
