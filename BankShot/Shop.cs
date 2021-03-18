@@ -13,9 +13,34 @@ namespace BankShot
         //Fields
         private Upgrade[] forSale;
         private UpgradeManager manager;
+        private Texture2D shopTx;
+        private Rectangle rect;
+        private bool drawn;
 
         //Methods
-        public void EnterScreen() { }
+        /// <summary>
+        /// Creates the shop by calling its draw method and moving it onto screen
+        /// </summary>
+        /// 
+
+        public Shop(Texture2D tx)
+        {
+            shopTx = tx;
+            forSale = new Upgrade[3];
+            manager = new UpgradeManager();
+            rect = new Rectangle(new Point(-100, 40), new Point(50, 50));
+
+        }
+
+        public void EnterScreen(SpriteBatch sb, Color c)
+        {
+            if(!drawn)
+            Draw(sb, c);
+
+           
+            
+        
+        }
         
         public void ExitScreen() { }
 
@@ -26,5 +51,12 @@ namespace BankShot
         // Check for player in front of upgrade and display info
 
         //Check for confirmation while player is in front of upgrade
+
+        public void Draw(SpriteBatch sb, Color c)
+        {
+            sb.Draw(shopTx, shopLoc, Color.White);
+            drawn = true;
+        }
+
     }
 }
