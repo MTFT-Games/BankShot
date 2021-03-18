@@ -10,7 +10,7 @@ namespace BankShot
     class Enemy : Character, IDamages
     {
         //Fields
-
+        
         //Enemy Stats will be included as Fields
 
         //Constructor
@@ -22,16 +22,22 @@ namespace BankShot
         //Methods
         public void DealDamage(IDamagable target)) { }
 
+        
+        public void Pathfind(GameObject target)
+        {
+            //determines difference between enemy position and target position
+            int distanceX = this.X - target.X;
+
+            //Determines whether target is to the left or the right of the enemy
+            if (distanceX < 0)//target is to the left of player
+            {
+                this.velocity *= -1;
+            }
+        }
+
         //I'm not sure that we know what these methods do yet
         //so I am just including the list we had in the 
         //diagram.
-        public bool Pathfind(GameObject target)
-        {
-            bool shouldTurn = false;
-
-
-            return shouldTurn;
-        }
-        //Pathfind, Move at player, Target player, General ai functions, Attack player
+        //Move at player, Target player, General ai functions, Attack player
     }
 }

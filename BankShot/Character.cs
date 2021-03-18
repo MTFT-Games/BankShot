@@ -10,10 +10,10 @@ namespace BankShot
     class Character : GameObject, IMovable, IDamagable
     {
         //Fields
-        private bool invincible;
-        private int maxHealth;
-        private int health;
-        private Vector2 velocity;
+        protected bool invincible;
+        protected int maxHealth;
+        protected int health;
+        protected Vector2 velocity;
 
         //We have not decided which of these we will use.
         private double invincibleTime;
