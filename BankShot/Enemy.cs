@@ -44,7 +44,7 @@ namespace BankShot
 
         public void Move()
         {
-            rect.X
+            rect.X += velocity.X;
         }
         //I'm not sure that we know what these methods do yet
         //so I am just including the list we had in the 

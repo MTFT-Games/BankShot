@@ -16,8 +16,8 @@ namespace BankShot
         protected Vector2 velocity;
 
         //We have not decided which of these we will use.
-        private double invincibleTime;
-        private int invincibleFrames;
+        protected double invincibleTime;
+        protected int invincibleFrames;
 
         //Properties
         public bool Invincible
