@@ -20,7 +20,7 @@ namespace BankShot
 
         }
         //Methods
-        public void DealDamage(IDamagable target) { }
+        public void DealDamage(IDamageable target) { }
 
         /// <summary>
         /// Sets velocity in the direction of the player

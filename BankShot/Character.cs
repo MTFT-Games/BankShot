@@ -12,7 +12,7 @@ namespace BankShot
     //Represents a character in the game.
     //This encompasses both the Player and Enemies.
     //All Characters have he
-    class Character : GameObject, IMovable, IDamagable
+    class Character : GameObject, IMoveable, IDamageable
     {
         //Fields
         protected bool invincible;
@@ -44,6 +44,24 @@ namespace BankShot
             get
             {
                 return health;
+            }
+        }
+        public Double InvincibleTime
+        {
+            get
+            {
+                return invincibleTime;
+            }
+        }
+        public Vector2 Velocity
+        {
+            get
+            {
+                return velocity;
+            }
+            set
+            {
+                velocity = value;
             }
         }
 

@@ -8,14 +8,26 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Shop : GameObject, IMovable
+    class Shop : GameObject, IMoveable
     {
         //Fields
         private Upgrade[] forSale;
         private UpgradeManager manager;
-        private Texture2D shopTx;
-        private Rectangle rect;
         private bool drawn;
+        protected Vector2 velocity;
+
+        //Properties
+        public Vector2 Velocity
+        {
+            get
+            {
+                return velocity;
+            }
+            set
+            {
+                velocity = value;
+            }
+        }
 
         //Methods
         /// <summary>
@@ -23,9 +35,9 @@ namespace BankShot
         /// </summary>
         /// 
 
-        public Shop(Texture2D tx)
+        public Shop(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active)
+            : base(texture, transform, collisionBoxes, active)
         {
-            shopTx = tx;
             forSale = new Upgrade[3];
             manager = new UpgradeManager();
             rect = new Rectangle(new Point(-100, 40), new Point(50, 50));
@@ -54,9 +66,10 @@ namespace BankShot
 
         public void Draw(SpriteBatch sb, Color c)
         {
-            sb.Draw(shopTx, shopLoc, Color.White);
+            sb.Draw(texture, rect, Color.White);
             drawn = true;
         }
 
+        public void Move() { }
     }
 }

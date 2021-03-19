@@ -11,6 +11,16 @@ namespace BankShot
     {
         //Fields
 
+        //Parameterized Constructor
+        public Melee(Texture2D texture, Rectangle transform,
+                      List<Rectangle> collisionBoxes, bool active,
+                      int damage, int knockback)
+                      : base(texture, transform, collisionBoxes, 
+                             active, damage, knockback)
+        {
+
+        }
+
         //Methods
 
         //Displays the weapon’s melee animation and 

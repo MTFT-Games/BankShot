@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Projectile : GameObject, IMovable, IDamages
+    class Projectile : GameObject, IMoveable, IDamages
     {
         //Fields
         private bool interceptable;
@@ -18,6 +18,19 @@ namespace BankShot
         private bool fromEnemy;
         //The Projectile should remove itself from this list when it dies.
         private List<Projectile> projectiles;
+
+        //Properties
+        public Vector2 Velocity
+        {
+            get
+            {
+                return velocity;
+            }
+            set
+            {
+                velocity = value;
+            }
+        }
 
         //Parameterized Contructor
         public Projectile(Texture2D texture, Rectangle transform,
@@ -39,6 +52,6 @@ namespace BankShot
         //Methods
         public void Move() { }
 
-        public void DealDamage(IDamagable target) { }
+        public void DealDamage(IDamageable target) { }
     }
 }

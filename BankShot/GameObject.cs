@@ -12,8 +12,8 @@ namespace BankShot
         //Fields
         private bool active;
         protected Rectangle rect;
-        private Texture2D texture;
-        private List<Rectangle> collisionBoxes;
+        protected Texture2D texture;
+        protected List<Rectangle> collisionBoxes;
 
         //Properties
         public int X
@@ -36,6 +36,17 @@ namespace BankShot
             set
             {
                 rect.Y = value;
+            }
+        }
+        public Rectangle Transform
+        {
+            get
+            {
+                return rect;
+            }
+            set
+            {
+                rect = value;
             }
         }
 

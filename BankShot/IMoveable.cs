@@ -13,7 +13,7 @@ namespace BankShot
         Vector2 Velocity { get; set; }
 
         //movable objects must have a rectangle, with set and get accessors
-        Rectangle transform { get; set; }
+        Rectangle Transform { get; set; }
 
         /// <summary>
         ///movable objects have a method that governs their movement

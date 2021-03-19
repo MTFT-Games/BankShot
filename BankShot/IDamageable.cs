@@ -10,17 +10,17 @@ namespace BankShot
     interface IDamageable
     {
         //damageable objects must have a boolean to determine invincibility
-        bool invincible { get; }
+        bool Invincible { get; }
 
         //damageable objects must have an int holding their max health
-        int maxHealth { get; }
+        int MaxHealth { get; }
 
         //damageable objects must have an int holding their current health
-        int health { get; }
+        int Health { get; }
 
         //damageable objects must have a double holding the length of 
         //their invincibility period
-        Double invincibleTime { get; }
+        Double InvincibleTime { get; }
 
         /// <summary>
         /// all damageable objects are to have a method that allows
