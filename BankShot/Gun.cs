@@ -20,7 +20,6 @@ namespace BankShot
         //Projectile Stats:
         private bool interceptable;
         private double lifeSpan;
-        private Vector2 velocity;
         private List<Projectile> projectiles; 
 
         //Parameterized Constructor

@@ -7,11 +7,25 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Weapon : GameObject, IMovable
+    class Weapon : GameObject, IMoveable
     {
         //Fields
         protected int damage;
         protected int knockback;
+        protected Vector2 velocity;
+
+        //Properties
+        public Vector2 Velocity
+        {
+            get
+            {
+                return velocity;
+            }
+            set
+            {
+                velocity = value;
+            }
+        }
 
         //Parameterized Constructor
         public Weapon(Texture2D texture, Rectangle transform, 
