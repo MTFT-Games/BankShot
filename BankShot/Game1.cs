@@ -4,6 +4,16 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 namespace BankShot {
+
+    enum GameState
+    {
+        MainMenu, 
+        Game, 
+        Pause, 
+        Leaderboard, 
+        GameOver
+    }
+
     public class Game1 : Game {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -11,14 +21,14 @@ namespace BankShot {
         private SpriteFont font;
         private MainMenu mnu;
 
+        //Testing player
+        public Player player;
         //Testing gun and projectile creation.
         /*
         private Gun gun;
         private Texture2D gunTexture;
         private Texture2D projectileTexture;
         */
-
-        public Player thePlayer;
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -30,6 +40,7 @@ namespace BankShot {
             //menu to be replaced
             mnu = new MainMenu(font);
 
+            
             base.Initialize();
         }
 

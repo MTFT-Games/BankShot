@@ -7,20 +7,51 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    public class Enemy : Character, IDamages
+    delegate void enemyMethods(Enemy sender);
+    /// <summary>
+    /// generic enemy class, handles movement, dealing damage, and death
+    /// </summary>
+    class Enemy : Character, IDamages
     {
         //Fields
-        
+        protected int attackPower;
+        protected int knockbackDistance;
+        public event enemyMethods enemyDeath;
         //Enemy Stats will be included as Fields
 
         //Constructor
-        public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active, int maxHealth, Vector2 velocity)
+        public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active, int maxHealth, Vector2 velocity, int attackPower, int knockbackDistance)
             : base(texture,rect,collisionBoxes,active,maxHealth,velocity)
         {
-
+            this.attackPower = attackPower;
+            this.knockbackDistance = knockbackDistance;
         }
         //Methods
-        public void DealDamage(IDamageable target) { }
+        /// <summary>
+        /// Damages a target the enemy makes contact with
+        /// </summary>
+        /// <param name="target"></param>
+        public void DealDamage(IDamageable target)
+        {
+            GameObject victim = (GameObject)target;
+            if (rect.Intersects(victim.Rect))
+            {
+                target.TakeDamage(attackPower,knockbackDistance);
+            }
+        }
+        /// <summary>
+        /// Updates enemy position and deals damage if enemy is not dead
+        /// </summary>
+        public override void Update()
+        {
+            if(health <= 0)
+            {
+                enemyDeath(this);
+                return;
+            }
+            Move();
+            //DealDamage(Game1.player);
+        }
 
         /// <summary>
         /// Sets velocity in the direction of the player
@@ -41,14 +72,14 @@ namespace BankShot
                 velocity.X = -1;
             }
         }
-
+        /// <summary>
+        /// Sets enemy direction and fires
+        /// </summary>
         public override void Move()
         {
+            //Pathfind(Game1.player);
             base.Move();
         }
-        //I'm not sure that we know what these methods do yet
-        //so I am just including the list we had in the 
-        //diagram.
-        // Attack player
+        
     }
 }
