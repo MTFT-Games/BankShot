@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Player : Character
+    public class Player : Character
     {
         //Fields
         private Mobility mobility;

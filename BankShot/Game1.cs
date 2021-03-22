@@ -10,6 +10,8 @@ namespace BankShot {
         private SpriteFont font;
         private MainMenu mnu;
 
+        //Testing player
+        public Player player;
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -21,6 +23,7 @@ namespace BankShot {
             //menu to be replaced
             mnu = new MainMenu(font);
 
+            
             base.Initialize();
         }
 

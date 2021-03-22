@@ -38,7 +38,7 @@ namespace BankShot
                 rect.Y = value;
             }
         }
-        public Rectangle Transform
+        public Rectangle Rect
         {
             get
             {
