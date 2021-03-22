@@ -7,8 +7,13 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
+    /// <summary>
+    /// AUTHOR: AIDAN VANBURGER
+    /// PURPOSE: to manage the drawing and logic of the main menu
+    /// </summary>
     class MainMenu
     {
+        //fields for spritefont and button rectangles
         private SpriteFont font;
         private Rectangle startBtn;
         private Rectangle exitBtn;
@@ -48,16 +53,22 @@ namespace BankShot
                Color.White);
         }
 
-        public void Update(KeyboardState kbs, MouseState ms) 
+        public void Update(KeyboardState kbs, MouseState ms, out GameState state) 
         {
             Rectangle mousePosition = new Rectangle(ms.X, ms.Y, 1, 1);
             if(ms.LeftButton == ButtonState.Pressed && mousePosition.Intersects(startBtn))
             {
                 //changes game state to game mode
+                state = GameState.Game;
+            }
+            else
+            {
+                state = GameState.MainMenu;
             }
             if (ms.LeftButton == ButtonState.Pressed && mousePosition.Intersects(exitBtn))
             {
                 //exits game
+                
             }
         }
 
