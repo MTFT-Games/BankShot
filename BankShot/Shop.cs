@@ -49,12 +49,21 @@ namespace BankShot
             if(!drawn)
             Draw(sb, c);
 
+            while (rect.X != 100)
+            {
+                rect.X++;
+            }
            
-            
-        
         }
         
-        public void ExitScreen() { }
+        public void ExitScreen() 
+        {
+            while (rect.X != -100)
+            {
+                rect.X--;
+            }
+
+        }
 
         //These methods have not been explicitly defined:
 
