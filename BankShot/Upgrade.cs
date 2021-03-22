@@ -4,7 +4,8 @@ namespace BankShot
 {
     /// <summary>
     /// Primary Author: Noah Emke
-    /// A struct for holding all attributes of any upgrade.
+    /// A struct for holding all attributes of any upgrade. It looks heinous but 
+    /// it allows the upgrade system to be very flexible
     /// </summary>
     struct Upgrade
     {
@@ -15,36 +16,36 @@ namespace BankShot
         public int projectileCountModifier;
 
         public bool rateOfFireIsMultiplier;
-        public int rateOfFireModifier;
+        public float rateOfFireModifier;
 
         public bool projectileSpeedIsMultiplier;
-        public int projectileSpeedModifier;
+        public float projectileSpeedModifier;
 
         public int projectileSizeModifier;
 
         public bool projectileSpreadIsMultiplier;
-        public int projectileSpreadModifier;
+        public float projectileSpreadModifier;
 
         public bool projectileHomingIsMultiplier;
-        public int projectileHomingModifier;
+        public float projectileHomingModifier;
 
         public bool shieldHealthIsMultiplier;
         public int shieldHealthModifier;
 
         public bool shieldRegenIsMultiplier;
-        public int shieldRegenModifier;
+        public float shieldRegenModifier;
 
         public bool shieldCooldownIsMultiplier;
-        public int shieldCooldownModifier;
+        public float shieldCooldownModifier;
 
         public bool healthIsMultiplier;
         public int healthModifier;
 
         public bool healthRegenIsMultiplier;
-        public int healthRegenModifier;
+        public float healthRegenModifier;
 
         public bool knockbackIsMultiplier;
-        public int knockbackModifier;
+        public float knockbackModifier;
 
         public bool knockbackResistIsMultiplier;
         public int knockbackResistModifier;
@@ -60,73 +61,105 @@ namespace BankShot
         /// <param name="damageIsMultiplier">Denotes weather the damage 
         /// modifier should be interpreted as a percent multiplier or a value 
         /// to add.</param>
-        /// <param name="damageModifier"></param>
+        /// <param name="damageModifier">Modifier to be applied to the players 
+        /// weapon damage as either a percentage multiplier or a flat value addition.</param>
         /// <param name="projectileCountIsMultiplier">Denotes weather the 
         /// projectile count modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="projectileCountModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="projectileCountModifier">Modifier to be applied to the 
+        /// number of projectiles spawned per shot of the players weapon as 
+        /// either a percentage multiplier or a flat value addition.</param>
         /// <param name="rateOfFireIsMultiplier">Denotes weather the 
         /// rate of fire modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="rateOfFireModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="rateOfFireModifier">Modifier to be applied to the rate 
+        /// of fire of the players weapon as either a percentage multiplier or 
+        /// a flat value of shots per second.</param>
         /// <param name="projectileSpeedIsMultiplier">Denotes weather the 
         /// projectile speed modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="projectileSpeedModifier"></param>
-        /// <param name="projectileSizeModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="projectileSpeedModifier">Modifier to be applied to the 
+        /// speed of any projectile spawned by the player as either a percentage
+        /// multiplier or a flat value addition.</param>
+        /// <param name="projectileSizeModifier">Modifier to be applied to the 
+        /// size of any projectile spawned by the player as a percentage 
+        /// multiplier.</param>
         /// <param name="projectileSpreadIsMultiplier">Denotes weather the 
         /// projectile spread modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="projectileSpreadModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="projectileSpreadModifier">Modifier to be applied to 
+        /// the spread of projectiles shot by the player as either a 
+        /// percentage multiplier or a flat value in degrees.</param>
         /// <param name="projectileHomingIsMultiplier">Denotes weather the 
         /// projectile homing modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="projectileHomingModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="projectileHomingModifier">Modifier to be applied to 
+        /// the players homing abilities of any projectile spawned by the 
+        /// player as either a percentage multiplier or a flat value in 
+        /// degrees per second.</param>
         /// <param name="shieldHealthIsMultiplier">Denotes weather the 
         /// shield health modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="shieldHealthModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="shieldHealthModifier">Modifier to be applied to the 
+        /// player's shield health maximum as either a percentage multiplier 
+        /// or a flat value addition.</param>
         /// <param name="shieldRegenIsMultiplier">Denotes weather the 
         /// shield regen modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="shieldRegenModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="shieldRegenModifier">Modifier to be applied to the 
+        /// player's shield regeneration rate as either a percentage multiplier 
+        /// or a flat value as health per second.</param>
         /// <param name="shieldCooldownIsMultiplier">Denotes weather the 
         /// shield cooldown modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="shieldCooldownModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="shieldCooldownModifier">Modifier to be applied to the 
+        /// time to wait after being used before the shield starts to regenerate 
+        /// as either a percentage multiplier or a flat value in seconds.</param>
         /// <param name="healthIsMultiplier">Denotes weather the 
         /// health modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="healthModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="healthModifier">Modifier to be applied to the player's 
+        /// maximum health as either a percentage multiplier or a flat value 
+        /// addition.</param>
         /// <param name="healthRegenIsMultiplier">Denotes weather the 
         /// health regen modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="healthRegenModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="healthRegenModifier">Modifier to be applied to the 
+        /// players health regeneration rate as either a percentage multiplier 
+        /// or a flat value in health per second.</param>
         /// <param name="knockbackIsMultiplier">Denotes weather the 
         /// knockback modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="knockbackModifier"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="knockbackModifier">Modifier to be applied to the speed 
+        /// with which the player knocks back enemies as either a percentage 
+        /// multiplier or a flat value addition.</param>
         /// <param name="knockbackResistIsMultiplier">Denotes weather the 
         /// knockback resist modifier should be interpreted as a percent 
-        /// multiplier or a value  to add.</param>
-        /// <param name="knockbackResistModifier"></param>
-        /// <param name="icon"></param>
-        /// <param name="name"></param>
-        /// <param name="description"></param>
-        /// <param name="weight"></param>
+        /// multiplier or a value to add.</param>
+        /// <param name="knockbackResistModifier">Modifier to be applied to the 
+        /// players resistance to being knocked back as either a percentage 
+        /// multiplier or a flat number of percentage points to add.</param>
+        /// <param name="icon">The image to be displayed in the shop along side 
+        /// this upgrade.</param>
+        /// <param name="name">The name of this upgrade as displayed to the 
+        /// player.</param>
+        /// <param name="description">The description of the upgrade displayed 
+        /// to the player.</param>
+        /// <param name="weight">The weight associated with this upgrade to give 
+        /// it rarity in the random generator.</param>
         public Upgrade(bool damageIsMultiplier, int damageModifier, 
             bool projectileCountIsMultiplier, int projectileCountModifier, 
-            bool rateOfFireIsMultiplier, int rateOfFireModifier, 
-            bool projectileSpeedIsMultiplier, int projectileSpeedModifier, 
+            bool rateOfFireIsMultiplier, float rateOfFireModifier, 
+            bool projectileSpeedIsMultiplier, float projectileSpeedModifier, 
             int projectileSizeModifier, bool projectileSpreadIsMultiplier, 
-            int projectileSpreadModifier, bool projectileHomingIsMultiplier, 
-            int projectileHomingModifier, bool shieldHealthIsMultiplier, 
+            float projectileSpreadModifier, bool projectileHomingIsMultiplier, 
+            float projectileHomingModifier, bool shieldHealthIsMultiplier, 
             int shieldHealthModifier, bool shieldRegenIsMultiplier, 
-            int shieldRegenModifier, bool shieldCooldownIsMultiplier, 
-            int shieldCooldownModifier, bool healthIsMultiplier, 
+            float shieldRegenModifier, bool shieldCooldownIsMultiplier, 
+            float shieldCooldownModifier, bool healthIsMultiplier, 
             int healthModifier, bool healthRegenIsMultiplier, 
-            int healthRegenModifier, bool knockbackIsMultiplier, 
-            int knockbackModifier, bool knockbackResistIsMultiplier, 
+            float healthRegenModifier, bool knockbackIsMultiplier, 
+            float knockbackModifier, bool knockbackResistIsMultiplier, 
             int knockbackResistModifier, Texture2D icon, string name, 
             string description, int weight)
         {
