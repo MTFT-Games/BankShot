@@ -11,7 +11,7 @@ namespace BankShot
     /// AUTHOR: AIDAN VANBURGER
     /// PURPOSE: to manage the drawing and logic of the main menu
     /// </summary>
-    class MainMenu
+    public class MainMenu
     {
         //fields for spritefont and button rectangles
         private SpriteFont font;

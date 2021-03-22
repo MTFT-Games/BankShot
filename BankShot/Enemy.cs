@@ -11,7 +11,7 @@ namespace BankShot
     /// <summary>
     /// generic enemy class, handles movement, dealing damage, and death
     /// </summary>
-    class Enemy : Character, IDamages
+    public class Enemy : Character, IDamages
     {
         //Fields
         protected int attackPower;
