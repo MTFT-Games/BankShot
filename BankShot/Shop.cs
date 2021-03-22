@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Shop : GameObject, IMoveable
+    public class Shop : GameObject, IMoveable
     {
         //Fields
         private Upgrade[] forSale;
@@ -49,18 +49,18 @@ namespace BankShot
             if(!drawn)
             Draw(sb, c);
 
-            while (rect.X != 100)
+            while (position.X != 100)
             {
-                rect.X++;
+                position.X++;
             }
            
         }
         
         public void ExitScreen() 
         {
-            while (rect.X != -100)
+            while (position.X != -100)
             {
-                rect.X--;
+                position.X--;
             }
 
         }
@@ -79,6 +79,16 @@ namespace BankShot
             drawn = true;
         }
 
-        public void Move() { }
+        public virtual void Move()
+        {
+            position += velocity;
+        }
+
+        public override void Update()
+        {
+            this.Move();
+            X = (int)position.X;
+            Y = (int)position.Y;
+        }
     }
 }

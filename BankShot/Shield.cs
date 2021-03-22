@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Shield : GameObject, IMoveable
+    public class Shield : GameObject, IMoveable
     {
         //Fields
         protected Vector2 velocity;

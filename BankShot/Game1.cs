@@ -1,8 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace BankShot {
+
+    enum GameState
+    {
+        MainMenu, 
+        Game, 
+        Pause, 
+        Leaderboard, 
+        GameOver
+    }
+
     public class Game1 : Game {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
@@ -10,6 +21,14 @@ namespace BankShot {
         private SpriteFont font;
         private MainMenu mnu;
 
+        //Testing player
+        public Player player;
+        //Testing gun and projectile creation.
+        /*
+        private Gun gun;
+        private Texture2D gunTexture;
+        private Texture2D projectileTexture;
+        */
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -21,6 +40,7 @@ namespace BankShot {
             //menu to be replaced
             mnu = new MainMenu(font);
 
+            
             base.Initialize();
         }
 
@@ -29,6 +49,12 @@ namespace BankShot {
             //font for testing- to be replaced
             font = Content.Load<SpriteFont>("File");
 
+            //Testing gun and projectile creation.
+            /*
+            gunTexture = Content.Load<Texture2D>("button1");
+            projectileTexture = Content.Load<Texture2D>("button2");
+            gun = new Gun(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 2, 2, true, 2, 5, new Vector2(0, 0), projectileTexture, new Rectangle(150, 100, 100, 100), new List<Rectangle>(), true);
+            */
 
             // TODO: use this.Content to load your game content here
         }
@@ -39,14 +65,23 @@ namespace BankShot {
 
             // TODO: Add your update logic here
 
+            //Testing gun and projectile creation.
+            //Input.Update();
+            //gun.Update();
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            mnu.Draw(_spriteBatch, _graphics);
-            
 
+            _spriteBatch.Begin();
+            //mnu.Draw(_spriteBatch, _graphics);
+
+            //Testing gun and projectile creation.
+            //gun.Draw(_spriteBatch);
+            
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    interface IDamages
+    public interface IDamages
     {
 
         /// <summary>

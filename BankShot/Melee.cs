@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Melee : Weapon
+    public class Melee : Weapon
     {
         //Fields
 

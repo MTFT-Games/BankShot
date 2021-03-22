@@ -7,13 +7,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class GameObject
+    public class GameObject
     {
         //Fields
         private bool active;
         protected Rectangle rect;
         protected Texture2D texture;
         protected List<Rectangle> collisionBoxes;
+        protected Vector2 position;
 
         //Properties
         public int X
@@ -38,7 +39,7 @@ namespace BankShot
                 rect.Y = value;
             }
         }
-        public Rectangle Transform
+        public Rectangle Rect
         {
             get
             {
@@ -49,6 +50,18 @@ namespace BankShot
                 rect = value;
             }
         }
+        public Vector2 Position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
+            }
+        }
 
         //Constructor 
         public GameObject(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active)
@@ -57,6 +70,7 @@ namespace BankShot
             this.rect = transform;
             this.collisionBoxes = collisionBoxes;
             this.active = active;
+            position = new Vector2(transform.X, transform.Y);
         }
 
         //Methods
@@ -66,6 +80,8 @@ namespace BankShot
         {
             spriteBatch.Draw(texture, rect, Color.White);
         }
+
+
 
         //There should be a method to check collisons
         //We just don't have it explicitly written yet.

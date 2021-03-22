@@ -11,7 +11,7 @@ namespace BankShot
     /// Primary author: Noah Emke
     /// <para>A projectile object spawned by a gun.</para>
     /// </summary>
-    class Projectile : GameObject, IMoveable, IDamages
+    public class Projectile : GameObject, IMoveable, IDamages
     {
         //Fields
         private bool interceptable;
@@ -54,8 +54,18 @@ namespace BankShot
             this.projectiles = projectiles;
         }
 
-        
-        public void Move() { }
+        //Methods
+        public void Move() 
+        {
+            position += velocity;
+        }
+
+        public override void Update()
+        {
+            this.Move();
+            X = (int)position.X;
+            Y = (int)position.Y;
+        }
 
         public void DealDamage(IDamageable target) { }
 
