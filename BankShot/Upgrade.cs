@@ -6,7 +6,7 @@ namespace BankShot
     /// Primary Author: Noah Emke
     /// A struct for holding all attributes of any upgrade.
     /// </summary>
-    struct Upgrade
+    public struct Upgrade
     {
         public bool damageIsMultiplier; 
         public int damageModifier;

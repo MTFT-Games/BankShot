@@ -68,6 +68,7 @@ namespace BankShot
         public string ReadUpgrades()
         {
             //will return a string list of upgrades that are applied to the player
+            return "";
 
         }
 

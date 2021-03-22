@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    interface IMoveable
+    public interface IMoveable
     {
         //movable objects must have a velocity, with set and get accessors
         Vector2 Velocity { get; set; }

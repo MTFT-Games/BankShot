@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class EnemyManager
+    public class EnemyManager
     {
         //fields
 
@@ -56,6 +56,7 @@ namespace BankShot
         public string ReadStats()
         {
             //returns a string with information on each enemy's stats
+            return "";
 
         }
 

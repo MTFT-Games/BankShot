@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Enemy : Character, IDamages
+    public class Enemy : Character, IDamages
     {
         //Fields
         

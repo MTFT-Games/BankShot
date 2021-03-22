@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class MainMenu
+    public class MainMenu
     {
         private SpriteFont font;
         private Rectangle startBtn;
