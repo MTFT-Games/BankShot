@@ -3,6 +3,16 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace BankShot {
+
+    enum GameState
+    {
+        MainMenu, 
+        Game, 
+        Pause, 
+        Leaderboard, 
+        GameOver
+    }
+
     public class Game1 : Game {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
