@@ -58,5 +58,22 @@ namespace BankShot
         public void Move() { }
 
         public void DealDamage(IDamageable target) { }
+
+        /// <summary>
+        /// Draws this projectile to the screen.
+        /// </summary>
+        /// <param name="sb">The games spritebatch.</param>
+        public override void Draw(SpriteBatch sb)
+        {
+            sb.Draw(
+                texture,
+                rect,
+                null,
+                Color.White,
+                (float)Math.Atan2(velocity.Y, velocity.X),
+                new Vector2(rect.X / 2, rect.Y / 2),
+                SpriteEffects.None,
+                1);
+        }
     }
 }
