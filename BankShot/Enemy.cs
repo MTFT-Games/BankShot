@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    delegate void enemyMethods(Enemy sender);
+    public delegate void enemyMethods(Enemy sender);
     /// <summary>
     /// generic enemy class, handles movement, dealing damage, and death
     /// </summary>
