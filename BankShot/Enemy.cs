@@ -7,20 +7,22 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    delegate void enemyMethods(Enemy sender);
+    public delegate void enemyMethods(Enemy sender);
     /// <summary>
-    /// generic enemy class, handles movement, dealing damage, and death
+    /// generic enemy class, handles movement, dealing damage, and death.
+    /// Coded by Machi
     /// </summary>
     public class Enemy : Character, IDamages
     {
         //Fields
         protected int attackPower;
-        protected int knockbackDistance;
+        protected float knockbackDistance;
         public event enemyMethods enemyDeath;
         //Enemy Stats will be included as Fields
 
         //Constructor
-        public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active, int maxHealth, Vector2 velocity, int attackPower, int knockbackDistance)
+        public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active, 
+            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance)
             : base(texture,rect,collisionBoxes,active,maxHealth,velocity)
         {
             this.attackPower = attackPower;
@@ -49,6 +51,10 @@ namespace BankShot
                 enemyDeath(this);
                 return;
             }
+            //foreach gameobject in Game1.MapManager.Map
+            //ground/gameobject collision
+            //If player downcast and deal damage
+            //else take care of collision
             Move();
             //DealDamage(Game1.player);
         }
@@ -59,7 +65,7 @@ namespace BankShot
         /// <param name="target"></param>
         public void Pathfind(GameObject target)
         {
-            //determines difference between enemy position and target position
+            //determines difference between enemy Xposition and target Xposition
             int distanceX = this.X - target.X;
 
             //Determines whether target is to the left or the right of the enemy
