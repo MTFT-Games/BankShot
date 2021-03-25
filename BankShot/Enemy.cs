@@ -79,13 +79,17 @@ namespace BankShot
             }
         }
         /// <summary>
-        /// Sets enemy direction and fires
+        /// Sets enemy direction and moves
         /// </summary>
         public override void Move()
         {
             //Pathfind(Game1.player);
             base.Move();
         }
-        
+
+        /*public override void CollisionCheck()
+        {
+            
+        }*/
     }
 }
