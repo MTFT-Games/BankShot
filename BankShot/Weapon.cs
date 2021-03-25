@@ -11,7 +11,7 @@ namespace BankShot
     {
         //Fields
         protected int damage;
-        protected int knockback;
+        protected float knockback;
         protected Vector2 velocity;
 
         //Properties
@@ -30,7 +30,7 @@ namespace BankShot
         //Parameterized Constructor
         public Weapon(Texture2D texture, Rectangle transform, 
                       List<Rectangle> collisionBoxes, bool active, 
-                      int damage, int knockback) 
+                      int damage, float knockback) 
                       : base(texture, transform, collisionBoxes, active)
         {
             this.damage = damage;

@@ -23,6 +23,19 @@ namespace BankShot
         //The Projectile should remove itself from this list when it dies.
         private List<Projectile> projectiles;
 
+        public Vector2 Velocity
+        {
+            get
+            {
+                return velocity;
+            }
+
+            set
+            {
+                velocity = value;
+            }
+        }
+
         /// <summary>
         /// Creates a new projectile with the given stats.
         /// </summary>
@@ -43,7 +56,7 @@ namespace BankShot
         public Projectile(Texture2D texture, Rectangle transform, bool active, 
             bool interceptable, int damage, int knockback, double lifeSpan, 
             Vector2 velocity, bool fromEnemy, List<Projectile> projectiles)
-            : base(texture, transform, new List<Rectangle> { transform }, active)
+            : base(texture, transform, new List<Rectangle>, active)
         {
             this.interceptable = interceptable;
             this.damage = damage;
@@ -67,7 +80,17 @@ namespace BankShot
             Y = (int)position.Y;
         }
 
-        public void DealDamage(IDamageable target) { }
+        public void DealDamage(IDamageable target) 
+        { 
+            if (target is Character)
+            {
+                ((Character)target).TakeDamage(damage, knockback);
+            }
+            
+            //Projectile should destroy itself after doing any damage
+            //This will probably be implemented in the collision method after 
+            //Deal damage is called.
+        }
 
         /// <summary>
         /// Draws this projectile to the screen.
@@ -84,6 +107,30 @@ namespace BankShot
                 new Vector2(rect.X / 2, rect.Y / 2),
                 SpriteEffects.None,
                 1);
+        }
+
+        //Example version of collison checking. 
+        //This is vary between projectiles since some will be 
+        //hitting enemies and some will hit the player.
+        //All will hit walls but we do not have the list of walls 
+        //yet.
+        public void CollisionCheck()
+        {
+            foreach (Enemy enemy in Game1.enemyManager.Enemies)
+            {
+                if (rect.Intersects(enemy.Rect))
+                {
+                    this.DealDamage((IDamageable)enemy);
+                    this.Destroy();
+                    return;
+
+                }
+            }
+        }
+
+        public void Destroy()
+        {
+            projectiles.Remove(this);
         }
     }
 }

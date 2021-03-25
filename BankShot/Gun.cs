@@ -55,8 +55,7 @@ namespace BankShot
             Vector2 direction = Input.MousePosition - position;
             direction.Normalize();
             projectiles.Add(new Projectile(projectileTexture, 
-                                           projectileTransform, 
-                                           projectileCollisionBoxes, 
+                                           projectileTransform,  
                                            projectileActive, interceptable, 
                                            damage, knockback, lifeSpan, 
                                            direction * speed, false, 
@@ -73,19 +72,11 @@ namespace BankShot
             {
                 this.Attack();
             }
-            foreach (Projectile project in projectiles)
-            {
-                project.Update();
-            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            foreach (Projectile project in projectiles)
-            {
-                project.Draw(spriteBatch);
-            }
         }
     }
 }

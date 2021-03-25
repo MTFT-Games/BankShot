@@ -69,6 +69,7 @@ namespace BankShot
             this.texture = texture;
             this.rect = transform;
             this.collisionBoxes = collisionBoxes;
+            collisionBoxes.Add(transform);
             this.active = active;
             position = new Vector2(transform.X, transform.Y);
         }

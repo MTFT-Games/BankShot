@@ -21,6 +21,8 @@ namespace BankShot {
         private SpriteFont font;
         private MainMenu mnu;
 
+        public static EnemyManager enemyManager;
+
         //Testing player
         public Player player;
         //Testing gun and projectile creation.
@@ -39,7 +41,6 @@ namespace BankShot {
             // TODO: Add your initialization logic here
             //menu to be replaced
             mnu = new MainMenu(font);
-
             
             base.Initialize();
         }

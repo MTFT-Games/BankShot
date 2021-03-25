@@ -66,8 +66,10 @@ namespace BankShot
         }
 
         //Parameterized Constructor
-        public Character(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active, int maxHealth,Vector2 velocity)
-            : base(texture, transform, collisionBoxes, active)
+        public Character(Texture2D texture, Rectangle transform, 
+                         List<Rectangle> collisionBoxes, bool active, 
+                         int maxHealth,Vector2 velocity)
+                         : base(texture, transform, collisionBoxes, active)
         {
             this.maxHealth = maxHealth;
             health = maxHealth;
@@ -83,14 +85,14 @@ namespace BankShot
         /// </summary>
         /// <param name="damage">The amount of damage taken.</param>
         /// <param name="knockback">The amount of knockback applied.</param>
-        public void TakeDamage(int damage, int knockback) 
+        public void TakeDamage(int damage, float knockback) 
         {
             health -= damage;
             if (health < 0 )
             {
                 health = 0;
             }
-            this.X += knockback;
+            this.velocity.X += knockback;
         }
 
         /// <summary>
