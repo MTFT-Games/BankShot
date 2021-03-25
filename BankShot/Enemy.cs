@@ -49,6 +49,10 @@ namespace BankShot
                 enemyDeath(this);
                 return;
             }
+            //foreach gameobject in Game1.MapManager.Map
+            //ground/gameobject collision
+            //If player downcast and deal damage
+            //else take care of collision
             Move();
             //DealDamage(Game1.player);
         }
@@ -59,7 +63,7 @@ namespace BankShot
         /// <param name="target"></param>
         public void Pathfind(GameObject target)
         {
-            //determines difference between enemy position and target position
+            //determines difference between enemy Xposition and target Xposition
             int distanceX = this.X - target.X;
 
             //Determines whether target is to the left or the right of the enemy
