@@ -21,11 +21,11 @@ namespace BankShot
         public static MouseState mouseStatePrev;
 
         //Properties
-        public static Point MousePosition
+        public static Vector2 MousePosition
         {
             get
             {
-                return mouseState.Position;
+                return new Vector2(mouseState.Position.X, mouseState.Position.Y);
             }
         }
 

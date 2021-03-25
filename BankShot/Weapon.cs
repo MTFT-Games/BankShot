@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Weapon : GameObject, IMoveable
+    public class Weapon : GameObject, IMoveable
     {
         //Fields
         protected int damage;
@@ -40,6 +40,16 @@ namespace BankShot
         //Methods
         public virtual void Attack() { }
 
-        public void Move() { }
+        public void Move() 
+        {
+            position += velocity;
+        }
+
+        public override void Update()
+        {
+            this.Move();
+            X = (int)position.X;
+            Y = (int)position.Y;
+        }
     }
 }

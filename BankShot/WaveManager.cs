@@ -49,6 +49,8 @@ namespace BankShot
             //called in update, will return true if wave is completed,
             //and contains an out variable that tells if the player cleared 
             //or timed out
+            cleared = false;
+            return false;
 
         }
 
