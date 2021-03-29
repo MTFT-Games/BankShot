@@ -14,7 +14,16 @@ namespace BankShot
         private Map currentMap;
         private List<Map> mapList;
         //Constructors/////////////////////////////////////
+        public MapManager(Map currentMap, List<Map> mapList)
+        {
+            this.currentMap = currentMap;
+            this.mapList = mapList;
+        }
         //Methods//////////////////////////////////////////
         //Properties///////////////////////////////////////
+        public Map CurrentMap
+        {
+            get { return currentMap; }
+        }
     }
 }
