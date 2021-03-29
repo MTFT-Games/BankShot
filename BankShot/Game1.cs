@@ -24,6 +24,8 @@ namespace BankShot {
 
         public static EnemyManager enemyManager;
         public static MapManager mapManager;
+        public static UpgradeManager upgradeManager;
+        public static WaveManager waveManager;
         public GameState state;
 
         //Testing player
@@ -84,10 +86,10 @@ namespace BankShot {
             switch (state)
             {
                 case GameState.MainMenu:
-
+                    mnu.Update(kbs,ms,out state);
                     break;
                 case GameState.Game:
-
+                    
                     break;
                 case GameState.Pause:
 
@@ -130,6 +132,23 @@ namespace BankShot {
                     mnu.Draw(_spriteBatch, _graphics);
                     //end menu testing
                     break;
+            }
+
+                    break;
+                case GameState.Game:
+                    mapManager.Draw(_spriteBatch);
+                    enemyManager.DrawEnemies(_spriteBatch);
+                    break;
+                case GameState.Pause:
+
+                    break;
+                case GameState.Leaderboard:
+
+                    break;
+                case GameState.GameOver:
+
+                    break;
+
             }
 
             //mnu.Draw(_spriteBatch, _graphics);
