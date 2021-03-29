@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    interface IDamageable
+    public interface IDamageable
     {
         //damageable objects must have a boolean to determine invincibility
         bool Invincible { get; }
@@ -30,7 +30,7 @@ namespace BankShot
         /// </summary>
         /// <param name="damage"></param>
         /// <param name="knockback"></param>
-        void TakeDamage(int damage, int knockback);
+        void TakeDamage(int damage, float knockback);
 
         /// <summary>
         /// all damageable objects are to have a method that governs healing

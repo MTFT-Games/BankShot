@@ -7,7 +7,7 @@ namespace BankShot
     /// A struct for holding all attributes of any upgrade. It looks heinous but 
     /// it allows the upgrade system to be very flexible
     /// </summary>
-    struct Upgrade
+    public struct Upgrade
     {
         public bool damageIsMultiplier; 
         public int damageModifier;

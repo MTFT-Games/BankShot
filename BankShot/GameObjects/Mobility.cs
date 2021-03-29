@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class Mobility : GameObject, IMoveable
+    public class Mobility : GameObject, IMoveable
     {
         //Fields
         private bool coolDown;
@@ -38,6 +38,16 @@ namespace BankShot
         //Methods
         public void Active() { }
 
-        public void Move() { }
+        public virtual void Move()
+        {
+            position += velocity;
+        }
+
+        public override void Update()
+        {
+            this.Move();
+            X = (int)position.X;
+            Y = (int)position.Y;
+        }
     }
 }

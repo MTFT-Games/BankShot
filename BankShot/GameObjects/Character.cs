@@ -12,7 +12,7 @@ namespace BankShot
     //Represents a character in the game.
     //This encompasses both the Player and Enemies.
     //All Characters have he
-    class Character : GameObject, IMoveable, IDamageable
+    public class Character : GameObject, IMoveable, IDamageable
     {
         //Fields
         protected bool invincible;
@@ -66,8 +66,10 @@ namespace BankShot
         }
 
         //Parameterized Constructor
-        public Character(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active, int maxHealth, Vector2 velocity)
-            : base(texture, transform, collisionBoxes, active)
+        public Character(Texture2D texture, Rectangle transform, 
+                         List<Rectangle> collisionBoxes, bool active, 
+                         int maxHealth,Vector2 velocity)
+                         : base(texture, transform, collisionBoxes, active)
         {
             this.maxHealth = maxHealth;
             health = maxHealth;
@@ -83,14 +85,14 @@ namespace BankShot
         /// </summary>
         /// <param name="damage">The amount of damage taken.</param>
         /// <param name="knockback">The amount of knockback applied.</param>
-        public void TakeDamage(int damage, int knockback) 
+        public void TakeDamage(int damage, float knockback) 
         {
             health -= damage;
             if (health < 0 )
             {
                 health = 0;
             }
-            this.X += knockback;
+            this.velocity.X += knockback;
         }
 
         /// <summary>
@@ -113,10 +115,14 @@ namespace BankShot
         /// </summary>
         public virtual void Move() 
         {
-            //X and Y in Vector2's are floats, so 
-            //I casted them.
-            this.X += (int) velocity.X;
-            this.Y += (int) velocity.Y;
+            position += velocity;
+        }
+
+        public override void Update()
+        {
+            this.Move();
+            X = (int)position.X;
+            Y = (int)position.Y;
         }
     }
 }

@@ -50,6 +50,7 @@ namespace BankShot
         {
             //takes in an array of objects and creates an instance of "Shop" to be used by the player
 
+
         }
 
         public void ApplyUpgrades(Upgrade upgrade)
@@ -68,6 +69,7 @@ namespace BankShot
         public string ReadUpgrades()
         {
             //will return a string list of upgrades that are applied to the player
+            return "";
 
         }
 
