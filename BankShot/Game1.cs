@@ -29,6 +29,7 @@ namespace BankShot {
         //Testing player
         public Player player;
         private Texture2D gunTexture;
+        public static GameObject[] walls;
         //Testing gun and projectile creation.
         /*
         private Gun gun;
@@ -44,8 +45,7 @@ namespace BankShot {
         protected override void Initialize() {
             // TODO: Add your initialization logic here
             state = GameState.MainMenu;
-           
-            
+
             base.Initialize();
         }
 
@@ -61,6 +61,7 @@ namespace BankShot {
 
             gunTexture = Content.Load<Texture2D>("button1");
             player = new Player(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0));
+            walls = new GameObject[] { new GameObject(gunTexture, new Rectangle(100, 200, 500, 100), new List<Rectangle>(), true) };
 
             //Testing gun and projectile creation.
             /*
@@ -112,12 +113,13 @@ namespace BankShot {
             base.Update(gameTime);
         }
 
-        protected override void Draw(GameTime gameTime) {
+        protected override void Draw(GameTime gameTime)
+        {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             //begins spritebatch
             _spriteBatch.Begin();
-            
-        
+
+
             //state machine based on the GameState enum
             switch (state)
             {
@@ -127,10 +129,15 @@ namespace BankShot {
                     _spriteBatch.DrawString(font, state.ToString(), new Vector2(10, 10), Color.White);
                     mnu.Draw(_spriteBatch, _graphics);
                     //end menu testing
+                    break;
+            }
 
-            _spriteBatch.Begin();
             //mnu.Draw(_spriteBatch, _graphics);
-
+            //player.Draw(_spriteBatch);
+            foreach (GameObject wall in walls)
+            {
+                //wall.Draw(_spriteBatch);
+            }
             //Testing gun and projectile creation.
             //gun.Draw(_spriteBatch);
 
