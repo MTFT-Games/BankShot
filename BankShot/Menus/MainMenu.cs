@@ -17,13 +17,15 @@ namespace BankShot
         private SpriteFont font;
         private Rectangle startBtn;
         private Rectangle exitBtn;
+        Texture2D buttonTx;
 
 
-        public MainMenu(SpriteFont f)
+        public MainMenu(SpriteFont f, Texture2D tx)
         {
             font = f;
-            startBtn = new Rectangle(200, 400, 100, 50);
-            exitBtn = new Rectangle(200, 550, 100, 50);
+            buttonTx = tx;
+            startBtn = new Rectangle(200, 200, 100, 50);
+            exitBtn = new Rectangle(200, 300, 100, 50);
         }
 
         public void Draw(SpriteBatch sb, GraphicsDeviceManager g)
@@ -31,25 +33,25 @@ namespace BankShot
             //draws game title
             sb.DrawString(font,
                 "BANK SHOT",
-                new Vector2(g.PreferredBackBufferWidth / 2,
-                g.PreferredBackBufferHeight / 2),
+                new Vector2(350,
+               100),
                 Color.White);
             //button textures to be incorporated
             //start button
-            sb.Draw(null, startBtn, Color.White);
+            sb.Draw(buttonTx, startBtn, Color.White);
             //exit button
-            sb.Draw(null, exitBtn, Color.White);
+            sb.Draw(buttonTx, exitBtn, Color.White);
             //writes text over buttons(will be gotten rid of once buttons 
             //textures created
             //start button text
             sb.DrawString(font, 
                 "START",
-                new Vector2(200,400),
+                new Vector2(200,200),
                 Color.White);
             //exit button text
             sb.DrawString(font,
                "EXIT",
-               new Vector2(200, 550),
+               new Vector2(200, 300),
                Color.White);
         }
 
