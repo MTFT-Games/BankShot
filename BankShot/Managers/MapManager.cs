@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -20,10 +21,25 @@ namespace BankShot
             this.mapList = mapList;
         }
         //Methods//////////////////////////////////////////
+        //read in maps from file
+        public void Draw(SpriteBatch sb)
+        {
+            foreach(GameObject block in currentMap.MapArray)
+            {
+                block.Draw(sb);
+            }
+        }
         //Properties///////////////////////////////////////
         public Map CurrentMap
         {
             get { return currentMap; }
+            set { currentMap = value; }
+        }
+
+        public List<Map> MapList
+        {
+            get { return mapList; }
+            set { MapList = value; }
         }
     }
 }
