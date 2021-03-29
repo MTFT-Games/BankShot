@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class WaveManager
+    public class WaveManager
     {
         //fields
 

@@ -23,6 +23,9 @@ namespace BankShot {
         private Texture2D buttonTx;
 
         public static EnemyManager enemyManager;
+        public static MapManager mapManager;
+        public static UpgradeManager upgradeManager;
+        public static WaveManager waveManager;
         public GameState state;
 
         //Testing player
@@ -78,10 +81,10 @@ namespace BankShot {
             switch (state)
             {
                 case GameState.MainMenu:
-
+                    mnu.Update(kbs,ms,out state);
                     break;
                 case GameState.Game:
-
+                    
                     break;
                 case GameState.Pause:
 
@@ -124,7 +127,8 @@ namespace BankShot {
 
                     break;
                 case GameState.Game:
-
+                    mapManager.Draw(_spriteBatch);
+                    enemyManager.DrawEnemies(_spriteBatch);
                     break;
                 case GameState.Pause:
 
