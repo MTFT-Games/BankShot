@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BankShot
 {
-    struct Map
+    public struct Map
     {
         //Fields
         private GameObject[] map;
