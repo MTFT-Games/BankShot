@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace BankShot {
 
-    enum GameState
+    public enum GameState
     {
         MainMenu, 
         Game, 

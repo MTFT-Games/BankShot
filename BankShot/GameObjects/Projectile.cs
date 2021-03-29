@@ -54,9 +54,9 @@ namespace BankShot
         /// <param name="projectiles">The list of projectiles that this should 
         /// be removed from upon death.</param>
         public Projectile(Texture2D texture, Rectangle transform, bool active, 
-            bool interceptable, int damage, int knockback, double lifeSpan, 
+            bool interceptable, int damage, float knockback, double lifeSpan, 
             Vector2 velocity, bool fromEnemy, List<Projectile> projectiles)
-            : base(texture, transform, new List<Rectangle>, active)
+            : base(texture, transform, new List<Rectangle>(), active)
         {
             this.interceptable = interceptable;
             this.damage = damage;
