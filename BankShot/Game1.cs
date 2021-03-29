@@ -22,9 +22,11 @@ namespace BankShot {
         private MainMenu mnu;
 
         public static EnemyManager enemyManager;
+        public static MapManager mapManager;
 
         //Testing player
         public Player player;
+        private Texture2D gunTexture;
         //Testing gun and projectile creation.
         /*
         private Gun gun;
@@ -50,6 +52,9 @@ namespace BankShot {
             //font for testing- to be replaced
             font = Content.Load<SpriteFont>("File");
 
+            gunTexture = Content.Load<Texture2D>("button1");
+            player = new Player(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0));
+
             //Testing gun and projectile creation.
             /*
             gunTexture = Content.Load<Texture2D>("button1");
@@ -65,7 +70,8 @@ namespace BankShot {
                 Exit();
 
             // TODO: Add your update logic here
-
+            Input.Update();
+            player.Update();
             //Testing gun and projectile creation.
             //Input.Update();
             //gun.Update();
@@ -78,7 +84,7 @@ namespace BankShot {
 
             _spriteBatch.Begin();
             //mnu.Draw(_spriteBatch, _graphics);
-
+            player.Draw(_spriteBatch);
             //Testing gun and projectile creation.
             //gun.Draw(_spriteBatch);
             

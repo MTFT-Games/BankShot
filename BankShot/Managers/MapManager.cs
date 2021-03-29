@@ -8,7 +8,7 @@ namespace BankShot
     /// Reads in, sets, and draws Maps to use as levels.
     /// coded by Machi
     /// </summary>
-    class MapManager
+    public class MapManager
     {
         //Fields///////////////////////////////////////////
         private Map currentMap;
