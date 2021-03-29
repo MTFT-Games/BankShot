@@ -30,6 +30,7 @@ namespace BankShot {
 
         //Testing player
         public Player player;
+        private Texture2D gunTexture;
         //Testing gun and projectile creation.
         /*
         private Gun gun;
@@ -59,6 +60,9 @@ namespace BankShot {
             mnu = new MainMenu(font, buttonTx);
             //end menu testing
 
+
+            gunTexture = Content.Load<Texture2D>("button1");
+            player = new Player(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0));
 
             //Testing gun and projectile creation.
             /*
@@ -101,7 +105,8 @@ namespace BankShot {
 
 
             // TODO: Add your update logic here
-
+            Input.Update();
+            player.Update();
             //Testing gun and projectile creation.
             //Input.Update();
             //gun.Update();

@@ -26,7 +26,7 @@ namespace BankShot
         //Methods
         public override void Update()
         {
-            this.Move();
+            this.ProcessInput();
             base.Update();
         }
 
@@ -37,7 +37,30 @@ namespace BankShot
 
         public override void Move()
         {
+            this.ApplyGravity();
             base.Move();
+        }
+
+        public void ProcessInput()
+        {
+            velocity.X = 0;
+            if (Input.KeyHeld(Keys.A)) //&& velocity.X != -5)
+            {
+                velocity.X -= 5;
+            }
+            if (Input.KeyHeld(Keys.D)) //&& velocity.X != 5)
+            {
+                velocity.X += 5;
+            }
+            if (Input.KeyClick(Keys.W))
+            {
+                velocity.Y = -20;
+            }
+        }
+
+        public void ApplyGravity()
+        {
+            velocity += new Vector2(0, 1);
         }
 
         //The collison checking method in GameObject might
