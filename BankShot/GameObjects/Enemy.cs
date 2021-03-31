@@ -17,6 +17,7 @@ namespace BankShot
         //Fields
         protected int attackPower;
         protected float knockbackDistance;
+        private List<object> stats;
         public event enemyMethods enemyDeath;
         //Enemy Stats will be included as Fields
 
@@ -27,6 +28,20 @@ namespace BankShot
         {
             this.attackPower = attackPower;
             this.knockbackDistance = knockbackDistance;
+
+            //adds stats to a list for manager
+            //stats format: texture, rectangle, boxes(list rectangle),
+            //active(bool), maxhp(int), velocity (vector2), atk power (int),
+            //knock distance (float)
+            stats = new List<object>();
+            stats.Add(texture);
+            stats.Add(rect);
+            stats.Add(collisionBoxes);
+            stats.Add(active);
+            stats.Add(maxHealth);
+            stats.Add(velocity);
+            stats.Add(attackPower);
+            stats.Add(knockbackDistance);
         }
         //Methods
         /// <summary>
@@ -58,6 +73,14 @@ namespace BankShot
             Move();
             //DealDamage(Game1.player);
         }
+
+        //accessors
+
+        public int AttackPower
+        {
+            get { return attackPower; }
+        }
+
 
         /// <summary>
         /// Sets velocity in the direction of the player

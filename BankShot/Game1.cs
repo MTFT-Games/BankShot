@@ -97,10 +97,10 @@ namespace BankShot {
             switch (state)
             {
                 case GameState.MainMenu:
-                    mnu.Update(kbs,ms,out state);
+
                     break;
                 case GameState.Game:
-                    
+
                     break;
                 case GameState.Pause:
 
