@@ -23,7 +23,13 @@ namespace BankShot {
         private Texture2D buttonTx;
 
         public static EnemyManager enemyManager;
+
+        //maps
         public static MapManager mapManager;
+        public static Map map1;
+        public static List<Map> mapList;
+
+        //upgrades
         public static UpgradeManager upgradeManager;
         public static WaveManager waveManager;
         public GameState state;
@@ -48,6 +54,7 @@ namespace BankShot {
             // TODO: Add your initialization logic here
             state = GameState.MainMenu;
 
+            
             base.Initialize();
         }
 
@@ -72,6 +79,10 @@ namespace BankShot {
             gun = new Gun(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 2, 2, true, 2, 5, new Vector2(0, 0), projectileTexture, new Rectangle(150, 100, 100, 100), new List<Rectangle>(), true);
             */
 
+            //Map manager
+
+
+            //Enemy manager
             // TODO: use this.Content to load your game content here
         }
 
@@ -131,9 +142,6 @@ namespace BankShot {
                     _spriteBatch.DrawString(font, state.ToString(), new Vector2(10, 10), Color.White);
                     mnu.Draw(_spriteBatch, _graphics);
                     //end menu testing
-                    break;
-            }
-
                     break;
                 case GameState.Game:
                     mapManager.Draw(_spriteBatch);
