@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    class UpgradeManager
+    public class UpgradeManager
     {
         //fields
 

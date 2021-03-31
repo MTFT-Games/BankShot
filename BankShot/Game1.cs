@@ -23,10 +23,15 @@ namespace BankShot {
         private Texture2D buttonTx;
 
         public static EnemyManager enemyManager;
+        public static MapManager mapManager;
+        public static UpgradeManager upgradeManager;
+        public static WaveManager waveManager;
         public GameState state;
 
         //Testing player
         public Player player;
+        private Texture2D gunTexture;
+        public static GameObject[] walls;
         //Testing gun and projectile creation.
         /*
         private Gun gun;
@@ -42,8 +47,7 @@ namespace BankShot {
         protected override void Initialize() {
             // TODO: Add your initialization logic here
             state = GameState.MainMenu;
-           
-            
+
             base.Initialize();
         }
 
@@ -56,6 +60,10 @@ namespace BankShot {
             mnu = new MainMenu(font, buttonTx);
             //end menu testing
 
+
+            gunTexture = Content.Load<Texture2D>("button1");
+            player = new Player(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0));
+            walls = new GameObject[] { new GameObject(gunTexture, new Rectangle(100, 200, 500, 100), new List<Rectangle>(), true) };
 
             //Testing gun and projectile creation.
             /*
@@ -78,7 +86,7 @@ namespace BankShot {
             switch (state)
             {
                 case GameState.MainMenu:
-                    
+
                     break;
                 case GameState.Game:
 
@@ -98,7 +106,8 @@ namespace BankShot {
 
 
             // TODO: Add your update logic here
-
+            Input.Update();
+            player.Update();
             //Testing gun and projectile creation.
             //Input.Update();
             //gun.Update();
@@ -106,12 +115,13 @@ namespace BankShot {
             base.Update(gameTime);
         }
 
-        protected override void Draw(GameTime gameTime) {
+        protected override void Draw(GameTime gameTime)
+        {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             //begins spritebatch
             _spriteBatch.Begin();
-            
-        
+
+
             //state machine based on the GameState enum
             switch (state)
             {
@@ -121,10 +131,13 @@ namespace BankShot {
                     _spriteBatch.DrawString(font, state.ToString(), new Vector2(10, 10), Color.White);
                     mnu.Draw(_spriteBatch, _graphics);
                     //end menu testing
+                    break;
+            }
 
                     break;
                 case GameState.Game:
-
+                    mapManager.Draw(_spriteBatch);
+                    enemyManager.DrawEnemies(_spriteBatch);
                     break;
                 case GameState.Pause:
 
@@ -138,6 +151,12 @@ namespace BankShot {
 
             }
 
+            //mnu.Draw(_spriteBatch, _graphics);
+            //player.Draw(_spriteBatch);
+            foreach (GameObject wall in walls)
+            {
+                //wall.Draw(_spriteBatch);
+            }
             //Testing gun and projectile creation.
             //gun.Draw(_spriteBatch);
 
