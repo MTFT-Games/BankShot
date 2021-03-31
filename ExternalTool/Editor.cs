@@ -10,21 +10,23 @@ using System.Windows.Forms;
 
 namespace ExternalTool
 {
-    public partial class opener : Form
+    public partial class Editor : Form
     {
-        public opener()
+        public Editor()
         {
             InitializeComponent();
+            //LoadContent();
         }
 
-        private void acceptButton_Click(object sender, EventArgs e)
+
+        private void LoadContent(string filePath)
         {
 
         }
 
-        private void folderPickerButton_Click(object sender, EventArgs e)
+        private void exitMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }
