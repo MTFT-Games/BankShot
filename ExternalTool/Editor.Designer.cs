@@ -29,10 +29,11 @@ namespace ExternalTool
         /// </summary>
         private void InitializeComponent()
         {
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.components = new System.ComponentModel.Container();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.loadingBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAllMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,28 +43,37 @@ namespace ExternalTool
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabSystem = new System.Windows.Forms.TabControl();
             this.mapTab = new System.Windows.Forms.TabPage();
+            this.mapDivider = new System.Windows.Forms.SplitContainer();
+            this.backgroundList = new System.Windows.Forms.ListView();
+            this.tileList = new System.Windows.Forms.ListView();
+            this.mapBackground = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.mapBox = new System.Windows.Forms.GroupBox();
-            this.sizeablePictureBox1 = new ExternalTool.SizeablePictureBox();
-            this.statusStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.backgroundImages = new System.Windows.Forms.ImageList(this.components);
+            this.tileSet = new System.Windows.Forms.ImageList(this.components);
+            this.backgroundLabel = new System.Windows.Forms.Label();
+            this.statusStrip.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.tabSystem.SuspendLayout();
             this.mapTab.SuspendLayout();
-            this.mapBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sizeablePictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mapDivider)).BeginInit();
+            this.mapDivider.Panel1.SuspendLayout();
+            this.mapDivider.Panel2.SuspendLayout();
+            this.mapDivider.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mapBackground)).BeginInit();
             this.SuspendLayout();
             // 
-            // statusStrip1
+            // statusStrip
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel,
             this.loadingBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 548);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1018, 24);
-            this.statusStrip1.TabIndex = 0;
-            this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip.Location = new System.Drawing.Point(0, 545);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.statusStrip.Size = new System.Drawing.Size(1129, 24);
+            this.statusStrip.TabIndex = 0;
+            this.statusStrip.Text = "statusStrip1";
             // 
             // statusLabel
             // 
@@ -74,21 +84,23 @@ namespace ExternalTool
             // 
             // loadingBar
             // 
+            this.loadingBar.MarqueeAnimationSpeed = 1;
+            this.loadingBar.Maximum = 20;
             this.loadingBar.Name = "loadingBar";
-            this.loadingBar.Size = new System.Drawing.Size(117, 18);
-            this.loadingBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.loadingBar.Size = new System.Drawing.Size(200, 18);
+            this.loadingBar.Step = 1;
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip.BackColor = System.Drawing.SystemColors.Control;
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1018, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip.Size = new System.Drawing.Size(1129, 24);
+            this.menuStrip.TabIndex = 1;
+            this.menuStrip.Text = "menuStrip1";
             // 
             // fileMenuItem
             // 
@@ -150,69 +162,140 @@ namespace ExternalTool
             this.tabSystem.Location = new System.Drawing.Point(0, 27);
             this.tabSystem.Name = "tabSystem";
             this.tabSystem.SelectedIndex = 0;
-            this.tabSystem.Size = new System.Drawing.Size(1018, 522);
+            this.tabSystem.Size = new System.Drawing.Size(1135, 520);
             this.tabSystem.TabIndex = 2;
             // 
             // mapTab
             // 
-            this.mapTab.Controls.Add(this.mapBox);
+            this.mapTab.Controls.Add(this.mapDivider);
             this.mapTab.Location = new System.Drawing.Point(4, 24);
             this.mapTab.Name = "mapTab";
             this.mapTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mapTab.Size = new System.Drawing.Size(1010, 494);
+            this.mapTab.Size = new System.Drawing.Size(1127, 492);
             this.mapTab.TabIndex = 0;
             this.mapTab.Text = "Map";
             this.mapTab.UseVisualStyleBackColor = true;
+            // 
+            // mapDivider
+            // 
+            this.mapDivider.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mapDivider.Location = new System.Drawing.Point(3, 3);
+            this.mapDivider.Margin = new System.Windows.Forms.Padding(0);
+            this.mapDivider.Name = "mapDivider";
+            // 
+            // mapDivider.Panel1
+            // 
+            this.mapDivider.Panel1.Controls.Add(this.backgroundLabel);
+            this.mapDivider.Panel1.Controls.Add(this.backgroundList);
+            this.mapDivider.Panel1.Controls.Add(this.tileList);
+            // 
+            // mapDivider.Panel2
+            // 
+            this.mapDivider.Panel2.Controls.Add(this.mapBackground);
+            this.mapDivider.Size = new System.Drawing.Size(1121, 486);
+            this.mapDivider.SplitterDistance = 311;
+            this.mapDivider.TabIndex = 0;
+            // 
+            // backgroundList
+            // 
+            this.backgroundList.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.backgroundList.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backgroundList.ForeColor = System.Drawing.Color.Transparent;
+            this.backgroundList.HideSelection = false;
+            this.backgroundList.LabelWrap = false;
+            this.backgroundList.LargeImageList = this.backgroundImages;
+            this.backgroundList.Location = new System.Drawing.Point(3, 23);
+            this.backgroundList.MultiSelect = false;
+            this.backgroundList.Name = "backgroundList";
+            this.backgroundList.RightToLeftLayout = true;
+            this.backgroundList.Size = new System.Drawing.Size(234, 141);
+            this.backgroundList.TabIndex = 2;
+            this.backgroundList.TileSize = new System.Drawing.Size(110, 70);
+            this.backgroundList.UseCompatibleStateImageBehavior = false;
+            this.backgroundList.View = System.Windows.Forms.View.Tile;
+            this.backgroundList.ItemActivate += new System.EventHandler(this.backgroundList_ItemActivate);
+            // 
+            // tileList
+            // 
+            this.tileList.Font = new System.Drawing.Font("Comic Sans MS", 1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.tileList.ForeColor = System.Drawing.Color.Transparent;
+            this.tileList.HideSelection = false;
+            this.tileList.LabelWrap = false;
+            this.tileList.LargeImageList = this.tileSet;
+            this.tileList.Location = new System.Drawing.Point(5, 256);
+            this.tileList.MultiSelect = false;
+            this.tileList.Name = "tileList";
+            this.tileList.Size = new System.Drawing.Size(253, 227);
+            this.tileList.SmallImageList = this.tileSet;
+            this.tileList.TabIndex = 1;
+            this.tileList.TileSize = new System.Drawing.Size(60, 60);
+            this.tileList.UseCompatibleStateImageBehavior = false;
+            this.tileList.View = System.Windows.Forms.View.Tile;
+            // 
+            // mapBackground
+            // 
+            this.mapBackground.BackColor = System.Drawing.Color.Gray;
+            this.mapBackground.Location = new System.Drawing.Point(3, 3);
+            this.mapBackground.Name = "mapBackground";
+            this.mapBackground.Size = new System.Drawing.Size(800, 480);
+            this.mapBackground.TabIndex = 0;
+            this.mapBackground.TabStop = false;
             // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(925, 435);
+            this.tabPage2.Size = new System.Drawing.Size(1127, 492);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // mapBox
+            // backgroundImages
             // 
-            this.mapBox.Controls.Add(this.sizeablePictureBox1);
-            this.mapBox.Location = new System.Drawing.Point(202, 6);
-            this.mapBox.Name = "mapBox";
-            this.mapBox.Size = new System.Drawing.Size(800, 480);
-            this.mapBox.TabIndex = 0;
-            this.mapBox.TabStop = false;
-            this.mapBox.Text = "Map";
+            this.backgroundImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.backgroundImages.ImageSize = new System.Drawing.Size(100, 60);
+            this.backgroundImages.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // sizeablePictureBox1
+            // tileSet
             // 
-            this.sizeablePictureBox1.BackColor = System.Drawing.Color.DimGray;
-            this.sizeablePictureBox1.Location = new System.Drawing.Point(109, 140);
-            this.sizeablePictureBox1.Name = "sizeablePictureBox1";
-            this.sizeablePictureBox1.Size = new System.Drawing.Size(211, 111);
-            this.sizeablePictureBox1.TabIndex = 0;
-            this.sizeablePictureBox1.TabStop = false;
+            this.tileSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.tileSet.ImageSize = new System.Drawing.Size(50, 50);
+            this.tileSet.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // backgroundLabel
+            // 
+            this.backgroundLabel.AutoSize = true;
+            this.backgroundLabel.Location = new System.Drawing.Point(5, 5);
+            this.backgroundLabel.Name = "backgroundLabel";
+            this.backgroundLabel.Size = new System.Drawing.Size(72, 15);
+            this.backgroundLabel.TabIndex = 3;
+            this.backgroundLabel.Text = "Backgrounds";
             // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1018, 572);
+            this.ClientSize = new System.Drawing.Size(1129, 569);
             this.Controls.Add(this.tabSystem);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.statusStrip);
+            this.Controls.Add(this.menuStrip);
             this.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "Editor";
             this.Text = "Editor";
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.tabSystem.ResumeLayout(false);
             this.mapTab.ResumeLayout(false);
-            this.mapBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sizeablePictureBox1)).EndInit();
+            this.mapDivider.Panel1.ResumeLayout(false);
+            this.mapDivider.Panel1.PerformLayout();
+            this.mapDivider.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.mapDivider)).EndInit();
+            this.mapDivider.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.mapBackground)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,10 +303,10 @@ namespace ExternalTool
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripProgressBar loadingBar;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAllMenuItem;
@@ -234,7 +317,12 @@ namespace ExternalTool
         private System.Windows.Forms.TabControl tabSystem;
         private System.Windows.Forms.TabPage mapTab;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox mapBox;
-        private SizeablePictureBox sizeablePictureBox1;
+        private System.Windows.Forms.SplitContainer mapDivider;
+        private System.Windows.Forms.PictureBox mapBackground;
+        private System.Windows.Forms.ListView tileList;
+        private System.Windows.Forms.ImageList backgroundImages;
+        private System.Windows.Forms.ListView backgroundList;
+        private System.Windows.Forms.ImageList tileSet;
+        private System.Windows.Forms.Label backgroundLabel;
     }
 }

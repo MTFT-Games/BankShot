@@ -7,7 +7,7 @@ namespace ExternalTool
     /// <summary>
     /// Author: Hans Passant 
     /// (Stackoverflow link: https://stackoverflow.com/questions/17264225/how-can-user-resize-control-at-runtime-in-winforms)
-    /// Defines a user re-sizable picturebox
+    /// Defines a user re-sizable picturebox. Decided against using
     /// </summary>
     class SizeablePictureBox : PictureBox
     {
