@@ -78,7 +78,7 @@ namespace BankShot {
             switch (state)
             {
                 case GameState.MainMenu:
-
+                    
                     break;
                 case GameState.Game:
 
