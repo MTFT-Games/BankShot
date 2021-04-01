@@ -16,7 +16,7 @@ namespace ExternalTool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new opener());
+            Application.Run(new Editor());
         }
     }
 }

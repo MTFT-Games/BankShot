@@ -63,10 +63,34 @@ namespace BankShot
                Color.White);
         }
 
-        public void Update(KeyboardState kbs, MouseState ms, bool testingMode, out GameState state)
+        /// <summary>
+        /// checks for single mouse click
+        /// </summary>
+        /// <param name="clicked"></param>
+        /// <param name="ms"></param>
+        /// current mouse state
+        /// <param name="msPrev"></param>
+        /// previous mouse state
+        /// <returns></returns>
+        public bool SingleClick(ButtonState clicked, MouseState ms, MouseState msPrev)
+        {
+            //if the button was clicked, and there was no mouse buttons
+            //pressed in the previous state, returns true
+            if (clicked == ButtonState.Pressed &&
+                msPrev.LeftButton != ButtonState.Pressed &&
+                msPrev.RightButton != ButtonState.Pressed)
+            {
+                return true;
+            }
+            //returns false otherwise
+            return false;
+
+        }
+
+        public void Update(KeyboardState kbs, MouseState ms, MouseState msPrev, bool testingMode, out GameState state)
         {
             Rectangle mousePosition = new Rectangle(ms.X, ms.Y, 1, 1);
-            if (ms.LeftButton == ButtonState.Pressed && mousePosition.Intersects(resumeBtn))
+            if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(resumeBtn))
             {
                 //resumes game (TO BE TUNED TO FIT ENUMERATOR)
                 state = GameState.Game;
@@ -75,7 +99,7 @@ namespace BankShot
             {
                 state = GameState.Pause;
             }
-            if (ms.LeftButton == ButtonState.Pressed && mousePosition.Intersects(testBtn))
+            if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(testBtn))
             {
                 //enables/disables testing mode
                 if (testingMode)

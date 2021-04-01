@@ -11,52 +11,108 @@ namespace BankShot
     {
         //fields
 
-        //fields will contain stats for making enemies (tbd)
-        private List<Enemy> enemies;
+        //list of stats of each enemy. 
+        //stats format: texture, rectangle, boxes(list rectangle),
+        //active(bool), maxhp(int), velocity (vector2), atk power (int),
+        //knock distance (float)
+        private List<List<object>> enemies;
+        private List<Enemy> spawnedEnemies;
+        private int enemyAmt;
+
 
         //constructor -----------------------------------------------------------------------------
 
-        public EnemyManager()
+        public EnemyManager(List<List<object>> e)
         {
-
+            //takes in number of enemies and a list of their stats
+            enemies = e;
+            enemyAmt = enemies.Count;
+            spawnedEnemies = new List<Enemy>();
 
         }
 
-        //accessors. accessor for enemy stat fields will be added once enemy stats are defined.----
-
-        //enemy stat accessors here
-
-        public List<Enemy> Enemies
+        //accessors------------------------------------------------------------
+        public List<List<object>> Enemies
         {
             //probably wont need a set. may need indexed accessor
             get { return enemies; }
             set { enemies = value; }
         }
 
-        //methods. only headers and basic comments for now. params incomplete. --------------------
+        public List<Enemy> SpawnedEnemies
+        {
+            //probably wont need a set. may need indexed accessor
+            get { return spawnedEnemies; }
+            set { spawnedEnemies = value; }
+        }
 
+        public int EnemyAmt
+        {
+            get { return enemyAmt; }
+        }
+
+        //methods--------------------------------------------------------------
+
+        /// <summary>
+        /// goes through stats lists and creates an enemy object from each one
+        /// </summary>
         public void SpawnEnemies()
         {
-            //spawns enemies held in "enemies"
+           
+           foreach(List<object> stats in enemies)
+            {
+                //stats format: texture, rectangle, boxes(list rectangle),
+                //active(bool), maxhp(int), velocity (vector2), atk power (int),
+                //knock distance (float)
+
+                Enemy e = new Enemy((Texture2D) stats[0],
+                    (Rectangle) stats[1],
+                    (List<Rectangle>) stats[2],
+                    (bool) stats[3],
+                    (int) stats[4], 
+                    (Vector2) stats[5],
+                    (int) stats[6], 
+                    (float) stats[7]);
+
+                spawnedEnemies.Add(e);
+            }
+
+
 
         }
 
         public void UpdateEnemies()
         {
             //update logic for Enemy objects stored in "enemies"
+            foreach(Enemy e in spawnedEnemies)
+            {
+                if (e.Health <= 0)
+                {
+                    spawnedEnemies.Remove(e);
+                    enemyAmt--;
+                }
+
+                e.Update();
+            }
 
         }
 
         public void DrawEnemies(SpriteBatch sb)
         {
             //Draws the enemy objects in "enemies" using the given spritebatch
+            foreach(Enemy e in spawnedEnemies)
+            {
+                e.Draw(sb);
+            }
 
         }
 
-        public string ReadStats()
+        public string ReadStats(int index)
         {
             //returns a string with information on each enemy's stats
-            return "";
+            return $"HP: {spawnedEnemies[index].Health}\n" +
+                $"Attack Power: {spawnedEnemies[index].AttackPower}\n";
+
 
         }
 

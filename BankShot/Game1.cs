@@ -19,13 +19,33 @@ namespace BankShot {
         private SpriteBatch _spriteBatch;
         //font, texture and menu obj for testing- to be replaced
         private SpriteFont font;
-        private MainMenu mnu;
         private Texture2D buttonTx;
 
+        //menus
+        private MainMenu mainMenu;
+        private PauseMenu pauseMenu;
+        private LeaderboardMenu leaderboardMenu;
+        private GameOverMenu gameOverMenu;
+
+        //menu misc
+        private int[] scores;
+
+        //enemies
         public static EnemyManager enemyManager;
+
+        //previous mouse state
+        private MouseState msPrev;
+
+        //maps
         public static MapManager mapManager;
+        public static Map map1;
+        public static List<Map> mapList;
+
+        //upgrades
         public static UpgradeManager upgradeManager;
         public static WaveManager waveManager;
+
+        //holds current game state (out variables)
         public GameState state;
 
         //Testing player
@@ -33,11 +53,13 @@ namespace BankShot {
         private Texture2D gunTexture;
         public static GameObject[] walls;
         //Testing gun and projectile creation.
-        /*
+       
         private Gun gun;
-        private Texture2D gunTexture;
         private Texture2D projectileTexture;
-        */
+
+        //testing boolean
+        private bool test;
+        
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -48,6 +70,11 @@ namespace BankShot {
             // TODO: Add your initialization logic here
             state = GameState.MainMenu;
 
+            scores = new int[5];
+
+          
+            test = false;
+            
             base.Initialize();
         }
 
@@ -57,9 +84,12 @@ namespace BankShot {
             //menu testing
             font = Content.Load<SpriteFont>("File");
             buttonTx = Content.Load<Texture2D>("button1");
-            mnu = new MainMenu(font, buttonTx);
-            //end menu testing
 
+            //menu init
+            mainMenu = new MainMenu(font, buttonTx);
+            pauseMenu = new PauseMenu(font);
+            leaderboardMenu = new LeaderboardMenu(font, scores);
+            gameOverMenu = new GameOverMenu(font);
 
             gunTexture = Content.Load<Texture2D>("button1");
             player = new Player(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0));
@@ -72,6 +102,10 @@ namespace BankShot {
             gun = new Gun(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 2, 2, true, 2, 5, new Vector2(0, 0), projectileTexture, new Rectangle(150, 100, 100, 100), new List<Rectangle>(), true);
             */
 
+            //Map manager
+
+
+            //Enemy manager
             // TODO: use this.Content to load your game content here
         }
 
@@ -86,31 +120,31 @@ namespace BankShot {
             switch (state)
             {
                 case GameState.MainMenu:
-                    mnu.Update(kbs,ms,out state);
+                    mainMenu.Update(kbs, ms, msPrev, out state);
                     break;
                 case GameState.Game:
-                    
+                    //Testing gun and projectile creation.
+                    Input.Update();
+                    gun.Update();
                     break;
                 case GameState.Pause:
-
+                    pauseMenu.Update(kbs, ms, msPrev, test, out state);
                     break;
                 case GameState.Leaderboard:
-
+                    leaderboardMenu.Update(kbs, ms, msPrev, out state);
                     break;
                 case GameState.GameOver:
-
+                    gameOverMenu.Update(kbs, ms, msPrev, out state);
                     break;
 
             }
 
-
+            msPrev = ms;
 
             // TODO: Add your update logic here
             Input.Update();
             player.Update();
-            //Testing gun and projectile creation.
-            //Input.Update();
-            //gun.Update();
+          
 
             base.Update(gameTime);
         }
@@ -126,36 +160,32 @@ namespace BankShot {
             switch (state)
             {
                 case GameState.MainMenu:
-
-                    //for menu testing
                     _spriteBatch.DrawString(font, state.ToString(), new Vector2(10, 10), Color.White);
-                    mnu.Draw(_spriteBatch, _graphics);
-                    //end menu testing
+                    mainMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.Game:
                     mapManager.Draw(_spriteBatch);
                     enemyManager.DrawEnemies(_spriteBatch);
+                    player.Draw(_spriteBatch);
+                    foreach (GameObject wall in walls)
+                    {
+                        wall.Draw(_spriteBatch);
+                    }
+                    //Testing gun and projectile creation.
+                    gun.Draw(_spriteBatch);
                     break;
                 case GameState.Pause:
-
+                    pauseMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.Leaderboard:
-
+                    leaderboardMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.GameOver:
-
+                    gameOverMenu.Draw(_spriteBatch, _graphics);
                     break;
 
             }
 
-            //mnu.Draw(_spriteBatch, _graphics);
-            //player.Draw(_spriteBatch);
-            foreach (GameObject wall in walls)
-            {
-                //wall.Draw(_spriteBatch);
-            }
-            //Testing gun and projectile creation.
-            //gun.Draw(_spriteBatch);
 
             _spriteBatch.End();
             base.Draw(gameTime);
