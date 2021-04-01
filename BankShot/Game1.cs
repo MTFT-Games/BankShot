@@ -132,9 +132,6 @@ namespace BankShot {
                     mnu.Draw(_spriteBatch, _graphics);
                     //end menu testing
                     break;
-            }
-
-                    break;
                 case GameState.Game:
                     mapManager.Draw(_spriteBatch);
                     enemyManager.DrawEnemies(_spriteBatch);
