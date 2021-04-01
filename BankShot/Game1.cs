@@ -19,7 +19,6 @@ namespace BankShot {
         private SpriteBatch _spriteBatch;
         //font, texture and menu obj for testing- to be replaced
         private SpriteFont font;
-        private MainMenu mnu;
         private Texture2D buttonTx;
 
         //menus
@@ -57,6 +56,9 @@ namespace BankShot {
        
         private Gun gun;
         private Texture2D projectileTexture;
+
+        //testing boolean
+        private bool test;
         
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
@@ -70,10 +72,8 @@ namespace BankShot {
 
             scores = new int[5];
 
-            mainMenu = new MainMenu(font, buttonTx);
-            pauseMenu = new PauseMenu(font);
-            leaderboardMenu = new LeaderboardMenu(font, scores);
-            gameOverMenu = new GameOverMenu(font);
+          
+            test = false;
             
             base.Initialize();
         }
@@ -84,9 +84,12 @@ namespace BankShot {
             //menu testing
             font = Content.Load<SpriteFont>("File");
             buttonTx = Content.Load<Texture2D>("button1");
-            mnu = new MainMenu(font, buttonTx);
-            //end menu testing
 
+            //menu init
+            mainMenu = new MainMenu(font, buttonTx);
+            pauseMenu = new PauseMenu(font);
+            leaderboardMenu = new LeaderboardMenu(font, scores);
+            gameOverMenu = new GameOverMenu(font);
 
             gunTexture = Content.Load<Texture2D>("button1");
             player = new Player(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0));
@@ -125,7 +128,7 @@ namespace BankShot {
                     gun.Update();
                     break;
                 case GameState.Pause:
-                    pauseMenu.Update(kbs, ms, msPrev, out state);
+                    pauseMenu.Update(kbs, ms, msPrev, test, out state);
                     break;
                 case GameState.Leaderboard:
                     leaderboardMenu.Update(kbs, ms, msPrev, out state);
@@ -172,13 +175,13 @@ namespace BankShot {
                     gun.Draw(_spriteBatch);
                     break;
                 case GameState.Pause:
-                    pauseMenu.Draw(_spriteBatch);
+                    pauseMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.Leaderboard:
-                    leaderboardMenu.Draw(_spriteBatch);
+                    leaderboardMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.GameOver:
-                    gameOverMenu.Draw(_spriteBatch);
+                    gameOverMenu.Draw(_spriteBatch, _graphics);
                     break;
 
             }
