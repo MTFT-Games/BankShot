@@ -22,6 +22,16 @@ namespace BankShot {
         private MainMenu mnu;
         private Texture2D buttonTx;
 
+        //menus
+        private MainMenu mainMenu;
+        private PauseMenu pauseMenu;
+        private LeaderboardMenu leaderboardMenu;
+        private GameOverMenu gameOverMenu;
+
+        //menu misc
+        private int[] scores;
+
+        //enemies
         public static EnemyManager enemyManager;
 
         //maps
@@ -54,6 +64,12 @@ namespace BankShot {
             // TODO: Add your initialization logic here
             state = GameState.MainMenu;
 
+            scores = new int[5];
+
+            mainMenu = new MainMenu(font, buttonTx);
+            pauseMenu = new PauseMenu(font);
+            leaderboardMenu = new LeaderboardMenu(font, scores);
+            gameOverMenu = new GameOverMenu(font);
             
             base.Initialize();
         }
