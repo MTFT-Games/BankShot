@@ -27,6 +27,7 @@ namespace BankShot
             //takes in number of enemies and a list of their stats
             enemies = e;
             enemyAmt = enemies.Count;
+            spawnedEnemies = new List<Enemy>();
 
         }
 
@@ -36,6 +37,13 @@ namespace BankShot
             //probably wont need a set. may need indexed accessor
             get { return enemies; }
             set { enemies = value; }
+        }
+
+        public List<Enemy> SpawnedEnemies
+        {
+            //probably wont need a set. may need indexed accessor
+            get { return spawnedEnemies; }
+            set { spawnedEnemies = value; }
         }
 
         public int EnemyAmt

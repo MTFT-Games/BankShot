@@ -116,7 +116,7 @@ namespace BankShot
         //yet.
         public void CollisionCheck()
         {
-            foreach (Enemy enemy in Game1.enemyManager.Enemies)
+            foreach (Enemy enemy in Game1.enemyManager.SpawnedEnemies)
             {
                 if (rect.Intersects(enemy.Rect))
                 {
