@@ -100,8 +100,8 @@ namespace BankShot
                 }
                 position.X = playerPosition.X;
                 position.Y = playerPosition.Y;
-            */
-            }
+            
+            }*/
         }
 
         //The collison checking method in GameObject might
