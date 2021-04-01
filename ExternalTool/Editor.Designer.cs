@@ -85,7 +85,7 @@ namespace ExternalTool
             // loadingBar
             // 
             this.loadingBar.MarqueeAnimationSpeed = 1;
-            this.loadingBar.Maximum = 20;
+            this.loadingBar.Maximum = 110;
             this.loadingBar.Name = "loadingBar";
             this.loadingBar.Size = new System.Drawing.Size(200, 18);
             this.loadingBar.Step = 1;
