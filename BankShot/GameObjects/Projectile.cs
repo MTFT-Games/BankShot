@@ -98,6 +98,8 @@ namespace BankShot
         /// <param name="sb">The games spritebatch.</param>
         public override void Draw(SpriteBatch sb)
         {
+            base.Draw(sb);
+            /*
             sb.Draw(
                 texture,
                 rect,
@@ -107,6 +109,7 @@ namespace BankShot
                 new Vector2(rect.X / 2, rect.Y / 2),
                 SpriteEffects.None,
                 1);
+            */
         }
 
         //Example version of collison checking. 

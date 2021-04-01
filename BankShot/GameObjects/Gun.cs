@@ -72,11 +72,19 @@ namespace BankShot
             {
                 this.Attack();
             }
+            foreach (Projectile projectile in projectiles)
+            {
+                projectile.Update();
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            foreach (Projectile projectile in projectiles)
+            {
+                projectile.Draw(spriteBatch);
+            }
         }
     }
 }
