@@ -17,6 +17,7 @@ namespace BankShot
         //knock distance (float)
         private List<List<object>> enemies;
         private List<Enemy> spawnedEnemies;
+        private List<Enemy> deadEnemies;
         private int enemyAmt;
 
 
@@ -28,6 +29,7 @@ namespace BankShot
             enemies = e;
             enemyAmt = enemies.Count;
             spawnedEnemies = new List<Enemy>();
+            deadEnemies = new List<Enemy>();
 
         }
 
@@ -88,11 +90,15 @@ namespace BankShot
             {
                 if (e.Health <= 0)
                 {
-                    spawnedEnemies.Remove(e);
+                    deadEnemies.Add(e);
                     enemyAmt--;
                 }
 
                 e.Update();
+            }
+            foreach (Enemy e in deadEnemies)
+            {
+                spawnedEnemies.Remove(e);
             }
 
         }

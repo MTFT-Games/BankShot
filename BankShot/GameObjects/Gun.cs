@@ -21,7 +21,8 @@ namespace BankShot
         private int speed;
         private bool interceptable;
         private double lifeSpan;
-        private List<Projectile> projectiles; 
+        private List<Projectile> projectiles;
+        private List<Projectile> projectilesToDestroy;
 
         //Parameterized Constructor
         public Gun(Texture2D texture, Rectangle transform,
@@ -44,6 +45,7 @@ namespace BankShot
             this.projectileCollisionBoxes = projectileCollisionBoxes;
             this.projectileActive = projectileActive;
             projectiles = new List<Projectile>();
+            projectilesToDestroy = new List<Projectile>();
         }
 
         //Methods
@@ -59,12 +61,14 @@ namespace BankShot
                                            projectileActive, interceptable, 
                                            damage, knockback, lifeSpan, 
                                            direction * speed, false, 
-                                           projectiles));
+                                           projectilesToDestroy));
             base.Attack(); 
         }
 
         public override void Update()
         {
+            projectileTransform.X = this.X;
+            projectileTransform.Y = this.Y;
             //This is a very simple version of 
             //this since we dont have a cooldown 
             //yet.
@@ -76,6 +80,11 @@ namespace BankShot
             {
                 projectile.Update();
             }
+            foreach (Projectile projectile in projectilesToDestroy)
+            {
+                projectiles.Remove(projectile);
+            }
+            base.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)

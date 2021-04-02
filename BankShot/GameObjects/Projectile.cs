@@ -78,6 +78,7 @@ namespace BankShot
             this.Move();
             X = (int)position.X;
             Y = (int)position.Y;
+            this.CollisionCheck();
         }
 
         public void DealDamage(IDamageable target) 
@@ -133,7 +134,7 @@ namespace BankShot
 
         public void Destroy()
         {
-            projectiles.Remove(this);
+            projectiles.Add(this);
         }
     }
 }

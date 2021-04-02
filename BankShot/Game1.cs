@@ -58,6 +58,11 @@ namespace BankShot {
         private Texture2D projectileTexture;
         private Texture2D gunTexture;
 
+        //Other Test Textures
+        private Texture2D playerTexture;
+        private Texture2D wallTexture;
+        private Texture2D enemyTexture;
+
         //testing boolean
         private bool test;
         
@@ -75,7 +80,11 @@ namespace BankShot {
 
           
             test = false;
-            
+
+            _graphics.PreferredBackBufferWidth = 1000;  // set this value to the desired width of your window
+            _graphics.PreferredBackBufferHeight = 1000;   // set this value to the desired height of your window
+            _graphics.ApplyChanges();
+
             base.Initialize();
         }
 
@@ -84,7 +93,7 @@ namespace BankShot {
 
             //menu testing
             font = Content.Load<SpriteFont>("File");
-            buttonTx = Content.Load<Texture2D>("button2");
+            buttonTx = Content.Load<Texture2D>("button1");
 
             //menu init
             mainMenu = new MainMenu(font, buttonTx);
@@ -92,17 +101,25 @@ namespace BankShot {
             leaderboardMenu = new LeaderboardMenu(font, scores);
             gameOverMenu = new GameOverMenu(font);
 
-            gunTexture = Content.Load<Texture2D>("button1");
-            player = new Player(gunTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0));
-            walls = new GameObject[] { new GameObject(gunTexture, new Rectangle(100, 200, 500, 100), new List<Rectangle>(), true) };
+            //Textures
+            gunTexture = Content.Load<Texture2D>("Gun");
+            projectileTexture = Content.Load<Texture2D>("Bullet");
+            wallTexture = Content.Load<Texture2D>("Wall");
+            playerTexture = Content.Load<Texture2D>("Player");
+            enemyTexture = Content.Load<Texture2D>("Enemy");
 
-            //Testing gun and projectile creation.
-            //gunTexture = Content.Load<Texture2D>("button1");
-            projectileTexture = Content.Load<Texture2D>("button2");
+
+            player = new Player(playerTexture, new Rectangle(100, 100, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0));
+            walls = new GameObject[] { new GameObject(wallTexture, new Rectangle(0, 900, 500, 100), new List<Rectangle>(), true), 
+                                       new GameObject(wallTexture, new Rectangle(650, 900, 500, 100), new List<Rectangle>(), true),
+                                       new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
+            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(300, 300, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0 } });
+            //enemyManager.SpawnEnemies();
+            enemyManager.SpawnedEnemies.Add(new Enemy(enemyTexture, new Rectangle(700, 700, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0));
 
             //Gun Creation! 
-            gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 100), new List<Rectangle>(), true, 2, 2, true, 2, 5, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 100, 100), new List<Rectangle>(), true);
-
+            gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true);
+            player.CurrentWeapon = gun;
             //Map manager
 
 
@@ -126,6 +143,8 @@ namespace BankShot {
                 case GameState.Game:
                     //Testing gun and projectile creation.
                     gun.Update();
+                    player.Update();
+                    enemyManager.UpdateEnemies();
                     break;
                 case GameState.Pause:
                     pauseMenu.Update(kbs, ms, msPrev, test, out state);
@@ -143,7 +162,6 @@ namespace BankShot {
 
             // TODO: Add your update logic here
             Input.Update();
-            player.Update();
           
 
             base.Update(gameTime);
@@ -173,6 +191,11 @@ namespace BankShot {
                     }
                     //Testing gun and projectile creation.
                     gun.Draw(_spriteBatch);
+                    enemyManager.DrawEnemies(_spriteBatch);
+                    if (enemyManager.SpawnedEnemies.Count > 0)
+                    {
+                        _spriteBatch.DrawString(font, "Enemy Health: " + enemyManager.SpawnedEnemies[0].Health, new Vector2(100, 100), Color.White);
+                    }
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);

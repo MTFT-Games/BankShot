@@ -14,7 +14,23 @@ namespace BankShot
         private Weapon weapon;
         private Shield shield;
 
+        //Just for the demo
+        private string weaponSide;
+
         //Player Stats will also be included as Fields
+
+        public Weapon CurrentWeapon
+        {
+            get
+            {
+                return weapon;
+            }
+
+            set
+            {
+                weapon = value;
+            }
+        }
 
         //Default Contructor
         public Player(Texture2D texture, Rectangle transform,
@@ -22,12 +38,22 @@ namespace BankShot
                       int maxHealth, Vector2 velocity)
                       : base(texture, transform, collisionBoxes, active,
                              maxHealth, velocity)
-        { }
+        {
+            weaponSide = "right";
+        }
 
         //Methods
         public override void Update()
         {
             this.ProcessInput();
+            if (weaponSide == "right")
+            {
+                weapon.Position = new Vector2(this.X + 100, this.Y);
+            }
+            else
+            {
+                weapon.Position = new Vector2(this.X - 100, this.Y);
+            }    
             base.Update();
         }
 
@@ -39,8 +65,8 @@ namespace BankShot
         public override void Move()
         {
             this.ApplyGravity();
-            this.ResolveCollisions();
             base.Move();
+            this.ResolveCollisions();
         }
 
         public void ProcessInput()
@@ -49,10 +75,12 @@ namespace BankShot
             if (Input.KeyHeld(Keys.A)) //&& velocity.X != -5)
             {
                 velocity.X -= 5;
+                weaponSide = "left";
             }
             if (Input.KeyHeld(Keys.D)) //&& velocity.X != 5)
             {
                 velocity.X += 5;
+                weaponSide = "right";
             }
             if (Input.KeyClick(Keys.W))
             {
@@ -68,13 +96,11 @@ namespace BankShot
         //This was very buggy I need to take another look at the PE
         public void ResolveCollisions()
         {
-            /*
             foreach(GameObject wall in Game1.walls)
             {
                 Rectangle playerPosition = new Rectangle((int) position.X, (int) position.Y, rect.Width, rect.Height);
                 if (playerPosition.Intersects(wall.Rect))
                 {
-                    velocity.Y = 0;
                     Rectangle intersection = Rectangle.Intersect(playerPosition, wall.Rect);
                     if (intersection.Width <= intersection.Height)
                     {
@@ -89,6 +115,7 @@ namespace BankShot
                     }
                     else
                     {
+                        velocity.Y = 0;
                         if (playerPosition.Y <= wall.Y)
                         {
                             playerPosition.Y -= intersection.Height;
@@ -101,8 +128,7 @@ namespace BankShot
                 }
                 position.X = playerPosition.X;
                 position.Y = playerPosition.Y;
-            
-            }*/
+            }
         }
 
         //The collison checking method in GameObject might

@@ -63,7 +63,7 @@ namespace BankShot
         {
             if(health <= 0)
             {
-                enemyDeath(this);
+                //enemyDeath(this);
                 return;
             }
             //foreach gameobject in Game1.MapManager.Map
