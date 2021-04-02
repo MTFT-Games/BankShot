@@ -53,7 +53,8 @@ namespace BankShot
             else
             {
                 weapon.Position = new Vector2(this.X - 100, this.Y);
-            }    
+            }
+            //weapon.Velocity = velocity;
             base.Update();
         }
 

@@ -127,14 +127,21 @@ namespace BankShot
                     this.DealDamage((IDamageable)enemy);
                     this.Destroy();
                     return;
-
+                }
+            }
+            foreach (GameObject wall in Game1.walls)
+            {
+                if (rect.Intersects(wall.Rect))
+                {
+                    this.Destroy();
+                    return;
                 }
             }
         }
 
         public void Destroy()
         {
-            projectiles.Add(this);
+            projectiles.Remove(this);
         }
     }
 }

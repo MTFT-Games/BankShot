@@ -61,7 +61,7 @@ namespace BankShot
                                            projectileActive, interceptable, 
                                            damage, knockback, lifeSpan, 
                                            direction * speed, false, 
-                                           projectilesToDestroy));
+                                           projectiles));
             base.Attack(); 
         }
 
@@ -76,13 +76,9 @@ namespace BankShot
             {
                 this.Attack();
             }
-            foreach (Projectile projectile in projectiles)
+            for (int i = 0; i < projectiles.Count; i++)
             {
-                projectile.Update();
-            }
-            foreach (Projectile projectile in projectilesToDestroy)
-            {
-                projectiles.Remove(projectile);
+                projectiles[i].Update();
             }
             base.Update();
         }
