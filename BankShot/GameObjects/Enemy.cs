@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-    public delegate void enemyMethods(Enemy sender);
+    public delegate void enemyDelegate(Enemy sender);
     /// <summary>
     /// generic enemy class, handles movement, dealing damage, and death.
     /// Coded by Machi
@@ -18,7 +18,7 @@ namespace BankShot
         protected int attackPower;
         protected float knockbackDistance;
         private List<object> stats;
-        public event enemyMethods enemyDeath;
+        public event enemyDelegate enemyDeath;
         //Enemy Stats will be included as Fields
 
         //Constructor
@@ -71,7 +71,7 @@ namespace BankShot
             //If player downcast and deal damage
             //else take care of collision
             Move();
-            //DealDamage(Game1.player);
+            DealDamage(Game1.player);
         }
 
         //accessors
@@ -110,9 +110,13 @@ namespace BankShot
             base.Move();
         }
 
-        /*public override void CollisionCheck()
+        public virtual void TakeDamage(int damage, float knockback)
         {
-            
-        }*/
+            base.TakeDamage(damage, knockback);
+            if (health == 0 && enemyDeath != null)
+            {
+                enemyDeath(this);
+            }
+        }
     }
 }
