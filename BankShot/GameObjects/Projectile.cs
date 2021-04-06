@@ -120,13 +120,25 @@ namespace BankShot
         //yet.
         public void CollisionCheck()
         {
-            foreach (Enemy enemy in Game1.enemyManager.SpawnedEnemies)
+            if (fromEnemy == true)
             {
-                if (rect.Intersects(enemy.Rect))
+                if (rect.Intersects(Game1.player.Rect))
                 {
-                    this.DealDamage((IDamageable)enemy);
+                    this.DealDamage((IDamageable) Game1.player);
                     this.Destroy();
                     return;
+                }
+            }
+            else
+            {
+                foreach (Enemy enemy in Game1.enemyManager.SpawnedEnemies)
+                {
+                    if (rect.Intersects(enemy.Rect))
+                    {
+                        this.DealDamage((IDamageable)enemy);
+                        this.Destroy();
+                        return;
+                    }
                 }
             }
             foreach (GameObject wall in Game1.walls)

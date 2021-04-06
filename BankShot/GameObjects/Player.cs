@@ -19,6 +19,9 @@ namespace BankShot
 
         //Player Stats will also be included as Fields
 
+        //Determines if the player is on the ground
+        private bool onGround;
+
         public Weapon CurrentWeapon
         {
             get
@@ -40,6 +43,7 @@ namespace BankShot
                              maxHealth, velocity)
         {
             weaponSide = "right";
+            onGround = false;
         }
 
         //Methods
@@ -83,15 +87,17 @@ namespace BankShot
                 velocity.X += 5;
                 weaponSide = "right";
             }
-            if (Input.KeyClick(Keys.W))
+            if (Input.KeyClick(Keys.W) && onGround)
             {
                 velocity.Y = -20;
+                onGround = false;
             }
         }
 
         public void ApplyGravity()
         {
             velocity += new Vector2(0, 1);
+            onGround = false;
         }
 
         //This was very buggy I need to take another look at the PE
@@ -120,6 +126,7 @@ namespace BankShot
                         if (playerPosition.Y <= wall.Y)
                         {
                             playerPosition.Y -= intersection.Height;
+                            onGround = true;
                         }
                         else
                         {
