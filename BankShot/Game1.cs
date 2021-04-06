@@ -57,6 +57,7 @@ namespace BankShot {
         private Gun gun;
         private Texture2D projectileTexture;
         private Texture2D gunTexture;
+        public static ProjectileManager projectileManager;
 
         //Other Test Textures
         private Texture2D playerTexture;

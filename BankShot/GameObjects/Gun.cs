@@ -44,8 +44,6 @@ namespace BankShot
             this.projectileTransform = projectileTransform;
             this.projectileCollisionBoxes = projectileCollisionBoxes;
             this.projectileActive = projectileActive;
-            projectiles = new List<Projectile>();
-            projectilesToDestroy = new List<Projectile>();
         }
 
         //Methods
@@ -56,12 +54,12 @@ namespace BankShot
         {
             Vector2 direction = Input.MousePosition - position;
             direction.Normalize();
-            projectiles.Add(new Projectile(projectileTexture, 
+            Game1.projectileManager.projectiles.Add(new Projectile(projectileTexture, 
                                            projectileTransform,  
                                            projectileActive, interceptable, 
                                            damage, knockback, lifeSpan, 
                                            direction * speed, false, 
-                                           projectiles));
+                                           this));
             base.Attack(); 
         }
 
@@ -76,20 +74,12 @@ namespace BankShot
             {
                 this.Attack();
             }
-            for (int i = 0; i < projectiles.Count; i++)
-            {
-                projectiles[i].Update();
-            }
             base.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            foreach (Projectile projectile in projectiles)
-            {
-                projectile.Draw(spriteBatch);
-            }
         }
     }
 }
