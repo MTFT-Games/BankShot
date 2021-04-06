@@ -85,7 +85,7 @@ namespace BankShot
         /// </summary>
         /// <param name="damage">The amount of damage taken.</param>
         /// <param name="knockback">The amount of knockback applied.</param>
-        public void TakeDamage(int damage, float knockback) 
+        public virtual void TakeDamage(int damage, float knockback) 
         {
             health -= damage;
             if (health < 0 )

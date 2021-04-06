@@ -49,7 +49,7 @@ namespace BankShot {
         public GameState state;
 
         //Testing player
-        public Player player;
+        public static Player player;
 
         public static GameObject[] walls;
 
