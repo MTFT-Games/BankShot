@@ -21,8 +21,6 @@ namespace BankShot
         private int speed;
         private bool interceptable;
         private double lifeSpan;
-        private List<Projectile> projectiles;
-        private List<Projectile> projectilesToDestroy;
 
         //Parameterized Constructor
         public Gun(Texture2D texture, Rectangle transform,
@@ -54,6 +52,8 @@ namespace BankShot
         {
             Vector2 direction = Input.MousePosition - position;
             direction.Normalize();
+            projectileTransform.X = this.X;
+            projectileTransform.Y = this.Y;
             Game1.projectileManager.projectiles.Add(new Projectile(projectileTexture, 
                                            projectileTransform,  
                                            projectileActive, interceptable, 
@@ -65,8 +65,6 @@ namespace BankShot
 
         public override void Update()
         {
-            projectileTransform.X = this.X;
-            projectileTransform.Y = this.Y;
             //This is a very simple version of 
             //this since we dont have a cooldown 
             //yet.

@@ -72,7 +72,7 @@ namespace BankShot {
 
         public void UpdateProjectiles()
         {
-            for (int i = 0; i < projectiles.Count - 1; i++)
+            for (int i = 0; i < projectiles.Count; i++)
             {
                 projectiles[i].Update();
             }
@@ -81,7 +81,7 @@ namespace BankShot {
 
         public void DrawProjectiles(SpriteBatch sb)
         {
-            for (int i = 0; i < projectiles.Count - 1; i++)
+            for (int i = 0; i < projectiles.Count; i++)
             {
                 projectiles[i].Draw(sb);
             }
