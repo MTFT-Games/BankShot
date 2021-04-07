@@ -14,14 +14,14 @@ namespace BankShot
     public class Projectile : GameObject, IMoveable, IDamages
     {
         //Fields
-        private bool interceptable;
+        public bool interceptable;
         private int damage;
         private float knockback;
         private double lifeSpan;
         private Vector2 velocity;
-        private bool fromEnemy;
+        public bool fromEnemy;
         //The Projectile should remove itself from this list when it dies.
-        private List<Projectile> projectiles;
+        public Gun gunOfOrigin;
 
         public Vector2 Velocity
         {
@@ -55,7 +55,7 @@ namespace BankShot
         /// be removed from upon death.</param>
         public Projectile(Texture2D texture, Rectangle transform, bool active, 
             bool interceptable, int damage, float knockback, double lifeSpan, 
-            Vector2 velocity, bool fromEnemy, List<Projectile> projectiles)
+            Vector2 velocity, bool fromEnemy, Gun gunOfOrigin)
             : base(texture, transform, new List<Rectangle>(), active)
         {
             this.interceptable = interceptable;
@@ -64,7 +64,7 @@ namespace BankShot
             this.lifeSpan = lifeSpan;
             this.velocity = velocity;
             this.fromEnemy = fromEnemy;
-            this.projectiles = projectiles;
+            this.gunOfOrigin = gunOfOrigin;
         }
 
         //Methods
@@ -78,7 +78,7 @@ namespace BankShot
             this.Move();
             X = (int)position.X;
             Y = (int)position.Y;
-            this.CollisionCheck();
+            //this.CollisionCheck();
         }
 
         public void DealDamage(IDamageable target) 
@@ -118,23 +118,10 @@ namespace BankShot
         //hitting enemies and some will hit the player.
         //All will hit walls but we do not have the list of walls 
         //yet.
-        public void CollisionCheck()
-        {
-            foreach (Enemy enemy in Game1.enemyManager.SpawnedEnemies)
-            {
-                if (rect.Intersects(enemy.Rect))
-                {
-                    this.DealDamage((IDamageable)enemy);
-                    this.Destroy();
-                    return;
-
-                }
-            }
-        }
 
         public void Destroy()
         {
-            projectiles.Add(this);
+            Game1.projectileManager.projectiles.Remove(this);
         }
     }
 }

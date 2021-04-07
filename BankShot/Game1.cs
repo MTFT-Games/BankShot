@@ -49,7 +49,7 @@ namespace BankShot {
         public GameState state;
 
         //Testing player
-        public Player player;
+        public static Player player;
 
         public static GameObject[] walls;
 
@@ -57,6 +57,7 @@ namespace BankShot {
         private Gun gun;
         private Texture2D projectileTexture;
         private Texture2D gunTexture;
+        public static ProjectileManager projectileManager;
 
         //Other Test Textures
         private Texture2D playerTexture;
@@ -118,6 +119,7 @@ namespace BankShot {
             enemyManager.SpawnedEnemies.Add(new Enemy(enemyTexture, new Rectangle(700, 700, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0));
 
             //Gun Creation! 
+            projectileManager = new ProjectileManager();
             gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true);
             player.CurrentWeapon = gun;
             //Map manager
@@ -143,6 +145,7 @@ namespace BankShot {
                 case GameState.Game:
                     //Testing gun and projectile creation.
                     gun.Update();
+                    projectileManager.UpdateProjectiles();
                     player.Update();
                     enemyManager.UpdateEnemies();
                     break;
@@ -191,6 +194,7 @@ namespace BankShot {
                     }
                     //Testing gun and projectile creation.
                     gun.Draw(_spriteBatch);
+                    projectileManager.DrawProjectiles(_spriteBatch);
                     enemyManager.DrawEnemies(_spriteBatch);
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {

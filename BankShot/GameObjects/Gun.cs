@@ -21,8 +21,6 @@ namespace BankShot
         private int speed;
         private bool interceptable;
         private double lifeSpan;
-        private List<Projectile> projectiles;
-        private List<Projectile> projectilesToDestroy;
 
         //Parameterized Constructor
         public Gun(Texture2D texture, Rectangle transform,
@@ -44,8 +42,6 @@ namespace BankShot
             this.projectileTransform = projectileTransform;
             this.projectileCollisionBoxes = projectileCollisionBoxes;
             this.projectileActive = projectileActive;
-            projectiles = new List<Projectile>();
-            projectilesToDestroy = new List<Projectile>();
         }
 
         //Methods
@@ -56,19 +52,19 @@ namespace BankShot
         {
             Vector2 direction = Input.MousePosition - position;
             direction.Normalize();
-            projectiles.Add(new Projectile(projectileTexture, 
+            projectileTransform.X = this.X;
+            projectileTransform.Y = this.Y;
+            Game1.projectileManager.projectiles.Add(new Projectile(projectileTexture, 
                                            projectileTransform,  
                                            projectileActive, interceptable, 
                                            damage, knockback, lifeSpan, 
                                            direction * speed, false, 
-                                           projectilesToDestroy));
+                                           this));
             base.Attack(); 
         }
 
         public override void Update()
         {
-            projectileTransform.X = this.X;
-            projectileTransform.Y = this.Y;
             //This is a very simple version of 
             //this since we dont have a cooldown 
             //yet.
@@ -76,24 +72,12 @@ namespace BankShot
             {
                 this.Attack();
             }
-            foreach (Projectile projectile in projectiles)
-            {
-                projectile.Update();
-            }
-            foreach (Projectile projectile in projectilesToDestroy)
-            {
-                projectiles.Remove(projectile);
-            }
             base.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            foreach (Projectile projectile in projectiles)
-            {
-                projectile.Draw(spriteBatch);
-            }
         }
     }
 }
