@@ -44,13 +44,14 @@ namespace ExternalTool
             this.tabSystem = new System.Windows.Forms.TabControl();
             this.mapTab = new System.Windows.Forms.TabPage();
             this.mapDivider = new System.Windows.Forms.SplitContainer();
+            this.backgroundLabel = new System.Windows.Forms.Label();
             this.backgroundList = new System.Windows.Forms.ListView();
+            this.backgroundImages = new System.Windows.Forms.ImageList(this.components);
             this.tileList = new System.Windows.Forms.ListView();
+            this.tileSet = new System.Windows.Forms.ImageList(this.components);
             this.mapBackground = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.backgroundImages = new System.Windows.Forms.ImageList(this.components);
-            this.tileSet = new System.Windows.Forms.ImageList(this.components);
-            this.backgroundLabel = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tabSystem.SuspendLayout();
@@ -60,6 +61,7 @@ namespace ExternalTool
             this.mapDivider.Panel2.SuspendLayout();
             this.mapDivider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapBackground)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -196,6 +198,15 @@ namespace ExternalTool
             this.mapDivider.SplitterDistance = 311;
             this.mapDivider.TabIndex = 0;
             // 
+            // backgroundLabel
+            // 
+            this.backgroundLabel.AutoSize = true;
+            this.backgroundLabel.Location = new System.Drawing.Point(5, 5);
+            this.backgroundLabel.Name = "backgroundLabel";
+            this.backgroundLabel.Size = new System.Drawing.Size(72, 15);
+            this.backgroundLabel.TabIndex = 3;
+            this.backgroundLabel.Text = "Backgrounds";
+            // 
             // backgroundList
             // 
             this.backgroundList.Activation = System.Windows.Forms.ItemActivation.OneClick;
@@ -215,6 +226,12 @@ namespace ExternalTool
             this.backgroundList.View = System.Windows.Forms.View.Tile;
             this.backgroundList.ItemActivate += new System.EventHandler(this.backgroundList_ItemActivate);
             // 
+            // backgroundImages
+            // 
+            this.backgroundImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.backgroundImages.ImageSize = new System.Drawing.Size(100, 60);
+            this.backgroundImages.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // tileList
             // 
             this.tileList.Font = new System.Drawing.Font("Comic Sans MS", 1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
@@ -231,6 +248,12 @@ namespace ExternalTool
             this.tileList.TileSize = new System.Drawing.Size(60, 60);
             this.tileList.UseCompatibleStateImageBehavior = false;
             this.tileList.View = System.Windows.Forms.View.Tile;
+            // 
+            // tileSet
+            // 
+            this.tileSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.tileSet.ImageSize = new System.Drawing.Size(50, 50);
+            this.tileSet.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // mapBackground
             // 
@@ -251,26 +274,9 @@ namespace ExternalTool
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // backgroundImages
+            // errorProvider
             // 
-            this.backgroundImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.backgroundImages.ImageSize = new System.Drawing.Size(100, 60);
-            this.backgroundImages.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // tileSet
-            // 
-            this.tileSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.tileSet.ImageSize = new System.Drawing.Size(50, 50);
-            this.tileSet.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // backgroundLabel
-            // 
-            this.backgroundLabel.AutoSize = true;
-            this.backgroundLabel.Location = new System.Drawing.Point(5, 5);
-            this.backgroundLabel.Name = "backgroundLabel";
-            this.backgroundLabel.Size = new System.Drawing.Size(72, 15);
-            this.backgroundLabel.TabIndex = 3;
-            this.backgroundLabel.Text = "Backgrounds";
+            this.errorProvider.ContainerControl = this;
             // 
             // Editor
             // 
@@ -296,6 +302,7 @@ namespace ExternalTool
             ((System.ComponentModel.ISupportInitialize)(this.mapDivider)).EndInit();
             this.mapDivider.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mapBackground)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,5 +331,6 @@ namespace ExternalTool
         private System.Windows.Forms.ListView backgroundList;
         private System.Windows.Forms.ImageList tileSet;
         private System.Windows.Forms.Label backgroundLabel;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

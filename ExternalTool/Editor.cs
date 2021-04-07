@@ -42,7 +42,7 @@ namespace ExternalTool
 
             // Load each component
             LoadThumbnails();
-            InitializeMap(40, 24);
+            LoadMap();
 
             // Update status bar.
             statusLabel.Text = "Content loaded, ready";
@@ -55,7 +55,8 @@ namespace ExternalTool
         {
             // Update status bar.
             statusLabel.Text = "Loading content: thumbnails";
-
+            // TODO: ENCASE IN TRY
+            // TODO: DONT NAME THEM ABD JUST USE THEIR IMAGE
             // Get the filepaths of all backgrounds in the Backgrounds folder
             // and add them to the ListView to be selected and used later.
             string[] backgroundPaths = Directory.GetFiles(filePath + "Backgrounds");
@@ -94,6 +95,7 @@ namespace ExternalTool
         private void InitializeMap(int width, int height)
         {
             // Update status bar.
+            string previoustext = statusLabel.Text;
             statusLabel.Text = "Loading content: initializing map";
             map = new PictureBox[width, height];
 
@@ -124,6 +126,7 @@ namespace ExternalTool
 
             // Update status bar.
             loadingBar.Value += 90;
+            statusLabel.Text = previoustext;
         }
 
         /// <summary>
@@ -226,11 +229,14 @@ namespace ExternalTool
                 }
             }
 
+            // Update the status bar.
+            statusLabel.Text = "Loading content: loading map";
+
             // Read the file according to the format specified in Save().
             StreamReader reader = null;
             try
             {
-                reader = new StreamReader(File.OpenRead(filePath));
+                reader = new StreamReader(File.OpenRead(filePath + "map.data"));
 
                 // Read header info.
                 string[] header = reader.ReadLine().Split('|');
@@ -244,16 +250,52 @@ namespace ExternalTool
                 // Read and set background image path
                 mapBackground.Image = Image.FromFile(filePath + "Background/" 
                     + reader.ReadLine());
-
-                // TODO: Continue refitting this method from the old leveleditor
-                /*
+                
                 //read and apply map data
-                for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
                 {
-                    for (int y = 0; y < height; y++)
+                    for (int x = 0; x < width; x++)
                     {
-                        map[x, y].BackColor =
-                            Color.FromArgb(reader.ReadInt32());
+                        switch (reader.Read())
+                        {
+                            default:
+                                map[x, y].Image = Image.FromFile("center.png");
+                                break;
+                            case 48:
+                                map[x, y].Image = Image.FromFile("down.png");
+                                break;
+                            case 49:
+                                map[x, y].Image = Image.FromFile("downleft.png");
+                                break;
+                            case 50:
+                                map[x, y].Image = Image.FromFile("downright.png");
+                                break;
+                            case 51:
+                                map[x, y].Image = Image.FromFile("left.png");
+                                break;
+                            case 52:
+                                map[x, y].Image = Image.FromFile("right.png");
+                                break;
+                            case 53:
+                                map[x, y].Image = Image.FromFile("up.png");
+                                break;
+                            case 54:
+                                map[x, y].Image = Image.FromFile("upleft.png");
+                                break;
+                            case 55:
+                                map[x, y].Image = Image.FromFile("upright.png");
+                                break;
+                            case 56:
+                                break;
+                            case 57:
+                                break;
+                            case 58:
+                                break;
+                            case 59:
+                                break;
+                            case 60:
+                                break;
+                        }
                     }
                 }
 
@@ -266,7 +308,7 @@ namespace ExternalTool
                 Text = "Level Editor - " + filePath.Substring(
                     filePath.LastIndexOf('\\') + 1);
                 unsavedChanges = false;
-                */
+                
             } catch (Exception ex)
             {
                 MessageBox.Show(
