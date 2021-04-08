@@ -18,8 +18,11 @@ namespace BankShot
         private int damage;
         private float knockback;
         private double lifeSpan;
-        private Vector2 velocity;
+        public Vector2 velocity;
+        public int speed;
         public bool fromEnemy;
+        public bool bounce;
+        private bool homing;
         //The Projectile should remove itself from this list when it dies.
         public Gun gunOfOrigin;
 
@@ -35,6 +38,7 @@ namespace BankShot
                 velocity = value;
             }
         }
+
 
         /// <summary>
         /// Creates a new projectile with the given stats.
@@ -55,7 +59,8 @@ namespace BankShot
         /// be removed from upon death.</param>
         public Projectile(Texture2D texture, Rectangle transform, bool active, 
             bool interceptable, int damage, float knockback, double lifeSpan, 
-            Vector2 velocity, bool fromEnemy, Gun gunOfOrigin)
+            Vector2 velocity, int speed, bool fromEnemy, bool homing, bool bounce, 
+            Gun gunOfOrigin)
             : base(texture, transform, new List<Rectangle>(), active)
         {
             this.interceptable = interceptable;
@@ -63,8 +68,11 @@ namespace BankShot
             this.knockback = knockback;
             this.lifeSpan = lifeSpan;
             this.velocity = velocity;
+            this.speed = speed;
             this.fromEnemy = fromEnemy;
+            this.homing = homing;
             this.gunOfOrigin = gunOfOrigin;
+            this.bounce = bounce;
         }
 
         //Methods
@@ -78,6 +86,10 @@ namespace BankShot
             this.Move();
             X = (int)position.X;
             Y = (int)position.Y;
+            if (homing)
+            {
+                this.Homing();
+            }
             //this.CollisionCheck();
         }
 
@@ -122,6 +134,49 @@ namespace BankShot
         public void Destroy()
         {
             Game1.projectileManager.projectiles.Remove(this);
+        }
+
+        public void Homing()
+        {
+            if (fromEnemy)
+            {
+                Vector2 difference = new Vector2(Game1.player.Y - this.X, Game1.player.Y - this.Y);
+                velocity.X += (float) (difference.X * .1);
+                velocity.Y += (float) (difference.Y * .1);
+                velocity.Normalize();
+                velocity = velocity * speed;
+            }
+            else
+            {
+                int distance = -1;
+                int tempDistance = 0;
+                Enemy enemyToHome = null;
+                foreach (Enemy enemy in Game1.enemyManager.SpawnedEnemies)
+                {
+                    tempDistance = (int) Math.Sqrt(Math.Pow(this.X - enemy.X, 2) + Math.Pow(this.Y - enemy.Y, 2));
+                    if (distance < 0 || tempDistance < distance)
+                    {
+                        distance = tempDistance;
+                        enemyToHome = enemy;
+                    }
+                }
+                if (enemyToHome != null)
+                {
+                    Vector2 difference = new Vector2(enemyToHome.Y - this.X, enemyToHome.Y - this.Y);
+                    if (distance < 200)
+                    {
+                        velocity.X += (float)(difference.X * .004);
+                        velocity.Y += (float)(difference.Y * .004);
+                    }
+                    else if (distance < 500)
+                    {
+                        velocity.X += (float)(difference.X * .0015);
+                        velocity.Y += (float)(difference.Y * .0015);
+                    }
+                    velocity.Normalize();
+                    velocity = velocity * speed;
+                }
+            }
         }
     }
 }

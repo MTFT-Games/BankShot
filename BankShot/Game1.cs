@@ -120,7 +120,7 @@ namespace BankShot {
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true);
+            gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 15, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, false, true);
             player.CurrentWeapon = gun;
             //Map manager
 
@@ -195,6 +195,8 @@ namespace BankShot {
                     //Testing gun and projectile creation.
                     gun.Draw(_spriteBatch);
                     projectileManager.DrawProjectiles(_spriteBatch);
+                    _spriteBatch.DrawString(font, $"Height: {projectileManager.height}", new Vector2(300, 300), Color.White);
+                    _spriteBatch.DrawString(font, $"Width: {projectileManager.width}", new Vector2(300, 350), Color.White);
                     enemyManager.DrawEnemies(_spriteBatch);
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {

@@ -8,7 +8,9 @@ using Microsoft.Xna.Framework.Input;
 namespace BankShot {
     public class ProjectileManager
     {
-        public List<Projectile> projectiles; 
+        public List<Projectile> projectiles;
+        public int height;
+        public int width;
 
         public ProjectileManager()
         {
@@ -62,10 +64,53 @@ namespace BankShot {
                 //Checking this projectile against walls.
                 foreach (GameObject wall in Game1.walls)
                 {
-                    int bruh = i;
                     if (i < projectiles.Count && projectiles[i].Rect.Intersects(wall.Rect))
                     {
-                        projectiles[i].Destroy();
+                        if (projectiles[i].bounce)
+                        {
+                            Rectangle prediction = new Rectangle(projectiles[i].Rect.X + (int) projectiles[i].velocity.X, 
+                                projectiles[i].Rect.Y + (int)projectiles[i].velocity.Y, projectiles[i].Rect.Width, 
+                                projectiles[i].Rect.Height);
+                            if (prediction.Intersects(wall.Rect))
+                            {
+                                Rectangle intersection = Rectangle.Intersect(prediction, wall.Rect);
+                                height = intersection.Height;
+                                width = intersection.Width;
+                                if (intersection.Width <= intersection.Height)
+                                {
+                                    if (prediction.X <= wall.X)
+                                    {
+                                        prediction.X -= intersection.Width;
+                                    }
+                                    else
+                                    {
+                                        prediction.X += intersection.Width;
+                                    }
+                                    projectiles[i].velocity.X *= -1;
+                                    if (intersection.Width == intersection.Height)
+                                    {
+                                        //projectiles[i].velocity.Y *= -1;
+                                    }
+                                }
+                                else
+                                {
+                                    if (prediction.Y <= wall.Y)
+                                    {
+                                        prediction.Y -= intersection.Height;
+                                    }
+                                    else
+                                    {
+                                        prediction.Y += intersection.Height;
+                                    }
+                                    projectiles[i].velocity.Y *= -1;
+                                }
+                                projectiles[i].Rect = prediction;
+                            }
+                        }
+                        else
+                        {
+                            projectiles[i].Destroy();
+                        }
                     }
                 }
             }

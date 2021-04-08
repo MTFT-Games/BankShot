@@ -17,6 +17,8 @@ namespace BankShot
         private Rectangle projectileTransform;
         private List<Rectangle> projectileCollisionBoxes;
         private bool projectileActive;
+        private bool projectileHoming;
+        private bool projectileBounce;
         //Projectile Stats:
         private int speed;
         private bool interceptable;
@@ -30,6 +32,7 @@ namespace BankShot
                       Texture2D projectileTexture, 
                       Rectangle projectileTransform, 
                       List<Rectangle> projectileCollisionBoxes, 
+                      bool projectileHoming, bool projectileBounce, 
                       bool projectileActive)
                       : base(texture, transform, collisionBoxes, 
                              active, damage, knockback)
@@ -42,6 +45,8 @@ namespace BankShot
             this.projectileTransform = projectileTransform;
             this.projectileCollisionBoxes = projectileCollisionBoxes;
             this.projectileActive = projectileActive;
+            this.projectileHoming = projectileHoming;
+            this.projectileBounce = projectileBounce;
         }
 
         //Methods
@@ -58,7 +63,8 @@ namespace BankShot
                                            projectileTransform,  
                                            projectileActive, interceptable, 
                                            damage, knockback, lifeSpan, 
-                                           direction * speed, false, 
+                                           direction * speed, speed, false, 
+                                           projectileHoming, projectileBounce, 
                                            this));
             base.Attack(); 
         }
