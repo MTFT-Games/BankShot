@@ -88,48 +88,57 @@ namespace ExternalTool
                 // tile.
                 for (int y = 0; y < height; y++)
                 {
+                    string line = reader.ReadLine();
                     for (int x = 0; x < width; x++)
                     {
-                        // Adjust the read in values to the letters and numbers
-                        // section of the ASCII table.
-                        switch (reader.Read() - 48)
+                        // 
+                        switch (line[x])
                         {
                             default:
                                 break;
-                            case 0:
-                                map[x, y].Image = Image.FromFile("down.png");
+                            case '0':
+                                map[x, y].Image = Image.FromFile(
+                                    contentPath + "MapTiles/down.png");
                                 break;
-                            case 1:
-                                map[x, y].Image = Image.FromFile("downleft.png");
+                            case '1':
+                                map[x, y].Image = Image.FromFile(
+                                    contentPath + "MapTiles/downleft.png");
                                 break;
-                            case 2:
-                                map[x, y].Image = Image.FromFile("downright.png");
+                            case '2':
+                                map[x, y].Image = Image.FromFile(
+                                    contentPath + "MapTiles/downright.png");
                                 break;
-                            case 3:
-                                map[x, y].Image = Image.FromFile("left.png");
+                            case '3':
+                                map[x, y].Image = Image.FromFile(
+                                    contentPath + "MapTiles/left.png");
                                 break;
-                            case 4:
-                                map[x, y].Image = Image.FromFile("right.png");
+                            case '4':
+                                map[x, y].Image = Image.FromFile(
+                                    contentPath + "MapTiles/right.png");
                                 break;
-                            case 5:
-                                map[x, y].Image = Image.FromFile("up.png");
+                            case '5':
+                                map[x, y].Image = Image.FromFile(
+                                    contentPath + "MapTiles/up.png");
                                 break;
-                            case 6:
-                                map[x, y].Image = Image.FromFile("upleft.png");
+                            case '6':
+                                map[x, y].Image = Image.FromFile(
+                                    contentPath + "MapTiles/upleft.png");
                                 break;
-                            case 7:
-                                map[x, y].Image = Image.FromFile("upright.png");
+                            case '7':
+                                map[x, y].Image = Image.FromFile(
+                                    contentPath + "MapTiles/upright.png");
                                 break;
-                            case 8:
-                                map[x, y].Image = Image.FromFile("center.png");
+                            case '8':
+                                map[x, y].Image = Image.FromFile(
+                                    contentPath + "MapTiles/center.png");
                                 break;
-                            case 9:
+                            case '9':
                                 break;
-                            case 10:
+                            case 'a':
                                 break;
-                            case 11:
+                            case 'b':
                                 break;
-                            case 12:
+                            case 'c':
                                 break;
                         }
                     }
@@ -298,9 +307,13 @@ namespace ExternalTool
             }
             else
             {
-                // Set the image of sender to the selected tile.
-                ((PictureBox)sender).Image =
-                    Image.FromFile(contentPath + "MapTiles" + tileList.SelectedItems[0].Text);
+                if (tileList.SelectedItems.Count > 0)
+                {
+                    // Set the image of sender to the selected tile.
+                    ((PictureBox)sender).Image =
+                        Image.FromFile(contentPath + "MapTiles" +
+                        tileList.SelectedItems[0].Text);
+                }
             }
 
             // Set unsaved changes.
