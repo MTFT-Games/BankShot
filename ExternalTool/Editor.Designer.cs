@@ -122,37 +122,39 @@ namespace ExternalTool
             this.saveStatsMenuItem,
             this.saveUpgradesMenuItem});
             this.saveMenuItem.Name = "saveMenuItem";
-            this.saveMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveMenuItem.Text = "Save";
+            this.saveMenuItem.Click += new System.EventHandler(this.saveMenuItem_Click);
             // 
             // saveAllMenuItem
             // 
             this.saveAllMenuItem.Name = "saveAllMenuItem";
-            this.saveAllMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveAllMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAllMenuItem.Text = "Save all";
             // 
             // saveMapMenuItem
             // 
             this.saveMapMenuItem.Name = "saveMapMenuItem";
-            this.saveMapMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveMapMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveMapMenuItem.Text = "Save map";
+            this.saveMapMenuItem.Click += new System.EventHandler(this.saveMapMenuItem_Click);
             // 
             // saveStatsMenuItem
             // 
             this.saveStatsMenuItem.Name = "saveStatsMenuItem";
-            this.saveStatsMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveStatsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveStatsMenuItem.Text = "Save character stats";
             // 
             // saveUpgradesMenuItem
             // 
             this.saveUpgradesMenuItem.Name = "saveUpgradesMenuItem";
-            this.saveUpgradesMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveUpgradesMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveUpgradesMenuItem.Text = "Save upgrades";
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
