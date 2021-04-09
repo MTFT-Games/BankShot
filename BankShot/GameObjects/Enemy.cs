@@ -43,6 +43,7 @@ namespace BankShot
             stats.Add(attackPower);
             stats.Add(knockbackDistance);
         }
+
         //Methods
         /// <summary>
         /// Damages a target the enemy makes contact with
@@ -68,8 +69,36 @@ namespace BankShot
             }
             //foreach gameobject in Game1.MapManager.Map
             //ground/gameobject collision
-            //If player downcast and deal damage
-            //else take care of collision
+            foreach (GameObject ground in Game1.mapManager.CurrentMap.MapArray)
+            {
+                //wider = left
+                if (rect.Intersects(ground.Rect))
+                {
+                    Rectangle collisionRect = Rectangle.Intersect(rect, ground.Rect);
+                    if (collisionRect.Width > collisionRect.Height)//vertical issue
+                    {
+                        if((rect.Y - ground.Rect.Y) < 0)//enemy above platform
+                        {
+                            rect.Y += collisionRect.Height;
+                        }
+                        else//enemy below platform
+                        {
+                            rect.Y -= collisionRect.Height;
+                        }
+                    }
+                    else if (collisionRect.Height > collisionRect.Width)
+                    {
+                        if((rect.X - ground.Rect.X) < 0)//enemy left of platform
+                        {
+                            rect.X -= collisionRect.Width;
+                        }
+                        else//enemy right of platform
+                        {
+                            rect.X += collisionRect.Width;
+                        }
+                    }
+                }
+            }
             Move();
             DealDamage(Game1.player);
         }
@@ -106,7 +135,7 @@ namespace BankShot
         /// </summary>
         public override void Move()
         {
-            //Pathfind(Game1.player);
+            Pathfind(Game1.player);
             base.Move();
         }
 

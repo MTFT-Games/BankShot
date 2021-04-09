@@ -52,6 +52,7 @@ namespace ExternalTool
             this.mapBackground = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.thumbnailSet = new System.Windows.Forms.ImageList(this.components);
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tabSystem.SuspendLayout();
@@ -122,37 +123,39 @@ namespace ExternalTool
             this.saveStatsMenuItem,
             this.saveUpgradesMenuItem});
             this.saveMenuItem.Name = "saveMenuItem";
-            this.saveMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveMenuItem.Text = "Save";
+            this.saveMenuItem.Click += new System.EventHandler(this.saveMenuItem_Click);
             // 
             // saveAllMenuItem
             // 
             this.saveAllMenuItem.Name = "saveAllMenuItem";
-            this.saveAllMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveAllMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAllMenuItem.Text = "Save all";
             // 
             // saveMapMenuItem
             // 
             this.saveMapMenuItem.Name = "saveMapMenuItem";
-            this.saveMapMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveMapMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveMapMenuItem.Text = "Save map";
+            this.saveMapMenuItem.Click += new System.EventHandler(this.saveMapMenuItem_Click);
             // 
             // saveStatsMenuItem
             // 
             this.saveStatsMenuItem.Name = "saveStatsMenuItem";
-            this.saveStatsMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveStatsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveStatsMenuItem.Text = "Save character stats";
             // 
             // saveUpgradesMenuItem
             // 
             this.saveUpgradesMenuItem.Name = "saveUpgradesMenuItem";
-            this.saveUpgradesMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveUpgradesMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveUpgradesMenuItem.Text = "Save upgrades";
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -237,22 +240,23 @@ namespace ExternalTool
             this.tileList.Font = new System.Drawing.Font("Comic Sans MS", 1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.tileList.ForeColor = System.Drawing.Color.Transparent;
             this.tileList.HideSelection = false;
+            this.errorProvider.SetIconAlignment(this.tileList, System.Windows.Forms.ErrorIconAlignment.TopLeft);
             this.tileList.LabelWrap = false;
-            this.tileList.LargeImageList = this.tileSet;
+            this.tileList.LargeImageList = this.thumbnailSet;
             this.tileList.Location = new System.Drawing.Point(5, 256);
             this.tileList.MultiSelect = false;
             this.tileList.Name = "tileList";
-            this.tileList.Size = new System.Drawing.Size(253, 227);
-            this.tileList.SmallImageList = this.tileSet;
+            this.tileList.Size = new System.Drawing.Size(266, 227);
+            this.tileList.SmallImageList = this.thumbnailSet;
             this.tileList.TabIndex = 1;
-            this.tileList.TileSize = new System.Drawing.Size(60, 60);
+            this.tileList.TileSize = new System.Drawing.Size(63, 63);
             this.tileList.UseCompatibleStateImageBehavior = false;
             this.tileList.View = System.Windows.Forms.View.Tile;
             // 
             // tileSet
             // 
             this.tileSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.tileSet.ImageSize = new System.Drawing.Size(50, 50);
+            this.tileSet.ImageSize = new System.Drawing.Size(256, 256);
             this.tileSet.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // mapBackground
@@ -277,6 +281,12 @@ namespace ExternalTool
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
+            // 
+            // thumbnailSet
+            // 
+            this.thumbnailSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.thumbnailSet.ImageSize = new System.Drawing.Size(60, 60);
+            this.thumbnailSet.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // Editor
             // 
@@ -332,5 +342,6 @@ namespace ExternalTool
         private System.Windows.Forms.ImageList tileSet;
         private System.Windows.Forms.Label backgroundLabel;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.ImageList thumbnailSet;
     }
 }
