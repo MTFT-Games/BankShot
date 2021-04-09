@@ -246,10 +246,10 @@ namespace ExternalTool
             this.tileList.Location = new System.Drawing.Point(5, 256);
             this.tileList.MultiSelect = false;
             this.tileList.Name = "tileList";
-            this.tileList.Size = new System.Drawing.Size(253, 227);
+            this.tileList.Size = new System.Drawing.Size(266, 227);
             this.tileList.SmallImageList = this.thumbnailSet;
             this.tileList.TabIndex = 1;
-            this.tileList.TileSize = new System.Drawing.Size(60, 60);
+            this.tileList.TileSize = new System.Drawing.Size(63, 63);
             this.tileList.UseCompatibleStateImageBehavior = false;
             this.tileList.View = System.Windows.Forms.View.Tile;
             // 

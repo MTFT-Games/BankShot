@@ -89,45 +89,68 @@ namespace ExternalTool
                 // tile.
                 for (int y = 0; y < height; y++)
                 {
-                    string line = reader.ReadLine();
+                    string[] line = reader.ReadLine().Split('|');
                     for (int x = 0; x < width; x++)
                     {
+                        int tileID;
+                        if (int.TryParse(line[x], out tileID)){
+                            map[x, y].Image = tileSet.Images[tileID];
+                            map[x, y].Controls[0].Text = line[x];
+                        }
+
+                        /*
                         // Map the read character to an image to load in place.
                         switch (line[x])
                         {
                             default:
                                 break;
                             case '0':
-                                map[x, y].Image = Image.FromFile(
-                                    CONTENTPATH + "MapTiles/down.png");
+                                //map[x, y].Image = Image.FromFile(
+                                    //CONTENTPATH + "MapTiles/down.png");
+                                map[x, y].Image =
+                                    tileSet.Images[0];
                                 break;
                             case '1':
-                                map[x, y].Image = Image.FromFile(
-                                    CONTENTPATH + "MapTiles/downleft.png");
+                                //map[x, y].Image = Image.FromFile(
+                                //  CONTENTPATH + "MapTiles/downleft.png");
+                                map[x, y].Image =
+                                    tileSet.Images[1];
                                 break;
                             case '2':
-                                map[x, y].Image = Image.FromFile(
-                                    CONTENTPATH + "MapTiles/downright.png");
+                               // map[x, y].Image = Image.FromFile(
+                                 //   CONTENTPATH + "MapTiles/downright.png");
+                                map[x, y].Image =
+                                    tileSet.Images[2];
                                 break;
                             case '3':
-                                map[x, y].Image = Image.FromFile(
-                                    CONTENTPATH + "MapTiles/left.png");
+                                //map[x, y].Image = Image.FromFile(
+                                //  CONTENTPATH + "MapTiles/left.png");
+                                map[x, y].Image =
+                                  tileSet.Images[3];
                                 break;
                             case '4':
-                                map[x, y].Image = Image.FromFile(
-                                    CONTENTPATH + "MapTiles/right.png");
+                               // map[x, y].Image = Image.FromFile(
+                                 //   CONTENTPATH + "MapTiles/right.png");
+                                map[x, y].Image =
+                                    tileSet.Images[4];
                                 break;
                             case '5':
-                                map[x, y].Image = Image.FromFile(
-                                    CONTENTPATH + "MapTiles/up.png");
+                                //map[x, y].Image = Image.FromFile(
+                                 //   CONTENTPATH + "MapTiles/up.png");
+                                map[x, y].Image =
+                                    tileSet.Images[5];
                                 break;
                             case '6':
-                                map[x, y].Image = Image.FromFile(
-                                    CONTENTPATH + "MapTiles/upleft.png");
+                                //map[x, y].Image = Image.FromFile(
+                                //  CONTENTPATH + "MapTiles/upleft.png");
+                                map[x, y].Image =
+                                    tileSet.Images[6];
                                 break;
                             case '7':
-                                map[x, y].Image = Image.FromFile(
-                                    CONTENTPATH + "MapTiles/upright.png");
+                                //map[x, y].Image = Image.FromFile(
+                                //  CONTENTPATH + "MapTiles/upright.png");
+                                map[x, y].Image =
+                                    tileSet.Images[7];
                                 break;
                             case '8':
                                 map[x, y].Image = Image.FromFile(
@@ -142,6 +165,7 @@ namespace ExternalTool
                             case 'c':
                                 break;
                         }
+                        */
                     }
                 }
 
@@ -178,17 +202,18 @@ namespace ExternalTool
             {
                 backgroundImages.Images.Add(Image.FromFile(backgroundPaths[i]));
                 backgroundList.Items.Add(
-                    backgroundPaths[i].Substring(
-                        backgroundPaths[i].LastIndexOf('\\')), 
+                    "", 
                     backgroundList.Items.Count);
             }
 
             // Get the file paths of all map tiles in the MapTiles folder
             // and add them to the ListView to be selected and used later.
             string[] tilePaths = Directory.GetFiles(CONTENTPATH + "MapTiles");
+            Array.Sort<string>(tilePaths);
             for (int i = 0; i < tilePaths.Length; i++)
             {
                 tileSet.Images.Add(Image.FromFile(tilePaths[i]));
+                thumbnailSet.Images.Add(tileSet.Images[i]);
                 tileList.Items.Add(
                     tilePaths[i].Substring(
                         tilePaths[i].LastIndexOf('\\')), 
@@ -233,10 +258,15 @@ namespace ExternalTool
                         new Point((x * tileSize), (y * tileSize));
                     map[x, y].SizeMode = PictureBoxSizeMode.StretchImage;
                     map[x, y].Size = new Size(tileSize, tileSize);
+                    map[x, y].Cursor = Cursors.Cross;
                     mapBackground.Controls.Add(map[x, y]);
                     map[x, y].MouseDown += TileClicked;
                     map[x, y].MouseEnter += TileMousedOver;
-
+                    map[x, y].Controls.Add(new Label());
+                   // map[x, y].Controls[0].ForeColor = Color.Transparent;
+                   // map[x, y].Controls[0].Font = new Font("Comic Sans MS", 0.1f);
+                    map[x, y].Controls[0].Visible = false;
+                    map[x, y].Controls[0].Enabled = false;
                 }
             }
 
@@ -312,8 +342,9 @@ namespace ExternalTool
                 {
                     // Set the image of sender to the selected tile.
                     ((PictureBox)sender).Image =
-                        Image.FromFile(CONTENTPATH + "MapTiles" +
-                        tileList.SelectedItems[0].Text);
+                        tileSet.Images[tileList.SelectedItems[0].ImageIndex];
+                    ((PictureBox)sender).Controls[0].Text
+                        = tileList.SelectedItems[0].ImageIndex.ToString(); ;
                 }
             }
 
@@ -413,25 +444,24 @@ namespace ExternalTool
             {
                 writer = new StreamWriter(CONTENTPATH + "map.data", false);
 
-                writer.WriteLine(map.GetLength(0) + 'x' + map.GetLength(1));
+                writer.WriteLine(map.GetLength(0) + "x" + map.GetLength(1));
 
                 writer.WriteLine(currentBackground);
-
-                string[] tilePaths
-                    = Directory.GetFiles(CONTENTPATH + "MapTiles");
+                
+                //string[] tilePaths
+                   // = Directory.GetFiles(CONTENTPATH + "MapTiles");
                 for (int y = 0; y < map.GetLength(1); y++)
                 {
                     for (int x = 0; x < map.GetLength(0); x++)
                     {
-                        string tile = "";
-                        for (int i = 0; i < tilePaths.Length; i++)
+                        if (map[x, y].Controls[0].Text != "")
                         {
-                            if (map[x, y].Image == Image.FromFile(tilePaths[i]))
-                            {
-                                tile = tilePaths[i];
-                                break;
-                            }
+                            writer.Write(map[x, y].Controls[0].Text + "|");
+                        } else
+                        {
+                            writer.Write(".|");
                         }
+                        /*
                         switch (tile)
                         {
                             default:
@@ -465,10 +495,14 @@ namespace ExternalTool
                                 writer.Write(8);
                                 break;
                         }
+                        */
                     }
+                        
                     writer.WriteLine();
                 }
+                
                 unsavedChanges = false;
+                Text = "Editor";
             } catch (Exception ex)
             {
                 MessageBox.Show(
