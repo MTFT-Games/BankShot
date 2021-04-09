@@ -22,6 +22,7 @@ namespace BankShot
         public int speed;
         public bool fromEnemy;
         public bool bounce;
+        public bool bounceActive;
         private bool homing;
         //The Projectile should remove itself from this list when it dies.
         public Gun gunOfOrigin;
