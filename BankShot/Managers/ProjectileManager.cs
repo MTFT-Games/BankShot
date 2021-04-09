@@ -17,7 +17,7 @@ namespace BankShot {
 
         public void checkCollisions()
         {
-            for (int i = 0; i < projectiles.Count - 1; i++)
+            for (int i = 0; i < projectiles.Count; i++)
             {
                 //Checking this projectile against every projectile after it in the list.
                 for (int j = i + 1; j < projectiles.Count; j++ )
@@ -62,7 +62,8 @@ namespace BankShot {
                 //Checking this projectile against walls.
                 foreach (GameObject wall in Game1.walls)
                 {
-                    if (projectiles[i].Rect.Intersects(wall.Rect))
+                    int bruh = i;
+                    if (i < projectiles.Count && projectiles[i].Rect.Intersects(wall.Rect))
                     {
                         projectiles[i].Destroy();
                     }
