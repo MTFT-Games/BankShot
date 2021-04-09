@@ -19,6 +19,7 @@ namespace ExternalTool
     public partial class Editor : Form
     {
         private PictureBox[,] map;
+        string currentBackground;
         bool unsavedChanges = false;
         const string CONTENTPATH = "../../../BankShot/Content/";
 
@@ -80,8 +81,9 @@ namespace ExternalTool
                 InitializeMap(width, height);
 
                 // Read and set background image path
+                currentBackground = reader.ReadLine();
                 mapBackground.Image = Image.FromFile(CONTENTPATH + "Backgrounds/" 
-                    + reader.ReadLine());
+                    + currentBackground);
                 
                 // Read and apply map data where each character is mapped to a
                 // tile.
@@ -331,6 +333,7 @@ namespace ExternalTool
         /// activated.</param>
         private void backgroundList_ItemActivate(object sender, EventArgs e)
         {
+            currentBackground = ((ListView)sender).SelectedItems[0].Text.Substring(1);
             mapBackground.Image 
                 = Image.FromFile(
                     CONTENTPATH + "Backgrounds" 
@@ -412,19 +415,7 @@ namespace ExternalTool
 
                 writer.WriteLine(map.GetLength(0) + 'x' + map.GetLength(1));
 
-                string[] backgroundPaths
-                    = Directory.GetFiles(CONTENTPATH + "Backgrounds");
-                string background = "";
-                for (int i = 0; i < backgroundPaths.Length; i++)
-                {
-                    if(mapBackground.Image == Image.FromFile(backgroundPaths[i]))
-                    {
-                        background = backgroundPaths[i].Substring(
-                            backgroundPaths[i].LastIndexOf('\\'));
-                        break;
-                    }
-                }
-                writer.WriteLine(background);
+                writer.WriteLine(currentBackground);
 
                 string[] tilePaths
                     = Directory.GetFiles(CONTENTPATH + "MapTiles");
