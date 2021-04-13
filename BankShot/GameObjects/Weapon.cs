@@ -27,6 +27,18 @@ namespace BankShot
             }
         }
 
+        public int Damage
+        {
+            get
+            {
+                return damage;
+            }
+            set
+            {
+                damage = value;
+            }
+        }
+
         //Parameterized Constructor
         public Weapon(Texture2D texture, Rectangle transform, 
                       List<Rectangle> collisionBoxes, bool active, 
