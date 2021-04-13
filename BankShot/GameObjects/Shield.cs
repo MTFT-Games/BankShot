@@ -44,13 +44,39 @@ namespace BankShot
         }
 
         //Methods
-        public void Move() { }
+        public void Move()
+        {
+            position += velocity;
+        }
 
         //There should be a method to 
         //check for input to raise the shield.
         public void ProcessInput()
         {
+            if (Input.MouseHeld(2))
+            {
+                active = true;
+            }
+            else
+            {
+                active = false;
+            }
+        }
 
+        public override void Update()
+        {
+            ProcessInput();
+            this.Move();
+            X = (int)position.X;
+            Y = (int)position.Y;
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (active)
+            {
+                base.Draw(spriteBatch);
+            }
         }
     }
 }

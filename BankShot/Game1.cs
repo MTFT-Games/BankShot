@@ -55,8 +55,10 @@ namespace BankShot {
 
         //Testing gun and projectile creation.
         private Gun gun;
+        private Shield shield;
         private Texture2D projectileTexture;
         private Texture2D gunTexture;
+        private Texture2D shieldTexture;
         public static ProjectileManager projectileManager;
 
         //Other Test Textures
@@ -108,6 +110,7 @@ namespace BankShot {
             wallTexture = Content.Load<Texture2D>("Wall");
             playerTexture = Content.Load<Texture2D>("Player");
             enemyTexture = Content.Load<Texture2D>("Enemy");
+            shieldTexture = Content.Load<Texture2D>("Shield");
 
 
             player = new Player(playerTexture, new Rectangle(100, 100, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0));
@@ -122,6 +125,10 @@ namespace BankShot {
             projectileManager = new ProjectileManager();
             gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true);
             player.CurrentWeapon = gun;
+
+            //Shield Creation!
+            shield = new Shield(shieldTexture, new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0));
+            player.CurrentShield = shield;
             //Map manager
             mapManager = new MapManager(new Map(walls, wallTexture), new List<Map>());
 
@@ -144,7 +151,6 @@ namespace BankShot {
                     break;
                 case GameState.Game:
                     //Testing gun and projectile creation.
-                    gun.Update();
                     projectileManager.UpdateProjectiles();
                     player.Update();
                     enemyManager.UpdateEnemies();
@@ -193,7 +199,6 @@ namespace BankShot {
                         wall.Draw(_spriteBatch);
                     }
                     //Testing gun and projectile creation.
-                    gun.Draw(_spriteBatch);
                     projectileManager.DrawProjectiles(_spriteBatch);
                     _spriteBatch.DrawString(font, $"Height: {projectileManager.height}", new Vector2(300, 300), Color.White);
                     _spriteBatch.DrawString(font, $"Width: {projectileManager.width}", new Vector2(300, 350), Color.White);
