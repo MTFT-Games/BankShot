@@ -21,6 +21,8 @@ namespace BankShot
 
         //Determines if the player is on the ground
         private bool onGround;
+        private bool doubleJump;
+        private int jumpsLeft;
 
         public Weapon CurrentWeapon
         {
@@ -44,6 +46,7 @@ namespace BankShot
         {
             weaponSide = "right";
             onGround = false;
+            doubleJump = true;
         }
 
         //Methods
@@ -87,10 +90,11 @@ namespace BankShot
                 velocity.X += 5;
                 weaponSide = "right";
             }
-            if (Input.KeyClick(Keys.W) && onGround)
+            if (Input.KeyClick(Keys.W) && (onGround || jumpsLeft > 0))
             {
                 velocity.Y = -20;
                 onGround = false;
+                jumpsLeft--;
             }
         }
 
@@ -127,6 +131,10 @@ namespace BankShot
                         {
                             playerPosition.Y -= intersection.Height;
                             onGround = true;
+                            if (doubleJump)
+                            {
+                                jumpsLeft = 2;
+                            }
                         }
                         else
                         {

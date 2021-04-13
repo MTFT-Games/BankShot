@@ -11,6 +11,15 @@ namespace BankShot
     {
         //Fields
         protected Vector2 velocity;
+        private bool active;
+
+        public bool Active
+        {
+            get
+            {
+                return active;
+            }
+        }
 
         //Properties
         public Vector2 Velocity
@@ -39,5 +48,9 @@ namespace BankShot
 
         //There should be a method to 
         //check for input to raise the shield.
+        public void ProcessInput()
+        {
+
+        }
     }
 }
