@@ -134,7 +134,7 @@ namespace BankShot
         //This was very buggy I need to take another look at the PE
         public void ResolveCollisions()
         {
-            foreach(GameObject wall in Game1.walls)
+            foreach(GameObject wall in Game1.mapManager.CurrentMap.MapArray)
             {
                 Rectangle playerPosition = new Rectangle((int) position.X, (int) position.Y, rect.Width, rect.Height);
                 if (playerPosition.Intersects(wall.Rect))

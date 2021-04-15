@@ -86,8 +86,8 @@ namespace BankShot {
 
             // PLEASE TELL NOAH IF WE NEED TO CHANGE THE WINDOW ASPECT RATIO
             // SO THAT HE CAN CHANGE THE MAP TO FIT
-            _graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
-            _graphics.PreferredBackBufferHeight = 480;   // set this value to the desired height of your window
+            _graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
+            _graphics.PreferredBackBufferHeight = 960;   // set this value to the desired height of your window
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -197,13 +197,13 @@ namespace BankShot {
                     break;
                 case GameState.Game:
                     //Commented these out because they were breaking everything
-                    //mapManager.Draw(_spriteBatch);
+                    mapManager.Draw(_spriteBatch);
                     //enemyManager.DrawEnemies(_spriteBatch);
                     player.Draw(_spriteBatch);
-                    foreach (GameObject wall in walls)
-                    {
-                        wall.Draw(_spriteBatch);
-                    }
+                    //foreach (GameObject wall in walls)
+                    //{
+                    //    wall.Draw(_spriteBatch);
+                    //}
                     //Testing gun and projectile creation.
                     projectileManager.DrawProjectiles(_spriteBatch);
                     _spriteBatch.DrawString(font, $"Height: {projectileManager.height}", new Vector2(300, 300), Color.White);
