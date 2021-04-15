@@ -74,6 +74,10 @@ namespace BankShot
             position = new Vector2(transform.X, transform.Y);
         }
 
+        public GameObject(Texture2D texture, Rectangle transform, bool active) 
+            :this(texture, transform, new List<Rectangle>() { transform }, active)
+        {}
+
         //Methods
         public virtual void Update() { }
 

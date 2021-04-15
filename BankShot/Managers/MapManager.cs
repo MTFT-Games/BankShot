@@ -27,7 +27,9 @@ namespace BankShot
         /// </summary>
         public MapManager()
         {
+            this.mapList = new List<Map>();
             LoadMaps();
+            this.currentMap = mapList[0];
         }
 
         /// <summary>
@@ -37,6 +39,10 @@ namespace BankShot
         /// </summary>
         private void LoadMaps()
         {
+            // Make a list to hold the gameobjects as we read them
+            List<GameObject> loadedMap = new List<GameObject>();
+            Texture2D currentBackground = null;
+
             StreamReader reader = null;
             try
             {
@@ -47,14 +53,51 @@ namespace BankShot
                 int width = int.Parse(header[0]);
                 int height = int.Parse(header[1]);
 
-                //int tileSize = Game1. .Height / height;
-                
-                // Clear and re-make the map with the read dimensions.
-                throw new NotImplementedException();
+                int tileSize = Program.game.GetWindowSize().Height / height;
+
+                // Read and set background image path
+                currentBackground = 
+                    Content.Load<Texture2D>("Backgrounds/" + reader.ReadLine());
+
+                // Load all the tile textures into a list to make parsing the 
+                // map file and making gameobjects easier
+                List<Texture2D> tileSet = new List<Texture2D>();
+                string[] tilePaths = Directory.GetFiles("MapTiles");
+                Array.Sort<string>(tilePaths);
+                for (int i = 0; i < tilePaths.Length; i++)
+                {
+                    tileSet.Add(Content.Load<Texture2D>(tilePaths[i]));
+                }
+
+                // Read and apply map data where each character is mapped to a
+                // tile.
+                for (int y = 0; y < height; y++)
+                {
+                    string[] line = reader.ReadLine().Split('|');
+                    for (int x = 0; x < width; x++)
+                    {
+                        int tileID;
+                        if (int.TryParse(line[x], out tileID))
+                        {
+                            loadedMap.Add(new GameObject(
+                                tileSet[tileID],
+                                new Rectangle(
+                                    tileSize*x,
+                                    tileSize*y,
+                                    tileSize,
+                                    tileSize),
+                                true));
+                        }
+                    }
+                }
             }catch
             {
-
+                // Currently no way to deal with not having a map so just
+                // crash the game.
+                Program.game.Exit();
             }
+
+            mapList.Add(new Map(loadedMap, currentBackground));
         }
 
         //Methods//////////////////////////////////////////

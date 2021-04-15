@@ -2,9 +2,11 @@
 
 namespace BankShot {
     public static class Program {
+        public static Game1 game;
+
         [STAThread]
         static void Main() {
-            using (var game = new Game1())
+            using (game = new Game1())
                 game.Run();
         }
     }

@@ -84,8 +84,10 @@ namespace BankShot {
           
             test = false;
 
-            _graphics.PreferredBackBufferWidth = 1000;  // set this value to the desired width of your window
-            _graphics.PreferredBackBufferHeight = 1000;   // set this value to the desired height of your window
+            // PLEASE TELL NOAH IF WE NEED TO CHANGE THE WINDOW ASPECT RATIO
+            // SO THAT HE CAN CHANGE THE MAP TO FIT
+            _graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            _graphics.PreferredBackBufferHeight = 480;   // set this value to the desired height of your window
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -223,6 +225,20 @@ namespace BankShot {
 
             _spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// Method author: Noah Emke<br/>
+        /// A helper method to get the size of the screen.
+        /// </summary>
+        /// <returns>A rectangle the size of the game window.</returns>
+        public Rectangle GetWindowSize()
+        {
+            return new Rectangle(
+                0, 
+                0, 
+                _graphics.PreferredBackBufferWidth, 
+                _graphics.PreferredBackBufferHeight);
         }
     }
 }
