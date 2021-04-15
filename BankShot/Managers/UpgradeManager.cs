@@ -166,7 +166,7 @@ namespace BankShot
             if (upgrade.projectileSpeedIsMultiplier)
             {
                 Gun g = (Gun)p.CurrentWeapon;
-                g.s
+                
             }
             else
             {
