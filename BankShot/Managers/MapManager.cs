@@ -58,8 +58,8 @@ namespace BankShot
                 int tileSize = Program.game.GetWindowSize().Height / height;
 
                 // Read and set background image path
-                currentBackground = 
-                    Content.Load<Texture2D>("Backgrounds/" + reader.ReadLine());
+                currentBackground =
+                    Program.game.Content.Load<Texture2D>("Backgrounds/" + reader.ReadLine());
 
                 // Load all the tile textures into a list to make parsing the 
                 // map file and making gameobjects easier
@@ -68,7 +68,7 @@ namespace BankShot
                 Array.Sort<string>(tilePaths);
                 for (int i = 0; i < tilePaths.Length; i++)
                 {
-                    tileSet.Add(Content.Load<Texture2D>(tilePaths[i]));
+                    tileSet.Add(Program.game.Content.Load<Texture2D>(tilePaths[i]));
                 }
 
                 // Read and apply map data where each character is mapped to a
@@ -99,7 +99,7 @@ namespace BankShot
                 Program.game.Exit();
             }
 
-            mapList.Add(new Map(loadedMap, currentBackground));
+            mapList.Add(new Map(loadedMap.ToArray(), currentBackground));
         }
 
         //Methods//////////////////////////////////////////
