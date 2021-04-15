@@ -71,7 +71,7 @@ namespace BankShot
                                            projectileTransform,  
                                            projectileActive, interceptable, 
                                            damage, knockback, lifeSpan, 
-                                           direction * speed, speed, false, 
+                                           direction * (int) speed, (int) speed, false, 
                                            projectileHoming, projectileBounce, 
                                            this));
             base.Attack(); 
