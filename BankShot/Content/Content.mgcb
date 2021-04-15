@@ -104,6 +104,11 @@
 /processorParam:TextureFormat=Color
 /build:Gun.png
 
+#begin map.data
+/importer:
+/processor:
+/build:map.data
+
 #begin MapTiles/center.png
 /importer:TextureImporter
 /processor:TextureProcessor
