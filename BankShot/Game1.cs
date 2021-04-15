@@ -156,6 +156,10 @@ namespace BankShot {
                     projectileManager.UpdateProjectiles();
                     player.Update();
                     enemyManager.UpdateEnemies();
+                    if (kbs.IsKeyDown(Keys.Escape))
+                    {
+                        state = GameState.Pause;
+                    }
                     break;
                 case GameState.Pause:
                     pauseMenu.Update(kbs, ms, msPrev, test, out state);

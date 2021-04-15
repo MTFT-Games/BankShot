@@ -49,6 +49,12 @@ namespace BankShot
             }
         }
 
+        public new int Health
+        {
+            get { return health; }
+            set { health = value; }
+        }
+
         //Default Contructor
         public Player(Texture2D texture, Rectangle transform,
                       List<Rectangle> collisionBoxes, bool active,

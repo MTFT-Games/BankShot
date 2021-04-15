@@ -20,7 +20,7 @@ namespace BankShot
         private bool projectileHoming;
         private bool projectileBounce;
         //Projectile Stats:
-        private int speed;
+        private double speed;
         private bool interceptable;
         private double lifeSpan;
 
@@ -47,6 +47,14 @@ namespace BankShot
             this.projectileActive = projectileActive;
             this.projectileHoming = projectileHoming;
             this.projectileBounce = projectileBounce;
+        }
+
+        //accessors
+
+        public double Speed
+        {
+            get { return speed; }
+            set { speed = value; }
         }
 
         //Methods
