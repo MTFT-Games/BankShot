@@ -11,10 +11,10 @@ namespace BankShot
     public class Shop : GameObject, IMoveable
     {
         //Fields
-        private Upgrade[] forSale;
-        private UpgradeManager manager;
-        private bool drawn;
+        private List<Upgrade> forSale;
         protected Vector2 velocity;
+        
+        
 
         //Properties
         public Vector2 Velocity
@@ -30,30 +30,23 @@ namespace BankShot
         }
 
         //Methods
+       
         /// <summary>
-        /// Creates the shop by calling its draw method and moving it onto screen
+        /// Constructor
         /// </summary>
         /// 
-
-        public Shop(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active)
+        public Shop(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active, List<Upgrade> sale)
             : base(texture, transform, collisionBoxes, active)
         {
-            forSale = new Upgrade[3];
-            manager = new UpgradeManager();
-            rect = new Rectangle(new Point(-100, 40), new Point(50, 50));
-
+            forSale = sale;
         }
 
-        public void EnterScreen(SpriteBatch sb, Color c)
-        {
-            if(!drawn)
-            Draw(sb, c);
 
-            while (position.X != 100)
-            {
-                position.X++;
-            }
-           
+        //MOVED TO UPGRADE MANAGER
+        public void Spawn(SpriteBatch sb, Color c)
+        {
+            
+
         }
         
         public void ExitScreen() 
@@ -76,7 +69,7 @@ namespace BankShot
         public void Draw(SpriteBatch sb, Color c)
         {
             sb.Draw(texture, rect, Color.White);
-            drawn = true;
+           
         }
 
         public virtual void Move()

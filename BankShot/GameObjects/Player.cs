@@ -37,6 +37,18 @@ namespace BankShot
             }
         }
 
+        public Shield CurrentShield
+        {
+            get
+            {
+                return shield;
+            }
+            set
+            {
+                shield = value;
+            }
+        }
+
         //Default Contructor
         public Player(Texture2D texture, Rectangle transform,
                       List<Rectangle> collisionBoxes, bool active,
@@ -61,13 +73,20 @@ namespace BankShot
             {
                 weapon.Position = new Vector2(this.X - 100, this.Y);
             }
+
             //weapon.Velocity = velocity;
             base.Update();
+            weapon.Update();
+            //shield.Velocity = velocity;
+            shield.Update();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            weapon.Draw(spriteBatch);
+            shield.Draw(spriteBatch);
+
         }
 
         public override void Move()
@@ -75,6 +94,8 @@ namespace BankShot
             this.ApplyGravity();
             base.Move();
             this.ResolveCollisions();
+            shield.Position = new Vector2(this.X - 10, this.Y - 10);
+            shield.Velocity = velocity;
         }
 
         public void ProcessInput()
