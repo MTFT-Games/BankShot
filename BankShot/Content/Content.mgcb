@@ -105,9 +105,7 @@
 /build:Gun.png
 
 #begin map.data
-/importer:
-/processor:
-/build:map.data
+/copy:map.data
 
 #begin MapTiles/center.png
 /importer:TextureImporter
