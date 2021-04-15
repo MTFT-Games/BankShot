@@ -44,15 +44,16 @@ namespace ExternalTool
             this.tabSystem = new System.Windows.Forms.TabControl();
             this.mapTab = new System.Windows.Forms.TabPage();
             this.mapDivider = new System.Windows.Forms.SplitContainer();
+            this.tilesLabel = new System.Windows.Forms.Label();
             this.backgroundLabel = new System.Windows.Forms.Label();
             this.backgroundList = new System.Windows.Forms.ListView();
             this.backgroundImages = new System.Windows.Forms.ImageList(this.components);
             this.tileList = new System.Windows.Forms.ListView();
-            this.tileSet = new System.Windows.Forms.ImageList(this.components);
-            this.mapBackground = new System.Windows.Forms.PictureBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.thumbnailSet = new System.Windows.Forms.ImageList(this.components);
+            this.mapBackground = new System.Windows.Forms.PictureBox();
+            this.upgradesTab = new System.Windows.Forms.TabPage();
+            this.tileSet = new System.Windows.Forms.ImageList(this.components);
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tabSystem.SuspendLayout();
@@ -123,46 +124,46 @@ namespace ExternalTool
             this.saveStatsMenuItem,
             this.saveUpgradesMenuItem});
             this.saveMenuItem.Name = "saveMenuItem";
-            this.saveMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(98, 22);
             this.saveMenuItem.Text = "Save";
             this.saveMenuItem.Click += new System.EventHandler(this.saveMenuItem_Click);
             // 
             // saveAllMenuItem
             // 
             this.saveAllMenuItem.Name = "saveAllMenuItem";
-            this.saveAllMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAllMenuItem.Size = new System.Drawing.Size(177, 22);
             this.saveAllMenuItem.Text = "Save all";
             // 
             // saveMapMenuItem
             // 
             this.saveMapMenuItem.Name = "saveMapMenuItem";
-            this.saveMapMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveMapMenuItem.Size = new System.Drawing.Size(177, 22);
             this.saveMapMenuItem.Text = "Save map";
             this.saveMapMenuItem.Click += new System.EventHandler(this.saveMapMenuItem_Click);
             // 
             // saveStatsMenuItem
             // 
             this.saveStatsMenuItem.Name = "saveStatsMenuItem";
-            this.saveStatsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveStatsMenuItem.Size = new System.Drawing.Size(177, 22);
             this.saveStatsMenuItem.Text = "Save character stats";
             // 
             // saveUpgradesMenuItem
             // 
             this.saveUpgradesMenuItem.Name = "saveUpgradesMenuItem";
-            this.saveUpgradesMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveUpgradesMenuItem.Size = new System.Drawing.Size(177, 22);
             this.saveUpgradesMenuItem.Text = "Save upgrades";
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(98, 22);
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
             // tabSystem
             // 
             this.tabSystem.Controls.Add(this.mapTab);
-            this.tabSystem.Controls.Add(this.tabPage2);
+            this.tabSystem.Controls.Add(this.upgradesTab);
             this.tabSystem.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabSystem.Location = new System.Drawing.Point(0, 27);
             this.tabSystem.Name = "tabSystem";
@@ -190,6 +191,7 @@ namespace ExternalTool
             // 
             // mapDivider.Panel1
             // 
+            this.mapDivider.Panel1.Controls.Add(this.tilesLabel);
             this.mapDivider.Panel1.Controls.Add(this.backgroundLabel);
             this.mapDivider.Panel1.Controls.Add(this.backgroundList);
             this.mapDivider.Panel1.Controls.Add(this.tileList);
@@ -201,14 +203,23 @@ namespace ExternalTool
             this.mapDivider.SplitterDistance = 311;
             this.mapDivider.TabIndex = 0;
             // 
+            // tilesLabel
+            // 
+            this.tilesLabel.AutoSize = true;
+            this.tilesLabel.Location = new System.Drawing.Point(5, 238);
+            this.tilesLabel.Name = "tilesLabel";
+            this.tilesLabel.Size = new System.Drawing.Size(35, 15);
+            this.tilesLabel.TabIndex = 4;
+            this.tilesLabel.Text = "Tiles:";
+            // 
             // backgroundLabel
             // 
             this.backgroundLabel.AutoSize = true;
             this.backgroundLabel.Location = new System.Drawing.Point(5, 5);
             this.backgroundLabel.Name = "backgroundLabel";
-            this.backgroundLabel.Size = new System.Drawing.Size(72, 15);
+            this.backgroundLabel.Size = new System.Drawing.Size(75, 15);
             this.backgroundLabel.TabIndex = 3;
-            this.backgroundLabel.Text = "Backgrounds";
+            this.backgroundLabel.Text = "Backgrounds:";
             // 
             // backgroundList
             // 
@@ -243,21 +254,21 @@ namespace ExternalTool
             this.errorProvider.SetIconAlignment(this.tileList, System.Windows.Forms.ErrorIconAlignment.TopLeft);
             this.tileList.LabelWrap = false;
             this.tileList.LargeImageList = this.thumbnailSet;
-            this.tileList.Location = new System.Drawing.Point(5, 256);
+            this.tileList.Location = new System.Drawing.Point(5, 283);
             this.tileList.MultiSelect = false;
             this.tileList.Name = "tileList";
-            this.tileList.Size = new System.Drawing.Size(266, 227);
+            this.tileList.Size = new System.Drawing.Size(266, 200);
             this.tileList.SmallImageList = this.thumbnailSet;
             this.tileList.TabIndex = 1;
             this.tileList.TileSize = new System.Drawing.Size(63, 63);
             this.tileList.UseCompatibleStateImageBehavior = false;
             this.tileList.View = System.Windows.Forms.View.Tile;
             // 
-            // tileSet
+            // thumbnailSet
             // 
-            this.tileSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.tileSet.ImageSize = new System.Drawing.Size(256, 256);
-            this.tileSet.TransparentColor = System.Drawing.Color.Transparent;
+            this.thumbnailSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.thumbnailSet.ImageSize = new System.Drawing.Size(60, 60);
+            this.thumbnailSet.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // mapBackground
             // 
@@ -268,25 +279,25 @@ namespace ExternalTool
             this.mapBackground.TabIndex = 0;
             this.mapBackground.TabStop = false;
             // 
-            // tabPage2
+            // upgradesTab
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1127, 492);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.upgradesTab.Location = new System.Drawing.Point(4, 24);
+            this.upgradesTab.Name = "upgradesTab";
+            this.upgradesTab.Padding = new System.Windows.Forms.Padding(3);
+            this.upgradesTab.Size = new System.Drawing.Size(1127, 492);
+            this.upgradesTab.TabIndex = 1;
+            this.upgradesTab.Text = "Upgrades";
+            this.upgradesTab.UseVisualStyleBackColor = true;
+            // 
+            // tileSet
+            // 
+            this.tileSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.tileSet.ImageSize = new System.Drawing.Size(256, 256);
+            this.tileSet.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
-            // 
-            // thumbnailSet
-            // 
-            this.thumbnailSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.thumbnailSet.ImageSize = new System.Drawing.Size(60, 60);
-            this.thumbnailSet.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // Editor
             // 
@@ -333,7 +344,7 @@ namespace ExternalTool
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.TabControl tabSystem;
         private System.Windows.Forms.TabPage mapTab;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage upgradesTab;
         private System.Windows.Forms.SplitContainer mapDivider;
         private System.Windows.Forms.PictureBox mapBackground;
         private System.Windows.Forms.ListView tileList;
@@ -343,5 +354,6 @@ namespace ExternalTool
         private System.Windows.Forms.Label backgroundLabel;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.ImageList thumbnailSet;
+        private System.Windows.Forms.Label tilesLabel;
     }
 }
