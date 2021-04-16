@@ -62,7 +62,7 @@ namespace BankShot {
                     }
                 }
                 //Checking this projectile against walls.
-                foreach (GameObject wall in Game1.walls)
+                foreach (GameObject wall in Game1.mapManager.CurrentMap.MapArray)
                 {
 
                     if (i < projectiles.Count)
@@ -81,7 +81,7 @@ namespace BankShot {
             for (int i = 0; i < projectiles.Count; i++)
             {
                 projectiles[i].Update();
-                projectiles[i].ElapseTime += (double) (gameTime.ElapsedGameTime.TotalSeconds);
+                //projectiles[i].ElapseTime += (double) (gameTime.TotalGameTime.TotalSeconds);
             }
             this.checkCollisions();
         }
