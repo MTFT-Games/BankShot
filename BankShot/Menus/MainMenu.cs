@@ -94,6 +94,7 @@ namespace BankShot
             if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(exitBtn))
             {
                 //exits game
+                Program.game.Exit();
                
             }
         }

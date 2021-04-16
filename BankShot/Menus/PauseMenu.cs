@@ -17,18 +17,20 @@ namespace BankShot
         private SpriteFont font;
         private Rectangle resumeBtn;
         private Rectangle testBtn;
+        private Texture2D buttonTx;
         //field that follows game1's test mode bool
         //used to determine text shown on test mode button
         bool testingStatus;
         
 
 
-        public PauseMenu(SpriteFont f)
+        public PauseMenu(SpriteFont f, Texture2D tx)
         {
             font = f;
-            resumeBtn = new Rectangle(200, 400, 100, 50);
-            testBtn = new Rectangle(200, 550, 100, 50);
+            resumeBtn = new Rectangle(200, 200, 100, 50);
+            testBtn = new Rectangle(200, 300, 100, 50);
             testingStatus = false;
+            buttonTx = tx;
         }
 
         public void Draw(SpriteBatch sb, GraphicsDeviceManager g)
@@ -41,15 +43,15 @@ namespace BankShot
                 Color.White);
             //button textures to be incorporated
             //resume button
-            sb.Draw(null, resumeBtn, Color.White);
+            sb.Draw(buttonTx, resumeBtn, Color.White);
             //test button
-            sb.Draw(null, testBtn, Color.White);
+            sb.Draw(buttonTx, testBtn, Color.White);
             //writes text over buttons(will be gotten rid of once buttons 
             //textures created
             //resume button text
             sb.DrawString(font,
                 "RESUME",
-                new Vector2(200, 400),
+                new Vector2(200, 200),
                 Color.White);
             //test button text
             string testButtonText = "ENABLE TESTING MODE";
@@ -59,7 +61,7 @@ namespace BankShot
             }
             sb.DrawString(font,
                testButtonText,
-               new Vector2(200, 550),
+               new Vector2(200, 300),
                Color.White);
         }
 
@@ -101,6 +103,7 @@ namespace BankShot
             }
             if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(testBtn))
             {
+
                 //enables/disables testing mode
                 if (testingMode)
                 {

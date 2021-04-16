@@ -102,7 +102,7 @@ namespace BankShot {
 
             //menu init
             mainMenu = new MainMenu(font, buttonTx);
-            pauseMenu = new PauseMenu(font);
+            pauseMenu = new PauseMenu(font, buttonTx);
             leaderboardMenu = new LeaderboardMenu(font, scores);
             gameOverMenu = new GameOverMenu(font);
 
@@ -156,7 +156,7 @@ namespace BankShot {
                     projectileManager.UpdateProjectiles(gameTime);
                     player.Update();
                     enemyManager.UpdateEnemies();
-                    if (kbs.IsKeyDown(Keys.Escape))
+                    if (kbs.IsKeyDown(Keys.P))
                     {
                         state = GameState.Pause;
                     }
