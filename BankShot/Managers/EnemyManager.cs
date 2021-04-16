@@ -17,9 +17,6 @@ namespace BankShot
         //knock distance (float)
         private List<List<object>> enemies;
         private List<Enemy> spawnedEnemies;
-        private List<Enemy> deadEnemies;
-        private int enemyAmt;
-
 
         //constructor -----------------------------------------------------------------------------
 
@@ -27,10 +24,7 @@ namespace BankShot
         {
             //takes in number of enemies and a list of their stats
             enemies = e;
-            enemyAmt = enemies.Count;
             spawnedEnemies = new List<Enemy>();
-            deadEnemies = new List<Enemy>();
-
         }
 
         //accessors------------------------------------------------------------
@@ -46,11 +40,6 @@ namespace BankShot
             //probably wont need a set. may need indexed accessor
             get { return spawnedEnemies; }
             set { spawnedEnemies = value; }
-        }
-
-        public int EnemyAmt
-        {
-            get { return enemyAmt; }
         }
 
         //methods--------------------------------------------------------------
@@ -86,21 +75,17 @@ namespace BankShot
         public void UpdateEnemies()
         {
             //update logic for Enemy objects stored in "enemies"
-            foreach(Enemy e in spawnedEnemies)
+            for(int i = 0; i < spawnedEnemies.Count; i++)
             {
-                if (e.Health <= 0)
+                if (spawnedEnemies[i].Health <= 0)
                 {
-                    deadEnemies.Add(e);
-                    enemyAmt--;
+                    spawnedEnemies.RemoveAt(i);
+                    i--;
+                    continue;
                 }
 
-                e.Update();
+                spawnedEnemies[i].Update();
             }
-            foreach (Enemy e in deadEnemies)
-            {
-                spawnedEnemies.Remove(e);
-            }
-
         }
 
         public void DrawEnemies(SpriteBatch sb)
