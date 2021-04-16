@@ -13,8 +13,12 @@ namespace BankShot
         //Fields
         private List<Upgrade> forSale;
         protected Vector2 velocity;
-        
-        
+        private Rectangle upgrade1Rect;
+        private Rectangle upgrade2Rect;
+        private Rectangle upgrade3Rect;
+
+
+
 
         //Properties
         public Vector2 Velocity
@@ -39,6 +43,11 @@ namespace BankShot
             : base(texture, transform, collisionBoxes, active)
         {
             forSale = sale;
+            upgrade1Rect = new Rectangle(100, 100, 50, 50);
+            upgrade2Rect = new Rectangle(200, 100, 50, 50);
+            upgrade3Rect = new Rectangle(150, 150, 50, 50);
+
+
         }
 
 
@@ -66,9 +75,44 @@ namespace BankShot
 
         //Check for confirmation while player is in front of upgrade
 
-        public void Draw(SpriteBatch sb, Color c)
+        public void Draw(SpriteBatch sb, Color c, GameState state, MouseState ms)
         {
-            sb.Draw(texture, rect, Color.White);
+            //shows upgrades, uses manager readUpgrades method
+            switch (state)
+            {
+                case GameState.Game:
+                sb.Draw(texture, rect, Color.White);
+                    break;
+                case GameState.Shop:
+
+                    Color colorUp1 = Color.White;
+                    Color colorUp2 = Color.White;
+                    Color colorUp3 = Color.White;
+
+                    Rectangle msLoc = new Rectangle(ms.Position, new Point(1, 1));
+
+                    if (msLoc.Intersects(upgrade1Rect))
+                    {
+                        colorUp1 = Color.Gold;
+                    }
+                      
+                    if (msLoc.Intersects(upgrade2Rect))
+                    {
+                        colorUp2 = Color.Gold;
+                    }
+                     
+                    if (msLoc.Intersects(upgrade3Rect))
+                    {
+                        colorUp3 = Color.Gold;
+                    }
+                      
+                    sb.Draw(forSale[0].icon, upgrade1Rect, colorUp1);
+                    sb.Draw(forSale[1].icon, upgrade2Rect, colorUp2);
+                    sb.Draw(forSale[2].icon, upgrade3Rect, colorUp3);
+
+                    break;
+            }
+
            
         }
 
@@ -77,11 +121,27 @@ namespace BankShot
             position += velocity;
         }
 
-        public override void Update()
+        public void Update(UpgradeManager umg, MouseState ms, Player p)
         {
-            this.Move();
-            X = (int)position.X;
-            Y = (int)position.Y;
+            Rectangle msLoc = new Rectangle(ms.Position, new Point(1, 1));
+
+            //calls apply upgrade upon clicking on a chosen upgrade
+            
+            if(Input.MouseClick(1) && msLoc.Intersects(upgrade1Rect))
+            {
+                umg.ApplyUpgrades(forSale[0], p);
+            }
+
+            if (Input.MouseClick(1) && msLoc.Intersects(upgrade2Rect))
+            {
+                umg.ApplyUpgrades(forSale[1], p);
+            }
+
+            if (Input.MouseClick(1) && msLoc.Intersects(upgrade3Rect))
+            {
+                umg.ApplyUpgrades(forSale[2], p);
+            }
+
         }
     }
 }

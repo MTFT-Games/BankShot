@@ -125,10 +125,10 @@ namespace BankShot
 
         //methods. currently only headers. --------------------------------------------------------
 
-        public void MakeShop(Upgrade[] options)
+        public Shop MakeShop()
         {
             //takes in an array of objects and creates an instance of "Shop" to be used by the player
-            Shop newShop = new Shop(textureShop, transformShop, collisionBoxesShop, activeShop, upgrades);
+            return new Shop(textureShop, transformShop, collisionBoxesShop, activeShop, upgrades);
 
         }
 
@@ -166,11 +166,14 @@ namespace BankShot
             if (upgrade.projectileSpeedIsMultiplier)
             {
                 Gun g = (Gun)p.CurrentWeapon;
-                //g.s
+                g.Speed *= upgrade.projectileSpeedModifier;
+                p.CurrentWeapon = g;
             }
             else
             {
-
+                Gun g = (Gun)p.CurrentWeapon;
+                g.Speed += upgrade.projectileSpeedModifier;
+                p.CurrentWeapon = g;
             }
 
             if (upgrade.projectileSpreadIsMultiplier)
@@ -220,11 +223,11 @@ namespace BankShot
 
             if (upgrade.healthIsMultiplier)
             {
-
+                p.Health *= upgrade.healthModifier;
             }
             else
             {
-
+                p.Health += upgrade.healthModifier;
             }
 
             if (upgrade.healthRegenIsMultiplier)
@@ -257,12 +260,6 @@ namespace BankShot
 
         }
 
-        public void EndShopping()
-        {
-            //called when player is done using the store, store will exit the frame and game will continue
-
-
-        }
 
         public string ReadUpgrades()
         {

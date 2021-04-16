@@ -11,7 +11,8 @@ namespace BankShot {
         Game, 
         Pause, 
         Leaderboard, 
-        GameOver
+        GameOver,
+        Shop
     }
 
     public class Game1 : Game {
@@ -53,6 +54,10 @@ namespace BankShot {
 
         public static GameObject[] walls;
 
+        //Shop object (will be null when no shop)
+        public Shop currentShop;
+
+
         //Testing gun and projectile creation.
         private Gun gun;
         private Shield shield;
@@ -81,7 +86,10 @@ namespace BankShot {
 
             scores = new int[5];
 
-          
+            currentShop = null;
+
+           
+
             test = false;
 
             // PLEASE TELL NOAH IF WE NEED TO CHANGE THE WINDOW ASPECT RATIO
@@ -156,10 +164,25 @@ namespace BankShot {
                     projectileManager.UpdateProjectiles(gameTime);
                     player.Update();
                     enemyManager.UpdateEnemies();
+
+                    //shop logic
+
+                    //replace lower line with if(waveNumberVariable % 3 == 0 && waveNumberVariable != 0) when able
+                    if (kbs.IsKeyDown(Keys.M))
+                    {
+                        state = GameState.Shop;
+                        
+                    }
+
+
+
                     if (kbs.IsKeyDown(Keys.P))
                     {
                         state = GameState.Pause;
                     }
+
+
+
                     break;
                 case GameState.Pause:
                     pauseMenu.Update(kbs, ms, msPrev, test, out state);
@@ -169,6 +192,17 @@ namespace BankShot {
                     break;
                 case GameState.GameOver:
                     gameOverMenu.Update(kbs, ms, msPrev, out state);
+                    break;
+                case GameState.Shop:
+                    currentShop  = upgradeManager.MakeShop();
+
+                    currentShop.Update(upgradeManager, ms, player);
+
+                    currentShop = null;
+
+                    state = GameState.Game;
+
+
                     break;
 
             }
@@ -225,6 +259,9 @@ namespace BankShot {
                     break;
                 case GameState.GameOver:
                     gameOverMenu.Draw(_spriteBatch, _graphics);
+                    break;
+                case GameState.Shop:
+                    currentShop.Draw(_spriteBatch);
                     break;
 
             }
