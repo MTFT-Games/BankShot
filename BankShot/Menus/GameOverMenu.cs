@@ -93,7 +93,7 @@ namespace BankShot
             }
             else
             {
-                state = GameState.GameOver;C:\Users\epict\Source\Repos\Bank-Shot-Group-Game\BankShot\Managers\UpgradeManager.cs
+                state = GameState.GameOver;
             }
         }
 
