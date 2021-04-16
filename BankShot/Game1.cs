@@ -86,8 +86,8 @@ namespace BankShot {
 
             // PLEASE TELL NOAH IF WE NEED TO CHANGE THE WINDOW ASPECT RATIO
             // SO THAT HE CAN CHANGE THE MAP TO FIT
-            _graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
-            _graphics.PreferredBackBufferHeight = 480;   // set this value to the desired height of your window
+            _graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
+            _graphics.PreferredBackBufferHeight = 960;   // set this value to the desired height of your window
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -115,7 +115,7 @@ namespace BankShot {
             shieldTexture = Content.Load<Texture2D>("Shield");
 
 
-            player = new Player(playerTexture, new Rectangle(100, 100, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0));
+            player = new Player(playerTexture, new Rectangle(100, 100, 75, 150), new List<Rectangle>(), true, 5, new Vector2(0, 0));
             walls = new GameObject[] { new GameObject(wallTexture, new Rectangle(0, 900, 500, 100), new List<Rectangle>(), true), 
                                        new GameObject(wallTexture, new Rectangle(650, 900, 500, 100), new List<Rectangle>(), true),
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
@@ -132,7 +132,7 @@ namespace BankShot {
             shield = new Shield(shieldTexture, new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0));
             player.CurrentShield = shield;
             //Map manager
-            mapManager = new MapManager();
+            mapManager = new MapManager(new Map(walls, wallTexture), new List<Map>());
 
             //Enemy manager
             // TODO: use this.Content to load your game content here
@@ -144,7 +144,7 @@ namespace BankShot {
             //gathers keybaord and mouse states for use in update methods
             KeyboardState kbs = Keyboard.GetState();
             MouseState ms = Mouse.GetState();
-
+            
             //state machine based on the GameState enum
             switch (state)
             {
@@ -153,7 +153,7 @@ namespace BankShot {
                     break;
                 case GameState.Game:
                     //Testing gun and projectile creation.
-                    projectileManager.UpdateProjectiles();
+                    projectileManager.UpdateProjectiles(gameTime);
                     player.Update();
                     enemyManager.UpdateEnemies();
                     if (kbs.IsKeyDown(Keys.P))
@@ -188,6 +188,9 @@ namespace BankShot {
             //begins spritebatch
             _spriteBatch.Begin();
 
+            //debug, show mouse position
+            _spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.Black);
+
             //state machine based on the GameState enum
             switch (state)
             {
@@ -197,13 +200,13 @@ namespace BankShot {
                     break;
                 case GameState.Game:
                     //Commented these out because they were breaking everything
-                    //mapManager.Draw(_spriteBatch);
+                    mapManager.Draw(_spriteBatch);
                     //enemyManager.DrawEnemies(_spriteBatch);
                     player.Draw(_spriteBatch);
-                    foreach (GameObject wall in walls)
-                    {
-                        wall.Draw(_spriteBatch);
-                    }
+                    //foreach (GameObject wall in walls)
+                    //{
+                    //    wall.Draw(_spriteBatch);
+                    //}
                     //Testing gun and projectile creation.
                     projectileManager.DrawProjectiles(_spriteBatch);
                     _spriteBatch.DrawString(font, $"Height: {projectileManager.height}", new Vector2(300, 300), Color.White);

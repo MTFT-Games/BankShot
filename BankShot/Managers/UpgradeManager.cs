@@ -137,12 +137,12 @@ namespace BankShot
             //takes in an upgrade and applies it to the Player
             if (upgrade.damageIsMultiplier)
             {
-                p.CurrentWeapon.Damage *= upgrade.damageModifier;
+                p.CurrentWeapon.Damage *= 2;
 
             }
             else
             {
-                p.CurrentWeapon.Damage += upgrade.damageModifier;
+                p.CurrentWeapon.Damage += 2;
             }
 
             if (upgrade.projectileCountIsMultiplier)
@@ -166,14 +166,11 @@ namespace BankShot
             if (upgrade.projectileSpeedIsMultiplier)
             {
                 Gun g = (Gun)p.CurrentWeapon;
-                g.Speed *= upgrade.projectileSpeedModifier;
-                p.CurrentWeapon = g;
+                //g.s
             }
             else
             {
-                Gun g = (Gun)p.CurrentWeapon;
-                g.Speed += upgrade.projectileSpeedModifier;
-                p.CurrentWeapon = g;
+
             }
 
             if (upgrade.projectileSpreadIsMultiplier)
@@ -223,11 +220,11 @@ namespace BankShot
 
             if (upgrade.healthIsMultiplier)
             {
-                p.Health *= upgrade.healthModifier;
+
             }
             else
             {
-                p.Health += upgrade.healthModifier;
+
             }
 
             if (upgrade.healthRegenIsMultiplier)

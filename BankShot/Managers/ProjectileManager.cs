@@ -76,11 +76,12 @@ namespace BankShot {
             }
         }
 
-        public void UpdateProjectiles()
+        public void UpdateProjectiles(GameTime gameTime)
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
                 projectiles[i].Update();
+                projectiles[i].ElapseTime += (double) (gameTime.ElapsedGameTime.TotalSeconds);
             }
             this.checkCollisions();
         }
