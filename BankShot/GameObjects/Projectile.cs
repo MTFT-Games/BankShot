@@ -88,6 +88,7 @@ namespace BankShot
             this.gunOfOrigin = gunOfOrigin;
             this.bounce = bounce;
             this.elapsedTime = 0;
+            lifeSpan = 1;
         }
 
         //Methods

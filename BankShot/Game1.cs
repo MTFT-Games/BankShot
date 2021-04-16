@@ -125,14 +125,14 @@ namespace BankShot {
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true);
+            gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), false, true, true);
             player.CurrentWeapon = gun;
 
             //Shield Creation!
             shield = new Shield(shieldTexture, new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0));
             player.CurrentShield = shield;
             //Map manager
-            mapManager = new MapManager(new Map(walls, wallTexture), new List<Map>());
+            mapManager = new MapManager();
 
             //Enemy manager
             // TODO: use this.Content to load your game content here
