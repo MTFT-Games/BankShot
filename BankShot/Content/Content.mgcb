@@ -73,6 +73,18 @@
 /processorParam:TextureFormat=Color
 /build:button2.png
 
+#begin DmgIcon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:DmgIcon.png
+
 #begin Enemy.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -92,6 +104,18 @@
 /processorParam:TextureFormat=Compressed
 /build:File.spritefont
 
+#begin GoldSlime.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GoldSlime.png
+
 #begin Gun.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -103,6 +127,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Gun.png
+
+#begin GunSprite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GunSprite.png
+
+#begin HealthIcon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HealthIcon.png
 
 #begin map.data
 /copy:map.data
@@ -227,6 +275,18 @@
 /processorParam:TextureFormat=Color
 /build:Player.png
 
+#begin PlayerBetaSprite.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PlayerBetaSprite.png
+
 #begin Shield.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -238,6 +298,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Shield.png
+
+#begin ShotSpeedIcon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:ShotSpeedIcon.png
 
 #begin Wall.png
 /importer:TextureImporter
