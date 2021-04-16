@@ -18,6 +18,7 @@ namespace BankShot
         private int damage;
         private float knockback;
         private double lifeSpan;
+        private double elapsedTime;
         public Vector2 velocity;
         public int speed;
         public bool fromEnemy;
@@ -37,6 +38,18 @@ namespace BankShot
             set
             {
                 velocity = value;
+            }
+        }
+
+        public double ElapseTime
+        {
+            get
+            {
+                return elapsedTime;
+            }
+            set
+            {
+                elapsedTime = value;
             }
         }
 
@@ -74,6 +87,7 @@ namespace BankShot
             this.homing = homing;
             this.gunOfOrigin = gunOfOrigin;
             this.bounce = bounce;
+            this.elapsedTime = 0;
         }
 
         //Methods
@@ -90,6 +104,10 @@ namespace BankShot
             if (homing)
             {
                 this.Homing();
+            }
+            if (elapsedTime >= lifeSpan)
+            {
+                this.Destroy();
             }
             //this.CollisionCheck();
         }

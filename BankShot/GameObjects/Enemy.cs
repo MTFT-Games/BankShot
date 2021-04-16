@@ -139,7 +139,7 @@ namespace BankShot
             base.Move();
         }
 
-        public virtual void TakeDamage(int damage, float knockback)
+        public override void TakeDamage(int damage, float knockback)
         {
             base.TakeDamage(damage, knockback);
             if (health == 0 && enemyDeath != null)
