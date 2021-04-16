@@ -132,7 +132,7 @@ namespace BankShot {
             shield = new Shield(shieldTexture, new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0));
             player.CurrentShield = shield;
             //Map manager
-            mapManager = new MapManager();
+            mapManager = new MapManager(new Map(walls, wallTexture), new List<Map>());
 
             //Enemy manager
             // TODO: use this.Content to load your game content here
@@ -153,7 +153,7 @@ namespace BankShot {
                     break;
                 case GameState.Game:
                     //Testing gun and projectile creation.
-                    projectileManager.UpdateProjectiles();
+                    projectileManager.UpdateProjectiles(gameTime);
                     player.Update();
                     enemyManager.UpdateEnemies();
                     if (kbs.IsKeyDown(Keys.Escape))
