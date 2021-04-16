@@ -7,21 +7,39 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
+    /// <summary>
+    /// Author: Noah Emke<br/>
+    /// Manages wave advancement, pausing, count, and shop spawning.
+    /// </summary>
     public class WaveManager
     {
-        //fields
-
         private int wave;
-        //timer object field?
-        //list of waves?
+        private double timer;
+        private List<List<Enemy>> waves;
         private bool waveBreak;
 
-        //constructor------------------------------------------------------------------------------
-
+        /// <summary>
+        /// Initialize a new wave manager and read a list of waves from a file.
+        /// </summary>
         public WaveManager()
         {
-
-
+            wave = 0;
+            timer = 0;
+            // TODO: Read from file
+            waves = new List<List<Enemy>>
+            {
+                new List<Enemy>
+                {
+                    new Enemy(
+                        Program.game.Content.Load<Texture2D>("Enemy"),
+                        new Rectangle(400, 480, 75, 150),
+                        true,
+                        5,
+                        Vector2.Zero,
+                        2,
+                        50)
+                }
+            };
         }
 
         //accessors. accessors for timer and list are to be added once those are figured out ------

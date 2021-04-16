@@ -115,7 +115,7 @@ namespace BankShot {
             shieldTexture = Content.Load<Texture2D>("Shield");
 
 
-            player = new Player(playerTexture, new Rectangle(100, 100, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0));
+            player = new Player(playerTexture, new Rectangle(100, 100, 75, 150), new List<Rectangle>(), true, 5, new Vector2(0, 0));
             walls = new GameObject[] { new GameObject(wallTexture, new Rectangle(0, 900, 500, 100), new List<Rectangle>(), true), 
                                        new GameObject(wallTexture, new Rectangle(650, 900, 500, 100), new List<Rectangle>(), true),
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
@@ -144,7 +144,7 @@ namespace BankShot {
             //gathers keybaord and mouse states for use in update methods
             KeyboardState kbs = Keyboard.GetState();
             MouseState ms = Mouse.GetState();
-
+            
             //state machine based on the GameState enum
             switch (state)
             {
@@ -187,6 +187,9 @@ namespace BankShot {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             //begins spritebatch
             _spriteBatch.Begin();
+
+            //debug, show mouse position
+            _spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.Black);
 
             //state machine based on the GameState enum
             switch (state)

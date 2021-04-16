@@ -44,6 +44,12 @@ namespace BankShot
             stats.Add(knockbackDistance);
         }
 
+        public Enemy(Texture2D texture, Rectangle rect, bool active, 
+            int maxHealth, Vector2 velocity, int attackPower, 
+            float knockbackDistance) 
+            : this(texture, rect, new List<Rectangle> { rect }, active, maxHealth,
+                  velocity, attackPower, knockbackDistance) { }
+
         //Methods
         /// <summary>
         /// Damages a target the enemy makes contact with
