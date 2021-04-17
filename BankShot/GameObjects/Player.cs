@@ -73,11 +73,11 @@ namespace BankShot
             this.ProcessInput();
             if (weaponSide == "right")
             {
-                weapon.Position = new Vector2(this.X + 100, this.Y);
+                weapon.Position = new Vector2(this.X + (float)(rect.Width * (25.5 / 60)), this.Y + (float)(rect.Height * 30.5 / 60));
             }
             else
             {
-                weapon.Position = new Vector2(this.X - 100, this.Y);
+                weapon.Position = new Vector2(this.X + (float)(rect.Width*(25.5/60)), this.Y + (float)(rect.Height * 30.5 /60));
             }
 
             //weapon.Velocity = velocity;
@@ -89,7 +89,7 @@ namespace BankShot
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            base.Draw(spriteBatch);
+            base.Draw(spriteBatch, weaponSide == "left");
             weapon.Draw(spriteBatch);
             shield.Draw(spriteBatch);
 
