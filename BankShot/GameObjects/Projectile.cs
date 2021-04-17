@@ -97,7 +97,7 @@ namespace BankShot
             position += velocity;
         }
 
-        public override void Update()
+        public void Update(GameTime time)
         {
             this.Move();
             X = (int)position.X;
@@ -106,6 +106,7 @@ namespace BankShot
             {
                 this.Homing();
             }
+            elapsedTime += time.ElapsedGameTime.TotalSeconds;
             if (elapsedTime >= lifeSpan)
             {
                 this.Destroy();
