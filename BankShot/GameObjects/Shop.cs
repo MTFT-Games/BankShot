@@ -16,7 +16,7 @@ namespace BankShot
         private Rectangle upgrade1Rect;
         private Rectangle upgrade2Rect;
         private Rectangle upgrade3Rect;
-
+        private bool leaving;
 
 
 
@@ -43,11 +43,11 @@ namespace BankShot
             : base(texture, transform, collisionBoxes, active)
         {
             forSale = sale;
-            upgrade1Rect = new Rectangle(100, 100, 50, 50);
-            upgrade2Rect = new Rectangle(200, 100, 50, 50);
-            upgrade3Rect = new Rectangle(150, 150, 50, 50);
+            upgrade1Rect = new Rectangle(rect.X-100, rect.Y-100, 50, 50);
+            upgrade2Rect = new Rectangle(rect.X-25, rect.Y - 100, 50, 50);
+            upgrade3Rect = new Rectangle(rect.X+50, rect.Y - 100, 50, 50);
 
-
+            leaving = false;
         }
 
 
@@ -60,11 +60,7 @@ namespace BankShot
         
         public void ExitScreen() 
         {
-            while (position.X != -100)
-            {
-                position.X--;
-            }
-
+            leaving = true;
         }
 
         //These methods have not been explicitly defined:
@@ -75,21 +71,21 @@ namespace BankShot
 
         //Check for confirmation while player is in front of upgrade
 
-        public void Draw(SpriteBatch sb, Color c, GameState state, MouseState ms)
+        public override void Draw(SpriteBatch sb)
         {
             //shows upgrades, uses manager readUpgrades method
-            switch (state)
-            {
-                case GameState.Game:
+           // switch (state)
+           // {
+             //   case GameState.Game:
                 sb.Draw(texture, rect, Color.White);
-                    break;
-                case GameState.Shop:
+               //     break;
+                //case GameState.Shop:
 
                     Color colorUp1 = Color.White;
                     Color colorUp2 = Color.White;
                     Color colorUp3 = Color.White;
 
-                    Rectangle msLoc = new Rectangle(ms.Position, new Point(1, 1));
+                    Rectangle msLoc = new Rectangle(Input.MousePosition.ToPoint(), new Point(1, 1));
 
                     if (msLoc.Intersects(upgrade1Rect))
                     {
@@ -105,13 +101,16 @@ namespace BankShot
                     {
                         colorUp3 = Color.Gold;
                     }
-                      
+
+            if (Game1.player.Rect.Intersects(rect))
+            {
                     sb.Draw(forSale[0].icon, upgrade1Rect, colorUp1);
                     sb.Draw(forSale[1].icon, upgrade2Rect, colorUp2);
                     sb.Draw(forSale[2].icon, upgrade3Rect, colorUp3);
-
-                    break;
             }
+
+                   // break;
+         //   }
 
            
         }
@@ -121,27 +120,43 @@ namespace BankShot
             position += velocity;
         }
 
-        public void Update(UpgradeManager umg, MouseState ms, Player p)
+        public override void Update()
         {
-            Rectangle msLoc = new Rectangle(ms.Position, new Point(1, 1));
+            Rectangle msLoc = new Rectangle(Input.MousePosition.ToPoint(), new Point(1, 1));
 
             //calls apply upgrade upon clicking on a chosen upgrade
             
             if(Input.MouseClick(1) && msLoc.Intersects(upgrade1Rect))
             {
-                umg.ApplyUpgrades(forSale[0], p);
+                Game1.upgradeManager.ApplyUpgrades(forSale[0], Game1.player);
             }
 
             if (Input.MouseClick(1) && msLoc.Intersects(upgrade2Rect))
             {
-                umg.ApplyUpgrades(forSale[1], p);
+                Game1.upgradeManager.ApplyUpgrades(forSale[1], Game1.player);
             }
 
             if (Input.MouseClick(1) && msLoc.Intersects(upgrade3Rect))
             {
-                umg.ApplyUpgrades(forSale[2], p);
+                Game1.upgradeManager.ApplyUpgrades(forSale[2], Game1.player);
             }
 
+            if (Input.KeyClick(Keys.Tab))
+            {
+                Game1.upgradeManager.EndShopping();
+            }
+            if (leaving)
+            {
+                if (position.X > -100)
+                {
+                    //position = new Vector2(position.X - 5, position.Y);
+                    position.X -= 5;
+                    rect.X -= 5;
+                } else
+                {
+                Game1.upgradeManager.Shops.Remove(this);
+                }
+            }
         }
     }
 }
