@@ -21,6 +21,7 @@ namespace BankShot {
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
+                bool destroyed = false;
                 //Checking this projectile against every projectile after it in the list.
                 for (int j = i + 1; j < projectiles.Count; j++ )
                 {
@@ -31,6 +32,9 @@ namespace BankShot {
                             if (projectiles[i].interceptable == true)
                             {
                                 projectiles[i].Destroy();
+                                i--;
+                                destroyed = true;
+                                break;
                             }
 
                             if (projectiles[j].interceptable == true)
@@ -40,36 +44,47 @@ namespace BankShot {
                         }
                     }
                 }
-                //Checking this projectile against the Player if it's from an Enemy.
-                if (projectiles[i].fromEnemy == true)
+                if (!destroyed)
                 {
-                    if (projectiles[i].Rect.Intersects(Game1.player.Rect))
+                    //Checking this projectile against the Player if it's from an Enemy.
+                    if (projectiles[i].fromEnemy == true)
                     {
-                        projectiles[i].DealDamage((IDamageable)Game1.player);
-                        projectiles[i].Destroy();
-                    }
-                }
-                //Checking this projectile against enemies if it's from the Player.
-                else
-                {
-                    foreach (Enemy enemy in Game1.enemyManager.SpawnedEnemies)
-                    {
-                        if (projectiles[i].Rect.Intersects(enemy.Rect))
+                        if (projectiles[i].Rect.Intersects(Game1.player.Rect))
                         {
-                            projectiles[i].DealDamage((IDamageable)enemy);
+                            projectiles[i].DealDamage((IDamageable)Game1.player);
                             projectiles[i].Destroy();
+                            i--;
+                            destroyed = true;
                         }
                     }
-                }
-                //Checking this projectile against walls.
-                foreach (GameObject wall in Game1.mapManager.CurrentMap.MapArray)
-                {
-
-                    if (i < projectiles.Count)
+                    //Checking this projectile against enemies if it's from the Player.
+                    else
                     {
-                        if (projectiles[i].Rect.Intersects(wall.Rect))
+                        foreach (Enemy enemy in Game1.enemyManager.SpawnedEnemies)
                         {
-                            projectiles[i].Destroy();
+                            if (projectiles[i].Rect.Intersects(enemy.Rect))
+                            {
+                                projectiles[i].DealDamage((IDamageable)enemy);
+                                projectiles[i].Destroy();
+                                i--;
+                                destroyed = true;
+                                break;
+                            }
+                        }
+                    }
+                    //Checking this projectile against walls.
+                    if (!destroyed)
+                    {
+                        foreach (GameObject wall in Game1.mapManager.CurrentMap.MapArray)
+                        {
+
+                            if (i < projectiles.Count)
+                            {
+                                if (projectiles[i].Rect.Intersects(wall.Rect))
+                                {
+                                    projectiles[i].Destroy();
+                                }
+                            }
                         }
                     }
                 }
@@ -80,7 +95,7 @@ namespace BankShot {
         {
             for (int i = 0; i < projectiles.Count; i++)
             {
-                projectiles[i].Update();
+                projectiles[i].Update(gameTime);
                 //projectiles[i].ElapseTime += (double) (gameTime.TotalGameTime.TotalSeconds);
             }
             this.checkCollisions();
