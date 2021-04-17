@@ -62,7 +62,7 @@ namespace BankShot
         public void Update(GameTime time)
         {
             // Check if the wave has been cleared or the time has run out
-            if ((Game1.enemyManager.SpawnedEnemies.Count == 0) || (timer > 30))
+            if ((Program.game.enemyManager.SpawnedEnemies.Count == 0) || (timer > 30))
             {
                 if (waveBreak && (Game1.upgradeManager.Shops.Count == 0))
                 {
@@ -89,7 +89,7 @@ namespace BankShot
             for (int i = 0; i < waves[waveToSpawn].Count; i++)
             {
                 string[] splitEntry = waves[waveToSpawn][i].Split('|');
-                Game1.enemyManager.Spawn<Enemy>(
+                Program.game.enemyManager.Spawn<Enemy>(
                     new Vector2(
                         float.Parse(splitEntry[1]), 
                         float.Parse(splitEntry[2])));

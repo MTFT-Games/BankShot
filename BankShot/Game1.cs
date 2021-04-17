@@ -32,7 +32,7 @@ namespace BankShot {
         private int[] scores;
 
         //enemies
-        public static EnemyManager enemyManager;
+        public EnemyManager enemyManager;
 
         //previous mouse state
         private MouseState msPrev;
@@ -143,7 +143,7 @@ namespace BankShot {
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), false, true, true);
+            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true);
             player.CurrentWeapon = gun;
 
             //Shield Creation!
@@ -173,7 +173,7 @@ namespace BankShot {
                 case GameState.Game:
                     //Testing gun and projectile creation.
                     projectileManager.UpdateProjectiles(gameTime);
-                    player.Update();
+                    player.Update(gameTime);
                     enemyManager.UpdateEnemies();
                     waveManager.Update(gameTime);
                     upgradeManager.Update();

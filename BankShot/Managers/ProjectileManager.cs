@@ -60,7 +60,7 @@ namespace BankShot {
                     //Checking this projectile against enemies if it's from the Player.
                     else
                     {
-                        foreach (Enemy enemy in Game1.enemyManager.SpawnedEnemies)
+                        foreach (Enemy enemy in Program.game.enemyManager.SpawnedEnemies)
                         {
                             if (projectiles[i].Rect.Intersects(enemy.Rect))
                             {

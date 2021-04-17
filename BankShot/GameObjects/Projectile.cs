@@ -172,7 +172,7 @@ namespace BankShot
                 int distance = -1;
                 int tempDistance = 0;
                 Enemy enemyToHome = null;
-                foreach (Enemy enemy in Game1.enemyManager.SpawnedEnemies)
+                foreach (Enemy enemy in Program.game.enemyManager.SpawnedEnemies)
                 {
                     tempDistance = (int) Math.Sqrt(Math.Pow(this.X - enemy.X, 2) + Math.Pow(this.Y - enemy.Y, 2));
                     if (distance < 0 || tempDistance < distance)
@@ -183,16 +183,16 @@ namespace BankShot
                 }
                 if (enemyToHome != null)
                 {
-                    Vector2 difference = new Vector2(enemyToHome.Y - this.X, enemyToHome.Y - this.Y);
+                    Vector2 difference = new Vector2(enemyToHome.X + enemyToHome.Rect.Width / 2 - this.X, enemyToHome.Y + enemyToHome.Rect.Height / 2 - this.Y);
                     if (distance < 200)
                     {
-                        velocity.X += (float)(difference.X * .004);
-                        velocity.Y += (float)(difference.Y * .004);
+                        velocity.X += (float)(difference.X * .007);
+                        velocity.Y += (float)(difference.Y * .007);
                     }
-                    else if (distance < 500)
+                    else if (distance < 400)
                     {
-                        velocity.X += (float)(difference.X * .0015);
-                        velocity.Y += (float)(difference.Y * .0015);
+                        velocity.X += (float)(difference.X * .0055);
+                        velocity.Y += (float)(difference.Y * .0055);
                     }
                     velocity.Normalize();
                     velocity = velocity * speed;
