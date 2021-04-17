@@ -24,6 +24,8 @@ namespace BankShot
         private bool doubleJump;
         private int jumpsLeft;
 
+        private double knockBack;
+
         public Weapon CurrentWeapon
         {
             get
@@ -68,7 +70,7 @@ namespace BankShot
         }
 
         //Methods
-        public override void Update()
+        public void Update(GameTime gameTime)
         {
             this.ProcessInput();
             if (weaponSide == "right")
@@ -174,6 +176,10 @@ namespace BankShot
             }
         }
 
+        public override void TakeDamage(int damage, float knockback)
+        {
+            base.TakeDamage(damage, knockback);
+        }
         //The collison checking method in GameObject might
         //also be overridden here.
     }

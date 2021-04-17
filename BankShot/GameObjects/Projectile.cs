@@ -88,7 +88,6 @@ namespace BankShot
             this.gunOfOrigin = gunOfOrigin;
             this.bounce = bounce;
             this.elapsedTime = 0;
-            lifeSpan = 1;
         }
 
         //Methods
@@ -109,6 +108,7 @@ namespace BankShot
             if (elapsedTime >= lifeSpan)
             {
                 this.Destroy();
+                elapsedTime = 0;
             }
             //this.CollisionCheck();
         }

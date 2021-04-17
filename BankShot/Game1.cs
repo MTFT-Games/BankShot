@@ -121,11 +121,11 @@ namespace BankShot {
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
             enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(300, 300, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0 } });
             //enemyManager.SpawnEnemies();
-            enemyManager.SpawnedEnemies.Add(new Enemy(enemyTexture, new Rectangle(700, 700, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0));
+            enemyManager.SpawnedEnemies.Add(new Enemy(enemyTexture, new Rectangle(700, 700, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 100));
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), false, true, true);
+            gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, .6, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true);
             player.CurrentWeapon = gun;
 
             //Shield Creation!
@@ -154,7 +154,7 @@ namespace BankShot {
                 case GameState.Game:
                     //Testing gun and projectile creation.
                     projectileManager.UpdateProjectiles(gameTime);
-                    player.Update();
+                    player.Update(gameTime);
                     enemyManager.UpdateEnemies();
                     if (kbs.IsKeyDown(Keys.P))
                     {
@@ -211,6 +211,7 @@ namespace BankShot {
                     projectileManager.DrawProjectiles(_spriteBatch);
                     _spriteBatch.DrawString(font, $"Height: {projectileManager.height}", new Vector2(300, 300), Color.White);
                     _spriteBatch.DrawString(font, $"Width: {projectileManager.width}", new Vector2(300, 350), Color.White);
+                    _spriteBatch.DrawString(font, $"Player Health: {player.Health}", new Vector2(300, 450), Color.White);
                     enemyManager.DrawEnemies(_spriteBatch);
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {
