@@ -109,7 +109,6 @@ namespace BankShot
             if (elapsedTime >= lifeSpan)
             {
                 this.Destroy();
-                elapsedTime = 0;
             }
             //this.CollisionCheck();
         }
