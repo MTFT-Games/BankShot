@@ -111,6 +111,8 @@ namespace BankShot
         //read in maps from file
         public void Draw(SpriteBatch sb)
         {
+            Rectangle window = Program.game.GetWindowSize();
+            sb.Draw(currentMap.BackgroundImage, window, Color.White);
             foreach(GameObject block in currentMap.MapArray)
             {
                 block.Draw(sb);

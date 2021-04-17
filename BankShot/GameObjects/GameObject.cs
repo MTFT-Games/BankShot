@@ -69,14 +69,13 @@ namespace BankShot
             this.texture = texture;
             this.rect = transform;
             this.collisionBoxes = collisionBoxes;
-            collisionBoxes.Add(transform);
             this.active = active;
             position = new Vector2(transform.X, transform.Y);
         }
 
-        public GameObject(Texture2D texture, Rectangle transform, bool active) 
-            :this(texture, transform, new List<Rectangle>() { transform }, active)
-        {}
+        public GameObject(Texture2D texture, Rectangle transform, bool active)
+            : this(texture, transform, new List<Rectangle>() { transform }, active)
+        { }
 
         //Methods
         public virtual void Update() { }
@@ -86,7 +85,16 @@ namespace BankShot
             spriteBatch.Draw(texture, rect, Color.White);
         }
 
-
+        public virtual void Draw(SpriteBatch spriteBatch, bool flip)
+        {
+            if (flip)
+            {
+            spriteBatch.Draw(texture, rect, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
+            } else
+            {
+                spriteBatch.Draw(texture, rect, Color.White);
+            }
+        }
 
         //There should be a method to check collisons
         //We just don't have it explicitly written yet.

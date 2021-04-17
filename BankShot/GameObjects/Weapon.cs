@@ -63,5 +63,20 @@ namespace BankShot
             X = (int)position.X;
             Y = (int)position.Y;
         }
+
+        public override void Draw(SpriteBatch sb)
+        {
+            sb.Draw(
+                texture,
+                rect,
+                null,
+                Color.White,
+                //(Input.MousePosition - Game1.player.Position).
+                (float)Math.Atan2((Input.MousePosition - (Game1.player.Position + new Vector2(25.5f, 30.5f))).Y, (Input.MousePosition - Game1.player.Position).X),
+                new Vector2(45.5f, 50.5f),
+                SpriteEffects.None,
+                0);
+
+        }
     }
 }

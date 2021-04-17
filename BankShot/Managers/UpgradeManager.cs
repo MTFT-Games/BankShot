@@ -26,7 +26,7 @@ namespace BankShot
             Texture2D textureForShop, Rectangle transformForShop, List<Rectangle> collisionBoxesForShop,
             bool activeForShop)
         {
-            List<Upgrade> upgrades = new List<Upgrade>();
+            upgrades = new List<Upgrade>();
 
             Upgrade upgrade1 = new Upgrade(true, 200,
                false, 0,
@@ -41,17 +41,18 @@ namespace BankShot
                false, 0,
                false, 0,
                false, 0,
-                damageTexture,
+                 damageTexture,
                 "Damage Boost", 
                 "Doubles damage done by player",
                 1);
 
             upgrades.Add(upgrade1);
 
-            Upgrade upgrade2 = new Upgrade(false, 0,
+            Upgrade upgrade2 = new Upgrade(
+                false, 0,
                false, 0, 
                false, 0,
-               true, 150, 100,
+               true, 1.50f, 1,
                false, 0,
                false, 0,
                false, 0, 
@@ -81,7 +82,7 @@ namespace BankShot
                false, 0,
                false, 0,
                false, 0,
-               speedTexture,
+               healthTexture,
                "Health Boost",
                "Increases max health by 50%",
                1);
@@ -95,8 +96,11 @@ namespace BankShot
             }
             totalWeight = tWeight;
 
-
-
+            textureShop = textureForShop;
+            transformShop = transformForShop;
+            activeShop = activeForShop;
+            shops = new List<Shop>();
+            collisionBoxesShop = new List<Rectangle> { transformShop };
 
 
         }
@@ -107,7 +111,7 @@ namespace BankShot
         {
             //could use an indexed accessor?
             get { return upgrades; }
-            set { upgrades = value; }
+            //set { upgrades = value; }
         }
 
         public int TotalWeight
@@ -125,11 +129,38 @@ namespace BankShot
 
         //methods. currently only headers. --------------------------------------------------------
 
-        public void MakeShop(Upgrade[] options)
+        public void Update()
+        {
+            for (int i = 0; i < shops.Count; i++)
+            {
+                shops[i].Update();
+            }
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+            for (int i = 0; i < shops.Count; i++)
+            {
+                shops[i].Draw(sb);
+            }
+        }
+
+        public void MakeShop()
         {
             //takes in an array of objects and creates an instance of "Shop" to be used by the player
-            Shop newShop = new Shop(textureShop, transformShop, collisionBoxesShop, activeShop, upgrades);
+            shops.Add(new Shop(textureShop, transformShop, collisionBoxesShop, activeShop, upgrades));
 
+        }
+
+
+        public void EndShopping()
+        {
+            for (int i = 0; i < shops.Count; i++)
+            {
+                shops[i].ExitScreen();
+            }
+
+            Game1.waveManager.WaveBreak = false;
         }
 
         public void ApplyUpgrades(Upgrade upgrade, Player p)
@@ -166,11 +197,14 @@ namespace BankShot
             if (upgrade.projectileSpeedIsMultiplier)
             {
                 Gun g = (Gun)p.CurrentWeapon;
-                //g.s
+                g.Speed *= upgrade.projectileSpeedModifier;
+                p.CurrentWeapon = g;
             }
             else
             {
-
+                Gun g = (Gun)p.CurrentWeapon;
+                g.Speed += upgrade.projectileSpeedModifier;
+                p.CurrentWeapon = g;
             }
 
             if (upgrade.projectileSpreadIsMultiplier)
@@ -220,11 +254,11 @@ namespace BankShot
 
             if (upgrade.healthIsMultiplier)
             {
-
+                p.Health *= upgrade.healthModifier;
             }
             else
             {
-
+                p.Health += upgrade.healthModifier;
             }
 
             if (upgrade.healthRegenIsMultiplier)
@@ -257,12 +291,6 @@ namespace BankShot
 
         }
 
-        public void EndShopping()
-        {
-            //called when player is done using the store, store will exit the frame and game will continue
-
-
-        }
 
         public string ReadUpgrades()
         {

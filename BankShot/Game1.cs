@@ -11,7 +11,8 @@ namespace BankShot {
         Game, 
         Pause, 
         Leaderboard, 
-        GameOver
+        GameOver,
+        Shop
     }
 
     public class Game1 : Game {
@@ -53,6 +54,10 @@ namespace BankShot {
 
         public static GameObject[] walls;
 
+        //Shop object (will be null when no shop)
+        public Shop currentShop;
+
+
         //Testing gun and projectile creation.
         private Gun gun;
         private Shield shield;
@@ -65,6 +70,11 @@ namespace BankShot {
         private Texture2D playerTexture;
         private Texture2D wallTexture;
         private Texture2D enemyTexture;
+
+        //upgrade textures
+        private Texture2D damageTx;
+        private Texture2D healthTx;
+        private Texture2D projecTx;
 
         //testing boolean
         private bool test;
@@ -81,7 +91,10 @@ namespace BankShot {
 
             scores = new int[5];
 
-          
+            currentShop = null;
+
+         
+
             test = false;
 
             // PLEASE TELL NOAH IF WE NEED TO CHANGE THE WINDOW ASPECT RATIO
@@ -97,7 +110,7 @@ namespace BankShot {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //menu testing
-            font = Content.Load<SpriteFont>("File");
+            font = Content.Load<SpriteFont>("Arial12");
             buttonTx = Content.Load<Texture2D>("button1");
 
             //menu init
@@ -107,25 +120,30 @@ namespace BankShot {
             gameOverMenu = new GameOverMenu(font);
 
             //Textures
-            gunTexture = Content.Load<Texture2D>("Gun");
+            gunTexture = Content.Load<Texture2D>("GunSprite");
             projectileTexture = Content.Load<Texture2D>("Bullet");
-            wallTexture = Content.Load<Texture2D>("Wall");
-            playerTexture = Content.Load<Texture2D>("Player");
-            enemyTexture = Content.Load<Texture2D>("Enemy");
+            playerTexture = Content.Load<Texture2D>("PlayerBetaSprite");
             shieldTexture = Content.Load<Texture2D>("Shield");
+            damageTx = Content.Load<Texture2D>("DmgIcon");
+            healthTx = Content.Load<Texture2D>("HealthIcon");
+            projecTx = Content.Load<Texture2D>("ShotSpeedIcon");
+            enemyTexture = Content.Load<Texture2D>("GoldSlime");
 
+            //all values except for textures are temporary
+            upgradeManager = new UpgradeManager(damageTx, projecTx, healthTx, playerTexture, new Rectangle(700,800,60,60), new List<Rectangle>(), true);
 
-            player = new Player(playerTexture, new Rectangle(100, 100, 75, 150), new List<Rectangle>(), true, 5, new Vector2(0, 0));
+            waveManager = new WaveManager();
+
+            player = new Player(playerTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0));
             walls = new GameObject[] { new GameObject(wallTexture, new Rectangle(0, 900, 500, 100), new List<Rectangle>(), true), 
                                        new GameObject(wallTexture, new Rectangle(650, 900, 500, 100), new List<Rectangle>(), true),
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
-            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(300, 300, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0 } });
+            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(0, 0, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0.0f } });
             //enemyManager.SpawnEnemies();
-            enemyManager.SpawnedEnemies.Add(new Enemy(enemyTexture, new Rectangle(700, 700, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 100));
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(400, 100, 100, 50), new List<Rectangle>(), true, 2, 2, true, .6, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true);
+            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 2, true, 2, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), false, true, true);
             player.CurrentWeapon = gun;
 
             //Shield Creation!
@@ -142,6 +160,7 @@ namespace BankShot {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             //gathers keybaord and mouse states for use in update methods
+            Input.Update();
             KeyboardState kbs = Keyboard.GetState();
             MouseState ms = Mouse.GetState();
             
@@ -154,12 +173,29 @@ namespace BankShot {
                 case GameState.Game:
                     //Testing gun and projectile creation.
                     projectileManager.UpdateProjectiles(gameTime);
-                    player.Update(gameTime);
+                    player.Update();
                     enemyManager.UpdateEnemies();
+                    waveManager.Update(gameTime);
+                    upgradeManager.Update();
+
+                    //shop logic
+
+                    //replace lower line with if(waveNumberVariable % 3 == 0 && waveNumberVariable != 0) when able
+                   // if (kbs.IsKeyDown(Keys.M))
+                   // {
+                    //    state = GameState.Shop;
+                        
+                   // }
+
+
+
                     if (kbs.IsKeyDown(Keys.P))
                     {
                         state = GameState.Pause;
                     }
+
+
+
                     break;
                 case GameState.Pause:
                     pauseMenu.Update(kbs, ms, msPrev, test, out state);
@@ -170,18 +206,28 @@ namespace BankShot {
                 case GameState.GameOver:
                     gameOverMenu.Update(kbs, ms, msPrev, out state);
                     break;
+                //case GameState.Shop:
+                 //   currentShop  = upgradeManager.MakeShop();
+
+                 //   currentShop.Update(upgradeManager, ms, player);
+
+                 //   currentShop = null;
+
+                 //   state = GameState.Game;
+
+
+                 //   break;
 
             }
 
             msPrev = ms;
 
             // TODO: Add your update logic here
-            Input.Update();
           
 
             base.Update(gameTime);
         }
-
+        
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -189,19 +235,19 @@ namespace BankShot {
             _spriteBatch.Begin();
 
             //debug, show mouse position
-            _spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.Black);
+            //_spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.Black);
 
             //state machine based on the GameState enum
             switch (state)
             {
                 case GameState.MainMenu:
-                    _spriteBatch.DrawString(font, state.ToString(), new Vector2(10, 10), Color.White);
+                    //_spriteBatch.DrawString(font, state.ToString(), new Vector2(10, 10), Color.White);
                     mainMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.Game:
+                    // TODO: Health display
                     //Commented these out because they were breaking everything
                     mapManager.Draw(_spriteBatch);
-                    //enemyManager.DrawEnemies(_spriteBatch);
                     player.Draw(_spriteBatch);
                     //foreach (GameObject wall in walls)
                     //{
@@ -209,14 +255,14 @@ namespace BankShot {
                     //}
                     //Testing gun and projectile creation.
                     projectileManager.DrawProjectiles(_spriteBatch);
-                    _spriteBatch.DrawString(font, $"Height: {projectileManager.height}", new Vector2(300, 300), Color.White);
-                    _spriteBatch.DrawString(font, $"Width: {projectileManager.width}", new Vector2(300, 350), Color.White);
-                    _spriteBatch.DrawString(font, $"Player Health: {player.Health}", new Vector2(300, 450), Color.White);
+                    //_spriteBatch.DrawString(font, $"Height: {projectileManager.height}", new Vector2(300, 300), Color.White);
+                    //_spriteBatch.DrawString(font, $"Width: {projectileManager.width}", new Vector2(300, 350), Color.White);
                     enemyManager.DrawEnemies(_spriteBatch);
-                    if (enemyManager.SpawnedEnemies.Count > 0)
+                   // if (enemyManager.SpawnedEnemies.Count > 0)
                     {
-                        _spriteBatch.DrawString(font, "Enemy Health: " + enemyManager.SpawnedEnemies[0].Health, new Vector2(100, 100), Color.White);
+                    //    _spriteBatch.DrawString(font, "Enemy Health: " + enemyManager.SpawnedEnemies[0].Health, new Vector2(100, 100), Color.White);
                     }
+                    upgradeManager.Draw(_spriteBatch);
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);
@@ -227,6 +273,12 @@ namespace BankShot {
                 case GameState.GameOver:
                     gameOverMenu.Draw(_spriteBatch, _graphics);
                     break;
+               // case GameState.Shop:
+               //     while (currentShop != null)
+               //     {
+               //         currentShop.Draw(_spriteBatch);
+              //      }
+               //     break;
 
             }
 
