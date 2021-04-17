@@ -67,9 +67,26 @@ namespace BankShot
 
                 spawnedEnemies.Add(e);
             }
+        }
 
-
-
+        /// <summary>
+        /// Spawns a new enemy of the given type with the stats of the stored 
+        /// template scaled to the current wave.
+        /// </summary>
+        /// <typeparam name="enemyType">The type of enemy to spawn.</typeparam>
+        public void Spawn<enemyType>(Vector2  position) where enemyType : Enemy
+        {
+            // TODO: Setup for multiple enemy types when we make them.
+            // TODO: Setup with new stats template when we get to that.
+            // TODO: Implement scaling.
+            spawnedEnemies.Add(new Enemy(
+                (Texture2D)enemies[0][0],
+                new Rectangle((int)position.X, (int)position.Y, 100, 100),
+                (bool)enemies[0][3],
+                (int)enemies[0][4],
+                (Vector2)enemies[0][5],
+                (int)enemies[0][6],
+                (float)enemies[0][7]));
         }
 
         public void UpdateEnemies()
