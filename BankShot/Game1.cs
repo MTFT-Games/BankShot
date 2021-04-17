@@ -110,7 +110,7 @@ namespace BankShot {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //menu testing
-            font = Content.Load<SpriteFont>("File");
+            font = Content.Load<SpriteFont>("Arial12");
             buttonTx = Content.Load<Texture2D>("button1");
 
             //menu init
@@ -120,15 +120,14 @@ namespace BankShot {
             gameOverMenu = new GameOverMenu(font);
 
             //Textures
-            gunTexture = Content.Load<Texture2D>("Gun");
+            gunTexture = Content.Load<Texture2D>("GunSprite");
             projectileTexture = Content.Load<Texture2D>("Bullet");
-            wallTexture = Content.Load<Texture2D>("Wall");
-            playerTexture = Content.Load<Texture2D>("Player");
-            enemyTexture = Content.Load<Texture2D>("Enemy");
+            playerTexture = Content.Load<Texture2D>("PlayerBetaSprite");
             shieldTexture = Content.Load<Texture2D>("Shield");
             damageTx = Content.Load<Texture2D>("DmgIcon");
             healthTx = Content.Load<Texture2D>("HealthIcon");
             projecTx = Content.Load<Texture2D>("ShotSpeedIcon");
+            enemyTexture = Content.Load<Texture2D>("GoldSlime");
 
             //all values except for textures are temporary
             upgradeManager = new UpgradeManager(damageTx, projecTx, healthTx, null, new Rectangle(1,1,1,1), null, true);
@@ -140,7 +139,6 @@ namespace BankShot {
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
             enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(300, 300, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0 } });
             //enemyManager.SpawnEnemies();
-            enemyManager.SpawnedEnemies.Add(new Enemy(enemyTexture, new Rectangle(700, 700, 100, 200), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0));
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
