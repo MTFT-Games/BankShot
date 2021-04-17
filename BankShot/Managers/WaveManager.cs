@@ -13,72 +13,92 @@ namespace BankShot
     /// </summary>
     public class WaveManager
     {
+        private Random rng;
         private int wave;
         private double timer;
-        private List<List<Enemy>> waves;
+        private List<List<string>> waves;
         private bool waveBreak;
 
         /// <summary>
-        /// Initialize a new wave manager and read a list of waves from a file.
+        /// Gets the current wave number.
         /// </summary>
-        public WaveManager()
-        {
-            wave = 0;
-            timer = 0;
-            // TODO: Read from file
-            waves = new List<List<Enemy>>
-            {
-                new List<Enemy>
-                {
-                    new Enemy(
-                        Program.game.Content.Load<Texture2D>("Enemy"),
-                        new Rectangle(400, 480, 75, 150),
-                        true,
-                        5,
-                        Vector2.Zero,
-                        2,
-                        50)
-                }
-            };
-        }
+        public int Wave { get { return wave; } }
 
-        //accessors. accessors for timer and list are to be added once those are figured out ------
-
-        public int Wave
-        {
-            get { return wave; }
-            set { wave = value; }
-        }
-
-        //timer accessor here
-
-        //list accessor here
-
+        /// <summary>
+        /// Gets weather or not the wave cycle is currently broken.
+        /// </summary>
         public bool WaveBreak
         {
             get { return waveBreak; }
             set { waveBreak = value; }
         }
 
-        //methods. only headers and comments. params unfinished. ----------------------------------
-
-        public bool CompleteWave(out bool cleared)
+        /// <summary>
+        /// Initialize a new wave manager and read a list of waves from a file.
+        /// </summary>
+        public WaveManager()
         {
-            //called in update, will return true if wave is completed,
-            //and contains an out variable that tells if the player cleared 
-            //or timed out
-            cleared = false;
-            return false;
-
+            rng = new Random();
+            wave = 0;
+            timer = 0;
+            // TODO: Read from file
+            waves = new List<List<string>>
+            {
+                new List<string>
+                {
+                    "Enemy|400|480",
+                    "Enemy|840|150",
+                    "Enemy|970|470",
+                    "Enemy|1180|480"
+                }
+            };
+            waveBreak = false;
         }
 
+        /// <summary>
+        /// Performs all actions and checks that should occur every frame.
+        /// </summary>
+        /// <param name="time">The gametime object for this game.</param>
+        public void Update(GameTime time)
+        {
+            // Check if the wave has been cleared or the time has run out
+            if ((Game1.enemyManager.SpawnedEnemies.Count == 0) || (timer > 30))
+            {
+                if (waveBreak && (Game1.upgradeManager.Shops.Count == 0))
+                {
+                    Game1.upgradeManager.MakeShop();
+                }
+
+                if (!waveBreak)
+                {
+                NextWave();
+                }
+            }
+
+            timer += time.ElapsedGameTime.TotalSeconds;
+        }
+
+        /// <summary>
+        /// Advances the wave number and spawns a new wave.
+        /// </summary>
         public void NextWave()
         {
-            //advances to next wave, tells enemy manager to spawn new enemies
-            
+            wave++;
+            timer = 0;
+            int waveToSpawn = rng.Next(0, waves.Count);
+            for (int i = 0; i < waves[waveToSpawn].Count; i++)
+            {
+                string[] splitEntry = waves[waveToSpawn][i].Split('|');
+                Game1.enemyManager.Spawn<Enemy>(
+                    new Vector2(
+                        float.Parse(splitEntry[1]), 
+                        float.Parse(splitEntry[2])));
+            }
 
-
+            if (wave % 3 == 0)
+            {
+                waveBreak = true;
+            }
         }
-
     }
 }
