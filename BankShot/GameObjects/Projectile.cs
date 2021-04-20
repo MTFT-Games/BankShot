@@ -181,15 +181,15 @@ namespace BankShot
                 if (enemyToHome != null)
                 {
                     Vector2 difference = new Vector2(enemyToHome.X + enemyToHome.Rect.Width / 2 - this.X, enemyToHome.Y + enemyToHome.Rect.Height / 2 - this.Y);
-                    if (distance < 200)
+                    if (distance < 250)
                     {
-                        velocity.X += (float)(difference.X * .007);
-                        velocity.Y += (float)(difference.Y * .007);
+                        velocity.X += (float)(difference.X * .0033);
+                        velocity.Y += (float)(difference.Y * .0033);
                     }
-                    else if (distance < 400)
+                    else if (distance < 300)
                     {
-                        velocity.X += (float)(difference.X * .0055);
-                        velocity.Y += (float)(difference.Y * .0055);
+                        velocity.X += (float)(difference.X * .0025);
+                        velocity.Y += (float)(difference.Y * .0025);
                     }
                     velocity.Normalize();
                     velocity = velocity * speed;
