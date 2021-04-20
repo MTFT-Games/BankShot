@@ -151,13 +151,15 @@ namespace BankShot {
                                        new GameObject(wallTexture, new Rectangle(650, 900, 500, 100), new List<Rectangle>(), true),
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
             //Enemy creation
-            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(0, 0, 100, 100), 
-                new List<Rectangle>(), 
-                true, 
-                5, 
-                new Vector2(0, 0), 
-                5, 
-                0.0f, //Enemy
+            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { 
+                enemyTexture, 
+                new Rectangle(0, 0, 100, 100), //enemy rectangle
+                new List<Rectangle>(), //enemy 
+                true, //enemy active state
+                5, //enemy health
+                new Vector2(0, 0), //enemy velocity
+                5, //enemy attack power
+                0.0f, //Enemy knockback distance
                 250//Enemy's money value
             } });
             //enemyManager.SpawnEnemies();
@@ -308,9 +310,12 @@ namespace BankShot {
                         "Current Haul: " + player.Money,
                         new Vector2(Program.game.GetWindowSize().Width/2,0),
                         Color.White);
+
+                    
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);
+
                     break;
                 case GameState.Leaderboard:
                     leaderboardMenu.Draw(_spriteBatch, _graphics, buttonTx);

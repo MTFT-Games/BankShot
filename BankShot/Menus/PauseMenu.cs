@@ -63,6 +63,19 @@ namespace BankShot
                testButtonText,
                new Vector2(200, 300),
                Color.White);
+
+            //player stats
+            if (Game1.player.CurrentWeapon is Gun) {
+                Gun currentGun = (Gun)Game1.player.CurrentWeapon;
+
+                sb.DrawString(
+                    font,
+                    "Weapon Power: " + currentGun.Damage + 
+                    "\nShot Speed: " + currentGun.Speed,
+                    new Vector2(800,300),
+                    Color.White
+                    );
+            }
         }
 
         /// <summary>
