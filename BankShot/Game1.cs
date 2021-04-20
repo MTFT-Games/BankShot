@@ -85,6 +85,12 @@ namespace BankShot {
             set { test = value; }
         }
 
+        public SpriteFont Font
+        {
+            get { return font; }
+            set { font = value; }
+        }
+
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -240,7 +246,6 @@ namespace BankShot {
             _spriteBatch.Begin();
 
             //debug, show mouse position
-            //_spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.Black);
 
             //state machine based on the GameState enum
             switch (state)
@@ -270,7 +275,7 @@ namespace BankShot {
                     upgradeManager.Draw(_spriteBatch);
                     // health bar waves and timer
 
-                    double currHealthBar = (player.Health / player.MaxHealth) * 200;
+                    double currHealthBar = ((double) player.Health / (double) player.MaxHealth) * 200;
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, 200, 50), Color.Gray);
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, (int) currHealthBar, 50), Color.Red);
@@ -285,8 +290,15 @@ namespace BankShot {
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {
                         _spriteBatch.DrawString(font, $"Y Velocity: {enemyManager.SpawnedEnemies[0].Velocity.Y}", new Vector2(15, 165), Color.White);
+                        _spriteBatch.DrawString(font, $"Health: {enemyManager.SpawnedEnemies[0].Health}", new Vector2(15, 265), Color.White);
                     }
 
+                    //player wallet writing
+                    _spriteBatch.DrawString(
+                        font,
+                        "Current Haul: " + player.Money,
+                        new Vector2(Program.game.GetWindowSize().Width/2,0),
+                        Color.White);
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);
@@ -300,6 +312,7 @@ namespace BankShot {
                
 
             }
+            _spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.White);
 
 
             _spriteBatch.End();

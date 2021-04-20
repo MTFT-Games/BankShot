@@ -98,7 +98,7 @@ namespace BankShot
             {
                 if (spawnedEnemies[i].Health <= 0)
                 {
-
+                    Game1.player.Money += spawnedEnemies[i].Money;
                     spawnedEnemies.RemoveAt(i);
                     i--;
                     continue;

@@ -44,7 +44,8 @@ namespace BankShot
                  damageTexture,
                 "Damage Boost", 
                 "Doubles damage done by player",
-                1);
+                1,
+                2000);
 
             upgrades.Add(upgrade1);
 
@@ -65,7 +66,8 @@ namespace BankShot
                speedTexture,
                "Projectile Boost",
                "Speeds up projectiles by 50%",
-               1);
+               1,
+               1000);
 
             upgrades.Add(upgrade2);
 
@@ -85,7 +87,8 @@ namespace BankShot
                healthTexture,
                "Health Boost",
                "Increases max health by 50%",
-               1);
+               1,
+               1500);
 
             upgrades.Add(upgrade3);
 
@@ -165,129 +168,133 @@ namespace BankShot
 
         public void ApplyUpgrades(Upgrade upgrade, Player p)
         {
-            //takes in an upgrade and applies it to the Player
-            if (upgrade.damageIsMultiplier)
+            if (p.Money >= upgrade.cost)
             {
-                p.CurrentWeapon.Damage *= 2;
+                //takes in an upgrade and applies it to the Player
+                if (upgrade.damageIsMultiplier)
+                {
+                    p.CurrentWeapon.Damage *= 2;
 
-            }
-            else
-            {
-                p.CurrentWeapon.Damage += 2;
-            }
+                }
+                else
+                {
+                    p.CurrentWeapon.Damage += 2;
+                }
 
-            if (upgrade.projectileCountIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.projectileCountIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
-            if (upgrade.rateOfFireIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.rateOfFireIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
-            if (upgrade.projectileSpeedIsMultiplier)
-            {
-                Gun g = (Gun)p.CurrentWeapon;
-                g.Speed *= upgrade.projectileSpeedModifier;
-                p.CurrentWeapon = g;
-            }
-            else
-            {
-                Gun g = (Gun)p.CurrentWeapon;
-                g.Speed += upgrade.projectileSpeedModifier;
-                p.CurrentWeapon = g;
-            }
+                if (upgrade.projectileSpeedIsMultiplier)
+                {
+                    Gun g = (Gun)p.CurrentWeapon;
+                    g.Speed *= upgrade.projectileSpeedModifier;
+                    p.CurrentWeapon = g;
+                }
+                else
+                {
+                    Gun g = (Gun)p.CurrentWeapon;
+                    g.Speed += upgrade.projectileSpeedModifier;
+                    p.CurrentWeapon = g;
+                }
 
-            if (upgrade.projectileSpreadIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.projectileSpreadIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
-            if (upgrade.projectileHomingIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.projectileHomingIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
-            if (upgrade.shieldHealthIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.shieldHealthIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
-            if (upgrade.shieldRegenIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.shieldRegenIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
-            if (upgrade.shieldCooldownIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.shieldCooldownIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
-            if (upgrade.healthIsMultiplier)
-            {
-                p.Health *= upgrade.healthModifier;
-            }
-            else
-            {
-                p.Health += upgrade.healthModifier;
-            }
+                if (upgrade.healthIsMultiplier)
+                {
+                    p.Health *= upgrade.healthModifier;
+                }
+                else
+                {
+                    p.Health += upgrade.healthModifier;
+                }
 
-            if (upgrade.healthRegenIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.healthRegenIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
-            if (upgrade.knockbackIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.knockbackIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
-            if (upgrade.knockbackIsMultiplier)
-            {
-                //not implemented yet
-            }
-            else
-            {
-                //not implemented yet
-            }
+                if (upgrade.knockbackIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
 
+                p.Money -= upgrade.cost;
+            }
 
         }
 
