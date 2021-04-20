@@ -44,7 +44,8 @@ namespace BankShot
                  damageTexture,
                 "Damage Boost", 
                 "Doubles damage done by player",
-                1);
+                1,
+                2000);
 
             upgrades.Add(upgrade1);
 
@@ -65,7 +66,8 @@ namespace BankShot
                speedTexture,
                "Projectile Boost",
                "Speeds up projectiles by 50%",
-               1);
+               1,
+               1000);
 
             upgrades.Add(upgrade2);
 
@@ -85,7 +87,8 @@ namespace BankShot
                healthTexture,
                "Health Boost",
                "Increases max health by 50%",
-               1);
+               1,
+               1500);
 
             upgrades.Add(upgrade3);
 

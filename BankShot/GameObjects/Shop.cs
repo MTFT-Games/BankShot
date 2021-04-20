@@ -93,42 +93,44 @@ namespace BankShot
 
                     Rectangle msLoc = new Rectangle(Input.MousePosition.ToPoint(), new Point(1, 1));
 
-                    if (msLoc.Intersects(upgrade1Rect))
-                    {
-                        colorUp1 = Color.Gold;
-                sb.DrawString(Program.game.Font, forSale[1].name, new Vector2(rect.X + (rect.Width / 2) - 240, Y-460), Color.White);
-                sb.DrawString(Program.game.Font, forSale[1].description, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 440), Color.White);
-                sb.DrawString(Program.game.Font, $"Cost: {forSale[1].cost}", new Vector2(rect.X + (rect.Width / 2) - 240, Y - 496), Color.White);
-
-            }
-
-            if (msLoc.Intersects(upgrade2Rect))
-                    {
-                        colorUp2 = Color.Gold;
-                sb.DrawString(Program.game.Font, forSale[2].name, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 460), Color.White);
-                sb.DrawString(Program.game.Font, forSale[2].description, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 440), Color.White);
-            }
-                     
-                    if (msLoc.Intersects(upgrade3Rect))
-                    {
-                        colorUp3 = Color.Gold;
-                sb.DrawString(Program.game.Font, forSale[3].name, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 460), Color.White);
-                sb.DrawString(Program.game.Font, forSale[3].description, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 440), Color.White);
-            }
-
             if (Game1.player.Rect.Intersects(rect))
             {
                 sb.Draw(
-                    shopWindow, 
+                    shopWindow,
                     new Rectangle((int)Position.X + (rect.Width / 2) - 250, (int)position.Y - 600, 500, 600),
                     Color.White);
-                    sb.Draw(forSale[0].icon, upgrade1Rect, colorUp1);
-                    sb.Draw(forSale[1].icon, upgrade2Rect, colorUp2);
-                    sb.Draw(forSale[2].icon, upgrade3Rect, colorUp3);
-            }
 
-                   // break;
-         //   }
+                if (msLoc.Intersects(upgrade1Rect))
+                {
+                    colorUp1 = Color.Gold;
+                    sb.DrawString(Program.game.Font, forSale[0].name, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 460), Color.White);
+                    sb.DrawString(Program.game.Font, forSale[0].description, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 440), Color.White);
+                    sb.DrawString(Program.game.Font, $"Cost: {forSale[0].cost}", new Vector2(rect.X + (rect.Width / 2) - 240, Y - 480), Color.White);
+
+                }
+
+                if (msLoc.Intersects(upgrade2Rect))
+                {
+                    colorUp2 = Color.Gold;
+                    sb.DrawString(Program.game.Font, forSale[1].name, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 460), Color.White);
+                    sb.DrawString(Program.game.Font, forSale[1].description, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 440), Color.White);
+                    sb.DrawString(Program.game.Font, $"Cost: {forSale[1].cost}", new Vector2(rect.X + (rect.Width / 2) - 240, Y - 480), Color.White);
+                }
+
+                if (msLoc.Intersects(upgrade3Rect))
+                {
+                    colorUp3 = Color.Gold;
+                    sb.DrawString(Program.game.Font, forSale[2].name, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 460), Color.White);
+                    sb.DrawString(Program.game.Font, forSale[2].description, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 440), Color.White);
+                    sb.DrawString(Program.game.Font, $"Cost: {forSale[2].cost}", new Vector2(rect.X + (rect.Width / 2) - 240, Y - 480), Color.White);
+                }
+
+
+                sb.Draw(forSale[0].icon, upgrade1Rect, colorUp1);
+                sb.Draw(forSale[1].icon, upgrade2Rect, colorUp2);
+                sb.Draw(forSale[2].icon, upgrade3Rect, colorUp3);
+                // break;
+            }
 
            
         }
