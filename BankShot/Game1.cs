@@ -269,7 +269,7 @@ namespace BankShot {
                     upgradeManager.Draw(_spriteBatch);
                     // health bar waves and timer
 
-                    double currHealthBar = (player.Health / player.MaxHealth) * 200;
+                    double currHealthBar = ((double) player.Health / (double) player.MaxHealth) * 200;
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, 200, 50), Color.Gray);
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, (int) currHealthBar, 50), Color.Red);
@@ -284,6 +284,7 @@ namespace BankShot {
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {
                         _spriteBatch.DrawString(font, $"Y Velocity: {enemyManager.SpawnedEnemies[0].Velocity.Y}", new Vector2(15, 165), Color.White);
+                        _spriteBatch.DrawString(font, $"Health: {enemyManager.SpawnedEnemies[0].Health}", new Vector2(15, 265), Color.White);
                     }
 
                     break;
