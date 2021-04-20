@@ -12,13 +12,15 @@ namespace BankShot
         private Gun gun;
         private double reloadTime;
         private double elapsedTime;
+        private int range;
         public RangedEnemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active,
-            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money, Gun gun, double reloadTime)
+            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money, Gun gun, double reloadTime, int range)
             : base(texture, rect, collisionBoxes, active, maxHealth, velocity, attackPower, knockbackDistance, money)
         {
             this.gun = gun;
             this.reloadTime = reloadTime;
             this.elapsedTime = 0;
+            this.range = range;
         }
 
         public void Update(GameTime gameTime)
@@ -35,7 +37,7 @@ namespace BankShot
             int distance = (int)Math.Sqrt(Math.Pow(this.X - Game1.player.X, 2) +
                Math.Pow(this.Y - Game1.player.Y, 2));
             if (elapsedTime >= reloadTime && 
-               distance <= 800)
+               distance <= range)
             {
                 Vector2 vector = Game1.player.Position - this.position;
                 //vector.Y = 0;

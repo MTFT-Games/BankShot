@@ -103,7 +103,7 @@ namespace BankShot
             base.Update();
             weapon.Update();
             //shield.Velocity = velocity;
-            shield.Update();
+            shield.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -117,6 +117,10 @@ namespace BankShot
         public override void Move()
         {
             this.ApplyGravity();
+            if (shield.Active)
+            {
+                velocity.X = 0;
+            }
             base.Move();
             this.ResolveCollisions();
             shield.Position = new Vector2(this.X - 10, this.Y - 10);
@@ -136,7 +140,7 @@ namespace BankShot
                 velocity.X += 5;
                 weaponSide = "right";
             }
-            if (Input.KeyClick(Keys.W) && (onGround || jumpsLeft > 0))
+            if (Input.KeyClick(Keys.W) && (onGround || jumpsLeft > 0) && !shield.Active)
             {
                 velocity.Y = -20;
                 onGround = false;
