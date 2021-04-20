@@ -91,7 +91,7 @@ namespace BankShot
                 (int)enemies[0][8]));
         }
 
-        public void UpdateEnemies()
+        public void UpdateEnemies(GameTime time)
         {
             //update logic for Enemy objects stored in "enemies"
             for(int i = 0; i < spawnedEnemies.Count; i++)
@@ -104,7 +104,14 @@ namespace BankShot
                     continue;
                 }
 
-                spawnedEnemies[i].Update();
+                if (spawnedEnemies[i] is RangedEnemy)
+                {
+                    ((RangedEnemy) spawnedEnemies[i]).Update(time);
+                }
+                else
+                {
+                    spawnedEnemies[i].Update();
+                }
             }
         }
 

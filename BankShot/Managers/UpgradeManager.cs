@@ -102,7 +102,7 @@ namespace BankShot
             shops = new List<Shop>();
             collisionBoxesShop = new List<Rectangle> { transformShop };
 
-
+            Shop.ShopWindow = Program.game.Content.Load<Texture2D>("ShopWindow");
         }
 
         //accessors. each get and set for now, subject to change ----------------------------------
