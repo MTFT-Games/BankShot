@@ -17,13 +17,14 @@ namespace BankShot
         //Fields
         protected int attackPower;
         protected float knockbackDistance;
+        protected int money;
         private List<object> stats;
         public event enemyDelegate enemyDeath;
         //Enemy Stats will be included as Fields
 
         //Constructor
         public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active, 
-            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance)
+            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money)
             : base(texture,rect,collisionBoxes,active,maxHealth,velocity)
         {
             this.attackPower = attackPower;
@@ -42,13 +43,14 @@ namespace BankShot
             stats.Add(velocity);
             stats.Add(attackPower);
             stats.Add(knockbackDistance);
+            stats.Add(money);
         }
 
         public Enemy(Texture2D texture, Rectangle rect, bool active, 
             int maxHealth, Vector2 velocity, int attackPower, 
-            float knockbackDistance) 
+            float knockbackDistance, int money) 
             : this(texture, rect, new List<Rectangle> { rect }, active, maxHealth,
-                  velocity, attackPower, knockbackDistance) { }
+                  velocity, attackPower, knockbackDistance, money) { }
 
         //Methods
         /// <summary>
@@ -70,12 +72,10 @@ namespace BankShot
         {
             if(health <= 0)
             {
-                //enemyDeath(this);
                 return;
             }
             //foreach gameobject in Game1.MapManager.Map
             //ground/gameobject collision
-            
             Move();
             DealDamage(Game1.player);
             base.Update();
@@ -117,9 +117,9 @@ namespace BankShot
         public override void Move()
         {
             velocity += new Vector2(0, 1);//apply gravity
-            Pathfind(Game1.player);//find player
             base.Move();
             ResolveCollisions();
+            Pathfind(Game1.player);//find player
         }
 
         public override void TakeDamage(int damage, float knockback)
@@ -137,30 +137,28 @@ namespace BankShot
             {
                 Rectangle enemyPosition = new Rectangle((int)position.X, (int)position.Y, rect.Width, rect.Height);
                 //wider = left
-                if (rect.Intersects(ground.Rect))
+                if (enemyPosition.Intersects(ground.Rect))
                 {
                     Rectangle collisionRect = Rectangle.Intersect(rect, ground.Rect);
-                    if (collisionRect.Width > collisionRect.Height)//vertical issue
+                    if (collisionRect.Width >= collisionRect.Height)//vertical collision
                     {
                         velocity.Y = 0;
-
-                        if (ground.Rect.Y < enemyPosition.Y)//enemy above platform
+                        if (enemyPosition.Y <= ground.Y)
+                        {
+                            enemyPosition.Y -= collisionRect.Height;                            
+                        }
+                        else
                         {
                             enemyPosition.Y += collisionRect.Height;
                         }
-                        else//enemy below platform
-                        {
-                            enemyPosition.Y -= collisionRect.Height;
-                        }
                     }
-                    else if (collisionRect.Height > collisionRect.Width)//horizontal issue
+                    else if (collisionRect.Height >= collisionRect.Width)//horizontal collision
                     {
-
-                        if (ground.Rect.X < enemyPosition.X)//enemy left of platform
+                        if (enemyPosition.X <= ground.X)
                         {
                             enemyPosition.X -= collisionRect.Width;
                         }
-                        else//enemy right of platform
+                        else
                         {
                             enemyPosition.X += collisionRect.Width;
                         }

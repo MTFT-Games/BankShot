@@ -13,6 +13,7 @@ namespace BankShot
         private Mobility mobility;
         private Weapon weapon;
         private Shield shield;
+        private int money;
 
         //Just for the demo
         private string weaponSide;
@@ -57,6 +58,12 @@ namespace BankShot
             set { health = value; }
         }
 
+        public int Money
+        {
+            get { return money; }
+            set { money = value; }
+        }
+
         //Default Contructor
         public Player(Texture2D texture, Rectangle transform,
                       List<Rectangle> collisionBoxes, bool active,
@@ -67,6 +74,7 @@ namespace BankShot
             weaponSide = "right";
             onGround = false;
             doubleJump = true;
+            money = 0;
         }
 
         //Methods
@@ -159,7 +167,6 @@ namespace BankShot
                         if (playerPosition.Y <= wall.Y)
                         {
                             playerPosition.Y -= intersection.Height;
-                            onGround = true;
                             if (doubleJump)
                             {
                                 jumpsLeft = 2;
@@ -178,7 +185,10 @@ namespace BankShot
 
         public override void TakeDamage(int damage, float knockback)
         {
-            base.TakeDamage(damage, knockback);
+            if (!Program.game.Test)
+            {
+                base.TakeDamage(damage, knockback);
+            }
         }
         //The collison checking method in GameObject might
         //also be overridden here.

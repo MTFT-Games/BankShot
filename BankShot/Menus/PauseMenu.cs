@@ -55,7 +55,7 @@ namespace BankShot
                 Color.White);
             //test button text
             string testButtonText = "ENABLE TESTING MODE";
-            if (testingStatus)
+            if (Program.game.Test)
             {
                 testButtonText = "DISABLE TESTING MODE";
             }
@@ -105,17 +105,17 @@ namespace BankShot
             {
 
                 //enables/disables testing mode
-                if (testingStatus)
+                if (Program.game.Test)
                 {
-                    testingMode = false;
+                    Program.game.Test = false;
                    
                 }
-                if (!testingStatus)
+                if (!Program.game.Test)
                 {
-                    testingMode = true;
+                    Program.game.Test = true;
                     
                 }
-                testingStatus = testingMode;
+                
 
             }  
         }
