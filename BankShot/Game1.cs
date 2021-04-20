@@ -178,16 +178,6 @@ namespace BankShot {
                     waveManager.Update(gameTime);
                     upgradeManager.Update();
 
-                    //shop logic
-
-                    //replace lower line with if(waveNumberVariable % 3 == 0 && waveNumberVariable != 0) when able
-                   // if (kbs.IsKeyDown(Keys.M))
-                   // {
-                    //    state = GameState.Shop;
-                        
-                   // }
-
-
 
                     if (kbs.IsKeyDown(Keys.P))
                     {
@@ -245,7 +235,7 @@ namespace BankShot {
                     mainMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.Game:
-                    // TODO: Health display
+                   
                     //Commented these out because they were breaking everything
                     mapManager.Draw(_spriteBatch);
                     player.Draw(_spriteBatch);
@@ -263,6 +253,12 @@ namespace BankShot {
                     //    _spriteBatch.DrawString(font, "Enemy Health: " + enemyManager.SpawnedEnemies[0].Health, new Vector2(100, 100), Color.White);
                     }
                     upgradeManager.Draw(_spriteBatch);
+                    // TODO: Health display
+
+                    double currHealthBar = (player.Health / player.MaxHealth) * 200;
+
+                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, 200, 50), Color.Gray);
+                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, (int) currHealthBar, 50), Color.Red);
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);
