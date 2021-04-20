@@ -117,9 +117,9 @@ namespace BankShot
         public override void Move()
         {
             velocity += new Vector2(0, 1);//apply gravity
-            Pathfind(Game1.player);//find player
             base.Move();
             ResolveCollisions();
+            Pathfind(Game1.player);//find player
         }
 
         public override void TakeDamage(int damage, float knockback)
@@ -137,30 +137,28 @@ namespace BankShot
             {
                 Rectangle enemyPosition = new Rectangle((int)position.X, (int)position.Y, rect.Width, rect.Height);
                 //wider = left
-                if (rect.Intersects(ground.Rect))
+                if (enemyPosition.Intersects(ground.Rect))
                 {
                     Rectangle collisionRect = Rectangle.Intersect(rect, ground.Rect);
-                    if (collisionRect.Width > collisionRect.Height)//vertical issue
+                    if (collisionRect.Width >= collisionRect.Height)//vertical collision
                     {
                         velocity.Y = 0;
-
-                        if (ground.Rect.Y < enemyPosition.Y)//enemy above platform
+                        if (enemyPosition.Y <= ground.Y)
+                        {
+                            enemyPosition.Y -= collisionRect.Height;                            
+                        }
+                        else
                         {
                             enemyPosition.Y += collisionRect.Height;
                         }
-                        else//enemy below platform
-                        {
-                            enemyPosition.Y -= collisionRect.Height;
-                        }
                     }
-                    else if (collisionRect.Height > collisionRect.Width)//horizontal issue
+                    else if (collisionRect.Height >= collisionRect.Width)//horizontal collision
                     {
-
-                        if (ground.Rect.X < enemyPosition.X)//enemy left of platform
+                        if (enemyPosition.X <= ground.X)
                         {
                             enemyPosition.X -= collisionRect.Width;
                         }
-                        else//enemy right of platform
+                        else
                         {
                             enemyPosition.X += collisionRect.Width;
                         }
