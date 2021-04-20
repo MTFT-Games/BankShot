@@ -106,6 +106,10 @@ namespace BankShot
             {
                 velocity.X = -1;
             }
+            else if (distanceX == 0)
+            {
+                velocity.X = 0;
+            }
         }
         /// <summary>
         /// Sets enemy direction and moves
@@ -131,6 +135,7 @@ namespace BankShot
         {
             foreach (GameObject ground in Game1.mapManager.CurrentMap.MapArray)
             {
+                Rectangle enemyPosition = new Rectangle((int)position.X, (int)position.Y, rect.Width, rect.Height);
                 //wider = left
                 if (rect.Intersects(ground.Rect))
                 {
@@ -139,26 +144,30 @@ namespace BankShot
                     {
                         velocity.Y = 0;
 
-                        if ((rect.Y - ground.Rect.Y) < 0)//enemy above platform
+                        if (ground.Rect.Y < enemyPosition.Y)//enemy above platform
                         {
-                            rect.Y += collisionRect.Height;
+                            enemyPosition.Y += collisionRect.Height;
                         }
                         else//enemy below platform
                         {
-                            rect.Y -= collisionRect.Height;
+                            enemyPosition.Y -= collisionRect.Height;
                         }
                     }
-                    else if (collisionRect.Height > collisionRect.Width)
+                    else if (collisionRect.Height > collisionRect.Width)//horizontal issue
                     {
-                        if ((rect.X - ground.Rect.X) < 0)//enemy left of platform
+
+                        if (ground.Rect.X < enemyPosition.X)//enemy left of platform
                         {
-                            rect.X -= collisionRect.Width;
+                            enemyPosition.X -= collisionRect.Width;
                         }
                         else//enemy right of platform
                         {
-                            rect.X += collisionRect.Width;
+                            enemyPosition.X += collisionRect.Width;
                         }
                     }
+                    //sync enemyposition with new proposed position
+                    position.X = enemyPosition.X;
+                    position.Y = enemyPosition.Y;
                 }
             }
         }
