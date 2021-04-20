@@ -74,7 +74,7 @@ namespace BankShot
                 if (!waveBreak)
                 {
                 NextWave();
-                Program.game.enemyManager.SpawnedEnemies.Add(new RangedEnemy(Program.game.enemyTexture, new Rectangle(400, 800, 100, 100), new List<Rectangle>(), true, 100, new Vector2(0, 0), 5, 10, new Gun(new Texture2D(Program.game._graphics.GraphicsDevice, 1, 1), new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 2, 2, true, .8, 20, new Vector2(0, 0), Program.game.projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), false, false, true, true), .8));
+                Program.game.enemyManager.SpawnedEnemies.Add(new RangedEnemy(Program.game.enemyTexture, new Rectangle(400, 800, 100, 100), new List<Rectangle>(), true, 10, new Vector2(0, 0), 5, 5, 10, new Gun(new Texture2D(Program.game._graphics.GraphicsDevice, 1, 1), new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 2, 2, true, .8, 10, new Vector2(0, 0), Program.game.projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), false, false, true, true), 2));
                 }
             }
 
@@ -89,6 +89,7 @@ namespace BankShot
             wave++;
             timer = 0;
             int waveToSpawn = rng.Next(0, waves.Count);
+
             for (int i = 0; i < waves[waveToSpawn].Count; i++)
             {
                 string[] splitEntry = waves[waveToSpawn][i].Split('|');

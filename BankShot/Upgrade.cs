@@ -148,6 +148,7 @@ namespace BankShot
         /// to the player.</param>
         /// <param name="weight">The weight associated with this upgrade to give 
         /// it rarity in the random generator.</param>
+        /// <param name="cost">The cost of the upgrade.</param>
         public Upgrade(bool damageIsMultiplier, int damageModifier, 
             bool projectileCountIsMultiplier, int projectileCountModifier, 
             bool rateOfFireIsMultiplier, float rateOfFireModifier, 

@@ -13,8 +13,8 @@ namespace BankShot
         private double reloadTime;
         private double elapsedTime;
         public RangedEnemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active,
-            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, Gun gun, double reloadTime)
-            : base(texture, rect, collisionBoxes, active, maxHealth, velocity, attackPower, knockbackDistance)
+            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money, Gun gun, double reloadTime)
+            : base(texture, rect, collisionBoxes, active, maxHealth, velocity, attackPower, knockbackDistance, money)
         {
             this.gun = gun;
             this.reloadTime = reloadTime;
@@ -35,18 +35,42 @@ namespace BankShot
             int distance = (int)Math.Sqrt(Math.Pow(this.X - Game1.player.X, 2) +
                Math.Pow(this.Y - Game1.player.Y, 2));
             if (elapsedTime >= reloadTime && 
-               distance <= 100)
+               distance <= 500)
             {
-                gun.Attack(Game1.player.Position - this.position);
+                Vector2 vector = Game1.player.Position - this.position;
+                //vector.Y = 0;
+                vector.Normalize();
+                gun.Attack(vector);
                 elapsedTime = 0;
+                if (vector.X > 0)
+                {
+                    leftFacing = false;
+                }
+                else if (vector.X < 0)
+                {
+                    leftFacing = true;
+                }
             }
         }
 
         public override void Move()
         {
             velocity += new Vector2(0, 1);//apply gravity
+            velocity.X = 0;
             base.Move();
             ResolveCollisions();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (leftFacing)
+            {
+                spriteBatch.Draw(texture, rect, Color.Red);
+            }
+            else
+            {
+                spriteBatch.Draw(texture, rect, null, Color.Red, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
+            }
         }
     }
 }
