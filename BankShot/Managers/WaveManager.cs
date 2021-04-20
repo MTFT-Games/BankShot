@@ -89,6 +89,7 @@ namespace BankShot
             wave++;
             timer = 0;
             int waveToSpawn = rng.Next(0, waves.Count);
+
             for (int i = 0; i < waves[waveToSpawn].Count; i++)
             {
                 string[] splitEntry = waves[waveToSpawn][i].Split('|');
