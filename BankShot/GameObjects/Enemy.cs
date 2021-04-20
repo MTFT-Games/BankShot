@@ -107,6 +107,7 @@ namespace BankShot
             }
             Move();
             DealDamage(Game1.player);
+            base.Update();
         }
 
         //accessors
@@ -119,7 +120,6 @@ namespace BankShot
 
         /// <summary>
         /// Sets velocity in the direction of the player
-        /// </summary>
         /// <param name="target"></param>
         public void Pathfind(GameObject target)
         {
@@ -129,7 +129,7 @@ namespace BankShot
             //Determines whether target is to the left or the right of the enemy
             if (distanceX < 0)//target is to the left of enemy
             {
-                velocity.X = -1;
+                velocity.X = 1;
             }
             else if (distanceX > 0)//target is to the right of enemy
             {
