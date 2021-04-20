@@ -177,7 +177,10 @@ namespace BankShot
 
         public override void TakeDamage(int damage, float knockback)
         {
-            base.TakeDamage(damage, knockback);
+            if (!Program.game.Test)
+            {
+                base.TakeDamage(damage, knockback);
+            }
         }
         //The collison checking method in GameObject might
         //also be overridden here.

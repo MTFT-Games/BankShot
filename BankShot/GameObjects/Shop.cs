@@ -17,7 +17,7 @@ namespace BankShot
         private Rectangle upgrade2Rect;
         private Rectangle upgrade3Rect;
         private bool leaving;
-
+        private static Texture2D shopWindow;
 
 
         //Properties
@@ -33,8 +33,14 @@ namespace BankShot
             }
         }
 
+        public static Texture2D ShopWindow
+        {
+            get { return shopWindow; }
+            set { shopWindow = value; }
+        }
+
         //Methods
-       
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -43,7 +49,7 @@ namespace BankShot
             : base(texture, transform, collisionBoxes, active)
         {
             forSale = sale;
-            upgrade1Rect = new Rectangle(rect.X-100, rect.Y-100, 50, 50);
+            upgrade1Rect = new Rectangle(rect.X + (rect.Width / 2) - 200, rect.Y-100, 100, 100);
             upgrade2Rect = new Rectangle(rect.X-25, rect.Y - 100, 50, 50);
             upgrade3Rect = new Rectangle(rect.X+50, rect.Y - 100, 50, 50);
 
@@ -104,6 +110,10 @@ namespace BankShot
 
             if (Game1.player.Rect.Intersects(rect))
             {
+                sb.Draw(
+                    shopWindow, 
+                    new Rectangle((int)Position.X + (rect.Width / 2) - 250, (int)position.Y - 600, 500, 600),
+                    Color.White);
                     sb.Draw(forSale[0].icon, upgrade1Rect, colorUp1);
                     sb.Draw(forSale[1].icon, upgrade2Rect, colorUp2);
                     sb.Draw(forSale[2].icon, upgrade3Rect, colorUp3);
