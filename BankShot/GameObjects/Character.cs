@@ -34,10 +34,8 @@ namespace BankShot
         }
         public int MaxHealth
         {
-            get
-            {
-                return maxHealth;
-            }
+            get { return maxHealth; }
+            set { maxHealth = value; }
         }
         public int Health
         {

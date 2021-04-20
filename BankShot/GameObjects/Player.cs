@@ -90,6 +90,15 @@ namespace BankShot
                 weapon.Position = new Vector2(this.X + (float)(rect.Width*(25.5/60)), this.Y + (float)(rect.Height * 30.5 /60));
             }
 
+            if (invincible)
+            {
+                invincibleFrames--;
+                if (invincibleFrames <= 0)
+                {
+                    invincible = false;
+                }
+            }
+
             //weapon.Velocity = velocity;
             base.Update();
             weapon.Update();
@@ -185,9 +194,11 @@ namespace BankShot
 
         public override void TakeDamage(int damage, float knockback)
         {
-            if (!Program.game.Test)
+            if (!Program.game.Test && !invincible)
             {
                 base.TakeDamage(damage, knockback);
+                invincible = true;
+                invincibleFrames = 60;
             }
         }
         //The collison checking method in GameObject might

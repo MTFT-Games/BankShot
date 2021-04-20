@@ -108,9 +108,8 @@ namespace BankShot
                 if (Program.game.Test)
                 {
                     Program.game.Test = false;
-                   
                 }
-                if (!Program.game.Test)
+                else if (!Program.game.Test)
                 {
                     Program.game.Test = true;
                     

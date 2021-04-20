@@ -80,7 +80,7 @@ namespace BankShot
                false, 0,
                false, 0,
                false, 0,
-               true, 150,
+               true, 1.5f,
                false, 0,
                false, 0,
                false, 0,
@@ -259,11 +259,13 @@ namespace BankShot
 
                 if (upgrade.healthIsMultiplier)
                 {
-                    p.Health *= upgrade.healthModifier;
+                    double temp = p.Health / (double)p.MaxHealth;
+                    p.MaxHealth = (int)(p.MaxHealth*upgrade.healthModifier);
+                    p.Health = (int)(p.MaxHealth * temp);
                 }
                 else
                 {
-                    p.Health += upgrade.healthModifier;
+                    p.Health += (int)upgrade.healthModifier;
                 }
 
                 if (upgrade.healthRegenIsMultiplier)
