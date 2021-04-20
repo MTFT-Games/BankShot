@@ -75,36 +75,7 @@ namespace BankShot
             }
             //foreach gameobject in Game1.MapManager.Map
             //ground/gameobject collision
-            foreach (GameObject ground in Game1.mapManager.CurrentMap.MapArray)
-            {
-                //wider = left
-                if (rect.Intersects(ground.Rect))
-                {
-                    Rectangle collisionRect = Rectangle.Intersect(rect, ground.Rect);
-                    if (collisionRect.Width > collisionRect.Height)//vertical issue
-                    {
-                        if((rect.Y - ground.Rect.Y) < 0)//enemy above platform
-                        {
-                            rect.Y += collisionRect.Height;
-                        }
-                        else//enemy below platform
-                        {
-                            rect.Y -= collisionRect.Height;
-                        }
-                    }
-                    else if (collisionRect.Height > collisionRect.Width)
-                    {
-                        if((rect.X - ground.Rect.X) < 0)//enemy left of platform
-                        {
-                            rect.X -= collisionRect.Width;
-                        }
-                        else//enemy right of platform
-                        {
-                            rect.X += collisionRect.Width;
-                        }
-                    }
-                }
-            }
+            
             Move();
             DealDamage(Game1.player);
             base.Update();
@@ -141,8 +112,10 @@ namespace BankShot
         /// </summary>
         public override void Move()
         {
-            Pathfind(Game1.player);
+            velocity += new Vector2(0, 1);//apply gravity
+            Pathfind(Game1.player);//find player
             base.Move();
+            ResolveCollisions();
         }
 
         public override void TakeDamage(int damage, float knockback)
@@ -151,6 +124,42 @@ namespace BankShot
             if (health == 0 && enemyDeath != null)
             {
                 enemyDeath(this);
+            }
+        }
+
+        public void ResolveCollisions()
+        {
+            foreach (GameObject ground in Game1.mapManager.CurrentMap.MapArray)
+            {
+                //wider = left
+                if (rect.Intersects(ground.Rect))
+                {
+                    Rectangle collisionRect = Rectangle.Intersect(rect, ground.Rect);
+                    if (collisionRect.Width > collisionRect.Height)//vertical issue
+                    {
+                        velocity.Y = 0;
+
+                        if ((rect.Y - ground.Rect.Y) < 0)//enemy above platform
+                        {
+                            rect.Y += collisionRect.Height;
+                        }
+                        else//enemy below platform
+                        {
+                            rect.Y -= collisionRect.Height;
+                        }
+                    }
+                    else if (collisionRect.Height > collisionRect.Width)
+                    {
+                        if ((rect.X - ground.Rect.X) < 0)//enemy left of platform
+                        {
+                            rect.X -= collisionRect.Width;
+                        }
+                        else//enemy right of platform
+                        {
+                            rect.X += collisionRect.Width;
+                        }
+                    }
+                }
             }
         }
     }
