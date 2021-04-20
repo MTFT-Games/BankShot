@@ -107,18 +107,19 @@ namespace BankShot
             int distanceX = this.X - target.X;
 
             //Determines whether target is to the left or the right of the enemy
-            if (distanceX < 0)//target is to the left of enemy
+            if (distanceX < -5)//target is to the left of enemy
             {
                 velocity.X = 1;
                 this.leftFacing = false;
             }
-            else if (distanceX > 0)//target is to the right of enemy
+            else if (distanceX > 5)//target is to the right of enemy
             {
                 velocity.X = -1;
                 this.leftFacing = true;
             }
-            else if (distanceX == 0)
+            else 
             {
+                X = Game1.player.X;
                 velocity.X = 0;
             }
         }
