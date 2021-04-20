@@ -234,7 +234,6 @@ namespace BankShot {
             _spriteBatch.Begin();
 
             //debug, show mouse position
-            //_spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.Black);
 
             //state machine based on the GameState enum
             switch (state)
@@ -299,6 +298,7 @@ namespace BankShot {
                //     break;
 
             }
+            _spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.White);
 
 
             _spriteBatch.End();

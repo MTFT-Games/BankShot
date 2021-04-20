@@ -49,9 +49,9 @@ namespace BankShot
             : base(texture, transform, collisionBoxes, active)
         {
             forSale = sale;
-            upgrade1Rect = new Rectangle(rect.X + (rect.Width / 2) - 200, rect.Y-100, 100, 100);
-            upgrade2Rect = new Rectangle(rect.X-25, rect.Y - 100, 50, 50);
-            upgrade3Rect = new Rectangle(rect.X+50, rect.Y - 100, 50, 50);
+            upgrade1Rect = new Rectangle(rect.X + (rect.Width / 2) - 200, rect.Y - 580, 100, 100);
+            upgrade2Rect = new Rectangle(rect.X + (rect.Width / 2) - 50, rect.Y - 580, 100, 100);
+            upgrade3Rect = new Rectangle(rect.X + (rect.Width / 2) + 100, rect.Y - 580, 100, 100);
 
             leaving = false;
         }
