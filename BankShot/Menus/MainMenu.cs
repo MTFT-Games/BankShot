@@ -86,6 +86,7 @@ namespace BankShot
             {
                 //changes game state to game mode
                 state = GameState.Game;
+
             }
             else
             {
@@ -98,6 +99,9 @@ namespace BankShot
                
             }
         }
+
+       // public void resetGame()
+            //RESETS ALL GAME VALUES
 
 
 

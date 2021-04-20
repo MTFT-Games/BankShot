@@ -29,7 +29,7 @@ namespace BankShot
             
         }
 
-        public void Draw(SpriteBatch sb, GraphicsDeviceManager g)
+        public void Draw(SpriteBatch sb, GraphicsDeviceManager g, Texture2D buttonTx)
         {
             //draws leaderbaord
             sb.DrawString(font,
@@ -45,7 +45,7 @@ namespace BankShot
 
                 //button textures to be incorporated
                 //main menu button
-                sb.Draw(null, mainmenuBtn, Color.White);
+                sb.Draw(buttonTx, mainmenuBtn, Color.White);
            
             //writes text over buttons(will be gotten rid of once buttons 
             //textures created
