@@ -85,8 +85,7 @@ namespace BankShot
                 //changes game state to main menu
                 state = GameState.MainMenu;
             }
-            
-            if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(leaderBtn))
+           else if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(leaderBtn))
             {
                 //changes game state to leaderboard
                 state = GameState.Leaderboard;
@@ -95,6 +94,7 @@ namespace BankShot
             {
                 state = GameState.GameOver;
             }
+            
         }
 
        
