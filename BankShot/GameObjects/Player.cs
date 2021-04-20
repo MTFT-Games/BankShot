@@ -13,6 +13,7 @@ namespace BankShot
         private Mobility mobility;
         private Weapon weapon;
         private Shield shield;
+        private int money;
 
         //Just for the demo
         private string weaponSide;
@@ -57,6 +58,12 @@ namespace BankShot
             set { health = value; }
         }
 
+        public int Money
+        {
+            get { return money; }
+            set { money = value; }
+        }
+
         //Default Contructor
         public Player(Texture2D texture, Rectangle transform,
                       List<Rectangle> collisionBoxes, bool active,
@@ -67,6 +74,7 @@ namespace BankShot
             weaponSide = "right";
             onGround = false;
             doubleJump = true;
+            money = 0;
         }
 
         //Methods
