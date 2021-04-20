@@ -24,6 +24,8 @@ namespace BankShot
         /// </summary>
         public int Wave { get { return wave; } }
 
+        public double Timer { get { return timer; } }
+
         /// <summary>
         /// Gets weather or not the wave cycle is currently broken.
         /// </summary>
