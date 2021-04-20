@@ -96,17 +96,25 @@ namespace BankShot
                     if (msLoc.Intersects(upgrade1Rect))
                     {
                         colorUp1 = Color.Gold;
-                    }
-                      
-                    if (msLoc.Intersects(upgrade2Rect))
+                sb.DrawString(Program.game.Font, forSale[1].name, new Vector2(rect.X + (rect.Width / 2) - 240, Y-460), Color.White);
+                sb.DrawString(Program.game.Font, forSale[1].description, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 440), Color.White);
+                sb.DrawString(Program.game.Font, $"Cost: {forSale[1].cost}", new Vector2(rect.X + (rect.Width / 2) - 240, Y - 496), Color.White);
+
+            }
+
+            if (msLoc.Intersects(upgrade2Rect))
                     {
                         colorUp2 = Color.Gold;
-                    }
+                sb.DrawString(Program.game.Font, forSale[2].name, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 460), Color.White);
+                sb.DrawString(Program.game.Font, forSale[2].description, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 440), Color.White);
+            }
                      
                     if (msLoc.Intersects(upgrade3Rect))
                     {
                         colorUp3 = Color.Gold;
-                    }
+                sb.DrawString(Program.game.Font, forSale[3].name, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 460), Color.White);
+                sb.DrawString(Program.game.Font, forSale[3].description, new Vector2(rect.X + (rect.Width / 2) - 240, Y - 440), Color.White);
+            }
 
             if (Game1.player.Rect.Intersects(rect))
             {

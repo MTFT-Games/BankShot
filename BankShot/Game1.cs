@@ -85,6 +85,12 @@ namespace BankShot {
             set { test = value; }
         }
 
+        public SpriteFont Font
+        {
+            get { return font; }
+            set { font = value; }
+        }
+
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

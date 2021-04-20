@@ -54,6 +54,7 @@ namespace BankShot
         public string name;
         public string description;
         public int weight;
+        public int cost;
 
         /// <summary>
         /// Create a new upgrade with all modifications to player stats.
@@ -147,6 +148,7 @@ namespace BankShot
         /// to the player.</param>
         /// <param name="weight">The weight associated with this upgrade to give 
         /// it rarity in the random generator.</param>
+        /// <param name="cost">The cost of the upgrade.</param>
         public Upgrade(bool damageIsMultiplier, int damageModifier, 
             bool projectileCountIsMultiplier, int projectileCountModifier, 
             bool rateOfFireIsMultiplier, float rateOfFireModifier, 
@@ -161,7 +163,7 @@ namespace BankShot
             float healthRegenModifier, bool knockbackIsMultiplier, 
             float knockbackModifier, bool knockbackResistIsMultiplier, 
             int knockbackResistModifier, Texture2D icon, string name, 
-            string description, int weight)
+            string description, int weight, int cost)
         {
             this.damageIsMultiplier = damageIsMultiplier;
             this.damageModifier = damageModifier;
@@ -194,6 +196,7 @@ namespace BankShot
             this.name = name;
             this.description = description;
             this.weight = weight;
+            this.cost = cost;
         }
     }
 }
