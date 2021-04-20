@@ -105,12 +105,12 @@ namespace BankShot
             {
 
                 //enables/disables testing mode
-                if (testingMode)
+                if (testingStatus)
                 {
                     testingMode = false;
                    
                 }
-                if (!testingMode)
+                if (!testingStatus)
                 {
                     testingMode = true;
                     
