@@ -292,6 +292,12 @@ namespace BankShot {
                         _spriteBatch.DrawString(font, $"Health: {enemyManager.SpawnedEnemies[0].Health}", new Vector2(15, 265), Color.White);
                     }
 
+                    //player wallet writing
+                    _spriteBatch.DrawString(
+                        font,
+                        "Current Haul: " + player.Money,
+                        new Vector2(Program.game.GetWindowSize().Width/2,0),
+                        Color.White);
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);

@@ -24,6 +24,11 @@ namespace BankShot
         protected bool leftFacing;
         //Enemy Stats will be included as Fields
 
+        //Properties
+        public int Money
+        {
+            get { return money; }
+        }
         //Constructor
         public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active, 
             int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money)
