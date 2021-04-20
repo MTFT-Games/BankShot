@@ -151,7 +151,7 @@ namespace BankShot {
                                        new GameObject(wallTexture, new Rectangle(650, 900, 500, 100), new List<Rectangle>(), true),
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
             //Enemy creation
-            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(0, 0, 100, 100), 
+                enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(0, 0, 100, 100), 
                 new List<Rectangle>(), 
                 true, 
                 5, 

@@ -12,6 +12,7 @@ namespace BankShot
         //Fields
         protected Vector2 velocity;
         private bool active;
+        private double timeSinceBreak;
 
         public bool Active
         {
@@ -41,6 +42,8 @@ namespace BankShot
                       : base(texture, transform, collisionBoxes, active)
         {
             this.velocity = velocity;
+            timeSinceBreak = 4;
+
         }
 
         //Methods
@@ -53,7 +56,7 @@ namespace BankShot
         //check for input to raise the shield.
         public void ProcessInput()
         {
-            if (Input.MouseHeld(2))
+            if (Input.MouseHeld(2) && timeSinceBreak >= 2.5)
             {
                 active = true;
             }
@@ -63,12 +66,13 @@ namespace BankShot
             }
         }
 
-        public override void Update()
+        public void Update(GameTime time)
         {
             ProcessInput();
             this.Move();
             X = (int)position.X;
             Y = (int)position.Y;
+            timeSinceBreak += time.ElapsedGameTime.TotalSeconds;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -77,6 +81,12 @@ namespace BankShot
             {
                 base.Draw(spriteBatch);
             }
+        }
+
+        public void BreakShield()
+        {
+            timeSinceBreak = 0;
+            active = false;
         }
     }
 }
