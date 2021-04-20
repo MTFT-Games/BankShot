@@ -23,6 +23,7 @@ namespace BankShot
         private double speed;
         private bool interceptable;
         private double lifeSpan;
+        private bool fromEnemy;
 
         //Parameterized Constructor
         public Gun(Texture2D texture, Rectangle transform,
@@ -33,7 +34,7 @@ namespace BankShot
                       Rectangle projectileTransform, 
                       List<Rectangle> projectileCollisionBoxes, 
                       bool projectileHoming, bool projectileBounce, 
-                      bool projectileActive)
+                      bool projectileActive, bool fromEnemy)
                       : base(texture, transform, collisionBoxes, 
                              active, damage, knockback)
         {
@@ -47,6 +48,7 @@ namespace BankShot
             this.projectileActive = projectileActive;
             this.projectileHoming = projectileHoming;
             this.projectileBounce = projectileBounce;
+            this.fromEnemy = fromEnemy;
         }
 
         //accessors
@@ -71,10 +73,25 @@ namespace BankShot
                                            projectileTransform,  
                                            projectileActive, interceptable, 
                                            damage, knockback, lifeSpan, 
-                                           direction * (int) speed, (int) speed, false, 
+                                           direction * (int) speed, (int) speed, fromEnemy, 
                                            projectileHoming, projectileBounce, 
                                            this));
             base.Attack(); 
+        }
+
+        public void Attack(Vector2 direction)
+        {
+            direction.Normalize();
+            projectileTransform.X = this.X;
+            projectileTransform.Y = this.Y;
+            Game1.projectileManager.projectiles.Add(new Projectile(projectileTexture,
+                                           projectileTransform,
+                                           projectileActive, interceptable,
+                                           damage, knockback, lifeSpan,
+                                           direction * (int)speed, (int)speed, false,
+                                           projectileHoming, projectileBounce,
+                                           this));
+            base.Attack();
         }
 
         public override void Update()

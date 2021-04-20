@@ -159,7 +159,6 @@ namespace BankShot
                         if (playerPosition.Y <= wall.Y)
                         {
                             playerPosition.Y -= intersection.Height;
-                            onGround = true;
                             if (doubleJump)
                             {
                                 jumpsLeft = 2;

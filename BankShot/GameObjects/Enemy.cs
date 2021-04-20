@@ -116,7 +116,7 @@ namespace BankShot
         /// </summary>
         public override void Move()
         {
-            velocity += new Vector2(0, 1);//apply gravity
+            //velocity += new Vector2(0, 1);//apply gravity
             Pathfind(Game1.player);//find player
             base.Move();
             ResolveCollisions();
@@ -153,7 +153,7 @@ namespace BankShot
                             enemyPosition.Y -= collisionRect.Height;
                         }
                     }
-                    else if (collisionRect.Height > collisionRect.Width)//horizontal issue
+                    else if (collisionRect.Height >= collisionRect.Width)//horizontal issue
                     {
 
                         if (ground.Rect.X < enemyPosition.X)//enemy left of platform

@@ -16,7 +16,7 @@ namespace BankShot {
     }
 
     public class Game1 : Game {
-        private GraphicsDeviceManager _graphics;
+        public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         //font, texture and menu obj for testing- to be replaced
         private SpriteFont font;
@@ -61,7 +61,7 @@ namespace BankShot {
         //Testing gun and projectile creation.
         private Gun gun;
         private Shield shield;
-        private Texture2D projectileTexture;
+        public Texture2D projectileTexture;
         private Texture2D gunTexture;
         private Texture2D shieldTexture;
         public static ProjectileManager projectileManager;
@@ -69,7 +69,7 @@ namespace BankShot {
         //Other Test Textures
         private Texture2D playerTexture;
         private Texture2D wallTexture;
-        private Texture2D enemyTexture;
+        public Texture2D enemyTexture;
 
         //upgrade textures
         private Texture2D damageTx;
@@ -140,10 +140,11 @@ namespace BankShot {
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
             enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(0, 0, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0.0f } });
             //enemyManager.SpawnEnemies();
+            //enemyManager.SpawnedEnemies.Add(new RangedEnemy(enemyTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 100, new Vector2(0, 0), 5, 10, new Gun(new Texture2D(this._graphics.GraphicsDevice, 1, 1), new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 2, 2, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), false, false, true, true), .8));
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 2, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true);
+            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 2, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true, false);
             player.CurrentWeapon = gun;
 
             //Shield Creation!
@@ -174,7 +175,7 @@ namespace BankShot {
                     //Testing gun and projectile creation.
                     projectileManager.UpdateProjectiles(gameTime);
                     player.Update(gameTime);
-                    enemyManager.UpdateEnemies();
+                    enemyManager.UpdateEnemies(gameTime);
                     waveManager.Update(gameTime);
                     upgradeManager.Update();
 
@@ -266,6 +267,11 @@ namespace BankShot {
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200, 50), Color.Gray);
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200-(int)currTime, 50), Color.Green);
+
+                    if (enemyManager.SpawnedEnemies.Count > 0)
+                    {
+                        _spriteBatch.DrawString(font, $"Y Velocity: {enemyManager.SpawnedEnemies[0].Velocity.Y}", new Vector2(15, 165), Color.White);
+                    }
 
                     break;
                 case GameState.Pause:
