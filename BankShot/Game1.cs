@@ -78,7 +78,13 @@ namespace BankShot {
 
         //testing boolean
         private bool test;
-        
+
+        public bool Test
+        {
+            get { return test; }
+            set { test = value; }
+        }
+
         public Game1() {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -157,7 +163,9 @@ namespace BankShot {
         }
 
         protected override void Update(GameTime gameTime) {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed 
+                || ((Keyboard.GetState().IsKeyDown(Keys.LeftAlt) || Keyboard.GetState().IsKeyDown(Keys.RightAlt)) 
+                && Keyboard.GetState().IsKeyDown(Keys.F4)))
                 Exit();
             //gathers keybaord and mouse states for use in update methods
             Input.Update();
@@ -179,7 +187,7 @@ namespace BankShot {
                     upgradeManager.Update();
 
 
-                    if (kbs.IsKeyDown(Keys.P))
+                    if (kbs.IsKeyDown(Keys.P) || Input.KeyClick(Keys.Escape))
                     {
                         state = GameState.Pause;
                     }
