@@ -150,7 +150,16 @@ namespace BankShot {
             walls = new GameObject[] { new GameObject(wallTexture, new Rectangle(0, 900, 500, 100), new List<Rectangle>(), true), 
                                        new GameObject(wallTexture, new Rectangle(650, 900, 500, 100), new List<Rectangle>(), true),
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
-            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(0, 0, 100, 100), new List<Rectangle>(), true, 5, new Vector2(0, 0), 5, 0.0f, 250 } });
+            //Enemy creation
+            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { enemyTexture, new Rectangle(0, 0, 100, 100), 
+                new List<Rectangle>(), 
+                true, 
+                5, 
+                new Vector2(0, 0), 
+                5, 
+                0.0f, //Enemy
+                250//Enemy's money value
+            } });
             //enemyManager.SpawnEnemies();
             //enemyManager.SpawnedEnemies.Add(new RangedEnemy(enemyTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 100, new Vector2(0, 0), 5, 10, new Gun(new Texture2D(this._graphics.GraphicsDevice, 1, 1), new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 2, 2, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), false, false, true, true), .8));
 

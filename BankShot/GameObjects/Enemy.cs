@@ -36,6 +36,7 @@ namespace BankShot
         {
             this.attackPower = attackPower;
             this.knockbackDistance = knockbackDistance;
+            this.money = money;
             this.leftFacing = true;
 
             //adds stats to a list for manager
