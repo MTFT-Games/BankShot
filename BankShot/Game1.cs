@@ -286,6 +286,12 @@ namespace BankShot {
                         _spriteBatch.DrawString(font, $"Y Velocity: {enemyManager.SpawnedEnemies[0].Velocity.Y}", new Vector2(15, 165), Color.White);
                     }
 
+                    //player wallet writing
+                    _spriteBatch.DrawString(
+                        font,
+                        "Current Haul: " + player.Money,
+                        new Vector2(Program.game.GetWindowSize().Width/2,0),
+                        Color.White);
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);

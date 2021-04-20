@@ -134,6 +134,8 @@ namespace BankShot
         {
             Rectangle msLoc = new Rectangle(Input.MousePosition.ToPoint(), new Point(1, 1));
 
+            //check cost with player wallet
+
             //calls apply upgrade upon clicking on a chosen upgrade
             
             if(Input.MouseClick(1) && msLoc.Intersects(upgrade1Rect))
