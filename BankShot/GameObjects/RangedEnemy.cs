@@ -27,8 +27,8 @@ namespace BankShot
         {
             base.Update();
             this.Attack(gameTime);
-            gun.X = this.X;
-            gun.Y = this.Y;
+            gun.X = this.X + this.Rect.Width / 2;
+            gun.Y = this.Y + this.Rect.Height / 2;
             elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
         }
 
