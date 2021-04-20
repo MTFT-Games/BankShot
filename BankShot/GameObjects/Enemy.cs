@@ -20,6 +20,8 @@ namespace BankShot
         protected int money;
         private List<object> stats;
         public event enemyDelegate enemyDeath;
+
+        protected bool leftFacing;
         //Enemy Stats will be included as Fields
 
         //Constructor
@@ -29,6 +31,7 @@ namespace BankShot
         {
             this.attackPower = attackPower;
             this.knockbackDistance = knockbackDistance;
+            this.leftFacing = true;
 
             //adds stats to a list for manager
             //stats format: texture, rectangle, boxes(list rectangle),
@@ -101,10 +104,12 @@ namespace BankShot
             if (distanceX < 0)//target is to the left of enemy
             {
                 velocity.X = 1;
+                this.leftFacing = false;
             }
             else if (distanceX > 0)//target is to the right of enemy
             {
                 velocity.X = -1;
+                this.leftFacing = true;
             }
             else if (distanceX == 0)
             {
@@ -168,6 +173,11 @@ namespace BankShot
                     position.Y = enemyPosition.Y;
                 }
             }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch, !leftFacing);
         }
     }
 }

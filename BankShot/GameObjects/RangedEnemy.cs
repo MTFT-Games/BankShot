@@ -38,10 +38,18 @@ namespace BankShot
                distance <= 500)
             {
                 Vector2 vector = Game1.player.Position - this.position;
-                vector.Y = 0;
+                //vector.Y = 0;
                 vector.Normalize();
                 gun.Attack(vector);
                 elapsedTime = 0;
+                if (vector.X > 0)
+                {
+                    leftFacing = false;
+                }
+                else if (vector.X < 0)
+                {
+                    leftFacing = true;
+                }
             }
         }
 
@@ -55,7 +63,14 @@ namespace BankShot
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, rect, Color.Red);
+            if (leftFacing)
+            {
+                spriteBatch.Draw(texture, rect, Color.Red);
+            }
+            else
+            {
+                spriteBatch.Draw(texture, rect, null, Color.Red, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
+            }
         }
     }
 }

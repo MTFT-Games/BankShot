@@ -73,7 +73,7 @@ namespace BankShot {
                         }
                     }
                     //Checking this projectile against walls.
-                    if (!destroyed)
+                    if (!destroyed && !projectiles[i].fromEnemy)
                     {
                         foreach (GameObject wall in Game1.mapManager.CurrentMap.MapArray)
                         {
