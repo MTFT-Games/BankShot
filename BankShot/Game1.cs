@@ -178,6 +178,11 @@ namespace BankShot {
                     waveManager.Update(gameTime);
                     upgradeManager.Update();
 
+                    if (player.Health <= 0)
+                    {
+                        state = GameState.GameOver;
+                    }
+
 
                     if (kbs.IsKeyDown(Keys.P))
                     {
@@ -265,24 +270,19 @@ namespace BankShot {
                     double currTime = (waveManager.Timer / 30) * 200;
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200-(int)currTime, 50), Color.Green);
+                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200-(int)currTime, 50), Color.Gold);
 
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.Leaderboard:
-                    leaderboardMenu.Draw(_spriteBatch, _graphics);
+                    leaderboardMenu.Draw(_spriteBatch, _graphics, buttonTx);
                     break;
                 case GameState.GameOver:
-                    gameOverMenu.Draw(_spriteBatch, _graphics);
+                    gameOverMenu.Draw(_spriteBatch, _graphics, buttonTx);
                     break;
-               // case GameState.Shop:
-               //     while (currentShop != null)
-               //     {
-               //         currentShop.Draw(_spriteBatch);
-              //      }
-               //     break;
+               
 
             }
 

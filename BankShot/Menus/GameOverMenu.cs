@@ -26,7 +26,7 @@ namespace BankShot
             leaderBtn = new Rectangle(200, 550, 100, 50);
         }
 
-        public void Draw(SpriteBatch sb, GraphicsDeviceManager g)
+        public void Draw(SpriteBatch sb, GraphicsDeviceManager g, Texture2D buttonTx)
         {
             //draws game over title
             sb.DrawString(font,
@@ -36,9 +36,9 @@ namespace BankShot
                 Color.White);
             //button textures to be incorporated
             //main menu button
-            sb.Draw(null, menuBtn, Color.White);
+            sb.Draw(buttonTx, menuBtn, Color.White);
             //leaderboard button
-            sb.Draw(null, leaderBtn, Color.White);
+            sb.Draw(buttonTx, leaderBtn, Color.White);
             //writes text over buttons(will be gotten rid of once buttons 
             //textures created
             //main menu button text
