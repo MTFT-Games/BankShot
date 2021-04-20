@@ -90,11 +90,20 @@ namespace BankShot
                 weapon.Position = new Vector2(this.X + (float)(rect.Width*(25.5/60)), this.Y + (float)(rect.Height * 30.5 /60));
             }
 
+            if (invincible)
+            {
+                invincibleFrames--;
+                if (invincibleFrames <= 0)
+                {
+                    invincible = false;
+                }
+            }
+
             //weapon.Velocity = velocity;
             base.Update();
             weapon.Update();
             //shield.Velocity = velocity;
-            shield.Update();
+            shield.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -108,6 +117,10 @@ namespace BankShot
         public override void Move()
         {
             this.ApplyGravity();
+            if (shield.Active)
+            {
+                velocity.X = 0;
+            }
             base.Move();
             this.ResolveCollisions();
             shield.Position = new Vector2(this.X - 10, this.Y - 10);
@@ -127,7 +140,7 @@ namespace BankShot
                 velocity.X += 5;
                 weaponSide = "right";
             }
-            if (Input.KeyClick(Keys.W) && (onGround || jumpsLeft > 0))
+            if (Input.KeyClick(Keys.W) && (onGround || jumpsLeft > 0) && !shield.Active)
             {
                 velocity.Y = -20;
                 onGround = false;
@@ -185,9 +198,11 @@ namespace BankShot
 
         public override void TakeDamage(int damage, float knockback)
         {
-            if (!Program.game.Test)
+            if (!Program.game.Test && !invincible)
             {
                 base.TakeDamage(damage, knockback);
+                invincible = true;
+                invincibleFrames = 60;
             }
         }
         //The collison checking method in GameObject might

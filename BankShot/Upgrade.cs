@@ -39,7 +39,7 @@ namespace BankShot
         public float shieldCooldownModifier;
 
         public bool healthIsMultiplier;
-        public int healthModifier;
+        public float healthModifier;
 
         public bool healthRegenIsMultiplier;
         public float healthRegenModifier;
@@ -159,7 +159,7 @@ namespace BankShot
             int shieldHealthModifier, bool shieldRegenIsMultiplier, 
             float shieldRegenModifier, bool shieldCooldownIsMultiplier, 
             float shieldCooldownModifier, bool healthIsMultiplier, 
-            int healthModifier, bool healthRegenIsMultiplier, 
+            float healthModifier, bool healthRegenIsMultiplier, 
             float healthRegenModifier, bool knockbackIsMultiplier, 
             float knockbackModifier, bool knockbackResistIsMultiplier, 
             int knockbackResistModifier, Texture2D icon, string name, 

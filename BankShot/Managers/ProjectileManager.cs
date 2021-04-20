@@ -49,7 +49,14 @@ namespace BankShot {
                     //Checking this projectile against the Player if it's from an Enemy.
                     if (projectiles[i].fromEnemy == true)
                     {
-                        if (projectiles[i].Rect.Intersects(Game1.player.Rect))
+                        if (projectiles[i].Rect.Intersects(Game1.player.CurrentShield.Rect) && Game1.player.CurrentShield.Active)
+                        {
+                            projectiles[i].Destroy();
+                            i--;
+                            destroyed = true;
+                            Game1.player.CurrentShield.BreakShield();
+                        }
+                        else if (projectiles[i].Rect.Intersects(Game1.player.Rect))
                         {
                             projectiles[i].DealDamage((IDamageable)Game1.player);
                             projectiles[i].Destroy();
