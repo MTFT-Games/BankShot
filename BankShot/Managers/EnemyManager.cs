@@ -54,7 +54,7 @@ namespace BankShot
             {
                 //stats format: texture, rectangle, boxes(list rectangle),
                 //active(bool), maxhp(int), velocity (vector2), atk power (int),
-                //knock distance (float)
+                //knock distance (float), money (int)
 
                 Enemy e = new Enemy((Texture2D) stats[0],
                     (Rectangle) stats[1],
@@ -63,7 +63,8 @@ namespace BankShot
                     (int) stats[4], 
                     (Vector2) stats[5],
                     (int) stats[6], 
-                    (float) stats[7]);
+                    (float) stats[7],
+                    (int) stats[8]);
 
                 spawnedEnemies.Add(e);
             }
@@ -86,7 +87,8 @@ namespace BankShot
                 (int)enemies[0][4],
                 (Vector2)enemies[0][5],
                 (int)enemies[0][6],
-                (float)enemies[0][7]));
+                (float)enemies[0][7],
+                (int)enemies[0][8]));
         }
 
         public void UpdateEnemies()
@@ -96,6 +98,7 @@ namespace BankShot
             {
                 if (spawnedEnemies[i].Health <= 0)
                 {
+
                     spawnedEnemies.RemoveAt(i);
                     i--;
                     continue;
