@@ -120,7 +120,6 @@ namespace BankShot
 
         /// <summary>
         /// Sets velocity in the direction of the player
-        /// </summary>
         /// <param name="target"></param>
         public void Pathfind(GameObject target)
         {
