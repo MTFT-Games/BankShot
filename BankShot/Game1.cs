@@ -177,6 +177,7 @@ namespace BankShot {
             switch (state)
             {
                 case GameState.MainMenu:
+                    resetGame();
                     mainMenu.Update(kbs, ms, msPrev, out state);
                     break;
                 case GameState.Game:
@@ -304,6 +305,16 @@ namespace BankShot {
             _spriteBatch.End();
             base.Draw(gameTime);
         }
+
+        /// <summary>
+        /// resets all game values. called at beginning of game
+        /// </summary>
+        public void resetGame()
+        {
+            Initialize();
+            LoadContent();
+        }
+
 
         /// <summary>
         /// Method author: Noah Emke<br/>

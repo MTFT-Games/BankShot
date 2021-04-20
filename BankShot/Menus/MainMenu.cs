@@ -84,6 +84,7 @@ namespace BankShot
             Rectangle mousePosition = new Rectangle(ms.X, ms.Y, 1, 1);
             if(SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(startBtn))
             {
+                
                 //changes game state to game mode
                 state = GameState.Game;
 
@@ -100,9 +101,8 @@ namespace BankShot
             }
         }
 
-       // public void resetGame()
-            //RESETS ALL GAME VALUES
-
+     
+            
 
 
     }
