@@ -35,7 +35,7 @@ namespace BankShot
             int distance = (int)Math.Sqrt(Math.Pow(this.X - Game1.player.X, 2) +
                Math.Pow(this.Y - Game1.player.Y, 2));
             if (elapsedTime >= reloadTime && 
-               distance <= 500)
+               distance <= 800)
             {
                 Vector2 vector = Game1.player.Position - this.position;
                 //vector.Y = 0;
