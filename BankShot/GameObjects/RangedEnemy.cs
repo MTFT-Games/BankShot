@@ -25,18 +25,28 @@ namespace BankShot
         {
             base.Update();
             this.Attack(gameTime);
+            gun.X = this.X;
+            gun.Y = this.Y;
             elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         public void Attack(GameTime gameTime)
         {
+            int distance = (int)Math.Sqrt(Math.Pow(this.X - Game1.player.X, 2) +
+               Math.Pow(this.Y - Game1.player.Y, 2));
             if (elapsedTime >= reloadTime && 
-               (int)Math.Sqrt(Math.Pow(this.X - Game1.player.X, 2) + 
-               Math.Pow(this.Y - Game1.player.Y, 2)) <= 20)
+               distance <= 100)
             {
                 gun.Attack(Game1.player.Position - this.position);
                 elapsedTime = 0;
             }
+        }
+
+        public override void Move()
+        {
+            velocity += new Vector2(0, 1);//apply gravity
+            base.Move();
+            ResolveCollisions();
         }
     }
 }

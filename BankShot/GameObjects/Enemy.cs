@@ -116,7 +116,7 @@ namespace BankShot
         /// </summary>
         public override void Move()
         {
-            //velocity += new Vector2(0, 1);//apply gravity
+            velocity += new Vector2(0, 1);//apply gravity
             Pathfind(Game1.player);//find player
             base.Move();
             ResolveCollisions();
