@@ -167,11 +167,11 @@ namespace BankShot {
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 0, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true, false);
+            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 0, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), .0035, true, true, false);
             player.CurrentWeapon = gun;
 
             //Shield Creation!
-            shield = new Shield(shieldTexture, new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0));
+            shield = new Shield(shieldTexture, new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0), 2.5);
             player.CurrentShield = shield;
             //Map manager
             mapManager = new MapManager();

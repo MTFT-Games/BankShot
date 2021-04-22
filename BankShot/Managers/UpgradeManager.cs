@@ -173,12 +173,12 @@ namespace BankShot
                 //takes in an upgrade and applies it to the Player
                 if (upgrade.damageIsMultiplier)
                 {
-                    p.CurrentWeapon.Damage *= 2;
+                    p.DamageMods[0] *= 2;
 
                 }
                 else
                 {
-                    p.CurrentWeapon.Damage += 2;
+                    p.DamageMods[1] += 2;
                 }
 
                 if (upgrade.projectileCountIsMultiplier)
@@ -201,15 +201,11 @@ namespace BankShot
 
                 if (upgrade.projectileSpeedIsMultiplier)
                 {
-                    Gun g = (Gun)p.CurrentWeapon;
-                    g.Speed *= upgrade.projectileSpeedModifier;
-                    p.CurrentWeapon = g;
+                    p.ProjectileSpeedMods[0] *= upgrade.projectileSpeedModifier;
                 }
                 else
                 {
-                    Gun g = (Gun)p.CurrentWeapon;
-                    g.Speed += upgrade.projectileSpeedModifier;
-                    p.CurrentWeapon = g;
+                    p.ProjectileSpeedMods[1] += upgrade.projectileSpeedModifier;
                 }
 
                 if (upgrade.projectileSpreadIsMultiplier)
@@ -223,11 +219,11 @@ namespace BankShot
 
                 if (upgrade.projectileHomingIsMultiplier)
                 {
-                    //not implemented yet
+                    p.ProjectileHoming *= upgrade.projectileHomingModifier;
                 }
                 else
                 {
-                    //not implemented yet
+                    //Not sure how to implement this
                 }
 
                 if (upgrade.shieldHealthIsMultiplier)
@@ -287,6 +283,15 @@ namespace BankShot
                 }
 
                 if (upgrade.knockbackIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
+
+                if (upgrade.knockbackResistIsMultiplier)
                 {
                     //not implemented yet
                 }

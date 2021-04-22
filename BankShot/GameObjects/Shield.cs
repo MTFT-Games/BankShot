@@ -13,6 +13,7 @@ namespace BankShot
         protected Vector2 velocity;
         private bool active;
         private double timeSinceBreak;
+        private double coolDown;
 
         public bool Active
         {
@@ -38,9 +39,10 @@ namespace BankShot
         //Parameterized Constructor
         public Shield(Texture2D texture, Rectangle transform, 
                       List<Rectangle> collisionBoxes, bool active, 
-                      Vector2 velocity)
+                      Vector2 velocity, double coolDown)
                       : base(texture, transform, collisionBoxes, active)
         {
+            this.coolDown = coolDown;
             this.velocity = velocity;
             timeSinceBreak = 4;
 

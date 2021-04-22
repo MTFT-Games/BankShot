@@ -19,6 +19,7 @@ namespace BankShot
         protected int maxHealth;
         protected int health;
         protected Vector2 velocity;
+        protected Vector2 truePosition;
 
         //We have not decided which of these we will use.
         protected double invincibleTime;
@@ -75,6 +76,9 @@ namespace BankShot
             this.velocity = velocity;
             invincible = false;
             this.knockBackVector = new Vector2(0, 0);
+            this.truePosition = new Vector2(0, 0);
+            truePosition.X = X + rect.Width / 2;
+            truePosition.Y = Y + rect.Height / 2;
         }
 
         //Methods
@@ -125,6 +129,8 @@ namespace BankShot
             this.Move();
             X = (int)position.X;
             Y = (int)position.Y;
+            truePosition.X = X + rect.Width / 2;
+            truePosition.Y = Y + rect.Height / 2;
         }
         public void ApplyKnockBack()
         {

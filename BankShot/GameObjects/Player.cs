@@ -22,8 +22,96 @@ namespace BankShot
 
         //Determines if the player is on the ground
         private bool onGround;
-        private bool doubleJump;
+
+        //The following Fields are directly affected by upgrades.
+
+        //Jumps allowed.
+        private int numberOfJumps;
         private int jumpsLeft;
+        public int NumberOfJumps
+        {
+            get
+            {
+                return numberOfJumps;
+            }
+            set
+            {
+                numberOfJumps = value;
+            }
+        }
+        //Damage Multiplier and Modifier
+        private double[] damageMods;
+        public double[] DamageMods
+        {
+            get
+            {
+                return damageMods;
+            }
+            set
+            {
+                damageMods = value;
+            }
+        }
+
+        //Projectile Count Multiplier and Modifier
+        private double[] projectileCountMods;
+        public double[] ProjectileCountMods
+        {
+            get
+            {
+                return projectileCountMods;
+            }
+            set
+            {
+               projectileCountMods = value;
+            }
+        }
+
+        //Projectile Speed Multiplier and Modifier
+        private double[] projectileSpeedMods;
+        public double[] ProjectileSpeedMods
+        {
+            get
+            {
+                return projectileSpeedMods;
+            }
+            set
+            {
+                projectileSpeedMods = value;
+            }
+        }
+
+        //Projectile Spread Multiplier and Modifier
+        private double[] projectileSpreadMods;
+        public double[] ProjectileSpreadMods
+        {
+            get
+            {
+                return projectileSpreadMods;
+            }
+            set
+            {
+                projectileSpreadMods = value;
+            }
+        }
+
+        //Projectile Homing
+        private double projectileHoming;
+        public double ProjectileHoming
+        {
+            get
+            {
+                return projectileHoming;
+            }
+            set
+            {
+                projectileHoming = value;
+            }
+        }
+
+        //Shield Health Multiplier and Modifier
+
+        //Attack Cool Down
 
         private double knockBack;
 
@@ -81,8 +169,15 @@ namespace BankShot
         {
             weaponSide = "right";
             onGround = false;
-            doubleJump = true;
             money = 0;
+
+            //Initializing the Upgrade Modifiers
+            damageMods = new double[] { 1, 0};
+            projectileCountMods = new double[] { 1, 0 };
+            projectileSpeedMods = new double[] { 1, 0 };
+            projectileSpreadMods = new double[] { 1, 0 };
+            projectileHoming = 1;
+            numberOfJumps = 1;
         }
 
         //Methods
@@ -109,9 +204,13 @@ namespace BankShot
 
             //weapon.Velocity = velocity;
             base.Update();
+
             weapon.Update();
             //shield.Velocity = velocity;
             shield.Update(gameTime);
+
+            //Applying Upgrades if they have not been applied already:
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -191,10 +290,7 @@ namespace BankShot
                         if (playerPosition.Y <= wall.Y)
                         {
                             playerPosition.Y -= intersection.Height;
-                            if (doubleJump)
-                            {
-                                jumpsLeft = 2;
-                            }
+                            jumpsLeft = numberOfJumps;
                         }
                         else
                         {
