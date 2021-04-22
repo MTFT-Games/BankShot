@@ -64,6 +64,14 @@ namespace BankShot
             set { money = value; }
         }
 
+        public Vector2 CurrentKnockback
+        {
+            get
+            {
+                return knockBackVector;
+            }
+        }
+
         //Default Contructor
         public Player(Texture2D texture, Rectangle transform,
                       List<Rectangle> collisionBoxes, bool active,

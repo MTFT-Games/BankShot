@@ -56,7 +56,7 @@ namespace BankShot
         //check for input to raise the shield.
         public void ProcessInput()
         {
-            if (Input.MouseHeld(2) && timeSinceBreak >= 2.5)
+            if (Input.MouseHeld(2) && timeSinceBreak >= 2.5 && Game1.player.CurrentKnockback.X == 0)
             {
                 active = true;
             }
