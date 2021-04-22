@@ -159,7 +159,7 @@ namespace BankShot {
                 5, //enemy health
                 new Vector2(0, 0), //enemy velocity
                 5, //enemy attack power
-                0.0f, //Enemy knockback distance
+                15f, //Enemy knockback distance
                 250//Enemy's money value
             } });
             //enemyManager.SpawnEnemies();
@@ -167,7 +167,7 @@ namespace BankShot {
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 2, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true, false);
+            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 0, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true, false);
             player.CurrentWeapon = gun;
 
             //Shield Creation!

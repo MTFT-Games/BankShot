@@ -36,7 +36,7 @@ namespace BankShot
         {
             int distance = (int)Math.Sqrt(Math.Pow(this.X - Game1.player.X, 2) +
                Math.Pow(this.Y - Game1.player.Y, 2));
-            if (elapsedTime >= reloadTime && 
+            if (elapsedTime >= reloadTime &&
                distance <= range)
             {
                 Vector2 vector = Game1.player.Position - this.position;
@@ -58,9 +58,9 @@ namespace BankShot
         public override void Move()
         {
             velocity += new Vector2(0, 1);//apply gravity
-            velocity.X = 0;
-            base.Move();
+            position += velocity;
             ResolveCollisions();
+            velocity.X = 0;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -72,6 +72,15 @@ namespace BankShot
             else
             {
                 spriteBatch.Draw(texture, rect, null, Color.Red, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
+            }
+        }
+
+        public override void TakeDamage(int damage, float knockback, GameObject damageDealer)
+        {
+            health -= damage;
+            if (health < 0)
+            {
+                health = 0;
             }
         }
     }

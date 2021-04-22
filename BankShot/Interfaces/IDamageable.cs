@@ -30,7 +30,7 @@ namespace BankShot
         /// </summary>
         /// <param name="damage"></param>
         /// <param name="knockback"></param>
-        void TakeDamage(int damage, float knockback);
+        void TakeDamage(int damage, float knockback, GameObject damageDealer);
 
         /// <summary>
         /// all damageable objects are to have a method that governs healing

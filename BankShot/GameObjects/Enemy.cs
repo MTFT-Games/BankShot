@@ -71,7 +71,14 @@ namespace BankShot
             GameObject victim = (GameObject)target;
             if (rect.Intersects(victim.Rect))
             {
-                target.TakeDamage(attackPower,knockbackDistance);
+                if (X + rect.Width / 2 > victim.X + victim.Rect.Width / 2)
+                {
+                    target.TakeDamage(attackPower, -1 * knockbackDistance, this);
+                }
+                else
+                {
+                    target.TakeDamage(attackPower, knockbackDistance, this);
+                }
             }
         }
         /// <summary>
@@ -134,9 +141,9 @@ namespace BankShot
             Pathfind(Game1.player);//find player
         }
 
-        public override void TakeDamage(int damage, float knockback)
+        public override void TakeDamage(int damage, float knockback, GameObject damageDealer)
         {
-            base.TakeDamage(damage, knockback);
+            base.TakeDamage(damage, knockback, damageDealer);
             if (health == 0 && enemyDeath != null)
             {
                 enemyDeath(this);

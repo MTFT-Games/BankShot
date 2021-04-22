@@ -130,21 +130,24 @@ namespace BankShot
         public void ProcessInput()
         {
             velocity.X = 0;
-            if (Input.KeyHeld(Keys.A)) //&& velocity.X != -5)
+            if (invincibleFrames <= 30)
             {
-                velocity.X -= 5;
-                weaponSide = "left";
-            }
-            if (Input.KeyHeld(Keys.D)) //&& velocity.X != 5)
-            {
-                velocity.X += 5;
-                weaponSide = "right";
-            }
-            if (Input.KeyClick(Keys.W) && (onGround || jumpsLeft > 0) && !shield.Active)
-            {
-                velocity.Y = -20;
-                onGround = false;
-                jumpsLeft--;
+                if (Input.KeyHeld(Keys.A)) //&& velocity.X != -5)
+                {
+                    velocity.X -= 5;
+                    weaponSide = "left";
+                }
+                if (Input.KeyHeld(Keys.D)) //&& velocity.X != 5)
+                {
+                    velocity.X += 5;
+                    weaponSide = "right";
+                }
+                if (Input.KeyClick(Keys.W) && (onGround || jumpsLeft > 0) && !shield.Active)
+                {
+                    velocity.Y = -20;
+                    onGround = false;
+                    jumpsLeft--;
+                }
             }
         }
 
@@ -196,15 +199,20 @@ namespace BankShot
             }
         }
 
-        public override void TakeDamage(int damage, float knockback)
+        public override void TakeDamage(int damage, float knockback, GameObject damageDealer)
         {
             if (!Program.game.Test && !invincible)
             {
-                base.TakeDamage(damage, knockback);
+                base.TakeDamage(damage, knockback, damageDealer);
+                if (knockback != 0)
+                {
+                    this.velocity.Y += -100 / Math.Abs(knockback);
+                }
                 invincible = true;
                 invincibleFrames = 60;
             }
         }
+
         //The collison checking method in GameObject might
         //also be overridden here.
     }

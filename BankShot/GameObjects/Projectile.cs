@@ -115,7 +115,14 @@ namespace BankShot
         { 
             if (target is Character)
             {
-                ((Character)target).TakeDamage(damage, knockback);
+                if (X + rect.Width / 2 > ((Character)target).X + ((Character)target).Rect.Width / 2)
+                {
+                    ((Character)target).TakeDamage(damage, -1 * knockback, this);
+                }
+                else
+                {
+                    ((Character)target).TakeDamage(damage, knockback, this);
+                }
             }
             
             //Projectile should destroy itself after doing any damage
