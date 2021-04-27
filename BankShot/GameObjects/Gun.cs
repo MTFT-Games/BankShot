@@ -17,7 +17,7 @@ namespace BankShot
         private Rectangle projectileTransform;
         private List<Rectangle> projectileCollisionBoxes;
         private bool projectileActive;
-        private bool projectileHoming;
+        private double projectileHoming;
         private bool projectileBounce;
         //Projectile Stats:
         private double speed;
@@ -33,10 +33,10 @@ namespace BankShot
                       Texture2D projectileTexture, 
                       Rectangle projectileTransform, 
                       List<Rectangle> projectileCollisionBoxes, 
-                      bool projectileHoming, bool projectileBounce, 
+                      double projectileHoming, bool projectileBounce, 
                       bool projectileActive, bool fromEnemy)
                       : base(texture, transform, collisionBoxes, 
-                             active, damage, knockback)
+                             active, damage, knockback, fromEnemy)
         {
             this.interceptable = interceptable;
             this.lifeSpan = lifeSpan;
@@ -59,6 +59,18 @@ namespace BankShot
             set { speed = value; }
         }
 
+        public double Homing
+        {
+            get
+            {
+                return projectileHoming;
+            }
+            set
+            {
+                projectileHoming = value;
+            }
+        }
+
         //Methods
 
         //Attack() will create a Projectile object
@@ -72,9 +84,11 @@ namespace BankShot
             Game1.projectileManager.projectiles.Add(new Projectile(projectileTexture, 
                                            projectileTransform,  
                                            projectileActive, interceptable, 
-                                           damage, knockback, lifeSpan, 
-                                           direction * (int) speed, (int) speed, fromEnemy, 
-                                           projectileHoming, projectileBounce, 
+                                           (int) (damage * Game1.player.DamageMods[0] + Game1.player.DamageMods[1]), 
+                                           knockback, lifeSpan, 
+                                           direction * (int) (speed * Game1.player.ProjectileSpeedMods[0] + Game1.player.ProjectileSpeedMods[1]), 
+                                           (int)(speed * Game1.player.ProjectileSpeedMods[0] + Game1.player.ProjectileSpeedMods[1]), fromEnemy, 
+                                           projectileHoming * Game1.player.ProjectileHoming, projectileBounce, 
                                            this));
             base.Attack(); 
         }

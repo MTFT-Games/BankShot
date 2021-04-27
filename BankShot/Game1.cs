@@ -70,6 +70,7 @@ namespace BankShot {
         private Texture2D playerTexture;
         private Texture2D wallTexture;
         public Texture2D enemyTexture;
+        public Texture2D shopExitButton;
 
         //upgrade textures
         private Texture2D damageTx;
@@ -140,9 +141,10 @@ namespace BankShot {
             healthTx = Content.Load<Texture2D>("HealthIcon");
             projecTx = Content.Load<Texture2D>("ShotSpeedIcon");
             enemyTexture = Content.Load<Texture2D>("GoldSlime");
+            shopExitButton = Content.Load<Texture2D>("button1");
 
             //all values except for textures are temporary
-            upgradeManager = new UpgradeManager(damageTx, projecTx, healthTx, playerTexture, new Rectangle(700,800,60,60), new List<Rectangle>(), true);
+            upgradeManager = new UpgradeManager(damageTx, projecTx, healthTx, playerTexture, new Rectangle(700,800,60,60), new List<Rectangle>(), true, shopExitButton);
 
             waveManager = new WaveManager();
 
@@ -159,7 +161,7 @@ namespace BankShot {
                 5, //enemy health
                 new Vector2(0, 0), //enemy velocity
                 5, //enemy attack power
-                0.0f, //Enemy knockback distance
+                15f, //Enemy knockback distance
                 250//Enemy's money value
             } });
             //enemyManager.SpawnEnemies();
@@ -167,11 +169,11 @@ namespace BankShot {
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 2, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), true, true, true, false);
+            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 0, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), .0035, true, true, false);
             player.CurrentWeapon = gun;
 
             //Shield Creation!
-            shield = new Shield(shieldTexture, new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0));
+            shield = new Shield(shieldTexture, new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0), 2.5);
             player.CurrentShield = shield;
             //Map manager
             mapManager = new MapManager();
@@ -276,8 +278,8 @@ namespace BankShot {
                     //}
                     //Testing gun and projectile creation.
                     projectileManager.DrawProjectiles(_spriteBatch);
-                    //_spriteBatch.DrawString(font, $"Height: {projectileManager.height}", new Vector2(300, 300), Color.White);
-                    //_spriteBatch.DrawString(font, $"Width: {projectileManager.width}", new Vector2(300, 350), Color.White);
+                    //_spriteBatch.DrawString(font, $"Max: {player.MaxHealth}", new Vector2(300, 300), Color.White);
+                    //_spriteBatch.DrawString(font, $"Health: {player.Health}", new Vector2(300, 350), Color.White);
                     enemyManager.DrawEnemies(_spriteBatch);
                    // if (enemyManager.SpawnedEnemies.Count > 0)
                     {
@@ -300,8 +302,8 @@ namespace BankShot {
 
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {
-                        _spriteBatch.DrawString(font, $"Y Velocity: {enemyManager.SpawnedEnemies[0].Velocity.Y}", new Vector2(15, 165), Color.White);
-                        _spriteBatch.DrawString(font, $"Health: {enemyManager.SpawnedEnemies[0].Health}", new Vector2(15, 265), Color.White);
+                        //_spriteBatch.DrawString(font, $"Y Velocity: {enemyManager.SpawnedEnemies[0].Velocity.Y}", new Vector2(15, 165), Color.White);
+                        //_spriteBatch.DrawString(font, $"Health: {enemyManager.SpawnedEnemies[0].Health}", new Vector2(15, 265), Color.White);
                     }
 
                     //player wallet writing
@@ -326,7 +328,7 @@ namespace BankShot {
                
 
             }
-            _spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.White);
+            //_spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.White);
 
 
             _spriteBatch.End();

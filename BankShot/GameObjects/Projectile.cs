@@ -22,7 +22,7 @@ namespace BankShot
         public bool fromEnemy;
         public bool bounce;
         public bool bounceActive;
-        private bool homing;
+        private double homing;
         //The Projectile should remove itself from this list when it dies.
         public Gun gunOfOrigin;
 
@@ -71,7 +71,7 @@ namespace BankShot
         /// be removed from upon death.</param>
         public Projectile(Texture2D texture, Rectangle transform, bool active, 
             bool interceptable, int damage, float knockback, double lifeSpan, 
-            Vector2 velocity, int speed, bool fromEnemy, bool homing, bool bounce, 
+            Vector2 velocity, int speed, bool fromEnemy, double homing, bool bounce, 
             Gun gunOfOrigin)
             : base(texture, transform, new List<Rectangle>(), active)
         {
@@ -99,10 +99,7 @@ namespace BankShot
             this.Move();
             X = (int)position.X;
             Y = (int)position.Y;
-            if (homing)
-            {
-                this.Homing();
-            }
+            this.Homing();
             elapsedTime += time.ElapsedGameTime.TotalSeconds;
             if (elapsedTime >= lifeSpan)
             {
@@ -115,7 +112,14 @@ namespace BankShot
         { 
             if (target is Character)
             {
-                ((Character)target).TakeDamage(damage, knockback);
+                if (X + rect.Width / 2 > ((Character)target).X + ((Character)target).Rect.Width / 2)
+                {
+                    ((Character)target).TakeDamage(damage, -1 * knockback, this);
+                }
+                else
+                {
+                    ((Character)target).TakeDamage(damage, knockback, this);
+                }
             }
             
             //Projectile should destroy itself after doing any damage
@@ -159,8 +163,17 @@ namespace BankShot
             if (fromEnemy)
             {
                 Vector2 difference = new Vector2(Game1.player.Y - this.X, Game1.player.Y - this.Y);
-                velocity.X += (float) (difference.X * .1);
-                velocity.Y += (float) (difference.Y * .1);
+                int distance = (int)Math.Sqrt(Math.Pow(this.X - Game1.player.X, 2) + Math.Pow(this.Y - Game1.player.Y, 2));
+                if (distance < 250)
+                {
+                    velocity.X += (float)(difference.X * homing);
+                    velocity.Y += (float)(difference.Y * homing);
+                }
+                else if (distance < 350)
+                {
+                    velocity.X += (float)(difference.X * ((.0028 / .0035) * homing));
+                    velocity.Y += (float)(difference.Y * ((.0028 / .0035) * homing));
+                }
                 velocity.Normalize();
                 velocity = velocity * speed;
             }
@@ -180,17 +193,20 @@ namespace BankShot
                 }
                 if (enemyToHome != null)
                 {
-                    Vector2 difference = new Vector2(enemyToHome.X + enemyToHome.Rect.Width / 2 - this.X, enemyToHome.Y + enemyToHome.Rect.Height / 2 - this.Y);
-                    if (distance < 250)
+                    Vector2 difference = new Vector2(enemyToHome.X + enemyToHome.Rect.Width / 2 - this.X, 
+                                                     enemyToHome.Y + enemyToHome.Rect.Height / 2 - this.Y);
+                    if (distance < 450)
                     {
-                        velocity.X += (float)(difference.X * .0035);
-                        velocity.Y += (float)(difference.Y * .0035);
+                        velocity.X += (float)(difference.X * homing);
+                        velocity.Y += (float)(difference.Y * homing);
                     }
+                    /*
                     else if (distance < 350)
                     {
-                        velocity.X += (float)(difference.X * .0028);
-                        velocity.Y += (float)(difference.Y * .0028);
+                        velocity.X += (float)(difference.X * ((.0028 / .0035) * homing));
+                        velocity.Y += (float)(difference.Y * ((.0028 / .0035) * homing));
                     }
+                    */
                     velocity.Normalize();
                     velocity = velocity * speed;
                 }

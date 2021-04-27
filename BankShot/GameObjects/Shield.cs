@@ -13,6 +13,7 @@ namespace BankShot
         protected Vector2 velocity;
         private bool active;
         private double timeSinceBreak;
+        private double coolDown;
 
         public bool Active
         {
@@ -38,9 +39,10 @@ namespace BankShot
         //Parameterized Constructor
         public Shield(Texture2D texture, Rectangle transform, 
                       List<Rectangle> collisionBoxes, bool active, 
-                      Vector2 velocity)
+                      Vector2 velocity, double coolDown)
                       : base(texture, transform, collisionBoxes, active)
         {
+            this.coolDown = coolDown;
             this.velocity = velocity;
             timeSinceBreak = 4;
 
@@ -56,7 +58,7 @@ namespace BankShot
         //check for input to raise the shield.
         public void ProcessInput()
         {
-            if (Input.MouseHeld(2) && timeSinceBreak >= 2.5)
+            if (Input.MouseHeld(2) && timeSinceBreak >= 2.5 && Game1.player.CurrentKnockback.X == 0)
             {
                 active = true;
             }

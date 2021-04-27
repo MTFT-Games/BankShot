@@ -18,13 +18,14 @@ namespace BankShot
         private Rectangle transformShop;
         private List<Rectangle> collisionBoxesShop;
         private bool activeShop;
+        private Texture2D exitTx;
 
 
 
         //constructor------------------------------------------------------------------------------
         public UpgradeManager(Texture2D damageTexture, Texture2D speedTexture, Texture2D healthTexture,
             Texture2D textureForShop, Rectangle transformForShop, List<Rectangle> collisionBoxesForShop,
-            bool activeForShop)
+            bool activeForShop, Texture2D exit)
         {
             upgrades = new List<Upgrade>();
 
@@ -106,6 +107,9 @@ namespace BankShot
             collisionBoxesShop = new List<Rectangle> { transformShop };
 
             Shop.ShopWindow = Program.game.Content.Load<Texture2D>("ShopWindow");
+
+            exitTx = exit;
+
         }
 
         //accessors. each get and set for now, subject to change ----------------------------------
@@ -151,7 +155,7 @@ namespace BankShot
         public void MakeShop()
         {
             //takes in an array of objects and creates an instance of "Shop" to be used by the player
-            shops.Add(new Shop(textureShop, transformShop, collisionBoxesShop, activeShop, upgrades));
+            shops.Add(new Shop(textureShop, transformShop, collisionBoxesShop, activeShop, upgrades, exitTx));
 
         }
 
@@ -173,12 +177,12 @@ namespace BankShot
                 //takes in an upgrade and applies it to the Player
                 if (upgrade.damageIsMultiplier)
                 {
-                    p.CurrentWeapon.Damage *= 2;
+                    p.DamageMods[0] *= 2;
 
                 }
                 else
                 {
-                    p.CurrentWeapon.Damage += 2;
+                    p.DamageMods[1] += 2;
                 }
 
                 if (upgrade.projectileCountIsMultiplier)
@@ -201,15 +205,11 @@ namespace BankShot
 
                 if (upgrade.projectileSpeedIsMultiplier)
                 {
-                    Gun g = (Gun)p.CurrentWeapon;
-                    g.Speed *= upgrade.projectileSpeedModifier;
-                    p.CurrentWeapon = g;
+                    p.ProjectileSpeedMods[0] *= upgrade.projectileSpeedModifier;
                 }
                 else
                 {
-                    Gun g = (Gun)p.CurrentWeapon;
-                    g.Speed += upgrade.projectileSpeedModifier;
-                    p.CurrentWeapon = g;
+                    p.ProjectileSpeedMods[1] += upgrade.projectileSpeedModifier;
                 }
 
                 if (upgrade.projectileSpreadIsMultiplier)
@@ -223,11 +223,11 @@ namespace BankShot
 
                 if (upgrade.projectileHomingIsMultiplier)
                 {
-                    //not implemented yet
+                    p.ProjectileHoming *= upgrade.projectileHomingModifier;
                 }
                 else
                 {
-                    //not implemented yet
+                    //Not sure how to implement this
                 }
 
                 if (upgrade.shieldHealthIsMultiplier)
@@ -287,6 +287,15 @@ namespace BankShot
                 }
 
                 if (upgrade.knockbackIsMultiplier)
+                {
+                    //not implemented yet
+                }
+                else
+                {
+                    //not implemented yet
+                }
+
+                if (upgrade.knockbackResistIsMultiplier)
                 {
                     //not implemented yet
                 }

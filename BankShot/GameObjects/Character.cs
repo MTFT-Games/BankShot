@@ -19,10 +19,12 @@ namespace BankShot
         protected int maxHealth;
         protected int health;
         protected Vector2 velocity;
+        protected Vector2 truePosition;
 
         //We have not decided which of these we will use.
         protected double invincibleTime;
         protected int invincibleFrames;
+        protected Vector2 knockBackVector;
 
         //Properties
         public bool Invincible
@@ -73,6 +75,10 @@ namespace BankShot
             health = maxHealth;
             this.velocity = velocity;
             invincible = false;
+            this.knockBackVector = new Vector2(0, 0);
+            this.truePosition = new Vector2(0, 0);
+            truePosition.X = X + rect.Width / 2;
+            truePosition.Y = Y + rect.Height / 2;
         }
 
         //Methods
@@ -83,14 +89,15 @@ namespace BankShot
         /// </summary>
         /// <param name="damage">The amount of damage taken.</param>
         /// <param name="knockback">The amount of knockback applied.</param>
-        public virtual void TakeDamage(int damage, float knockback) 
+        public virtual void TakeDamage(int damage, float knockback, GameObject damageDealer) 
         {
             health -= damage;
             if (health < 0 )
             {
                 health = 0;
             }
-            this.velocity.X += knockback;
+            this.knockBackVector = new Vector2(1, 0);
+            this.knockBackVector *= knockback;
         }
 
         /// <summary>
@@ -113,6 +120,7 @@ namespace BankShot
         /// </summary>
         public virtual void Move() 
         {
+            this.ApplyKnockBack();
             position += velocity;
         }
 
@@ -121,6 +129,16 @@ namespace BankShot
             this.Move();
             X = (int)position.X;
             Y = (int)position.Y;
+            truePosition.X = X + rect.Width / 2;
+            truePosition.Y = Y + rect.Height / 2;
+        }
+        public void ApplyKnockBack()
+        {
+            velocity += knockBackVector;
+            if (knockBackVector.X != 0)
+            {
+                knockBackVector.X -= knockBackVector.X / Math.Abs(knockBackVector.X) / 2;
+            }
         }
     }
 }

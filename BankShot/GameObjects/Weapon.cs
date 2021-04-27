@@ -42,7 +42,7 @@ namespace BankShot
         //Parameterized Constructor
         public Weapon(Texture2D texture, Rectangle transform, 
                       List<Rectangle> collisionBoxes, bool active, 
-                      int damage, float knockback) 
+                      int damage, float knockback, bool fromEnemy) 
                       : base(texture, transform, collisionBoxes, active)
         {
             this.damage = damage;
