@@ -9,12 +9,15 @@ namespace BankShot
 {
     class ChaserEnemy : Enemy
     {
+        //Fields
+        private int speed;
         public ChaserEnemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active,
-                           int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money) : 
+                           int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money, 
+                           int speed) : 
                            base(texture, rect, collisionBoxes, active, maxHealth, velocity, 
                                 attackPower, knockbackDistance, money)
         {
-
+            this.speed = speed;
         }
 
         public override void Move()
@@ -33,12 +36,12 @@ namespace BankShot
             //Determines whether target is to the left or the right of the enemy
             if (distanceX < -5)//target is to the left of enemy
             {
-                velocity.X = 1;
+                velocity.X = speed;
                 this.leftFacing = false;
             }
             else if (distanceX > 5)//target is to the right of enemy
             {
-                velocity.X = -1;
+                velocity.X = -1 * speed;
                 this.leftFacing = true;
             }
             else

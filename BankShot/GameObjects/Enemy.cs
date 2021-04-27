@@ -86,12 +86,6 @@ namespace BankShot
         /// </summary>
         public override void Update()
         {
-            /*
-            if(health <= 0)
-            {
-                return;
-            }
-            */
             //foreach gameobject in Game1.MapManager.Map
             //ground/gameobject collision
             Move();
@@ -112,9 +106,14 @@ namespace BankShot
         /// </summary>
         public override void Move()
         {
-            velocity += new Vector2(0, 1);//apply gravity
+            this.ApplyGravity();
             base.Move();
             ResolveCollisions();
+        }
+
+        public virtual void ApplyGravity()
+        {
+            velocity += new Vector2(0, 1);//apply gravity
         }
 
         public override void TakeDamage(int damage, float knockback, GameObject damageDealer)
