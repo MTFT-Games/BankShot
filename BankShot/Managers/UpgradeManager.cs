@@ -18,13 +18,14 @@ namespace BankShot
         private Rectangle transformShop;
         private List<Rectangle> collisionBoxesShop;
         private bool activeShop;
+        private Texture2D exitTx;
 
 
 
         //constructor------------------------------------------------------------------------------
         public UpgradeManager(Texture2D damageTexture, Texture2D speedTexture, Texture2D healthTexture,
             Texture2D textureForShop, Rectangle transformForShop, List<Rectangle> collisionBoxesForShop,
-            bool activeForShop)
+            bool activeForShop, Texture2D exit)
         {
             upgrades = new List<Upgrade>();
 
@@ -106,6 +107,9 @@ namespace BankShot
             collisionBoxesShop = new List<Rectangle> { transformShop };
 
             Shop.ShopWindow = Program.game.Content.Load<Texture2D>("ShopWindow");
+
+            exitTx = exit;
+
         }
 
         //accessors. each get and set for now, subject to change ----------------------------------
@@ -151,7 +155,7 @@ namespace BankShot
         public void MakeShop()
         {
             //takes in an array of objects and creates an instance of "Shop" to be used by the player
-            shops.Add(new Shop(textureShop, transformShop, collisionBoxesShop, activeShop, upgrades));
+            shops.Add(new Shop(textureShop, transformShop, collisionBoxesShop, activeShop, upgrades, exitTx));
 
         }
 

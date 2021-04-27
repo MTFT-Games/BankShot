@@ -70,6 +70,7 @@ namespace BankShot {
         private Texture2D playerTexture;
         private Texture2D wallTexture;
         public Texture2D enemyTexture;
+        public Texture2D shopExitButton;
 
         //upgrade textures
         private Texture2D damageTx;
@@ -140,9 +141,10 @@ namespace BankShot {
             healthTx = Content.Load<Texture2D>("HealthIcon");
             projecTx = Content.Load<Texture2D>("ShotSpeedIcon");
             enemyTexture = Content.Load<Texture2D>("GoldSlime");
+            shopExitButton = Content.Load<Texture2D>("button1");
 
             //all values except for textures are temporary
-            upgradeManager = new UpgradeManager(damageTx, projecTx, healthTx, playerTexture, new Rectangle(700,800,60,60), new List<Rectangle>(), true);
+            upgradeManager = new UpgradeManager(damageTx, projecTx, healthTx, playerTexture, new Rectangle(700,800,60,60), new List<Rectangle>(), true, shopExitButton);
 
             waveManager = new WaveManager();
 
