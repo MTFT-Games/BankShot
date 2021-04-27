@@ -86,10 +86,6 @@ namespace BankShot
         /// </summary>
         public override void Update()
         {
-            if(health <= 0)
-            {
-                return;
-            }
             //foreach gameobject in Game1.MapManager.Map
             //ground/gameobject collision
             Move();
@@ -106,39 +102,18 @@ namespace BankShot
 
 
         /// <summary>
-        /// Sets velocity in the direction of the player
-        /// <param name="target"></param>
-        public void Pathfind(GameObject target)
-        {
-            //determines difference between enemy Xposition and target Xposition
-            int distanceX = this.X - target.X;
-
-            //Determines whether target is to the left or the right of the enemy
-            if (distanceX < -5)//target is to the left of enemy
-            {
-                velocity.X = 1;
-                this.leftFacing = false;
-            }
-            else if (distanceX > 5)//target is to the right of enemy
-            {
-                velocity.X = -1;
-                this.leftFacing = true;
-            }
-            else 
-            {
-                X = Game1.player.X;
-                velocity.X = 0;
-            }
-        }
-        /// <summary>
         /// Sets enemy direction and moves
         /// </summary>
         public override void Move()
         {
-            velocity += new Vector2(0, 1);//apply gravity
+            this.ApplyGravity();
             base.Move();
             ResolveCollisions();
-            Pathfind(Game1.player);//find player
+        }
+
+        public virtual void ApplyGravity()
+        {
+            velocity += new Vector2(0, 1);//apply gravity
         }
 
         public override void TakeDamage(int damage, float knockback, GameObject damageDealer)
@@ -158,34 +133,33 @@ namespace BankShot
                 //wider = left
                 if (enemyPosition.Intersects(ground.Rect))
                 {
-                    Rectangle collisionRect = Rectangle.Intersect(rect, ground.Rect);
-                    if (collisionRect.Width >= collisionRect.Height)//vertical collision
+                    Rectangle intersection = Rectangle.Intersect(enemyPosition, ground.Rect);
+                    if (intersection.Width <= intersection.Height)
+                    {
+                        if (enemyPosition.X <= ground.X)
+                        {
+                            enemyPosition.X -= intersection.Width;
+                        }
+                        else
+                        {
+                            enemyPosition.X += intersection.Width;
+                        }
+                    }
+                    else
                     {
                         velocity.Y = 0;
                         if (enemyPosition.Y <= ground.Y)
                         {
-                            enemyPosition.Y -= collisionRect.Height;                            
+                            enemyPosition.Y -= intersection.Height;
                         }
                         else
                         {
-                            enemyPosition.Y += collisionRect.Height;
+                            enemyPosition.Y += intersection.Height;
                         }
                     }
-                    else if (collisionRect.Height >= collisionRect.Width)//horizontal collision
-                    {
-                        if (enemyPosition.X <= ground.X)
-                        {
-                            enemyPosition.X -= collisionRect.Width;
-                        }
-                        else
-                        {
-                            enemyPosition.X += collisionRect.Width;
-                        }
-                    }
-                    //sync enemyposition with new proposed position
-                    position.X = enemyPosition.X;
-                    position.Y = enemyPosition.Y;
                 }
+                position.X = enemyPosition.X;
+                position.Y = enemyPosition.Y;
             }
         }
 

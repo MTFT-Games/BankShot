@@ -55,14 +55,6 @@ namespace BankShot
             }
         }
 
-        public override void Move()
-        {
-            velocity += new Vector2(0, 1);//apply gravity
-            position += velocity;
-            ResolveCollisions();
-            velocity.X = 0;
-        }
-
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (leftFacing)
