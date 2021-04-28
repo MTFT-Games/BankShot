@@ -9,7 +9,7 @@ namespace BankShot
     /// </summary>
     public struct Upgrade
     {
-        public bool damageIsMultiplier; 
+        public bool damageIsMultiplier;
         public int damageModifier;
 
         public bool projectileCountIsMultiplier;
@@ -149,20 +149,20 @@ namespace BankShot
         /// <param name="weight">The weight associated with this upgrade to give 
         /// it rarity in the random generator.</param>
         /// <param name="cost">The cost of the upgrade.</param>
-        public Upgrade(bool damageIsMultiplier, int damageModifier, 
-            bool projectileCountIsMultiplier, int projectileCountModifier, 
-            bool rateOfFireIsMultiplier, float rateOfFireModifier, 
-            bool projectileSpeedIsMultiplier, float projectileSpeedModifier, 
-            int projectileSizeModifier, bool projectileSpreadIsMultiplier, 
-            float projectileSpreadModifier, bool projectileHomingIsMultiplier, 
-            float projectileHomingModifier, bool shieldHealthIsMultiplier, 
-            int shieldHealthModifier, bool shieldRegenIsMultiplier, 
-            float shieldRegenModifier, bool shieldCooldownIsMultiplier, 
-            float shieldCooldownModifier, bool healthIsMultiplier, 
-            float healthModifier, bool healthRegenIsMultiplier, 
-            float healthRegenModifier, bool knockbackIsMultiplier, 
-            float knockbackModifier, bool knockbackResistIsMultiplier, 
-            int knockbackResistModifier, Texture2D icon, string name, 
+        public Upgrade(bool damageIsMultiplier, int damageModifier,
+            bool projectileCountIsMultiplier, int projectileCountModifier,
+            bool rateOfFireIsMultiplier, float rateOfFireModifier,
+            bool projectileSpeedIsMultiplier, float projectileSpeedModifier,
+            int projectileSizeModifier, bool projectileSpreadIsMultiplier,
+            float projectileSpreadModifier, bool projectileHomingIsMultiplier,
+            float projectileHomingModifier, bool shieldHealthIsMultiplier,
+            int shieldHealthModifier, bool shieldRegenIsMultiplier,
+            float shieldRegenModifier, bool shieldCooldownIsMultiplier,
+            float shieldCooldownModifier, bool healthIsMultiplier,
+            float healthModifier, bool healthRegenIsMultiplier,
+            float healthRegenModifier, bool knockbackIsMultiplier,
+            float knockbackModifier, bool knockbackResistIsMultiplier,
+            int knockbackResistModifier, Texture2D icon, string name,
             string description, int weight, int cost)
         {
             this.damageIsMultiplier = damageIsMultiplier;

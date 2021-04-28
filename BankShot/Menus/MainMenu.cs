@@ -44,9 +44,9 @@ namespace BankShot
             //writes text over buttons(will be gotten rid of once buttons 
             //textures created
             //start button text
-            sb.DrawString(font, 
+            sb.DrawString(font,
                 "START",
-                new Vector2(200,200),
+                new Vector2(200, 200),
                 Color.White);
             //exit button text
             sb.DrawString(font,
@@ -79,17 +79,16 @@ namespace BankShot
 
         }
 
-        public void Update(KeyboardState kbs, MouseState ms, MouseState msPrev, out GameState state) 
+        public void Update(KeyboardState kbs, MouseState ms, MouseState msPrev, out GameState state)
         {
             Rectangle mousePosition = new Rectangle(ms.X, ms.Y, 1, 1);
-            if(SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(startBtn))
+            if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(startBtn))
             {
-                
+
                 //changes game state to game mode
                 state = GameState.Game;
 
-            }
-            else
+            } else
             {
                 state = GameState.MainMenu;
             }
@@ -97,12 +96,12 @@ namespace BankShot
             {
                 //exits game
                 Program.game.Exit();
-               
+
             }
         }
 
-     
-            
+
+
 
 
     }

@@ -21,7 +21,7 @@ namespace BankShot
         //field that follows game1's test mode bool
         //used to determine text shown on test mode button
         bool testingStatus;
-        
+
 
 
         public PauseMenu(SpriteFont f, Texture2D tx)
@@ -65,14 +65,15 @@ namespace BankShot
                Color.White);
 
             //player stats
-            if (Game1.player.CurrentWeapon is Gun) {
+            if (Game1.player.CurrentWeapon is Gun)
+            {
                 Gun currentGun = (Gun)Game1.player.CurrentWeapon;
 
                 sb.DrawString(
                     font,
-                    "Weapon Power: " + currentGun.Damage + 
+                    "Weapon Power: " + currentGun.Damage +
                     "\nShot Speed: " + currentGun.Speed,
-                    new Vector2(800,300),
+                    new Vector2(800, 300),
                     Color.White
                     );
             }
@@ -109,8 +110,7 @@ namespace BankShot
             {
                 //resumes game (TO BE TUNED TO FIT ENUMERATOR)
                 state = GameState.Game;
-            }
-            else
+            } else
             {
                 state = GameState.Pause;
             }
@@ -121,15 +121,14 @@ namespace BankShot
                 if (Program.game.Test)
                 {
                     Program.game.Test = false;
-                }
-                else if (!Program.game.Test)
+                } else if (!Program.game.Test)
                 {
                     Program.game.Test = true;
-                    
-                }
-                
 
-            }  
+                }
+
+
+            }
         }
 
 

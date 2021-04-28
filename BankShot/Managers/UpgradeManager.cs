@@ -28,22 +28,24 @@ namespace BankShot
             bool activeForShop, Texture2D exit)
         {
             upgrades = new List<Upgrade>();
-
-            Upgrade upgrade1 = new Upgrade(true, 200,
-               false, 0,
-               false, 0,
-               false, 0, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-                 damageTexture,
-                "Damage Boost", 
+            
+            Upgrade upgrade1 = new Upgrade(
+                true, 200,   //Damage
+                false, 0,    //Projectile count
+                false, 0,    //Rate of fire
+                false, 0,    //Projectile speed
+                0,           //Projectile size
+                false, 0,    //Projectile spread
+                false, 0,    //Projectile homing
+                false, 0,    //Shield health
+                false, 0,    //Shield regeneration
+                false, 0,    //Shield cooldown
+                false, 0,    //Health
+                false, 0,    //Health regeneration
+                false, 0,    //Knockback
+                false, 0,    //Knockback resist
+                damageTexture,
+                "Damage Boost",
                 "Doubles damage done by player",
                 1,
                 2000);
@@ -51,50 +53,53 @@ namespace BankShot
             upgrades.Add(upgrade1);
 
             Upgrade upgrade2 = new Upgrade(
-                false, 0,
-               false, 0, 
-               false, 0,
-               true, 1.50f, 1,
-               false, 0,
-               false, 0,
-               false, 0, 
-               false, 0,
-               false, 0,
-               false, 0,
-               false, 0, 
-               false, 0, 
-               false, 0,
-               speedTexture,
-               "Projectile Boost",
-               "Speeds up projectiles by 50%",
-               1,
-               1000);
+                false, 0,   //Damage
+                false, 0,   //Projectile count
+                false, 0,   //Rate of fire
+                true, 1.50f,//Projectile speed 
+                1,          //Projectile size
+                false, 0,   //Projectile spread
+                false, 0,   //Projectile homing
+                false, 0,   //Shield health
+                false, 0,   //Shield regeneration
+                false, 0,   //Shield cooldown
+                false, 0,   //Health
+                false, 0,   //Health regeneration
+                false, 0,   //Knockback
+                false, 0,   //Knockback resist
+                speedTexture,
+                "Projectile Boost",
+                "Speeds up projectiles by 50%",
+                1,
+                1000);
 
             upgrades.Add(upgrade2);
 
-            Upgrade upgrade3 = new Upgrade(false, 0,
-               false, 0,
-               false, 0,
-               false, 0, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-               false, 0,
-               true, 1.5f,
-               false, 0,
-               false, 0,
-               false, 0,
-               healthTexture,
-               "Health Boost",
-               "Increases max health by 50%",
-               1,
-               1500);
+            Upgrade upgrade3 = new Upgrade(
+                false, 0,   //Damage
+                false, 0,   //Projectile count
+                false, 0,   //Rate of fire
+                false, 0,   //Projectile speed
+                0,          //Projectile size
+                false, 0,   //Projectile spread
+                false, 0,   //Projectile homing
+                false, 0,   //Shield health
+                false, 0,   //Shield regeneration
+                false, 0,   //Shield cooldown
+                true, 1.5f, //Health
+                false, 0,   //Health regeneration
+                false, 0,   //Knockback
+                false, 0,   //Knockback resist
+                healthTexture,
+                "Health Boost",
+                "Increases max health by 50%",
+                1,
+                1500);
 
             upgrades.Add(upgrade3);
 
             int tWeight = 0;
-            foreach(Upgrade u in upgrades)
+            foreach (Upgrade u in upgrades)
             {
                 tWeight += u.weight;
             }
@@ -179,8 +184,7 @@ namespace BankShot
                 {
                     p.DamageMods[0] *= 2;
 
-                }
-                else
+                } else
                 {
                     p.DamageMods[1] += 2;
                 }
@@ -188,8 +192,7 @@ namespace BankShot
                 if (upgrade.projectileCountIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }
@@ -197,8 +200,7 @@ namespace BankShot
                 if (upgrade.rateOfFireIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }
@@ -206,8 +208,7 @@ namespace BankShot
                 if (upgrade.projectileSpeedIsMultiplier)
                 {
                     p.ProjectileSpeedMods[0] *= upgrade.projectileSpeedModifier;
-                }
-                else
+                } else
                 {
                     p.ProjectileSpeedMods[1] += upgrade.projectileSpeedModifier;
                 }
@@ -215,8 +216,7 @@ namespace BankShot
                 if (upgrade.projectileSpreadIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }
@@ -224,8 +224,7 @@ namespace BankShot
                 if (upgrade.projectileHomingIsMultiplier)
                 {
                     p.ProjectileHoming *= upgrade.projectileHomingModifier;
-                }
-                else
+                } else
                 {
                     //Not sure how to implement this
                 }
@@ -233,8 +232,7 @@ namespace BankShot
                 if (upgrade.shieldHealthIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }
@@ -242,8 +240,7 @@ namespace BankShot
                 if (upgrade.shieldRegenIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }
@@ -251,8 +248,7 @@ namespace BankShot
                 if (upgrade.shieldCooldownIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }
@@ -260,10 +256,9 @@ namespace BankShot
                 if (upgrade.healthIsMultiplier)
                 {
                     double temp = p.Health / (double)p.MaxHealth;
-                    p.MaxHealth = (int)(p.MaxHealth*upgrade.healthModifier);
+                    p.MaxHealth = (int)(p.MaxHealth * upgrade.healthModifier);
                     p.Health = (int)(p.MaxHealth * temp);
-                }
-                else
+                } else
                 {
                     p.Health += (int)upgrade.healthModifier;
                 }
@@ -271,8 +266,7 @@ namespace BankShot
                 if (upgrade.healthRegenIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }
@@ -280,8 +274,7 @@ namespace BankShot
                 if (upgrade.knockbackIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }
@@ -289,8 +282,7 @@ namespace BankShot
                 if (upgrade.knockbackIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }
@@ -298,8 +290,7 @@ namespace BankShot
                 if (upgrade.knockbackResistIsMultiplier)
                 {
                     //not implemented yet
-                }
-                else
+                } else
                 {
                     //not implemented yet
                 }

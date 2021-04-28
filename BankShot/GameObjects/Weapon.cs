@@ -40,9 +40,9 @@ namespace BankShot
         }
 
         //Parameterized Constructor
-        public Weapon(Texture2D texture, Rectangle transform, 
-                      List<Rectangle> collisionBoxes, bool active, 
-                      int damage, float knockback, bool fromEnemy) 
+        public Weapon(Texture2D texture, Rectangle transform,
+                      List<Rectangle> collisionBoxes, bool active,
+                      int damage, float knockback, bool fromEnemy)
                       : base(texture, transform, collisionBoxes, active)
         {
             this.damage = damage;
@@ -52,14 +52,14 @@ namespace BankShot
         //Methods
         public virtual void Attack() { }
 
-        public void Move() 
+        public void Move()
         {
             position += velocity;
         }
 
         public override void Update()
         {
-            this.Move();
+            Move();
             X = (int)position.X;
             Y = (int)position.Y;
         }

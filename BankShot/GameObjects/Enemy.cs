@@ -30,14 +30,14 @@ namespace BankShot
             get { return money; }
         }
         //Constructor
-        public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active, 
+        public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active,
             int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money)
-            : base(texture,rect,collisionBoxes,active,maxHealth,velocity)
+            : base(texture, rect, collisionBoxes, active, maxHealth, velocity)
         {
             this.attackPower = attackPower;
             this.knockbackDistance = knockbackDistance;
             this.money = money;
-            this.leftFacing = true;
+            leftFacing = true;
 
             //adds stats to a list for manager
             //stats format: texture, rectangle, boxes(list rectangle),
@@ -55,11 +55,12 @@ namespace BankShot
             stats.Add(money);
         }
 
-        public Enemy(Texture2D texture, Rectangle rect, bool active, 
-            int maxHealth, Vector2 velocity, int attackPower, 
-            float knockbackDistance, int money) 
+        public Enemy(Texture2D texture, Rectangle rect, bool active,
+            int maxHealth, Vector2 velocity, int attackPower,
+            float knockbackDistance, int money)
             : this(texture, rect, new List<Rectangle> { rect }, active, maxHealth,
-                  velocity, attackPower, knockbackDistance, money) { }
+                  velocity, attackPower, knockbackDistance, money)
+        { }
 
         //Methods
         /// <summary>
@@ -74,8 +75,7 @@ namespace BankShot
                 if (X + rect.Width / 2 > victim.X + victim.Rect.Width / 2)
                 {
                     target.TakeDamage(attackPower, -1 * knockbackDistance, this);
-                }
-                else
+                } else
                 {
                     target.TakeDamage(attackPower, knockbackDistance, this);
                 }
@@ -106,7 +106,7 @@ namespace BankShot
         /// </summary>
         public override void Move()
         {
-            this.ApplyGravity();
+            ApplyGravity();
             base.Move();
             ResolveCollisions();
         }
@@ -139,20 +139,17 @@ namespace BankShot
                         if (enemyPosition.X <= ground.X)
                         {
                             enemyPosition.X -= intersection.Width;
-                        }
-                        else
+                        } else
                         {
                             enemyPosition.X += intersection.Width;
                         }
-                    }
-                    else
+                    } else
                     {
                         velocity.Y = 0;
                         if (enemyPosition.Y <= ground.Y)
                         {
                             enemyPosition.Y -= intersection.Height;
-                        }
-                        else
+                        } else
                         {
                             enemyPosition.Y += intersection.Height;
                         }

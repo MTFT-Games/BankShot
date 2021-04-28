@@ -74,7 +74,7 @@ namespace BankShot
 
                 if (!waveBreak)
                 {
-                    Game1.player.Heal(Game1.player.MaxHealth/10);
+                    Game1.player.Heal(Game1.player.MaxHealth / 10);
                     NextWave();
                     Program.game.enemyManager.SpawnedEnemies.Add(new RangedEnemy(Program.game.enemyTexture, new Rectangle(810, 200, 100, 100), new List<Rectangle>(), true, 10, new Vector2(0, 0), 5, 5, 10, new Gun(new Texture2D(Program.game._graphics.GraphicsDevice, 1, 1), new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10, true, 1.4, 13, new Vector2(0, 0), Program.game.projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), 0, false, true, true), 2, 800));
                 }
@@ -97,7 +97,7 @@ namespace BankShot
                 string[] splitEntry = waves[waveToSpawn][i].Split('|');
                 Program.game.enemyManager.Spawn<Enemy>(
                     new Vector2(
-                        float.Parse(splitEntry[1]), 
+                        float.Parse(splitEntry[1]),
                         float.Parse(splitEntry[2])));
             }
 

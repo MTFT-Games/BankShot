@@ -20,7 +20,7 @@ namespace BankShot
 
         //damageable objects must have a double holding the length of 
         //their invincibility period
-        Double InvincibleTime { get; }
+        double InvincibleTime { get; }
 
         /// <summary>
         /// all damageable objects are to have a method that allows

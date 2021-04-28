@@ -58,7 +58,7 @@ namespace BankShot
             }
             return false;
         }
-        
+
         /// <summary>
         /// Checks for a single click of a mouse button 
         /// passed in as a parameter.

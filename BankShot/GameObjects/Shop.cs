@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Threading;
 
 
 namespace BankShot
@@ -59,7 +59,7 @@ namespace BankShot
             leaving = false;
         }
 
-        public void ExitScreen() 
+        public void ExitScreen()
         {
             leaving = true;
         }
@@ -75,18 +75,18 @@ namespace BankShot
         public void Draw(SpriteBatch sb)
         {
             //shows upgrades, uses manager readUpgrades method
-           // switch (state)
-           // {
-             //   case GameState.Game:
-                sb.Draw(texture, rect, Color.White);
-               //     break;
-                //case GameState.Shop:
+            // switch (state)
+            // {
+            //   case GameState.Game:
+            sb.Draw(texture, rect, Color.White);
+            //     break;
+            //case GameState.Shop:
 
-                    Color colorUp1 = Color.White;
-                    Color colorUp2 = Color.White;
-                    Color colorUp3 = Color.White;
+            Color colorUp1 = Color.White;
+            Color colorUp2 = Color.White;
+            Color colorUp3 = Color.White;
 
-                    Rectangle msLoc = new Rectangle(Input.MousePosition.ToPoint(), new Point(1, 1));
+            Rectangle msLoc = new Rectangle(Input.MousePosition.ToPoint(), new Point(1, 1));
 
             if (Game1.player.Rect.Intersects(rect))
             {
@@ -97,16 +97,16 @@ namespace BankShot
 
                 Color hoverExit = Color.White;
 
-                if(msLoc.Intersects(new Rectangle((int)Position.X + (rect.Width / 2) - 250, (int)position.Y - 200, 500, 200)))
+                if (msLoc.Intersects(new Rectangle((int)Position.X + (rect.Width / 2) - 250, (int)position.Y - 200, 500, 200)))
                 {
                     hoverExit = Color.Red;
                 }
 
-                
-                    sb.Draw(
-                    exitTx,
-                    new Rectangle((int)Position.X + (rect.Width / 2) - 250, (int)position.Y - 200, 500, 200),
-                    hoverExit);
+
+                sb.Draw(
+                exitTx,
+                new Rectangle((int)Position.X + (rect.Width / 2) - 250, (int)position.Y - 200, 500, 200),
+                hoverExit);
 
                 if (msLoc.Intersects(upgrade1Rect))
                 {
@@ -140,7 +140,7 @@ namespace BankShot
                 // break;
             }
 
-           
+
         }
 
         public virtual void Move()
@@ -155,8 +155,8 @@ namespace BankShot
             //check cost with player wallet
 
             //calls apply upgrade upon clicking on a chosen upgrade
-            
-            if(Input.MouseClick(1) && msLoc.Intersects(upgrade1Rect))
+
+            if (Input.MouseClick(1) && msLoc.Intersects(upgrade1Rect))
             {
                 Game1.upgradeManager.ApplyUpgrades(forSale[0], Game1.player);
             }
@@ -193,7 +193,7 @@ namespace BankShot
                     rect.X -= 5;
                 } else
                 {
-                Game1.upgradeManager.Shops.Remove(this);
+                    Game1.upgradeManager.Shops.Remove(this);
                 }
             }
         }

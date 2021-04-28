@@ -5,7 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace BankShot {
+namespace BankShot
+{
     public class ProjectileManager
     {
         public List<Projectile> projectiles;
@@ -23,7 +24,7 @@ namespace BankShot {
             {
                 bool destroyed = false;
                 //Checking this projectile against every projectile after it in the list.
-                for (int j = i + 1; j < projectiles.Count; j++ )
+                for (int j = i + 1; j < projectiles.Count; j++)
                 {
                     if (projectiles[i].gunOfOrigin != projectiles[j].gunOfOrigin)
                     {
@@ -55,8 +56,7 @@ namespace BankShot {
                             i--;
                             destroyed = true;
                             Game1.player.CurrentShield.BreakShield();
-                        }
-                        else if (projectiles[i].Rect.Intersects(Game1.player.Rect))
+                        } else if (projectiles[i].Rect.Intersects(Game1.player.Rect))
                         {
                             projectiles[i].DealDamage((IDamageable)Game1.player);
                             projectiles[i].Destroy();
@@ -105,7 +105,7 @@ namespace BankShot {
                 projectiles[i].Update(gameTime);
                 //projectiles[i].ElapseTime += (double) (gameTime.TotalGameTime.TotalSeconds);
             }
-            this.checkCollisions();
+            checkCollisions();
         }
 
         public void DrawProjectiles(SpriteBatch sb)

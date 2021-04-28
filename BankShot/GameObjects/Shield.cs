@@ -37,8 +37,8 @@ namespace BankShot
         }
 
         //Parameterized Constructor
-        public Shield(Texture2D texture, Rectangle transform, 
-                      List<Rectangle> collisionBoxes, bool active, 
+        public Shield(Texture2D texture, Rectangle transform,
+                      List<Rectangle> collisionBoxes, bool active,
                       Vector2 velocity, double coolDown)
                       : base(texture, transform, collisionBoxes, active)
         {
@@ -61,8 +61,7 @@ namespace BankShot
             if (Input.MouseHeld(2) && timeSinceBreak >= 2.5 && Game1.player.CurrentKnockback.X == 0)
             {
                 active = true;
-            }
-            else
+            } else
             {
                 active = false;
             }
@@ -71,7 +70,7 @@ namespace BankShot
         public void Update(GameTime time)
         {
             ProcessInput();
-            this.Move();
+            Move();
             X = (int)position.X;
             Y = (int)position.Y;
             timeSinceBreak += time.ElapsedGameTime.TotalSeconds;

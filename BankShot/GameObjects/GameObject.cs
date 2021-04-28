@@ -67,7 +67,7 @@ namespace BankShot
         public GameObject(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active)
         {
             this.texture = texture;
-            this.rect = transform;
+            rect = transform;
             this.collisionBoxes = collisionBoxes;
             this.active = active;
             position = new Vector2(transform.X, transform.Y);
@@ -80,7 +80,7 @@ namespace BankShot
         //Methods
         public virtual void Update() { }
 
-        public virtual void Draw(SpriteBatch spriteBatch) 
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, rect, Color.White);
         }
@@ -89,7 +89,7 @@ namespace BankShot
         {
             if (flip)
             {
-            spriteBatch.Draw(texture, rect, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.Draw(texture, rect, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
             } else
             {
                 spriteBatch.Draw(texture, rect, Color.White);

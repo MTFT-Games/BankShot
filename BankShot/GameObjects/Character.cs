@@ -46,7 +46,7 @@ namespace BankShot
                 return health;
             }
         }
-        public Double InvincibleTime
+        public double InvincibleTime
         {
             get
             {
@@ -66,17 +66,17 @@ namespace BankShot
         }
 
         //Parameterized Constructor
-        public Character(Texture2D texture, Rectangle transform, 
-                         List<Rectangle> collisionBoxes, bool active, 
-                         int maxHealth,Vector2 velocity)
+        public Character(Texture2D texture, Rectangle transform,
+                         List<Rectangle> collisionBoxes, bool active,
+                         int maxHealth, Vector2 velocity)
                          : base(texture, transform, collisionBoxes, active)
         {
             this.maxHealth = maxHealth;
             health = maxHealth;
             this.velocity = velocity;
             invincible = false;
-            this.knockBackVector = new Vector2(0, 0);
-            this.truePosition = new Vector2(0, 0);
+            knockBackVector = new Vector2(0, 0);
+            truePosition = new Vector2(0, 0);
             truePosition.X = X + rect.Width / 2;
             truePosition.Y = Y + rect.Height / 2;
         }
@@ -89,15 +89,15 @@ namespace BankShot
         /// </summary>
         /// <param name="damage">The amount of damage taken.</param>
         /// <param name="knockback">The amount of knockback applied.</param>
-        public virtual void TakeDamage(int damage, float knockback, GameObject damageDealer) 
+        public virtual void TakeDamage(int damage, float knockback, GameObject damageDealer)
         {
             health -= damage;
-            if (health < 0 )
+            if (health < 0)
             {
                 health = 0;
             }
-            this.knockBackVector = new Vector2(1, 0);
-            this.knockBackVector *= knockback;
+            knockBackVector = new Vector2(1, 0);
+            knockBackVector *= knockback;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace BankShot
         /// health.
         /// </summary>
         /// <param name="healing">The amount healed.</param>
-        public void Heal(int healing) 
+        public void Heal(int healing)
         {
             health += healing;
             if (health > maxHealth)
@@ -118,15 +118,15 @@ namespace BankShot
         /// Applies the velocity vector to the 
         /// Character's X and Y values.
         /// </summary>
-        public virtual void Move() 
+        public virtual void Move()
         {
-            this.ApplyKnockBack();
+            ApplyKnockBack();
             position += velocity;
         }
 
         public override void Update()
         {
-            this.Move();
+            Move();
             X = (int)position.X;
             Y = (int)position.Y;
             truePosition.X = X + rect.Width / 2;

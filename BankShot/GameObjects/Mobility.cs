@@ -27,8 +27,8 @@ namespace BankShot
         }
 
         //Parameterized Constructor
-        public Mobility(Texture2D texture, Rectangle transform, 
-                        List<Rectangle> collisionBoxes, bool active, 
+        public Mobility(Texture2D texture, Rectangle transform,
+                        List<Rectangle> collisionBoxes, bool active,
                         Vector2 velocity)
                         : base(texture, transform, collisionBoxes, active)
         {
@@ -45,7 +45,7 @@ namespace BankShot
 
         public override void Update()
         {
-            this.Move();
+            Move();
             X = (int)position.X;
             Y = (int)position.Y;
         }

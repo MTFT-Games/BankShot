@@ -1,10 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
 
 namespace BankShot
 {
@@ -29,9 +29,9 @@ namespace BankShot
         /// </summary>
         public MapManager()
         {
-            this.mapList = new List<Map>();
+            mapList = new List<Map>();
             LoadMaps();
-            this.currentMap = mapList[0];
+            currentMap = mapList[0];
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace BankShot
                 string readBackground = reader.ReadLine();
                 readBackground = readBackground.Substring(0, readBackground.Length - 4);
                 currentBackground =
-                    Program.game.Content.Load<Texture2D>("Backgrounds/" + 
+                    Program.game.Content.Load<Texture2D>("Backgrounds/" +
                     readBackground);
 
                 // Load all the tile textures into a list to make parsing the 
@@ -89,15 +89,15 @@ namespace BankShot
                             loadedMap.Add(new GameObject(
                                 tileSet[tileID],
                                 new Rectangle(
-                                    tileSize*x,
-                                    tileSize*y,
+                                    tileSize * x,
+                                    tileSize * y,
                                     tileSize,
                                     tileSize),
                                 true));
                         }
                     }
                 }
-            }catch
+            } catch
             {
                 // Currently no way to deal with not having a map so just
                 // crash the game.
@@ -113,7 +113,7 @@ namespace BankShot
         {
             Rectangle window = Program.game.GetWindowSize();
             sb.Draw(currentMap.BackgroundImage, window, Color.White);
-            foreach(GameObject block in currentMap.MapArray)
+            foreach (GameObject block in currentMap.MapArray)
             {
                 block.Draw(sb);
             }

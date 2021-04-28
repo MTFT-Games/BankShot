@@ -63,7 +63,7 @@ namespace BankShot
             }
             set
             {
-               projectileCountMods = value;
+                projectileCountMods = value;
             }
         }
 
@@ -172,7 +172,7 @@ namespace BankShot
             money = 0;
 
             //Initializing the Upgrade Modifiers
-            damageMods = new double[] { 1, 0};
+            damageMods = new double[] { 1, 0 };
             projectileCountMods = new double[] { 1, 0 };
             projectileSpeedMods = new double[] { 1, 0 };
             projectileSpreadMods = new double[] { 1, 0 };
@@ -183,14 +183,13 @@ namespace BankShot
         //Methods
         public void Update(GameTime gameTime)
         {
-            this.ProcessInput();
+            ProcessInput();
             if (weaponSide == "right")
             {
-                weapon.Position = new Vector2(this.X + (float)(rect.Width * (25.5 / 60)), this.Y + (float)(rect.Height * 30.5 / 60));
-            }
-            else
+                weapon.Position = new Vector2(X + (float)(rect.Width * (25.5 / 60)), Y + (float)(rect.Height * 30.5 / 60));
+            } else
             {
-                weapon.Position = new Vector2(this.X + (float)(rect.Width*(25.5/60)), this.Y + (float)(rect.Height * 30.5 /60));
+                weapon.Position = new Vector2(X + (float)(rect.Width * (25.5 / 60)), Y + (float)(rect.Height * 30.5 / 60));
             }
 
             if (invincible)
@@ -223,14 +222,14 @@ namespace BankShot
 
         public override void Move()
         {
-            this.ApplyGravity();
+            ApplyGravity();
             if (shield.Active)
             {
                 velocity.X = 0;
             }
             base.Move();
-            this.ResolveCollisions();
-            shield.Position = new Vector2(this.X - 10, this.Y - 10);
+            ResolveCollisions();
+            shield.Position = new Vector2(X - 10, Y - 10);
             shield.Velocity = velocity;
         }
 
@@ -267,9 +266,9 @@ namespace BankShot
         //This was very buggy I need to take another look at the PE
         public void ResolveCollisions()
         {
-            foreach(GameObject wall in Game1.mapManager.CurrentMap.MapArray)
+            foreach (GameObject wall in Game1.mapManager.CurrentMap.MapArray)
             {
-                Rectangle playerPosition = new Rectangle((int) position.X, (int) position.Y, rect.Width, rect.Height);
+                Rectangle playerPosition = new Rectangle((int)position.X, (int)position.Y, rect.Width, rect.Height);
                 if (playerPosition.Intersects(wall.Rect))
                 {
                     Rectangle intersection = Rectangle.Intersect(playerPosition, wall.Rect);
@@ -278,21 +277,18 @@ namespace BankShot
                         if (playerPosition.X <= wall.X)
                         {
                             playerPosition.X -= intersection.Width;
-                        }
-                        else
+                        } else
                         {
                             playerPosition.X += intersection.Width;
                         }
-                    }
-                    else
+                    } else
                     {
                         velocity.Y = 0;
                         if (playerPosition.Y <= wall.Y)
                         {
                             playerPosition.Y -= intersection.Height;
                             jumpsLeft = numberOfJumps;
-                        }
-                        else
+                        } else
                         {
                             playerPosition.Y += intersection.Height;
                         }
@@ -310,7 +306,7 @@ namespace BankShot
                 base.TakeDamage(damage, knockback, damageDealer);
                 if (knockback != 0)
                 {
-                    this.velocity.Y += -100 / Math.Abs(knockback);
+                    velocity.Y += -100 / Math.Abs(knockback);
                 }
                 invincible = true;
                 invincibleFrames = 60;

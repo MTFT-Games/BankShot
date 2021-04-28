@@ -1,21 +1,23 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
-namespace BankShot {
+namespace BankShot
+{
 
     public enum GameState
     {
-        MainMenu, 
-        Game, 
-        Pause, 
-        Leaderboard, 
+        MainMenu,
+        Game,
+        Pause,
+        Leaderboard,
         GameOver,
         Shop
     }
 
-    public class Game1 : Game {
+    public class Game1 : Game
+    {
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         //font, texture and menu obj for testing- to be replaced
@@ -92,13 +94,15 @@ namespace BankShot {
             set { font = value; }
         }
 
-        public Game1() {
+        public Game1()
+        {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
-        protected override void Initialize() {
+        protected override void Initialize()
+        {
             // TODO: Add your initialization logic here
             state = GameState.MainMenu;
 
@@ -106,7 +110,7 @@ namespace BankShot {
 
             currentShop = null;
 
-         
+
 
             test = false;
 
@@ -119,7 +123,8 @@ namespace BankShot {
             base.Initialize();
         }
 
-        protected override void LoadContent() {
+        protected override void LoadContent()
+        {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             //menu testing
@@ -144,17 +149,17 @@ namespace BankShot {
             shopExitButton = Content.Load<Texture2D>("button1");
 
             //all values except for textures are temporary
-            upgradeManager = new UpgradeManager(damageTx, projecTx, healthTx, playerTexture, new Rectangle(700,800,60,60), new List<Rectangle>(), true, shopExitButton);
+            upgradeManager = new UpgradeManager(damageTx, projecTx, healthTx, playerTexture, new Rectangle(700, 800, 60, 60), new List<Rectangle>(), true, shopExitButton);
 
             waveManager = new WaveManager();
 
             player = new Player(playerTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 15, new Vector2(0, 0));
-            walls = new GameObject[] { new GameObject(wallTexture, new Rectangle(0, 900, 500, 100), new List<Rectangle>(), true), 
+            walls = new GameObject[] { new GameObject(wallTexture, new Rectangle(0, 900, 500, 100), new List<Rectangle>(), true),
                                        new GameObject(wallTexture, new Rectangle(650, 900, 500, 100), new List<Rectangle>(), true),
                                        new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
             //Enemy creation
-            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() { 
-                enemyTexture, 
+            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() {
+                enemyTexture,
                 new Rectangle(0, 0, 100, 100), //enemy rectangle
                 new List<Rectangle>(), //enemy 
                 true, //enemy active state
@@ -182,16 +187,17 @@ namespace BankShot {
             // TODO: use this.Content to load your game content here
         }
 
-        protected override void Update(GameTime gameTime) {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed 
-                || ((Keyboard.GetState().IsKeyDown(Keys.LeftAlt) || Keyboard.GetState().IsKeyDown(Keys.RightAlt)) 
+        protected override void Update(GameTime gameTime)
+        {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
+                || ((Keyboard.GetState().IsKeyDown(Keys.LeftAlt) || Keyboard.GetState().IsKeyDown(Keys.RightAlt))
                 && Keyboard.GetState().IsKeyDown(Keys.F4)))
                 Exit();
             //gathers keybaord and mouse states for use in update methods
             Input.Update();
             KeyboardState kbs = Keyboard.GetState();
             MouseState ms = Mouse.GetState();
-            
+
             //state machine based on the GameState enum
             switch (state)
             {
@@ -230,28 +236,28 @@ namespace BankShot {
                 case GameState.GameOver:
                     gameOverMenu.Update(kbs, ms, msPrev, out state);
                     break;
-                //case GameState.Shop:
-                 //   currentShop  = upgradeManager.MakeShop();
+                    //case GameState.Shop:
+                    //   currentShop  = upgradeManager.MakeShop();
 
-                 //   currentShop.Update(upgradeManager, ms, player);
+                    //   currentShop.Update(upgradeManager, ms, player);
 
-                 //   currentShop = null;
+                    //   currentShop = null;
 
-                 //   state = GameState.Game;
+                    //   state = GameState.Game;
 
 
-                 //   break;
+                    //   break;
 
             }
 
             msPrev = ms;
 
             // TODO: Add your update logic here
-          
+
 
             base.Update(gameTime);
         }
-        
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -268,7 +274,7 @@ namespace BankShot {
                     mainMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.Game:
-                   
+
                     //Commented these out because they were breaking everything
                     mapManager.Draw(_spriteBatch);
                     player.Draw(_spriteBatch);
@@ -281,24 +287,24 @@ namespace BankShot {
                     //_spriteBatch.DrawString(font, $"Max: {player.MaxHealth}", new Vector2(300, 300), Color.White);
                     //_spriteBatch.DrawString(font, $"Health: {player.Health}", new Vector2(300, 350), Color.White);
                     enemyManager.DrawEnemies(_spriteBatch);
-                   // if (enemyManager.SpawnedEnemies.Count > 0)
+                    // if (enemyManager.SpawnedEnemies.Count > 0)
                     {
-                    //    _spriteBatch.DrawString(font, "Enemy Health: " + enemyManager.SpawnedEnemies[0].Health, new Vector2(100, 100), Color.White);
+                        //    _spriteBatch.DrawString(font, "Enemy Health: " + enemyManager.SpawnedEnemies[0].Health, new Vector2(100, 100), Color.White);
                     }
                     upgradeManager.Draw(_spriteBatch);
                     // health bar waves and timer
 
-                    double currHealthBar = ((double) player.Health / (double) player.MaxHealth) * 200;
+                    double currHealthBar = ((double)player.Health / (double)player.MaxHealth) * 200;
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, (int) currHealthBar, 50), Color.Red);
+                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, (int)currHealthBar, 50), Color.Red);
 
                     _spriteBatch.DrawString(font, $"Wave Number: {waveManager.Wave}", new Vector2(15, 65), Color.White);
 
                     double currTime = (waveManager.Timer / 30) * 200;
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200-(int)currTime, 50), Color.Gold);
+                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200 - (int)currTime, 50), Color.Gold);
 
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {
@@ -310,10 +316,10 @@ namespace BankShot {
                     _spriteBatch.DrawString(
                         font,
                         "Current Haul: " + player.Money,
-                        new Vector2(Program.game.GetWindowSize().Width/2,0),
+                        new Vector2(Program.game.GetWindowSize().Width / 2, 0),
                         Color.White);
 
-                    
+
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);
@@ -325,7 +331,7 @@ namespace BankShot {
                 case GameState.GameOver:
                     gameOverMenu.Draw(_spriteBatch, _graphics, buttonTx);
                     break;
-               
+
 
             }
             //_spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.White);
@@ -353,9 +359,9 @@ namespace BankShot {
         public Rectangle GetWindowSize()
         {
             return new Rectangle(
-                0, 
-                0, 
-                _graphics.PreferredBackBufferWidth, 
+                0,
+                0,
+                _graphics.PreferredBackBufferWidth,
                 _graphics.PreferredBackBufferHeight);
         }
     }

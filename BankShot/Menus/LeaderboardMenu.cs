@@ -17,7 +17,7 @@ namespace BankShot
         private SpriteFont font;
         private Rectangle mainmenuBtn;
         int[] scores;
-      
+
 
 
         public LeaderboardMenu(SpriteFont f, int[] s)
@@ -25,8 +25,8 @@ namespace BankShot
             font = f;
             mainmenuBtn = new Rectangle(200, 400, 100, 50);
             scores = s;
-          
-            
+
+
         }
 
         public void Draw(SpriteBatch sb, GraphicsDeviceManager g, Texture2D buttonTx)
@@ -43,10 +43,10 @@ namespace BankShot
                 g.PreferredBackBufferHeight / 2),
                 Color.White);
 
-                //button textures to be incorporated
-                //main menu button
-                sb.Draw(buttonTx, mainmenuBtn, Color.White);
-           
+            //button textures to be incorporated
+            //main menu button
+            sb.Draw(buttonTx, mainmenuBtn, Color.White);
+
             //writes text over buttons(will be gotten rid of once buttons 
             //textures created
             //main menu button text
@@ -54,7 +54,7 @@ namespace BankShot
                 "RETURN TO MENU",
                 new Vector2(200, 400),
                 Color.White);
-            
+
         }
 
         /// <summary>
@@ -88,12 +88,11 @@ namespace BankShot
             {
                 //changes game state to main menu mode
                 state = GameState.MainMenu;
-            }
-            else
+            } else
             {
                 state = GameState.Leaderboard;
             }
-           
+
         }
 
 

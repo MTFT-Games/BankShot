@@ -28,14 +28,14 @@ namespace BankShot
         //Parameterized Constructor
         public Gun(Texture2D texture, Rectangle transform,
                       List<Rectangle> collisionBoxes, bool active,
-                      int damage, int knockback, bool interceptable, 
-                      double lifeSpan, int speed, Vector2 velocity, 
-                      Texture2D projectileTexture, 
-                      Rectangle projectileTransform, 
-                      List<Rectangle> projectileCollisionBoxes, 
-                      double projectileHoming, bool projectileBounce, 
+                      int damage, int knockback, bool interceptable,
+                      double lifeSpan, int speed, Vector2 velocity,
+                      Texture2D projectileTexture,
+                      Rectangle projectileTransform,
+                      List<Rectangle> projectileCollisionBoxes,
+                      double projectileHoming, bool projectileBounce,
                       bool projectileActive, bool fromEnemy)
-                      : base(texture, transform, collisionBoxes, 
+                      : base(texture, transform, collisionBoxes,
                              active, damage, knockback, fromEnemy)
         {
             this.interceptable = interceptable;
@@ -75,29 +75,29 @@ namespace BankShot
 
         //Attack() will create a Projectile object
         //using the Gun's fields as parameters.
-        public override void Attack() 
+        public override void Attack()
         {
             Vector2 direction = Input.MousePosition - position;
             direction.Normalize();
-            projectileTransform.X = this.X;
-            projectileTransform.Y = this.Y;
-            Game1.projectileManager.projectiles.Add(new Projectile(projectileTexture, 
-                                           projectileTransform,  
-                                           projectileActive, interceptable, 
-                                           (int) (damage * Game1.player.DamageMods[0] + Game1.player.DamageMods[1]), 
-                                           knockback, lifeSpan, 
-                                           direction * (int) (speed * Game1.player.ProjectileSpeedMods[0] + Game1.player.ProjectileSpeedMods[1]), 
-                                           (int)(speed * Game1.player.ProjectileSpeedMods[0] + Game1.player.ProjectileSpeedMods[1]), fromEnemy, 
-                                           projectileHoming * Game1.player.ProjectileHoming, projectileBounce, 
+            projectileTransform.X = X;
+            projectileTransform.Y = Y;
+            Game1.projectileManager.projectiles.Add(new Projectile(projectileTexture,
+                                           projectileTransform,
+                                           projectileActive, interceptable,
+                                           (int)(damage * Game1.player.DamageMods[0] + Game1.player.DamageMods[1]),
+                                           knockback, lifeSpan,
+                                           direction * (int)(speed * Game1.player.ProjectileSpeedMods[0] + Game1.player.ProjectileSpeedMods[1]),
+                                           (int)(speed * Game1.player.ProjectileSpeedMods[0] + Game1.player.ProjectileSpeedMods[1]), fromEnemy,
+                                           projectileHoming * Game1.player.ProjectileHoming, projectileBounce,
                                            this));
-            base.Attack(); 
+            base.Attack();
         }
 
         public void Attack(Vector2 direction)
         {
             direction.Normalize();
-            projectileTransform.X = this.X;
-            projectileTransform.Y = this.Y;
+            projectileTransform.X = X;
+            projectileTransform.Y = Y;
             Game1.projectileManager.projectiles.Add(new Projectile(projectileTexture,
                                            projectileTransform,
                                            projectileActive, interceptable,
@@ -115,7 +115,7 @@ namespace BankShot
             //yet.
             if (Input.MouseClick(1))
             {
-                this.Attack();
+                Attack();
             }
             base.Update();
         }

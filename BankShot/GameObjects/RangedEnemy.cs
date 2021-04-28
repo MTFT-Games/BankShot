@@ -19,27 +19,27 @@ namespace BankShot
         {
             this.gun = gun;
             this.reloadTime = reloadTime;
-            this.elapsedTime = 0;
+            elapsedTime = 0;
             this.range = range;
         }
 
         public void Update(GameTime gameTime)
         {
             base.Update();
-            this.Attack(gameTime);
-            gun.X = this.X + this.Rect.Width / 2;
-            gun.Y = this.Y + this.Rect.Height / 2;
+            Attack(gameTime);
+            gun.X = X + Rect.Width / 2;
+            gun.Y = Y + Rect.Height / 2;
             elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         public void Attack(GameTime gameTime)
         {
-            int distance = (int)Math.Sqrt(Math.Pow(this.X - Game1.player.X, 2) +
-               Math.Pow(this.Y - Game1.player.Y, 2));
+            int distance = (int)Math.Sqrt(Math.Pow(X - Game1.player.X, 2) +
+               Math.Pow(Y - Game1.player.Y, 2));
             if (elapsedTime >= reloadTime &&
                distance <= range)
             {
-                Vector2 vector = Game1.player.Position - this.position;
+                Vector2 vector = Game1.player.Position - position;
                 //vector.Y = 0;
                 vector.Normalize();
                 gun.Attack(vector);
@@ -47,8 +47,7 @@ namespace BankShot
                 if (vector.X > 0)
                 {
                     leftFacing = false;
-                }
-                else if (vector.X < 0)
+                } else if (vector.X < 0)
                 {
                     leftFacing = true;
                 }
@@ -60,8 +59,7 @@ namespace BankShot
             if (leftFacing)
             {
                 spriteBatch.Draw(texture, rect, Color.Red);
-            }
-            else
+            } else
             {
                 spriteBatch.Draw(texture, rect, null, Color.Red, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
             }

@@ -27,9 +27,9 @@ namespace BankShot.GameObjects
         public void Update(GameTime gameTime)
         {
             base.Update();
-            this.Attack(gameTime);
-            gun.X = this.X + this.Rect.Width / 2;
-            gun.Y = this.Y + this.Rect.Height / 2;
+            Attack(gameTime);
+            gun.X = X + Rect.Width / 2;
+            gun.Y = Y + Rect.Height / 2;
             elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
         }
         public void Move(GameTime gameTime)
@@ -44,7 +44,7 @@ namespace BankShot.GameObjects
         public void Pathfind(GameObject target, GameTime gameTime)
         {
             //determines difference between enemy Xposition and target Xposition
-            int distanceX = this.X - target.X;
+            int distanceX = X - target.X;
 
             if (Math.Abs(distanceX) < 40)
             {
@@ -52,21 +52,19 @@ namespace BankShot.GameObjects
                 if (distanceX < -5)//target is to the left of enemy
                 {
                     velocity.X = speed;
-                    this.leftFacing = false;
-                }
-                else if (distanceX > 5)//target is to the right of enemy
+                    leftFacing = false;
+                } else if (distanceX > 5)//target is to the right of enemy
                 {
                     velocity.X = -1 * speed;
-                    this.leftFacing = true;
-                }
-                else
+                    leftFacing = true;
+                } else
                 {
                     X = Game1.player.X;
                     velocity.X = 0;
                 }
                 if (distanceX < 20)
                 {
-                    this.Attack(gameTime);
+                    Attack(gameTime);
                 }
             }
         }

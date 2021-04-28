@@ -15,7 +15,7 @@ namespace BankShot
         public Melee(Texture2D texture, Rectangle transform,
                       List<Rectangle> collisionBoxes, bool active,
                       int damage, int knockback, bool fromEnemy)
-                      : base(texture, transform, collisionBoxes, 
+                      : base(texture, transform, collisionBoxes,
                              active, damage, knockback, fromEnemy)
         {
 

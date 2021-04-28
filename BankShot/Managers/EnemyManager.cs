@@ -49,22 +49,22 @@ namespace BankShot
         /// </summary>
         public void SpawnEnemies()
         {
-           
-           foreach(List<object> stats in enemies)
+
+            foreach (List<object> stats in enemies)
             {
                 //stats format: texture, rectangle, boxes(list rectangle),
                 //active(bool), maxhp(int), velocity (vector2), atk power (int),
                 //knock distance (float), money (int)
 
-                Enemy e = new Enemy((Texture2D) stats[0],
-                    (Rectangle) stats[1],
-                    (List<Rectangle>) stats[2],
-                    (bool) stats[3],
-                    (int) stats[4], 
-                    (Vector2) stats[5],
-                    (int) stats[6], 
-                    (float) stats[7],
-                    (int) stats[8]);
+                Enemy e = new Enemy((Texture2D)stats[0],
+                    (Rectangle)stats[1],
+                    (List<Rectangle>)stats[2],
+                    (bool)stats[3],
+                    (int)stats[4],
+                    (Vector2)stats[5],
+                    (int)stats[6],
+                    (float)stats[7],
+                    (int)stats[8]);
 
                 spawnedEnemies.Add(e);
             }
@@ -75,7 +75,7 @@ namespace BankShot
         /// template scaled to the current wave.
         /// </summary>
         /// <typeparam name="enemyType">The type of enemy to spawn.</typeparam>
-        public void Spawn<enemyType>(Vector2  position) where enemyType : Enemy
+        public void Spawn<enemyType>(Vector2 position) where enemyType : Enemy
         {
             // TODO: Setup for multiple enemy types when we make them.
             // TODO: Setup with new stats template when we get to that.
@@ -94,7 +94,7 @@ namespace BankShot
         public void UpdateEnemies(GameTime time)
         {
             //update logic for Enemy objects stored in "enemies"
-            for(int i = 0; i < spawnedEnemies.Count; i++)
+            for (int i = 0; i < spawnedEnemies.Count; i++)
             {
                 if (spawnedEnemies[i].Health <= 0)
                 {
@@ -106,9 +106,8 @@ namespace BankShot
 
                 if (spawnedEnemies[i] is RangedEnemy)
                 {
-                    ((RangedEnemy) spawnedEnemies[i]).Update(time);
-                }
-                else
+                    ((RangedEnemy)spawnedEnemies[i]).Update(time);
+                } else
                 {
                     spawnedEnemies[i].Update();
                 }
@@ -118,7 +117,7 @@ namespace BankShot
         public void DrawEnemies(SpriteBatch sb)
         {
             //Draws the enemy objects in "enemies" using the given spritebatch
-            foreach(Enemy e in spawnedEnemies)
+            foreach (Enemy e in spawnedEnemies)
             {
                 e.Draw(sb);
             }
