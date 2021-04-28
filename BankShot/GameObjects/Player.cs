@@ -205,7 +205,7 @@ namespace BankShot
             projectileSpeedMods = new double[] { 1, 0 };
             projectileSpreadMods = new double[] { 1, 0 };
             projectileHoming = 1;
-            numberOfJumps = 1;
+            numberOfJumps = 2;
         }
 
         //Methods
