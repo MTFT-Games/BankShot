@@ -10,6 +10,8 @@ namespace BankShot
     public class Player : Character
     {
         //Fields
+        private float knockbackResist = 0;
+        private float regenRate = 0;
         private Mobility mobility;
         private Weapon weapon;
         private Shield shield;
@@ -157,6 +159,32 @@ namespace BankShot
             get
             {
                 return knockBackVector;
+            }
+        }
+
+        public float RegenRate
+        {
+            get
+            {
+                return regenRate;
+            }
+
+            set
+            {
+                regenRate = value;
+            }
+        }
+
+        public float KnockbackResist
+        {
+            get
+            {
+                return knockbackResist;
+            }
+
+            set
+            {
+                knockbackResist = value;
             }
         }
 

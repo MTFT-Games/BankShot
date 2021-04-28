@@ -175,6 +175,11 @@ namespace BankShot
             Game1.waveManager.WaveBreak = false;
         }
 
+        /// <summary>
+        /// Takes an upgrade and applies all of its effects to the player.
+        /// </summary>
+        /// <param name="upgrade">The upgrade to be applied.</param>
+        /// <param name="p">The active player.</param>
         public void ApplyUpgrades(Upgrade upgrade, Player p)
         {
             if (p.Money >= upgrade.cost)
@@ -182,75 +187,97 @@ namespace BankShot
                 //takes in an upgrade and applies it to the Player
                 if (upgrade.damageIsMultiplier)
                 {
-                    p.DamageMods[0] *= 2;
+                    p.CurrentWeapon.Damage *= upgrade.damageModifier;
 
                 } else
                 {
-                    p.DamageMods[1] += 2;
+                    p.CurrentWeapon.Damage += upgrade.damageModifier;
                 }
 
-                if (upgrade.projectileCountIsMultiplier)
+                if (p.CurrentWeapon is Gun)
                 {
-                    //not implemented yet
+                    if (upgrade.projectileCountIsMultiplier)
+                    {
+                        ((Gun)p.CurrentWeapon).ProjectileCount *=
+                            upgrade.projectileCountModifier;
+                    } else
+                    {
+                        ((Gun)p.CurrentWeapon).ProjectileCount +=
+                            upgrade.projectileCountModifier;
+                    }
+
+                    if (upgrade.projectileSpeedIsMultiplier)
+                    {
+                        ((Gun)p.CurrentWeapon).Speed *= upgrade.projectileSpeedModifier;
+                    } else
+                    {
+                        ((Gun)p.CurrentWeapon).Speed += upgrade.projectileSpeedModifier;
+                    }
+
+                    Rectangle tmpProjRect = ((Gun)p.CurrentWeapon).ProjectileTransform;
+                    ((Gun)p.CurrentWeapon).ProjectileTransform = new Rectangle(
+                        tmpProjRect.X,
+                        tmpProjRect.Y,
+                        tmpProjRect.Width * upgrade.projectileSizeModifier,
+                        tmpProjRect.Height * upgrade.projectileSizeModifier);
+
+                    if (upgrade.projectileSpreadIsMultiplier)
+                    {
+                        ((Gun)p.CurrentWeapon).ProjectileSpread *=
+                            upgrade.projectileSpreadModifier;
+                    } else
+                    {
+                        ((Gun)p.CurrentWeapon).ProjectileSpread +=
+                            upgrade.projectileSpreadModifier;
+                    }
+
+                    if (upgrade.projectileHomingIsMultiplier)
+                    {
+                        ((Gun)p.CurrentWeapon).Homing *= upgrade.projectileHomingModifier;
+                    } else
+                    {
+                        ((Gun)p.CurrentWeapon).Homing += upgrade.projectileHomingModifier;
+                    }
                 } else
                 {
-                    //not implemented yet
+                    Rectangle tmpWepRect = p.CurrentWeapon.Rect;
+                    p.CurrentWeapon.Rect = new Rectangle(
+                        tmpWepRect.X,
+                        tmpWepRect.Y,
+                        tmpWepRect.Width * upgrade.projectileSizeModifier,
+                        tmpWepRect.Height * upgrade.projectileSizeModifier);
                 }
 
                 if (upgrade.rateOfFireIsMultiplier)
                 {
-                    //not implemented yet
+                    p.CurrentWeapon.AttackRate *= upgrade.rateOfFireModifier;
                 } else
                 {
-                    //not implemented yet
-                }
-
-                if (upgrade.projectileSpeedIsMultiplier)
-                {
-                    p.ProjectileSpeedMods[0] *= upgrade.projectileSpeedModifier;
-                } else
-                {
-                    p.ProjectileSpeedMods[1] += upgrade.projectileSpeedModifier;
-                }
-
-                if (upgrade.projectileSpreadIsMultiplier)
-                {
-                    //not implemented yet
-                } else
-                {
-                    //not implemented yet
-                }
-
-                if (upgrade.projectileHomingIsMultiplier)
-                {
-                    p.ProjectileHoming *= upgrade.projectileHomingModifier;
-                } else
-                {
-                    //Not sure how to implement this
+                    p.CurrentWeapon.AttackRate += upgrade.rateOfFireModifier;
                 }
 
                 if (upgrade.shieldHealthIsMultiplier)
                 {
-                    //not implemented yet
+                    p.CurrentShield.MaxHealth *= upgrade.shieldHealthModifier;
                 } else
                 {
-                    //not implemented yet
+                    p.CurrentShield.MaxHealth *= upgrade.shieldHealthModifier;
                 }
 
                 if (upgrade.shieldRegenIsMultiplier)
                 {
-                    //not implemented yet
+                    p.CurrentShield.RegenRate *= upgrade.shieldRegenModifier;
                 } else
                 {
-                    //not implemented yet
+                    p.CurrentShield.RegenRate += upgrade.shieldRegenModifier;
                 }
 
                 if (upgrade.shieldCooldownIsMultiplier)
                 {
-                    //not implemented yet
+                    p.CurrentShield.CoolDown *= upgrade.shieldCooldownModifier;
                 } else
                 {
-                    //not implemented yet
+                    p.CurrentShield.CoolDown += upgrade.shieldCooldownModifier;
                 }
 
                 if (upgrade.healthIsMultiplier)
@@ -260,31 +287,25 @@ namespace BankShot
                     p.Health = (int)(p.MaxHealth * temp);
                 } else
                 {
-                    p.Health += (int)upgrade.healthModifier;
+                    double temp = p.Health / (double)p.MaxHealth;
+                    p.Health += (int)upgrade.healthModifier;                    p.Health = (int)(p.MaxHealth * temp);
+                    p.Health = (int)(p.MaxHealth * temp);
                 }
 
                 if (upgrade.healthRegenIsMultiplier)
                 {
-                    //not implemented yet
+                    p.RegenRate *= upgrade.healthRegenModifier;
                 } else
                 {
-                    //not implemented yet
+                    p.RegenRate += upgrade.healthRegenModifier;
                 }
 
                 if (upgrade.knockbackIsMultiplier)
                 {
-                    //not implemented yet
+                    p.CurrentWeapon.Knockback *= upgrade.knockbackModifier;
                 } else
                 {
-                    //not implemented yet
-                }
-
-                if (upgrade.knockbackIsMultiplier)
-                {
-                    //not implemented yet
-                } else
-                {
-                    //not implemented yet
+                    p.CurrentWeapon.Knockback += upgrade.knockbackModifier;
                 }
 
                 if (upgrade.knockbackResistIsMultiplier)

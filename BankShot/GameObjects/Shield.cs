@@ -10,10 +10,13 @@ namespace BankShot
     public class Shield : GameObject, IMoveable
     {
         //Fields
+        private int health;
+        private int maxHealth;
         protected Vector2 velocity;
         private bool active;
         private double timeSinceBreak;
         private double coolDown;
+        private float regenRate;
 
         public bool Active
         {
@@ -33,6 +36,45 @@ namespace BankShot
             set
             {
                 velocity = value;
+            }
+        }
+
+        public int MaxHealth
+        {
+            get
+            {
+                return maxHealth;
+            }
+
+            set
+            {
+                maxHealth = value;
+            }
+        }
+
+        public double CoolDown
+        {
+            get
+            {
+                return coolDown;
+            }
+
+            set
+            {
+                coolDown = value;
+            }
+        }
+
+        public float RegenRate
+        {
+            get
+            {
+                return regenRate;
+            }
+
+            set
+            {
+                regenRate = value;
             }
         }
 
@@ -58,7 +100,7 @@ namespace BankShot
         //check for input to raise the shield.
         public void ProcessInput()
         {
-            if (Input.MouseHeld(2) && timeSinceBreak >= 2.5 && Game1.player.CurrentKnockback.X == 0)
+            if (Input.MouseHeld(2) && timeSinceBreak >= coolDown && Game1.player.CurrentKnockback.X == 0)
             {
                 active = true;
             } else

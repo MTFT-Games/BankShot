@@ -11,7 +11,8 @@ namespace BankShot
     public class Gun : Weapon
     {
         //Fields
-
+        private int projectileCount = 1;
+        private float projectileSpread = 0;
         //Projectile Base Fields:
         private Texture2D projectileTexture;
         private Rectangle projectileTransform;
@@ -71,6 +72,45 @@ namespace BankShot
             }
         }
 
+        public int ProjectileCount
+        {
+            get
+            {
+                return projectileCount;
+            }
+
+            set
+            {
+                projectileCount = value;
+            }
+        }
+
+        public Rectangle ProjectileTransform
+        {
+            get
+            {
+                return projectileTransform;
+            }
+
+            set
+            {
+                projectileTransform = value;
+            }
+        }
+
+        public float ProjectileSpread
+        {
+            get
+            {
+                return projectileSpread;
+            }
+
+            set
+            {
+                projectileSpread = value;
+            }
+        }
+
         //Methods
 
         //Attack() will create a Projectile object
@@ -85,7 +125,7 @@ namespace BankShot
                                            projectileTransform,
                                            projectileActive, interceptable,
                                            (int)(damage * Game1.player.DamageMods[0] + Game1.player.DamageMods[1]),
-                                           knockback, lifeSpan,
+                                           Knockback, lifeSpan,
                                            direction * (int)(speed * Game1.player.ProjectileSpeedMods[0] + Game1.player.ProjectileSpeedMods[1]),
                                            (int)(speed * Game1.player.ProjectileSpeedMods[0] + Game1.player.ProjectileSpeedMods[1]), fromEnemy,
                                            projectileHoming * Game1.player.ProjectileHoming, projectileBounce,
@@ -101,7 +141,7 @@ namespace BankShot
             Game1.projectileManager.projectiles.Add(new Projectile(projectileTexture,
                                            projectileTransform,
                                            projectileActive, interceptable,
-                                           damage, knockback, lifeSpan,
+                                           damage, Knockback, lifeSpan,
                                            direction * (int)speed, (int)speed, fromEnemy,
                                            projectileHoming, projectileBounce,
                                            this));

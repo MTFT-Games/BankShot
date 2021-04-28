@@ -11,8 +11,9 @@ namespace BankShot
     {
         //Fields
         protected int damage;
-        protected float knockback;
+        private float knockback;
         protected Vector2 velocity;
+        private float attackRate;
 
         //Properties
         public Vector2 Velocity
@@ -36,6 +37,32 @@ namespace BankShot
             set
             {
                 damage = value;
+            }
+        }
+
+        public float AttackRate
+        {
+            get
+            {
+                return attackRate;
+            }
+
+            set
+            {
+                attackRate = value;
+            }
+        }
+
+        public float Knockback
+        {
+            get
+            {
+                return knockback;
+            }
+
+            set
+            {
+                knockback = value;
             }
         }
 
