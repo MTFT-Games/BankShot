@@ -80,7 +80,7 @@ namespace BankShot
             // TODO: Setup for multiple enemy types when we make them.
             // TODO: Setup with new stats template when we get to that.
             // TODO: Implement scaling.
-            spawnedEnemies.Add(new Enemy(
+            spawnedEnemies.Add(new ChaserEnemy(
                 (Texture2D)enemies[0][0],
                 new Rectangle((int)position.X, (int)position.Y, 100, 100),
                 (bool)enemies[0][3],
@@ -88,7 +88,7 @@ namespace BankShot
                 (Vector2)enemies[0][5],
                 (int)enemies[0][6],
                 (float)enemies[0][7],
-                (int)enemies[0][8]));
+                (int)enemies[0][8], 1));
         }
 
         public void UpdateEnemies(GameTime time)

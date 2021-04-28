@@ -11,16 +11,16 @@ namespace BankShot
     {
         //Fields
         private int speed;
-        public ChaserEnemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active,
+        public ChaserEnemy(Texture2D texture, Rectangle rect, bool active,
                            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money,
                            int speed) :
-                           base(texture, rect, collisionBoxes, active, maxHealth, velocity,
+                           base(texture, rect, active, maxHealth, velocity,
                                 attackPower, knockbackDistance, money)
         {
             this.speed = speed;
         }
 
-        public override void Move()
+        public override void Update()
         {
             base.Update();
             Pathfind(Game1.player);//find player
