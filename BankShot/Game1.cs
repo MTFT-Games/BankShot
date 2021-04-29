@@ -174,7 +174,7 @@ namespace BankShot
                     }
 
 
-                    if (kbs.IsKeyDown(Keys.P) || Input.KeyClick(Keys.Escape))
+                    if (Input.KeyClick(Keys.P) || Input.KeyClick(Keys.Escape))
                     {
                         state = GameState.Pause;
                     }
@@ -183,13 +183,13 @@ namespace BankShot
 
                     break;
                 case GameState.Pause:
-                    pauseMenu.Update(kbs, ms, msPrev, testMode, out state);
+                    pauseMenu.Update(testMode, out state);
                     break;
                 case GameState.Leaderboard:
-                    leaderboardMenu.Update(kbs, ms, msPrev, out state);
+                    leaderboardMenu.Update(out state);
                     break;
                 case GameState.GameOver:
-                    gameOverMenu.Update(kbs, ms, msPrev, out state);
+                    gameOverMenu.Update(out state);
                     break;
                     //case GameState.Shop:
                     //   currentShop  = upgradeManager.MakeShop();
@@ -204,9 +204,6 @@ namespace BankShot
                     //   break;
 
             }
-
-            msPrev = ms;
-
             // TODO: Add your update logic here
 
 
