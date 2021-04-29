@@ -43,6 +43,7 @@ namespace BankShot
         public static WaveManager waveManager;
 
         // Texture fields.
+        public Texture2D titleBG;
         // TODO: Move enemyTexture into enemy manager with file read overhaul.
         public Texture2D enemyTexture;
         // TODO: Use here instead of passing everywhere
@@ -98,6 +99,9 @@ namespace BankShot
 
             // Load fonts.
             font = Content.Load<SpriteFont>("Arial12");
+
+            // Load Backgrounds
+            titleBG = Content.Load<Texture2D>("TitleScreen");
 
             // Load Textures
             buttonTx = Content.Load<Texture2D>("button1");
@@ -223,6 +227,7 @@ namespace BankShot
             {
                 case GameState.MainMenu:
                     //_spriteBatch.DrawString(font, state.ToString(), new Vector2(10, 10), Color.White);
+                    _spriteBatch.Draw(titleBG, new Vector2(0, 0), Color.White);
                     mainMenu.Draw(_spriteBatch, _graphics);
                     break;
                 case GameState.Game:
