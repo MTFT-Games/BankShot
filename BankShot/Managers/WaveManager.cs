@@ -18,6 +18,8 @@ namespace BankShot
         private double timer;
         private List<List<string>> waves;
         private bool waveBreak;
+        private double timeBetweenWaves;
+        private double timePassed;
 
         /// <summary>
         /// Gets the current wave number.
@@ -33,6 +35,21 @@ namespace BankShot
         {
             get { return waveBreak; }
             set { waveBreak = value; }
+        }
+        public double TimePassed
+        {
+            get
+            {
+                return timePassed;
+            }
+            set
+            {
+                timePassed = value;
+                if (timePassed > 10)
+                {
+                    timePassed = 10;
+                }
+            }
         }
 
         /// <summary>
@@ -57,6 +74,8 @@ namespace BankShot
                 }
             };
             waveBreak = false;
+            timeBetweenWaves = 5;
+            timePassed = 10;
         }
 
         /// <summary>
@@ -73,17 +92,26 @@ namespace BankShot
                     Game1.player.Heal(Game1.player.MaxHealth / 5);
                     Game1.upgradeManager.MakeShop();
                 }
-
                 if (!waveBreak)
                 {
+                    if (timePassed < 0)
+                    {
+                        timePassed = 0;
+                    }
+                    timePassed += time.ElapsedGameTime.TotalSeconds;
                     Game1.player.Heal(Game1.player.MaxHealth / 10);
-                    NextWave();
-                    //Program.game.enemyManager.SpawnedEnemies.Add(new PlatformEnemy(Program.game.enemyTexture, new Rectangle(810, 200, 100, 100), true, 10, new Vector2(0, 0), 5, 5, 10, 2));
-                    //Program.game.enemyManager.SpawnedEnemies.Add(new FlyingEnemy(Program.game.enemyTexture, new Rectangle(810, 150, 100, 100), new List<Rectangle>(), true, 10, new Vector2(0, 0), 5, 5, 10, 2, new SpawnerGun(false, new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10, true, 1.4, 13, new Vector2(0, 0), new Rectangle(400, 100, 20, 20), new List<Rectangle>(), 0, false, true, true, typeof(ChaserEnemy)), 2));
+                    if (timePassed > timeBetweenWaves)
+                    {
+                        NextWave();
+                        timePassed = -1;
+                    }
                 }
             }
 
-            timer += time.ElapsedGameTime.TotalSeconds;
+            if (!(Program.game.enemyManager.SpawnedEnemies.Count == 0))
+            {
+                timer += time.ElapsedGameTime.TotalSeconds;
+            }
         }
 
         /// <summary>
