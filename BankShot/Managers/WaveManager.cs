@@ -75,6 +75,7 @@ namespace BankShot
             };
             waveBreak = false;
             timeBetweenWaves = 5;
+            //This can be changed to change the amount of time before the first wave.
             timePassed = 10;
         }
 
