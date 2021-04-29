@@ -266,7 +266,7 @@ namespace BankShot
 
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {
-                        //_spriteBatch.DrawString(font, $"Y Velocity: {enemyManager.SpawnedEnemies[0].Velocity.Y}", new Vector2(15, 165), Color.White);
+                        //_spriteBatch.DrawString(font, $"Y Velocity: {enemyManager.SpawnedEnemies[0].Velocity.X}", new Vector2(15, 165), Color.White);
                         //_spriteBatch.DrawString(font, $"Health: {enemyManager.SpawnedEnemies[0].Health}", new Vector2(15, 265), Color.White);
                     }
 
