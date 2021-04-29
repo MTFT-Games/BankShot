@@ -152,7 +152,7 @@ namespace BankShot
         //All will hit walls but we do not have the list of walls 
         //yet.
 
-        public void Destroy()
+        public virtual void Destroy()
         {
             Game1.projectileManager.projectiles.Remove(this);
         }

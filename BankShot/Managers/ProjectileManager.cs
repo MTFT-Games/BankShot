@@ -80,7 +80,7 @@ namespace BankShot
                         }
                     }
                     //Checking this projectile against walls.
-                    if (!destroyed && !projectiles[i].fromEnemy)
+                    if (!destroyed && (!projectiles[i].fromEnemy || projectiles[i] is SpawnerProjectile))
                     {
                         foreach (GameObject wall in Game1.mapManager.CurrentMap.MapArray)
                         {
@@ -89,7 +89,14 @@ namespace BankShot
                             {
                                 if (projectiles[i].Rect.Intersects(wall.Rect))
                                 {
-                                    projectiles[i].Destroy();
+                                    if (projectiles[i] is SpawnerProjectile)
+                                    {
+                                        ((SpawnerProjectile)projectiles[i]).Destroy();
+                                    }
+                                    else
+                                    {
+                                        projectiles[i].Destroy();
+                                    }
                                 }
                             }
                         }
