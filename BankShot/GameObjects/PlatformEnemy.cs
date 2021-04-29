@@ -75,5 +75,17 @@ namespace BankShot
             ApplyKnockBack();
             position += velocity;
         }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            if (!leftFacing)
+            {
+                spriteBatch.Draw(texture, rect, null, Color.Green, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
+            }
+            else
+            {
+                spriteBatch.Draw(texture, rect, Color.Green);
+            }
+        }
     }
 }
