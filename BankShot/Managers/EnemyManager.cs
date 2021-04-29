@@ -128,6 +128,26 @@ namespace BankShot
                 (int)enemies[0][8],
                 2));
             }
+            if (type == typeof(FlyingEnemy))
+            {
+                spawnedEnemies.Add(new FlyingEnemy(
+                (Texture2D)enemies[0][0],
+                new Rectangle((int)position.X, (int)position.Y, 100, 100),
+                (List<Rectangle>)enemies[0][2],
+                (bool)enemies[0][3],
+                (int)enemies[0][4],
+                (Vector2)enemies[0][5],
+                (int)enemies[0][6],
+                (float)enemies[0][7],
+                (int)enemies[0][8],
+                2,
+                new SpawnerGun(false,
+                        new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10,
+                        true, 1.4, 13, new Vector2(0, 0),
+                        new Rectangle(400, 100, 20, 20),
+                        new List<Rectangle>(), 0, false, true, true, typeof(ChaserEnemy)),
+                2));
+            }
         }
 
 
