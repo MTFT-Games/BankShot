@@ -48,6 +48,7 @@ namespace BankShot
         public Texture2D enemyTexture;
         // TODO: Use here instead of passing everywhere
         public static Texture2D buttonTx;
+        
 
         // Font fields.
         // TODO: Find better fonts and make a proper button texture. 
@@ -104,7 +105,7 @@ namespace BankShot
             titleBG = Content.Load<Texture2D>("TitleScreen");
 
             // Load Textures
-            buttonTx = Content.Load<Texture2D>("button1");
+            buttonTx = Content.Load<Texture2D>("Button");
             enemyTexture = Content.Load<Texture2D>("GoldSlime");
 
             // Load menus.
