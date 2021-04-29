@@ -115,6 +115,19 @@ namespace BankShot
                         new List<Rectangle>(), 0, false, true, true), 
                 2, 800));
             }
+            if (type == typeof(PlatformEnemy))
+            {
+                spawnedEnemies.Add(new PlatformEnemy(
+                (Texture2D)enemies[0][0],
+                new Rectangle((int)position.X, (int)position.Y, 100, 100),
+                (bool)enemies[0][3],
+                (int)enemies[0][4],
+                (Vector2)enemies[0][5],
+                (int)enemies[0][6],
+                (float)enemies[0][7],
+                (int)enemies[0][8],
+                2));
+            }
         }
 
 
@@ -138,7 +151,12 @@ namespace BankShot
                 else if (spawnedEnemies[i] is RangedEnemy)
                 {
                     ((RangedEnemy)spawnedEnemies[i]).Update(time);
-                } else
+                }
+                else if (spawnedEnemies[i] is PlatformEnemy)
+                {
+                    ((PlatformEnemy)spawnedEnemies[i]).Update();
+                }
+                else
                 {
                     spawnedEnemies[i].Update();
                 }
