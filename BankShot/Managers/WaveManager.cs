@@ -70,7 +70,8 @@ namespace BankShot
                     "Platform|970|470",
                     "Chaser|1180|480",
                     "Ranged|810|200",
-                    "Flying|810|150"
+                    "Flying|810|150",
+                    "Platform|400|680"
                 }
             };
             waveBreak = false;

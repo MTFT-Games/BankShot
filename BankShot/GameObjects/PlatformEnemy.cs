@@ -11,6 +11,7 @@ namespace BankShot
     {
         private int speed;
         private Rectangle platformEdgeFinder;
+        private Rectangle wallFinder;
         public PlatformEnemy(Texture2D texture, Rectangle rect, bool active,
             int maxHealth, Vector2 velocity, int attackPower,
             float knockbackDistance, int money, int speed) 
@@ -19,6 +20,7 @@ namespace BankShot
         {
             this.speed = speed;
             platformEdgeFinder = new Rectangle(X + speed, Y, rect.Width, rect.Height);
+            wallFinder = new Rectangle(X, Y, rect.Width, rect.Height);
         }
 
         public override void Update()
@@ -31,21 +33,29 @@ namespace BankShot
             if (leftFacing)
             {
                 platformEdgeFinder.X = X - speed * 35;
+                wallFinder.X = X - speed * 35;
             }
             else
             {
                 platformEdgeFinder.X = X + speed * 35;
+                wallFinder.X = X + speed * 35;
             }
             platformEdgeFinder.Y = Y + 20;
+            wallFinder.Y = Y - 5;
             bool checkForPlatform = false;
+            bool checkForWall = false;
             foreach (GameObject wall in Game1.mapManager.CurrentMap.MapArray)
             {
                 if (wall.Rect.Intersects(platformEdgeFinder))
                 {
                     checkForPlatform = true;
                 }
+                if (wall.Rect.Intersects(wallFinder))
+                {
+                    checkForWall = true;
+                }
             }
-            if (!checkForPlatform)
+            if (!checkForPlatform || checkForWall)
             {
                 leftFacing = !leftFacing;
             }
