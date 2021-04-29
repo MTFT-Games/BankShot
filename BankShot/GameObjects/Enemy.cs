@@ -109,6 +109,7 @@ namespace BankShot
             ApplyGravity();
             base.Move();
             ResolveCollisions();
+            Pathfind(Game1.player);
         }
 
         public virtual void ApplyGravity()
@@ -163,6 +164,22 @@ namespace BankShot
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch, !leftFacing);
+        }
+
+        public virtual void Pathfind(GameObject target)
+        {
+            //determines difference between enemy Xposition and target Xposition
+            int distanceX = X - target.X;
+
+            //Determines whether target is to the left or the right of the enemy
+            if (distanceX < -5)//target is to the left of enemy
+            {
+                leftFacing = false;
+            }
+            else if (distanceX > 5)//target is to the right of enemy
+            {
+                leftFacing = true;
+            }
         }
     }
 }

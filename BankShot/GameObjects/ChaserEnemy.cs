@@ -20,32 +20,32 @@ namespace BankShot
             this.speed = speed;
         }
 
-        public override void Update()
-        {
-            base.Update();
-            Pathfind(Game1.player);//find player
-        }
         /// <summary>
         /// Sets velocity in the direction of the player
         /// <param name="target"></param>
-        public void Pathfind(GameObject target)
+        public override void Pathfind(GameObject target)
         {
             //determines difference between enemy Xposition and target Xposition
             int distanceX = X - target.X;
 
-            //Determines whether target is to the left or the right of the enemy
-            if (distanceX < -5)//target is to the left of enemy
+            if (Math.Abs(distanceX) < 800)
             {
-                velocity.X = speed;
-                leftFacing = false;
-            } else if (distanceX > 5)//target is to the right of enemy
-            {
-                velocity.X = -1 * speed;
-                leftFacing = true;
-            } else
-            {
-                X = Game1.player.X;
-                velocity.X = 0;
+                //Determines whether target is to the left or the right of the enemy
+                if (distanceX < -5)//target is to the left of enemy
+                {
+                    velocity.X = speed;
+                    leftFacing = false;
+                }
+                else if (distanceX > 5)//target is to the right of enemy
+                {
+                    velocity.X = speed * -1;
+                    leftFacing = true;
+                }
+                else
+                {
+                    X = Game1.player.X;
+                    velocity.X = 0;
+                }
             }
         }
     }

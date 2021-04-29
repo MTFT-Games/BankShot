@@ -268,17 +268,17 @@ namespace BankShot
             {
                 if (Input.KeyHeld(Keys.A)) //&& velocity.X != -5)
                 {
-                    velocity.X -= 5;
+                    velocity.X -= 6;
                     weaponSide = "left";
                 }
                 if (Input.KeyHeld(Keys.D)) //&& velocity.X != 5)
                 {
-                    velocity.X += 5;
+                    velocity.X += 6;
                     weaponSide = "right";
                 }
                 if (Input.KeyClick(Keys.W) && (onGround || jumpsLeft > 0) && !shield.Active)
                 {
-                    velocity.Y = -20;
+                    velocity.Y = -27;
                     onGround = false;
                     jumpsLeft--;
                 }
