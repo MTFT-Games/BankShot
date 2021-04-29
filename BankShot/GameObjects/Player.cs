@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Reflection.Metadata;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -189,15 +189,19 @@ namespace BankShot
         }
 
         //Default Contructor
-        public Player(Texture2D texture, Rectangle transform,
-                      List<Rectangle> collisionBoxes, bool active,
-                      int maxHealth, Vector2 velocity)
-                      : base(texture, transform, collisionBoxes, active,
-                             maxHealth, velocity)
+        public Player(Rectangle transform,
+                    List<Rectangle> collisionBoxes, bool active,
+                    int maxHealth, Vector2 velocity)
+                    : base(Program.game.Content.Load<Texture2D>("PlayerBetaSprite"), transform, collisionBoxes, active,
+                        maxHealth, velocity)
         {
             weaponSide = "right";
             onGround = false;
             money = 0;
+
+            
+            CurrentWeapon = new Gun(true, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 0, true, .8, 20, new Vector2(0, 0), new Rectangle(400, 100, 20, 20), new List<Rectangle>(), .0035, true, true, false);
+
 
             //Initializing the Upgrade Modifiers
             damageMods = new double[] { 1, 0 };

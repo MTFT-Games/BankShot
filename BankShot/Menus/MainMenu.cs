@@ -79,10 +79,9 @@ namespace BankShot
 
         }
 
-        public void Update(KeyboardState kbs, MouseState ms, MouseState msPrev, out GameState state)
+        public void Update(out GameState state)
         {
-            Rectangle mousePosition = new Rectangle(ms.X, ms.Y, 1, 1);
-            if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(startBtn))
+            if (Input.MouseClick(1) && startBtn.Contains(Input.MousePosition))
             {
 
                 //changes game state to game mode
@@ -90,6 +89,7 @@ namespace BankShot
 
             } else
             {
+                // TODO: Simplify this by making a property in Game1 and using that instead of an out.
                 state = GameState.MainMenu;
             }
             if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(exitBtn))

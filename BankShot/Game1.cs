@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace BankShot
 {
-
     public enum GameState
     {
         MainMenu,
@@ -20,72 +19,45 @@ namespace BankShot
     {
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        //font, texture and menu obj for testing- to be replaced
-        private SpriteFont font;
-        private Texture2D buttonTx;
 
-        //menus
+
+
+        // Menu fields.
         private MainMenu mainMenu;
         private PauseMenu pauseMenu;
         private LeaderboardMenu leaderboardMenu;
         private GameOverMenu gameOverMenu;
 
-        //menu misc
+        // Misc fields.
+        // TODO: Remove and replace uses with Input class
+        private MouseState msPrev;
+        public GameState state;
+        public static Player player;
+        private bool testMode;
+        // TODO: Put this in the learderboard menu.
         private int[] scores;
 
-        //enemies
+        // Manager fields.
         public EnemyManager enemyManager;
-
-        //previous mouse state
-        private MouseState msPrev;
-
-        //maps
         public static MapManager mapManager;
-        public static Map map1;
-        public static List<Map> mapList;
-
-        //upgrades
         public static UpgradeManager upgradeManager;
+        public static ProjectileManager projectileManager;
         public static WaveManager waveManager;
 
-        //holds current game state (out variables)
-        public GameState state;
-
-        //Testing player
-        public static Player player;
-
-        public static GameObject[] walls;
-
-        //Shop object (will be null when no shop)
-        public Shop currentShop;
-
-
-        //Testing gun and projectile creation.
-        private Gun gun;
-        private Shield shield;
-        public Texture2D projectileTexture;
-        private Texture2D gunTexture;
-        private Texture2D shieldTexture;
-        public static ProjectileManager projectileManager;
-
-        //Other Test Textures
-        private Texture2D playerTexture;
-        private Texture2D wallTexture;
+        // Texture fields.
+        // TODO: Move enemyTexture into enemy manager with file read overhaul.
         public Texture2D enemyTexture;
-        public Texture2D shopExitButton;
+        // TODO: Find better fonts and make a proper button texture. 
+        // TODO: Use here instead of passing everywhere
+        public static SpriteFont font;
+        public static Texture2D buttonTx;
 
-        //upgrade textures
-        private Texture2D damageTx;
-        private Texture2D healthTx;
-        private Texture2D projecTx;
 
-        //testing boolean
-        private bool test;
-
+        // TODO: Should we use accessors or just make them public? Look at class guidelines
         public bool Test
         {
-            get { return test; }
-            set { test = value; }
+            get { return testMode; }
+            set { testMode = value; }
         }
 
         public SpriteFont Font
@@ -108,11 +80,8 @@ namespace BankShot
 
             scores = new int[5];
 
-            currentShop = null;
 
-
-
-            test = false;
+            testMode = false;
 
             // PLEASE TELL NOAH IF WE NEED TO CHANGE THE WINDOW ASPECT RATIO
             // SO THAT HE CAN CHANGE THE MAP TO FIT
@@ -138,25 +107,16 @@ namespace BankShot
             gameOverMenu = new GameOverMenu(font);
 
             //Textures
-            gunTexture = Content.Load<Texture2D>("GunSprite");
-            projectileTexture = Content.Load<Texture2D>("Bullet");
-            playerTexture = Content.Load<Texture2D>("PlayerBetaSprite");
-            shieldTexture = Content.Load<Texture2D>("Shield");
-            damageTx = Content.Load<Texture2D>("DmgIcon");
-            healthTx = Content.Load<Texture2D>("HealthIcon");
-            projecTx = Content.Load<Texture2D>("ShotSpeedIcon");
+            
             enemyTexture = Content.Load<Texture2D>("GoldSlime");
-            shopExitButton = Content.Load<Texture2D>("button1");
 
             //all values except for textures are temporary
-            upgradeManager = new UpgradeManager(damageTx, projecTx, healthTx, playerTexture, new Rectangle(700, 800, 60, 60), new List<Rectangle>(), true, shopExitButton);
+            upgradeManager = new UpgradeManager(new Rectangle(700, 800, 60, 60), new List<Rectangle>(), true);
 
             waveManager = new WaveManager();
 
-            player = new Player(playerTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 15, new Vector2(0, 0));
-            walls = new GameObject[] { new GameObject(wallTexture, new Rectangle(0, 900, 500, 100), new List<Rectangle>(), true),
-                                       new GameObject(wallTexture, new Rectangle(650, 900, 500, 100), new List<Rectangle>(), true),
-                                       new GameObject(wallTexture, new Rectangle(200, 500, 300, 100), new List<Rectangle>(), true)};
+            player = new Player(new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 15, new Vector2(0, 0));
+
             //Enemy creation
             enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() {
                 enemyTexture,
@@ -174,12 +134,10 @@ namespace BankShot
 
             //Gun Creation! 
             projectileManager = new ProjectileManager();
-            gun = new Gun(gunTexture, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 0, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), .0035, true, true, false);
-            player.CurrentWeapon = gun;
 
             //Shield Creation!
-            shield = new Shield(shieldTexture, new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0), 2.5);
-            player.CurrentShield = shield;
+            player.CurrentShield = new Shield(new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0), 2.5);
+            
             //Map manager
             mapManager = new MapManager();
 
@@ -228,7 +186,7 @@ namespace BankShot
 
                     break;
                 case GameState.Pause:
-                    pauseMenu.Update(kbs, ms, msPrev, test, out state);
+                    pauseMenu.Update(kbs, ms, msPrev, testMode, out state);
                     break;
                 case GameState.Leaderboard:
                     leaderboardMenu.Update(kbs, ms, msPrev, out state);

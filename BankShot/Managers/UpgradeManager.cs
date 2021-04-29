@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,27 +15,25 @@ namespace BankShot
         private List<Upgrade> upgrades;
         private int totalWeight;
         private List<Shop> shops;
-        private Texture2D textureShop;
         private Rectangle transformShop;
         private List<Rectangle> collisionBoxesShop;
         private bool activeShop;
-        private Texture2D exitTx;
 
 
 
         //constructor------------------------------------------------------------------------------
-        public UpgradeManager(Texture2D damageTexture, Texture2D speedTexture, Texture2D healthTexture,
-            Texture2D textureForShop, Rectangle transformForShop, List<Rectangle> collisionBoxesForShop,
-            bool activeForShop, Texture2D exit)
+        public UpgradeManager(
+            Rectangle transformForShop, List<Rectangle> collisionBoxesForShop,
+            bool activeForShop)
         {
             upgrades = new List<Upgrade>();
             
             Upgrade upgrade1 = new Upgrade(
-                true, 200,   //Damage
+                true, 2,   //Damage
                 false, 0,    //Projectile count
                 false, 0,    //Rate of fire
                 false, 0,    //Projectile speed
-                0,           //Projectile size
+                1,           //Projectile size
                 false, 0,    //Projectile spread
                 false, 0,    //Projectile homing
                 false, 0,    //Shield health
@@ -44,7 +43,7 @@ namespace BankShot
                 false, 0,    //Health regeneration
                 false, 0,    //Knockback
                 false, 0,    //Knockback resist
-                damageTexture,
+                Program.game.Content.Load<Texture2D>("DmgIcon"),
                 "Damage Boost",
                 "Doubles damage done by player",
                 1,
@@ -67,7 +66,7 @@ namespace BankShot
                 false, 0,   //Health regeneration
                 false, 0,   //Knockback
                 false, 0,   //Knockback resist
-                speedTexture,
+                Program.game.Content.Load<Texture2D>("ShotSpeedIcon"),
                 "Projectile Boost",
                 "Speeds up projectiles by 50%",
                 1,
@@ -80,7 +79,7 @@ namespace BankShot
                 false, 0,   //Projectile count
                 false, 0,   //Rate of fire
                 false, 0,   //Projectile speed
-                0,          //Projectile size
+                1,          //Projectile size
                 false, 0,   //Projectile spread
                 false, 0,   //Projectile homing
                 false, 0,   //Shield health
@@ -90,7 +89,7 @@ namespace BankShot
                 false, 0,   //Health regeneration
                 false, 0,   //Knockback
                 false, 0,   //Knockback resist
-                healthTexture,
+                Program.game.Content.Load<Texture2D>("HealthIcon"),
                 "Health Boost",
                 "Increases max health by 50%",
                 1,
@@ -105,16 +104,12 @@ namespace BankShot
             }
             totalWeight = tWeight;
 
-            textureShop = textureForShop;
             transformShop = transformForShop;
             activeShop = activeForShop;
             shops = new List<Shop>();
             collisionBoxesShop = new List<Rectangle> { transformShop };
 
             Shop.ShopWindow = Program.game.Content.Load<Texture2D>("ShopWindow");
-
-            exitTx = exit;
-
         }
 
         //accessors. each get and set for now, subject to change ----------------------------------
@@ -159,8 +154,8 @@ namespace BankShot
 
         public void MakeShop()
         {
-            //takes in an array of objects and creates an instance of "Shop" to be used by the player
-            shops.Add(new Shop(textureShop, transformShop, collisionBoxesShop, activeShop, upgrades, exitTx));
+//takes in an array of objects and creates an instance of "Shop" to be used by the player
+            shops.Add(new Shop(transformShop, collisionBoxesShop, activeShop, upgrades));
 
         }
 
@@ -180,7 +175,7 @@ namespace BankShot
         /// </summary>
         /// <param name="upgrade">The upgrade to be applied.</param>
         /// <param name="p">The active player.</param>
-        public void ApplyUpgrades(Upgrade upgrade, Player p)
+        public void ApplyUpgrade(Upgrade upgrade, Player p)
         {
             if (p.Money >= upgrade.cost)
             {

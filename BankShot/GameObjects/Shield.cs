@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -79,10 +80,10 @@ namespace BankShot
         }
 
         //Parameterized Constructor
-        public Shield(Texture2D texture, Rectangle transform,
+        public Shield(Rectangle transform,
                       List<Rectangle> collisionBoxes, bool active,
                       Vector2 velocity, double coolDown)
-                      : base(texture, transform, collisionBoxes, active)
+                      : base(Program.game.Content.Load<Texture2D>("Shield"), transform, collisionBoxes, active)
         {
             this.coolDown = coolDown;
             this.velocity = velocity;

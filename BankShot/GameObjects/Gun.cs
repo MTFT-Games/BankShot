@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,6 +12,7 @@ namespace BankShot
     public class Gun : Weapon
     {
         //Fields
+        private bool visible;
         private int projectileCount = 1;
         private float projectileSpread = 0;
         //Projectile Base Fields:
@@ -27,29 +29,29 @@ namespace BankShot
         private bool fromEnemy;
 
         //Parameterized Constructor
-        public Gun(Texture2D texture, Rectangle transform,
+        public Gun(bool visible, Rectangle transform,
                       List<Rectangle> collisionBoxes, bool active,
                       int damage, int knockback, bool interceptable,
                       double lifeSpan, int speed, Vector2 velocity,
-                      Texture2D projectileTexture,
                       Rectangle projectileTransform,
                       List<Rectangle> projectileCollisionBoxes,
                       double projectileHoming, bool projectileBounce,
                       bool projectileActive, bool fromEnemy)
-                      : base(texture, transform, collisionBoxes,
+                      : base(Program.game.Content.Load<Texture2D>("GunSprite"), transform, collisionBoxes,
                              active, damage, knockback, fromEnemy)
         {
             this.interceptable = interceptable;
             this.lifeSpan = lifeSpan;
             this.speed = speed;
             this.velocity = velocity;
-            this.projectileTexture = projectileTexture;
+            this.projectileTexture = Program.game.Content.Load<Texture2D>("Bullet");
             this.projectileTransform = projectileTransform;
             this.projectileCollisionBoxes = projectileCollisionBoxes;
             this.projectileActive = projectileActive;
             this.projectileHoming = projectileHoming;
             this.projectileBounce = projectileBounce;
             this.fromEnemy = fromEnemy;
+            this.visible = visible;
         }
 
         //accessors
@@ -162,7 +164,10 @@ namespace BankShot
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (visible)
+            {
             base.Draw(spriteBatch);
+            }
         }
     }
 }
