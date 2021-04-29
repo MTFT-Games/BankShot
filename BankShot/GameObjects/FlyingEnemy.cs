@@ -23,20 +23,27 @@ namespace BankShot
             this.speed = speed;
             this.reloadTime = reloadTime;
             elapsedTime = 0;
+            this.gun = gun;
         }
         public void Update(GameTime gameTime)
         {
-            base.Update();
-            Attack(gameTime);
+            ApplyKnockBack();
+            Move(gameTime);
+            DealDamage(Game1.player);
+            X = (int)position.X;
+            Y = (int)position.Y;
+            truePosition.X = X + rect.Width / 2;
+            truePosition.Y = Y + rect.Height / 2;
             gun.X = X + Rect.Width / 2;
             gun.Y = Y + Rect.Height / 2;
             elapsedTime += gameTime.ElapsedGameTime.TotalSeconds;
         }
         public void Move(GameTime gameTime)
         {
+            ApplyKnockBack();
             Pathfind(Game1.player, gameTime);//find player
-            base.Move();
-            ResolveCollisions();
+            position += velocity;
+            ResolveCollisions(); 
         }
         /// <summary>
         /// Sets velocity in the direction of the player
@@ -46,8 +53,6 @@ namespace BankShot
             //determines difference between enemy Xposition and target Xposition
             int distanceX = X - target.X;
 
-            if (Math.Abs(distanceX) < 40)
-            {
                 //Determines whether target is to the left or the right of the enemy
                 if (distanceX < -5)//target is to the left of enemy
                 {
@@ -62,11 +67,10 @@ namespace BankShot
                     X = Game1.player.X;
                     velocity.X = 0;
                 }
-                if (distanceX < 20)
+                if (Math.Abs(distanceX) < 20)
                 {
                     Attack(gameTime);
                 }
-            }
         }
         public void Attack(GameTime gameTime)
         {

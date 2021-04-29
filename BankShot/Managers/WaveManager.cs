@@ -78,7 +78,7 @@ namespace BankShot
                     Game1.player.Heal(Game1.player.MaxHealth / 10);
                     NextWave();
                     //Program.game.enemyManager.SpawnedEnemies.Add(new PlatformEnemy(Program.game.enemyTexture, new Rectangle(810, 200, 100, 100), true, 10, new Vector2(0, 0), 5, 5, 10, 2));
-                    //Program.game.enemyManager.SpawnedEnemies.Add(new RangedEnemy(Program.game.enemyTexture, new Rectangle(810, 200, 100, 100), new List<Rectangle>(), true, 10, new Vector2(0, 0), 5, 5, 10, new Gun(false, new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10, true, 1.4, 13, new Vector2(0, 0), Program.game.projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), 0, false, true, true), 2, 800));
+                    Program.game.enemyManager.SpawnedEnemies.Add(new FlyingEnemy(Program.game.enemyTexture, new Rectangle(810, 150, 100, 100), new List<Rectangle>(), true, 10, new Vector2(0, 0), 5, 5, 10, 2, new Gun(false, new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10, true, 1.4, 13, new Vector2(0, 0), new Rectangle(400, 100, 20, 20), new List<Rectangle>(), 0, false, true, true), 2));
                 }
             }
 

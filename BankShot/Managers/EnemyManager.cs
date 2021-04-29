@@ -156,6 +156,10 @@ namespace BankShot
                 {
                     ((PlatformEnemy)spawnedEnemies[i]).Update();
                 }
+                else if (spawnedEnemies[i] is FlyingEnemy)
+                {
+                    ((FlyingEnemy)spawnedEnemies[i]).Update(time);
+                }
                 else
                 {
                     spawnedEnemies[i].Update();
@@ -178,8 +182,6 @@ namespace BankShot
             //returns a string with information on each enemy's stats
             return $"HP: {spawnedEnemies[index].Health}\n" +
                 $"Attack Power: {spawnedEnemies[index].AttackPower}\n";
-
-
         }
 
     }

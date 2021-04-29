@@ -62,6 +62,7 @@ namespace BankShot
             }
             ApplyGravity();
             ResolveCollisions();
+            ApplyKnockBack();
             position += velocity;
         }
     }
