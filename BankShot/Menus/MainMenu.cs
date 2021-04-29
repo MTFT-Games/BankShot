@@ -92,7 +92,7 @@ namespace BankShot
                 // TODO: Simplify this by making a property in Game1 and using that instead of an out.
                 state = GameState.MainMenu;
             }
-            if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(exitBtn))
+            if (Input.MouseClick(1) && exitBtn.Contains(Input.MousePosition))
             {
                 //exits game
                 Program.game.Exit();

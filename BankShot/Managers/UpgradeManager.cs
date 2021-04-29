@@ -43,6 +43,7 @@ namespace BankShot
                 false, 0,    //Health regeneration
                 false, 0,    //Knockback
                 false, 0,    //Knockback resist
+                false,      //Additional Jump
                 Program.game.Content.Load<Texture2D>("DmgIcon"),
                 "Damage Boost",
                 "Doubles damage done by player",
@@ -66,6 +67,7 @@ namespace BankShot
                 false, 0,   //Health regeneration
                 false, 0,   //Knockback
                 false, 0,   //Knockback resist
+                false,      //Additional Jump
                 Program.game.Content.Load<Texture2D>("ShotSpeedIcon"),
                 "Projectile Boost",
                 "Speeds up projectiles by 50%",
@@ -89,6 +91,7 @@ namespace BankShot
                 false, 0,   //Health regeneration
                 false, 0,   //Knockback
                 false, 0,   //Knockback resist
+                false,      //Additional Jump
                 Program.game.Content.Load<Texture2D>("HealthIcon"),
                 "Health Boost",
                 "Increases max health by 50%",
@@ -309,6 +312,11 @@ namespace BankShot
                 } else
                 {
                     //not implemented yet
+                }
+
+                if (upgrade.additionalJump)
+                {
+                    Game1.player.NumberOfJumps += 1;
                 }
 
                 p.Money -= upgrade.cost;

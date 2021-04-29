@@ -55,7 +55,6 @@ namespace BankShot
                 //stats format: texture, rectangle, boxes(list rectangle),
                 //active(bool), maxhp(int), velocity (vector2), atk power (int),
                 //knock distance (float), money (int)
-
                 Enemy e = new Enemy((Texture2D)stats[0],
                     (Rectangle)stats[1],
                     (List<Rectangle>)stats[2],
@@ -80,7 +79,10 @@ namespace BankShot
             // TODO: Setup for multiple enemy types when we make them.
             // TODO: Setup with new stats template when we get to that.
             // TODO: Implement scaling.
-            spawnedEnemies.Add(new ChaserEnemy(
+            Type type = typeof(enemyType);
+            if  (type == typeof(ChaserEnemy))
+            {
+                spawnedEnemies.Add(new ChaserEnemy(
                 (Texture2D)enemies[0][0],
                 new Rectangle((int)position.X, (int)position.Y, 100, 100),
                 (bool)enemies[0][3],
@@ -88,8 +90,33 @@ namespace BankShot
                 (Vector2)enemies[0][5],
                 (int)enemies[0][6],
                 (float)enemies[0][7],
-                (int)enemies[0][8], 1));
+                (int)enemies[0][8], 
+                //The Chaser Enemy cannot have a speed of 1 or it will 
+                //cause a bug that stops its movement
+                //when walking left.
+                2));
+            }
+            if (type == typeof(RangedEnemy))
+            {
+                spawnedEnemies.Add(new RangedEnemy(
+                (Texture2D)enemies[0][0],
+                new Rectangle((int)position.X, (int)position.Y, 100, 100),
+                (List<Rectangle>)enemies[0][2],
+                (bool)enemies[0][3],
+                (int)enemies[0][4],
+                (Vector2)enemies[0][5],
+                (int)enemies[0][6],
+                (float)enemies[0][7],
+                (int)enemies[0][8], 
+                new Gun(false, 
+                        new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10, 
+                        true, 1.4, 13, new Vector2(0, 0), 
+                        new Rectangle(400, 100, 20, 20), 
+                        new List<Rectangle>(), 0, false, true, true), 
+                2, 800));
+            }
         }
+
 
         public void UpdateEnemies(GameTime time)
         {
@@ -104,7 +131,11 @@ namespace BankShot
                     continue;
                 }
 
-                if (spawnedEnemies[i] is RangedEnemy)
+                if (spawnedEnemies[i] is ChaserEnemy)
+                {
+                    ((ChaserEnemy)spawnedEnemies[i]).Update();
+                }
+                else if (spawnedEnemies[i] is RangedEnemy)
                 {
                     ((RangedEnemy)spawnedEnemies[i]).Update(time);
                 } else

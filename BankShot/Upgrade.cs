@@ -50,6 +50,8 @@ namespace BankShot
         public bool knockbackResistIsMultiplier;
         public int knockbackResistModifier;
 
+        public bool additionalJump;
+
         public Texture2D icon;
         public string name;
         public string description;
@@ -162,7 +164,7 @@ namespace BankShot
             float healthModifier, bool healthRegenIsMultiplier,
             float healthRegenModifier, bool knockbackIsMultiplier,
             float knockbackModifier, bool knockbackResistIsMultiplier,
-            int knockbackResistModifier, Texture2D icon, string name,
+            int knockbackResistModifier, bool jump, Texture2D icon, string name,
             string description, int weight, int cost)
         {
             this.damageIsMultiplier = damageIsMultiplier;
@@ -192,6 +194,7 @@ namespace BankShot
             this.knockbackModifier = knockbackModifier;
             this.knockbackResistIsMultiplier = knockbackResistIsMultiplier;
             this.knockbackResistModifier = knockbackResistModifier;
+            this.additionalJump = jump;
             this.icon = icon;
             this.name = name;
             this.description = description;
