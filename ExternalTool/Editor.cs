@@ -335,6 +335,7 @@ namespace ExternalTool
             {
                 // Clear the image of sender if clear param is set.
                 ((PictureBox)sender).Image = null;
+                ((PictureBox)sender).Controls[0].Text = "";
             }
             else
             {
@@ -344,7 +345,7 @@ namespace ExternalTool
                     ((PictureBox)sender).Image =
                         tileSet.Images[tileList.SelectedItems[0].ImageIndex];
                     ((PictureBox)sender).Controls[0].Text
-                        = tileList.SelectedItems[0].ImageIndex.ToString(); ;
+                        = tileList.SelectedItems[0].ImageIndex.ToString();
                 }
             }
 
