@@ -84,6 +84,7 @@ namespace BankShot
             {
                 //changes game state to main menu
                 state = GameState.MainMenu;
+                Program.game.resetGame();
             } else if (SingleClick(ms.LeftButton, ms, msPrev) && mousePosition.Intersects(leaderBtn))
             {
                 //changes game state to leaderboard

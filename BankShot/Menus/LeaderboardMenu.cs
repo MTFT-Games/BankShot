@@ -88,6 +88,7 @@ namespace BankShot
             {
                 //changes game state to main menu mode
                 state = GameState.MainMenu;
+                Program.game.resetGame();
             } else
             {
                 state = GameState.Leaderboard;

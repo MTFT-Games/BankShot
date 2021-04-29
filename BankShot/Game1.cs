@@ -20,8 +20,6 @@ namespace BankShot
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-
-
         // Menu fields.
         private MainMenu mainMenu;
         private PauseMenu pauseMenu;
@@ -47,24 +45,29 @@ namespace BankShot
         // Texture fields.
         // TODO: Move enemyTexture into enemy manager with file read overhaul.
         public Texture2D enemyTexture;
-        // TODO: Find better fonts and make a proper button texture. 
         // TODO: Use here instead of passing everywhere
-        public static SpriteFont font;
         public static Texture2D buttonTx;
 
+        // Font fields.
+        // TODO: Find better fonts and make a proper button texture. 
+        public static SpriteFont font;
 
-        // TODO: Should we use accessors or just make them public? Look at class guidelines
+        // TODO: Should we use accessors or just make them public? Look at
+        // class guidelines
+
+        /// <summary>
+        /// Gets or sets weather testing mode is active.
+        /// </summary>
         public bool Test
         {
             get { return testMode; }
             set { testMode = value; }
         }
 
-        public SpriteFont Font
-        {
-            get { return font; }
-            set { font = value; }
-        }
+        /// <summary>
+        /// Gets the placeholder font.
+        /// </summary>
+        public SpriteFont Font { get { return font; } }
 
         public Game1()
         {
@@ -75,18 +78,15 @@ namespace BankShot
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             state = GameState.MainMenu;
-
             scores = new int[5];
-
-
             testMode = false;
 
             // PLEASE TELL NOAH IF WE NEED TO CHANGE THE WINDOW ASPECT RATIO
-            // SO THAT HE CAN CHANGE THE MAP TO FIT
-            _graphics.PreferredBackBufferWidth = 1600;  // set this value to the desired width of your window
-            _graphics.PreferredBackBufferHeight = 960;   // set this value to the desired height of your window
+            // SO THAT HE CAN CHANGE THE MAP TO FIT.
+            // Set screen size.
+            _graphics.PreferredBackBufferWidth = 1600;
+            _graphics.PreferredBackBufferHeight = 960;
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -96,67 +96,64 @@ namespace BankShot
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //menu testing
+            // Load fonts.
             font = Content.Load<SpriteFont>("Arial12");
-            buttonTx = Content.Load<Texture2D>("button1");
 
-            //menu init
+            // Load Textures
+            buttonTx = Content.Load<Texture2D>("button1");
+            enemyTexture = Content.Load<Texture2D>("GoldSlime");
+
+            // Load menus.
             mainMenu = new MainMenu(font, buttonTx);
             pauseMenu = new PauseMenu(font, buttonTx);
             leaderboardMenu = new LeaderboardMenu(font, scores);
             gameOverMenu = new GameOverMenu(font);
 
-            //Textures
-            
-            enemyTexture = Content.Load<Texture2D>("GoldSlime");
-
-            //all values except for textures are temporary
-            upgradeManager = new UpgradeManager(new Rectangle(700, 800, 60, 60), new List<Rectangle>(), true);
-
+            // Load managers.
             waveManager = new WaveManager();
-
-            player = new Player(new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 15, new Vector2(0, 0));
-
-            //Enemy creation
-            enemyManager = new EnemyManager(new List<List<object>>() { new List<object>() {
-                enemyTexture,
-                new Rectangle(0, 0, 100, 100), //enemy rectangle
-                new List<Rectangle>(), //enemy 
-                true, //enemy active state
-                5, //enemy health
-                new Vector2(0, 0), //enemy velocity
-                5, //enemy attack power
-                15f, //Enemy knockback distance
-                250//Enemy's money value
-            } });
-            //enemyManager.SpawnEnemies();
-            //enemyManager.SpawnedEnemies.Add(new RangedEnemy(enemyTexture, new Rectangle(100, 100, 100, 100), new List<Rectangle>(), true, 100, new Vector2(0, 0), 5, 10, new Gun(new Texture2D(this._graphics.GraphicsDevice, 1, 1), new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 2, 2, true, .8, 20, new Vector2(0, 0), projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), false, false, true, true), .8));
-
-            //Gun Creation! 
-            projectileManager = new ProjectileManager();
-
-            //Shield Creation!
-            player.CurrentShield = new Shield(new Rectangle(player.Rect.X - 10, player.Rect.Y - 10, player.Rect.Width + 20, player.Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0), 2.5);
-            
-            //Map manager
             mapManager = new MapManager();
-
-            //Enemy manager
-            // TODO: use this.Content to load your game content here
+            projectileManager = new ProjectileManager();
+            upgradeManager = new UpgradeManager(
+                new Rectangle(700, 800, 60, 60), 
+                new List<Rectangle>(), 
+                true);
+            player = new Player(
+                new Rectangle(100, 100, 100, 100), 
+                new List<Rectangle>(), 
+                true, 
+                15, 
+                new Vector2(0, 0));
+            enemyManager = new EnemyManager(
+                new List<List<object>>() 
+                { 
+                    new List<object>()
+                    {
+                        enemyTexture,
+                        new Rectangle(0, 0, 100, 100), //enemy rectangle
+                        new List<Rectangle>(), //enemy 
+                        true, //enemy active state
+                        5, //enemy health
+                        new Vector2(0, 0), //enemy velocity
+                        5, //enemy attack power
+                        15f, //Enemy knockback distance
+                        250//Enemy's money value
+                    }
+                });                        
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed
-                || ((Keyboard.GetState().IsKeyDown(Keys.LeftAlt) || Keyboard.GetState().IsKeyDown(Keys.RightAlt))
-                && Keyboard.GetState().IsKeyDown(Keys.F4)))
+            // Quit input combo.
+            if ((Keyboard.GetState().IsKeyDown(Keys.LeftAlt) 
+                || Keyboard.GetState().IsKeyDown(Keys.RightAlt))
+                && Keyboard.GetState().IsKeyDown(Keys.F4))
+            {
                 Exit();
-            //gathers keybaord and mouse states for use in update methods
-            Input.Update();
-            KeyboardState kbs = Keyboard.GetState();
-            MouseState ms = Mouse.GetState();
+            }
 
-            //state machine based on the GameState enum
+            Input.Update();
+
+            // State machine based on the GameState.
             switch (state)
             {
                 case GameState.MainMenu:
