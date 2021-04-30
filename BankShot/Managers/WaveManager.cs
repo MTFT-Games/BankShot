@@ -18,6 +18,8 @@ namespace BankShot
         private double timer;
         private List<List<string>> waves;
         private bool waveBreak;
+        private double timeBetweenWaves;
+        private double timePassed;
 
         /// <summary>
         /// Gets the current wave number.
@@ -33,6 +35,21 @@ namespace BankShot
         {
             get { return waveBreak; }
             set { waveBreak = value; }
+        }
+        public double TimePassed
+        {
+            get
+            {
+                return timePassed;
+            }
+            set
+            {
+                timePassed = value;
+                if (timePassed > 10)
+                {
+                    timePassed = 10;
+                }
+            }
         }
 
         /// <summary>
@@ -50,12 +67,17 @@ namespace BankShot
                 {
                     "Chaser|400|480",
                     "Chaser|840|150",
-                    "Chaser|970|470",
+                    "Platform|970|470",
                     "Chaser|1180|480",
-                    "Ranged|810|200"
+                    "Ranged|810|200",
+                    "Flying|810|150",
+                    "Platform|400|680"
                 }
             };
             waveBreak = false;
+            timeBetweenWaves = 5;
+            //This can be changed to change the amount of time before the first wave.
+            timePassed = 10;
         }
 
         /// <summary>
@@ -72,16 +94,26 @@ namespace BankShot
                     Game1.player.Heal(Game1.player.MaxHealth / 5);
                     Game1.upgradeManager.MakeShop();
                 }
-
                 if (!waveBreak)
                 {
+                    if (timePassed < 0)
+                    {
+                        timePassed = 0;
+                    }
+                    timePassed += time.ElapsedGameTime.TotalSeconds;
                     Game1.player.Heal(Game1.player.MaxHealth / 10);
-                    NextWave();
-                    //Program.game.enemyManager.SpawnedEnemies.Add(new RangedEnemy(Program.game.enemyTexture, new Rectangle(810, 200, 100, 100), new List<Rectangle>(), true, 10, new Vector2(0, 0), 5, 5, 10, new Gun(false, new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10, true, 1.4, 13, new Vector2(0, 0), Program.game.projectileTexture, new Rectangle(400, 100, 20, 20), new List<Rectangle>(), 0, false, true, true), 2, 800));
+                    if (timePassed > timeBetweenWaves)
+                    {
+                        NextWave();
+                        timePassed = -1;
+                    }
                 }
             }
 
-            timer += time.ElapsedGameTime.TotalSeconds;
+            if (!(Program.game.enemyManager.SpawnedEnemies.Count == 0))
+            {
+                timer += time.ElapsedGameTime.TotalSeconds;
+            }
         }
 
         /// <summary>
@@ -121,6 +153,12 @@ namespace BankShot
 
                     case "Flying":
                         Program.game.enemyManager.Spawn<FlyingEnemy>(
+                        new Vector2(
+                            float.Parse(splitEntry[1]),
+                            float.Parse(splitEntry[2])));
+                        break;
+                    case "Platform":
+                        Program.game.enemyManager.Spawn<PlatformEnemy>(
                         new Vector2(
                             float.Parse(splitEntry[1]),
                             float.Parse(splitEntry[2])));

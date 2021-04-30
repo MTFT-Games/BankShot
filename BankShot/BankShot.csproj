@@ -10,6 +10,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Content\Backgrounds\TitleScreen.png" />
+    <None Remove="Content\bin\DesktopGL\Backgrounds\TitleScreen.xnb" />
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>

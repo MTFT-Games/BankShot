@@ -12,21 +12,21 @@ namespace BankShot
     public class Gun : Weapon
     {
         //Fields
-        private bool visible;
-        private int projectileCount = 1;
-        private float projectileSpread = 0;
+        protected bool visible;
+        protected int projectileCount = 1;
+        protected float projectileSpread = 0;
         //Projectile Base Fields:
-        private Texture2D projectileTexture;
-        private Rectangle projectileTransform;
-        private List<Rectangle> projectileCollisionBoxes;
-        private bool projectileActive;
-        private double projectileHoming;
-        private bool projectileBounce;
+        protected Texture2D projectileTexture;
+        protected Rectangle projectileTransform;
+        protected List<Rectangle> projectileCollisionBoxes;
+        protected bool projectileActive;
+        protected double projectileHoming;
+        protected bool projectileBounce;
         //Projectile Stats:
-        private double speed;
-        private bool interceptable;
-        private double lifeSpan;
-        private bool fromEnemy;
+        protected double speed;
+        protected bool interceptable;
+        protected double lifeSpan;
+        protected bool fromEnemy;
 
         //Parameterized Constructor
         public Gun(bool visible, Rectangle transform,
@@ -135,7 +135,7 @@ namespace BankShot
             base.Attack();
         }
 
-        public void Attack(Vector2 direction)
+        public virtual void Attack(Vector2 direction)
         {
             direction.Normalize();
             projectileTransform.X = X;
