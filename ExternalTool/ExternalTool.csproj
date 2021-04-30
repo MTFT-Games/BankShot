@@ -57,6 +57,7 @@
     <Compile Include="SizeablePictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Upgrade.cs" />
     <EmbeddedResource Include="Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
     </EmbeddedResource>

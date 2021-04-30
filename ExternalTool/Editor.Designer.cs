@@ -30,6 +30,7 @@ namespace ExternalTool
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Projectile speed");
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,10 +54,76 @@ namespace ExternalTool
             this.thumbnailSet = new System.Windows.Forms.ImageList(this.components);
             this.mapBackground = new System.Windows.Forms.PictureBox();
             this.upgradesTab = new System.Windows.Forms.TabPage();
+            this.cost = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.trackBar16 = new System.Windows.Forms.TrackBar();
+            this.weight = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.trackBar15 = new System.Windows.Forms.TrackBar();
+            this.upgradeJump = new System.Windows.Forms.CheckBox();
+            this.upgradeKnockResist = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.checkBox14 = new System.Windows.Forms.CheckBox();
+            this.trackBar14 = new System.Windows.Forms.TrackBar();
+            this.upgradeKnock = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.checkBox13 = new System.Windows.Forms.CheckBox();
+            this.trackBar13 = new System.Windows.Forms.TrackBar();
+            this.upgradeHealthRegen = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.trackBar12 = new System.Windows.Forms.TrackBar();
+            this.upgradeHealth = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.trackBar11 = new System.Windows.Forms.TrackBar();
+            this.upgradeShieldCool = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.trackBar10 = new System.Windows.Forms.TrackBar();
+            this.upgradeShieldRegen = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.trackBar9 = new System.Windows.Forms.TrackBar();
+            this.upgradeShieldHealth = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.trackBar8 = new System.Windows.Forms.TrackBar();
+            this.upgradeProjHome = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.trackBar7 = new System.Windows.Forms.TrackBar();
+            this.upgradeProjSpread = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.trackBar6 = new System.Windows.Forms.TrackBar();
+            this.upgradeProjSize = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.trackBar5 = new System.Windows.Forms.TrackBar();
+            this.upgradeProjSpeed = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.trackBar4 = new System.Windows.Forms.TrackBar();
+            this.upgradeROF = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
+            this.upgradeProjCount = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.upgradeDmg = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.newUpgradeBtn = new System.Windows.Forms.Button();
+            this.upgradeDesc = new System.Windows.Forms.TextBox();
+            this.upgradeName = new System.Windows.Forms.TextBox();
+            this.upgradeImageDrop = new System.Windows.Forms.ComboBox();
+            this.upgradeIcon = new System.Windows.Forms.PictureBox();
             this.upgradeList = new System.Windows.Forms.ListView();
-            this.iconHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.descriptionHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tileSet = new System.Windows.Forms.ImageList(this.components);
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.statusStrip.SuspendLayout();
@@ -69,6 +136,39 @@ namespace ExternalTool
             this.mapDivider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mapBackground)).BeginInit();
             this.upgradesTab.SuspendLayout();
+            this.cost.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar16)).BeginInit();
+            this.weight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar15)).BeginInit();
+            this.upgradeKnockResist.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar14)).BeginInit();
+            this.upgradeKnock.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar13)).BeginInit();
+            this.upgradeHealthRegen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar12)).BeginInit();
+            this.upgradeHealth.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar11)).BeginInit();
+            this.upgradeShieldCool.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar10)).BeginInit();
+            this.upgradeShieldRegen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar9)).BeginInit();
+            this.upgradeShieldHealth.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar8)).BeginInit();
+            this.upgradeProjHome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar7)).BeginInit();
+            this.upgradeProjSpread.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).BeginInit();
+            this.upgradeProjSize.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).BeginInit();
+            this.upgradeProjSpeed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
+            this.upgradeROF.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            this.upgradeProjCount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            this.upgradeDmg.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upgradeIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -287,6 +387,28 @@ namespace ExternalTool
             // 
             // upgradesTab
             // 
+            this.upgradesTab.Controls.Add(this.cost);
+            this.upgradesTab.Controls.Add(this.weight);
+            this.upgradesTab.Controls.Add(this.upgradeJump);
+            this.upgradesTab.Controls.Add(this.upgradeKnockResist);
+            this.upgradesTab.Controls.Add(this.upgradeKnock);
+            this.upgradesTab.Controls.Add(this.upgradeHealthRegen);
+            this.upgradesTab.Controls.Add(this.upgradeHealth);
+            this.upgradesTab.Controls.Add(this.upgradeShieldCool);
+            this.upgradesTab.Controls.Add(this.upgradeShieldRegen);
+            this.upgradesTab.Controls.Add(this.upgradeShieldHealth);
+            this.upgradesTab.Controls.Add(this.upgradeProjHome);
+            this.upgradesTab.Controls.Add(this.upgradeProjSpread);
+            this.upgradesTab.Controls.Add(this.upgradeProjSize);
+            this.upgradesTab.Controls.Add(this.upgradeProjSpeed);
+            this.upgradesTab.Controls.Add(this.upgradeROF);
+            this.upgradesTab.Controls.Add(this.upgradeProjCount);
+            this.upgradesTab.Controls.Add(this.upgradeDmg);
+            this.upgradesTab.Controls.Add(this.newUpgradeBtn);
+            this.upgradesTab.Controls.Add(this.upgradeDesc);
+            this.upgradesTab.Controls.Add(this.upgradeName);
+            this.upgradesTab.Controls.Add(this.upgradeImageDrop);
+            this.upgradesTab.Controls.Add(this.upgradeIcon);
             this.upgradesTab.Controls.Add(this.upgradeList);
             this.upgradesTab.Location = new System.Drawing.Point(4, 24);
             this.upgradesTab.Name = "upgradesTab";
@@ -296,12 +418,771 @@ namespace ExternalTool
             this.upgradesTab.Text = "Upgrades";
             this.upgradesTab.UseVisualStyleBackColor = true;
             // 
+            // cost
+            // 
+            this.cost.Controls.Add(this.label16);
+            this.cost.Controls.Add(this.trackBar16);
+            this.cost.Location = new System.Drawing.Point(867, 255);
+            this.cost.Name = "cost";
+            this.cost.Size = new System.Drawing.Size(156, 75);
+            this.cost.TabIndex = 39;
+            this.cost.TabStop = false;
+            this.cost.Text = "Cost";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.SystemColors.Control;
+            this.label16.Location = new System.Drawing.Point(120, 50);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(28, 15);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "000";
+            // 
+            // trackBar16
+            // 
+            this.trackBar16.LargeChange = 10;
+            this.trackBar16.Location = new System.Drawing.Point(6, 20);
+            this.trackBar16.Maximum = 400;
+            this.trackBar16.Name = "trackBar16";
+            this.trackBar16.Size = new System.Drawing.Size(142, 45);
+            this.trackBar16.TabIndex = 23;
+            this.trackBar16.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar16.Value = 1;
+            this.trackBar16.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // weight
+            // 
+            this.weight.Controls.Add(this.label15);
+            this.weight.Controls.Add(this.trackBar15);
+            this.weight.Location = new System.Drawing.Point(626, 367);
+            this.weight.Name = "weight";
+            this.weight.Size = new System.Drawing.Size(156, 75);
+            this.weight.TabIndex = 38;
+            this.weight.TabStop = false;
+            this.weight.Text = "Weight in random pool";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.SystemColors.Control;
+            this.label15.Location = new System.Drawing.Point(120, 50);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(28, 15);
+            this.label15.TabIndex = 24;
+            this.label15.Text = "000";
+            // 
+            // trackBar15
+            // 
+            this.trackBar15.LargeChange = 10;
+            this.trackBar15.Location = new System.Drawing.Point(6, 20);
+            this.trackBar15.Maximum = 400;
+            this.trackBar15.Name = "trackBar15";
+            this.trackBar15.Size = new System.Drawing.Size(142, 45);
+            this.trackBar15.TabIndex = 23;
+            this.trackBar15.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar15.Value = 1;
+            this.trackBar15.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeJump
+            // 
+            this.upgradeJump.AutoSize = true;
+            this.upgradeJump.Location = new System.Drawing.Point(504, 448);
+            this.upgradeJump.Name = "upgradeJump";
+            this.upgradeJump.Size = new System.Drawing.Size(73, 19);
+            this.upgradeJump.TabIndex = 37;
+            this.upgradeJump.Text = "Add jump";
+            this.upgradeJump.UseVisualStyleBackColor = true;
+            // 
+            // upgradeKnockResist
+            // 
+            this.upgradeKnockResist.Controls.Add(this.label14);
+            this.upgradeKnockResist.Controls.Add(this.checkBox14);
+            this.upgradeKnockResist.Controls.Add(this.trackBar14);
+            this.upgradeKnockResist.Location = new System.Drawing.Point(464, 367);
+            this.upgradeKnockResist.Name = "upgradeKnockResist";
+            this.upgradeKnockResist.Size = new System.Drawing.Size(156, 75);
+            this.upgradeKnockResist.TabIndex = 36;
+            this.upgradeKnockResist.TabStop = false;
+            this.upgradeKnockResist.Text = "Knockback resist modifier";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.SystemColors.Control;
+            this.label14.Location = new System.Drawing.Point(120, 50);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(28, 15);
+            this.label14.TabIndex = 24;
+            this.label14.Text = "000";
+            // 
+            // checkBox14
+            // 
+            this.checkBox14.AutoSize = true;
+            this.checkBox14.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox14.Location = new System.Drawing.Point(6, 46);
+            this.checkBox14.Name = "checkBox14";
+            this.checkBox14.Size = new System.Drawing.Size(77, 19);
+            this.checkBox14.TabIndex = 22;
+            this.checkBox14.Text = "Multiplier";
+            this.checkBox14.UseVisualStyleBackColor = false;
+            // 
+            // trackBar14
+            // 
+            this.trackBar14.LargeChange = 10;
+            this.trackBar14.Location = new System.Drawing.Point(6, 20);
+            this.trackBar14.Maximum = 400;
+            this.trackBar14.Name = "trackBar14";
+            this.trackBar14.Size = new System.Drawing.Size(142, 45);
+            this.trackBar14.TabIndex = 23;
+            this.trackBar14.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar14.Value = 1;
+            this.trackBar14.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeKnock
+            // 
+            this.upgradeKnock.Controls.Add(this.label13);
+            this.upgradeKnock.Controls.Add(this.checkBox13);
+            this.upgradeKnock.Controls.Add(this.trackBar13);
+            this.upgradeKnock.Location = new System.Drawing.Point(302, 367);
+            this.upgradeKnock.Name = "upgradeKnock";
+            this.upgradeKnock.Size = new System.Drawing.Size(156, 75);
+            this.upgradeKnock.TabIndex = 35;
+            this.upgradeKnock.TabStop = false;
+            this.upgradeKnock.Text = "Knockback modifier";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.Control;
+            this.label13.Location = new System.Drawing.Point(120, 50);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(28, 15);
+            this.label13.TabIndex = 24;
+            this.label13.Text = "000";
+            // 
+            // checkBox13
+            // 
+            this.checkBox13.AutoSize = true;
+            this.checkBox13.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox13.Location = new System.Drawing.Point(6, 46);
+            this.checkBox13.Name = "checkBox13";
+            this.checkBox13.Size = new System.Drawing.Size(77, 19);
+            this.checkBox13.TabIndex = 22;
+            this.checkBox13.Text = "Multiplier";
+            this.checkBox13.UseVisualStyleBackColor = false;
+            // 
+            // trackBar13
+            // 
+            this.trackBar13.LargeChange = 10;
+            this.trackBar13.Location = new System.Drawing.Point(6, 20);
+            this.trackBar13.Maximum = 400;
+            this.trackBar13.Name = "trackBar13";
+            this.trackBar13.Size = new System.Drawing.Size(142, 45);
+            this.trackBar13.TabIndex = 23;
+            this.trackBar13.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar13.Value = 1;
+            this.trackBar13.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeHealthRegen
+            // 
+            this.upgradeHealthRegen.Controls.Add(this.label12);
+            this.upgradeHealthRegen.Controls.Add(this.checkBox12);
+            this.upgradeHealthRegen.Controls.Add(this.trackBar12);
+            this.upgradeHealthRegen.Location = new System.Drawing.Point(626, 286);
+            this.upgradeHealthRegen.Name = "upgradeHealthRegen";
+            this.upgradeHealthRegen.Size = new System.Drawing.Size(156, 75);
+            this.upgradeHealthRegen.TabIndex = 34;
+            this.upgradeHealthRegen.TabStop = false;
+            this.upgradeHealthRegen.Text = "Health regen modifier";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.SystemColors.Control;
+            this.label12.Location = new System.Drawing.Point(120, 50);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(28, 15);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "000";
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox12.Location = new System.Drawing.Point(6, 46);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(77, 19);
+            this.checkBox12.TabIndex = 22;
+            this.checkBox12.Text = "Multiplier";
+            this.checkBox12.UseVisualStyleBackColor = false;
+            // 
+            // trackBar12
+            // 
+            this.trackBar12.LargeChange = 10;
+            this.trackBar12.Location = new System.Drawing.Point(6, 20);
+            this.trackBar12.Maximum = 400;
+            this.trackBar12.Name = "trackBar12";
+            this.trackBar12.Size = new System.Drawing.Size(142, 45);
+            this.trackBar12.TabIndex = 23;
+            this.trackBar12.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar12.Value = 1;
+            this.trackBar12.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeHealth
+            // 
+            this.upgradeHealth.Controls.Add(this.label11);
+            this.upgradeHealth.Controls.Add(this.checkBox11);
+            this.upgradeHealth.Controls.Add(this.trackBar11);
+            this.upgradeHealth.Location = new System.Drawing.Point(464, 286);
+            this.upgradeHealth.Name = "upgradeHealth";
+            this.upgradeHealth.Size = new System.Drawing.Size(156, 75);
+            this.upgradeHealth.TabIndex = 33;
+            this.upgradeHealth.TabStop = false;
+            this.upgradeHealth.Text = "Health modifier";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.SystemColors.Control;
+            this.label11.Location = new System.Drawing.Point(120, 50);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(28, 15);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "000";
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox11.Location = new System.Drawing.Point(6, 46);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(77, 19);
+            this.checkBox11.TabIndex = 22;
+            this.checkBox11.Text = "Multiplier";
+            this.checkBox11.UseVisualStyleBackColor = false;
+            // 
+            // trackBar11
+            // 
+            this.trackBar11.LargeChange = 10;
+            this.trackBar11.Location = new System.Drawing.Point(6, 20);
+            this.trackBar11.Maximum = 400;
+            this.trackBar11.Name = "trackBar11";
+            this.trackBar11.Size = new System.Drawing.Size(142, 45);
+            this.trackBar11.TabIndex = 23;
+            this.trackBar11.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar11.Value = 1;
+            this.trackBar11.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeShieldCool
+            // 
+            this.upgradeShieldCool.Controls.Add(this.label10);
+            this.upgradeShieldCool.Controls.Add(this.checkBox10);
+            this.upgradeShieldCool.Controls.Add(this.trackBar10);
+            this.upgradeShieldCool.Location = new System.Drawing.Point(302, 286);
+            this.upgradeShieldCool.Name = "upgradeShieldCool";
+            this.upgradeShieldCool.Size = new System.Drawing.Size(156, 75);
+            this.upgradeShieldCool.TabIndex = 32;
+            this.upgradeShieldCool.TabStop = false;
+            this.upgradeShieldCool.Text = "Shield cooldown modifier";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.SystemColors.Control;
+            this.label10.Location = new System.Drawing.Point(120, 50);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(28, 15);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "000";
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox10.Location = new System.Drawing.Point(6, 46);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(77, 19);
+            this.checkBox10.TabIndex = 22;
+            this.checkBox10.Text = "Multiplier";
+            this.checkBox10.UseVisualStyleBackColor = false;
+            // 
+            // trackBar10
+            // 
+            this.trackBar10.LargeChange = 10;
+            this.trackBar10.Location = new System.Drawing.Point(6, 20);
+            this.trackBar10.Maximum = 400;
+            this.trackBar10.Name = "trackBar10";
+            this.trackBar10.Size = new System.Drawing.Size(142, 45);
+            this.trackBar10.TabIndex = 23;
+            this.trackBar10.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar10.Value = 1;
+            this.trackBar10.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeShieldRegen
+            // 
+            this.upgradeShieldRegen.Controls.Add(this.label9);
+            this.upgradeShieldRegen.Controls.Add(this.checkBox9);
+            this.upgradeShieldRegen.Controls.Add(this.trackBar9);
+            this.upgradeShieldRegen.Location = new System.Drawing.Point(626, 205);
+            this.upgradeShieldRegen.Name = "upgradeShieldRegen";
+            this.upgradeShieldRegen.Size = new System.Drawing.Size(156, 75);
+            this.upgradeShieldRegen.TabIndex = 31;
+            this.upgradeShieldRegen.TabStop = false;
+            this.upgradeShieldRegen.Text = "Shield regen modifier";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.SystemColors.Control;
+            this.label9.Location = new System.Drawing.Point(120, 50);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(28, 15);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "000";
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox9.Location = new System.Drawing.Point(6, 46);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(77, 19);
+            this.checkBox9.TabIndex = 22;
+            this.checkBox9.Text = "Multiplier";
+            this.checkBox9.UseVisualStyleBackColor = false;
+            // 
+            // trackBar9
+            // 
+            this.trackBar9.LargeChange = 10;
+            this.trackBar9.Location = new System.Drawing.Point(6, 20);
+            this.trackBar9.Maximum = 400;
+            this.trackBar9.Name = "trackBar9";
+            this.trackBar9.Size = new System.Drawing.Size(142, 45);
+            this.trackBar9.TabIndex = 23;
+            this.trackBar9.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar9.Value = 1;
+            this.trackBar9.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeShieldHealth
+            // 
+            this.upgradeShieldHealth.Controls.Add(this.label8);
+            this.upgradeShieldHealth.Controls.Add(this.checkBox8);
+            this.upgradeShieldHealth.Controls.Add(this.trackBar8);
+            this.upgradeShieldHealth.Location = new System.Drawing.Point(464, 205);
+            this.upgradeShieldHealth.Name = "upgradeShieldHealth";
+            this.upgradeShieldHealth.Size = new System.Drawing.Size(156, 75);
+            this.upgradeShieldHealth.TabIndex = 30;
+            this.upgradeShieldHealth.TabStop = false;
+            this.upgradeShieldHealth.Text = "Shield health modifier";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.Control;
+            this.label8.Location = new System.Drawing.Point(120, 50);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(28, 15);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "000";
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox8.Location = new System.Drawing.Point(6, 46);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(77, 19);
+            this.checkBox8.TabIndex = 22;
+            this.checkBox8.Text = "Multiplier";
+            this.checkBox8.UseVisualStyleBackColor = false;
+            // 
+            // trackBar8
+            // 
+            this.trackBar8.LargeChange = 10;
+            this.trackBar8.Location = new System.Drawing.Point(6, 20);
+            this.trackBar8.Maximum = 400;
+            this.trackBar8.Name = "trackBar8";
+            this.trackBar8.Size = new System.Drawing.Size(142, 45);
+            this.trackBar8.TabIndex = 23;
+            this.trackBar8.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar8.Value = 1;
+            this.trackBar8.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeProjHome
+            // 
+            this.upgradeProjHome.Controls.Add(this.label7);
+            this.upgradeProjHome.Controls.Add(this.checkBox7);
+            this.upgradeProjHome.Controls.Add(this.trackBar7);
+            this.upgradeProjHome.Font = new System.Drawing.Font("Comic Sans MS", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upgradeProjHome.Location = new System.Drawing.Point(302, 205);
+            this.upgradeProjHome.Name = "upgradeProjHome";
+            this.upgradeProjHome.Size = new System.Drawing.Size(156, 75);
+            this.upgradeProjHome.TabIndex = 29;
+            this.upgradeProjHome.TabStop = false;
+            this.upgradeProjHome.Text = "Projectile homing modifier";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.SystemColors.Control;
+            this.label7.Location = new System.Drawing.Point(120, 50);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(25, 14);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "000";
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox7.Location = new System.Drawing.Point(6, 46);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(73, 18);
+            this.checkBox7.TabIndex = 22;
+            this.checkBox7.Text = "Multiplier";
+            this.checkBox7.UseVisualStyleBackColor = false;
+            // 
+            // trackBar7
+            // 
+            this.trackBar7.LargeChange = 10;
+            this.trackBar7.Location = new System.Drawing.Point(6, 20);
+            this.trackBar7.Maximum = 400;
+            this.trackBar7.Name = "trackBar7";
+            this.trackBar7.Size = new System.Drawing.Size(142, 45);
+            this.trackBar7.TabIndex = 23;
+            this.trackBar7.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar7.Value = 1;
+            this.trackBar7.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeProjSpread
+            // 
+            this.upgradeProjSpread.Controls.Add(this.label6);
+            this.upgradeProjSpread.Controls.Add(this.checkBox6);
+            this.upgradeProjSpread.Controls.Add(this.trackBar6);
+            this.upgradeProjSpread.Location = new System.Drawing.Point(626, 124);
+            this.upgradeProjSpread.Name = "upgradeProjSpread";
+            this.upgradeProjSpread.Size = new System.Drawing.Size(156, 75);
+            this.upgradeProjSpread.TabIndex = 28;
+            this.upgradeProjSpread.TabStop = false;
+            this.upgradeProjSpread.Text = "Projectile spread modifier";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(120, 50);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(28, 15);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "000";
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox6.Location = new System.Drawing.Point(6, 46);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(77, 19);
+            this.checkBox6.TabIndex = 22;
+            this.checkBox6.Text = "Multiplier";
+            this.checkBox6.UseVisualStyleBackColor = false;
+            // 
+            // trackBar6
+            // 
+            this.trackBar6.LargeChange = 10;
+            this.trackBar6.Location = new System.Drawing.Point(6, 20);
+            this.trackBar6.Maximum = 400;
+            this.trackBar6.Name = "trackBar6";
+            this.trackBar6.Size = new System.Drawing.Size(142, 45);
+            this.trackBar6.TabIndex = 23;
+            this.trackBar6.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar6.Value = 1;
+            this.trackBar6.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeProjSize
+            // 
+            this.upgradeProjSize.Controls.Add(this.label5);
+            this.upgradeProjSize.Controls.Add(this.checkBox5);
+            this.upgradeProjSize.Controls.Add(this.trackBar5);
+            this.upgradeProjSize.Location = new System.Drawing.Point(464, 124);
+            this.upgradeProjSize.Name = "upgradeProjSize";
+            this.upgradeProjSize.Size = new System.Drawing.Size(156, 75);
+            this.upgradeProjSize.TabIndex = 27;
+            this.upgradeProjSize.TabStop = false;
+            this.upgradeProjSize.Text = "Projectle size modifier";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.Control;
+            this.label5.Location = new System.Drawing.Point(120, 50);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 15);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "000";
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoCheck = false;
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox5.Checked = true;
+            this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox5.Location = new System.Drawing.Point(6, 46);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(77, 19);
+            this.checkBox5.TabIndex = 22;
+            this.checkBox5.Text = "Multiplier";
+            this.checkBox5.UseVisualStyleBackColor = false;
+            // 
+            // trackBar5
+            // 
+            this.trackBar5.LargeChange = 10;
+            this.trackBar5.Location = new System.Drawing.Point(6, 20);
+            this.trackBar5.Maximum = 400;
+            this.trackBar5.Name = "trackBar5";
+            this.trackBar5.Size = new System.Drawing.Size(142, 45);
+            this.trackBar5.TabIndex = 23;
+            this.trackBar5.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar5.Value = 1;
+            this.trackBar5.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeProjSpeed
+            // 
+            this.upgradeProjSpeed.Controls.Add(this.label4);
+            this.upgradeProjSpeed.Controls.Add(this.checkBox4);
+            this.upgradeProjSpeed.Controls.Add(this.trackBar4);
+            this.upgradeProjSpeed.Location = new System.Drawing.Point(302, 124);
+            this.upgradeProjSpeed.Name = "upgradeProjSpeed";
+            this.upgradeProjSpeed.Size = new System.Drawing.Size(156, 75);
+            this.upgradeProjSpeed.TabIndex = 26;
+            this.upgradeProjSpeed.TabStop = false;
+            this.upgradeProjSpeed.Text = "Projectile speed modifier";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(120, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(28, 15);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "000";
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox4.Location = new System.Drawing.Point(6, 46);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(77, 19);
+            this.checkBox4.TabIndex = 22;
+            this.checkBox4.Text = "Multiplier";
+            this.checkBox4.UseVisualStyleBackColor = false;
+            // 
+            // trackBar4
+            // 
+            this.trackBar4.LargeChange = 10;
+            this.trackBar4.Location = new System.Drawing.Point(6, 20);
+            this.trackBar4.Maximum = 400;
+            this.trackBar4.Name = "trackBar4";
+            this.trackBar4.Size = new System.Drawing.Size(142, 45);
+            this.trackBar4.TabIndex = 23;
+            this.trackBar4.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar4.Value = 1;
+            this.trackBar4.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeROF
+            // 
+            this.upgradeROF.Controls.Add(this.label3);
+            this.upgradeROF.Controls.Add(this.checkBox3);
+            this.upgradeROF.Controls.Add(this.trackBar3);
+            this.upgradeROF.Location = new System.Drawing.Point(626, 43);
+            this.upgradeROF.Name = "upgradeROF";
+            this.upgradeROF.Size = new System.Drawing.Size(156, 75);
+            this.upgradeROF.TabIndex = 25;
+            this.upgradeROF.TabStop = false;
+            this.upgradeROF.Text = "Rate of fire modifier";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(120, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(28, 15);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "000";
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox3.Location = new System.Drawing.Point(6, 46);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(77, 19);
+            this.checkBox3.TabIndex = 22;
+            this.checkBox3.Text = "Multiplier";
+            this.checkBox3.UseVisualStyleBackColor = false;
+            // 
+            // trackBar3
+            // 
+            this.trackBar3.LargeChange = 10;
+            this.trackBar3.Location = new System.Drawing.Point(6, 20);
+            this.trackBar3.Maximum = 400;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.Size = new System.Drawing.Size(142, 45);
+            this.trackBar3.TabIndex = 23;
+            this.trackBar3.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar3.Value = 1;
+            this.trackBar3.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeProjCount
+            // 
+            this.upgradeProjCount.Controls.Add(this.label1);
+            this.upgradeProjCount.Controls.Add(this.checkBox2);
+            this.upgradeProjCount.Controls.Add(this.trackBar2);
+            this.upgradeProjCount.Location = new System.Drawing.Point(464, 43);
+            this.upgradeProjCount.Name = "upgradeProjCount";
+            this.upgradeProjCount.Size = new System.Drawing.Size(156, 75);
+            this.upgradeProjCount.TabIndex = 25;
+            this.upgradeProjCount.TabStop = false;
+            this.upgradeProjCount.Text = "Projectile count modifier";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(120, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 15);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "000";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox2.Location = new System.Drawing.Point(6, 46);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(77, 19);
+            this.checkBox2.TabIndex = 22;
+            this.checkBox2.Text = "Multiplier";
+            this.checkBox2.UseVisualStyleBackColor = false;
+            // 
+            // trackBar2
+            // 
+            this.trackBar2.LargeChange = 10;
+            this.trackBar2.Location = new System.Drawing.Point(6, 20);
+            this.trackBar2.Maximum = 400;
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(142, 45);
+            this.trackBar2.TabIndex = 23;
+            this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar2.Value = 1;
+            this.trackBar2.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // upgradeDmg
+            // 
+            this.upgradeDmg.Controls.Add(this.label2);
+            this.upgradeDmg.Controls.Add(this.checkBox1);
+            this.upgradeDmg.Controls.Add(this.trackBar1);
+            this.upgradeDmg.Location = new System.Drawing.Point(302, 43);
+            this.upgradeDmg.Name = "upgradeDmg";
+            this.upgradeDmg.Size = new System.Drawing.Size(156, 75);
+            this.upgradeDmg.TabIndex = 22;
+            this.upgradeDmg.TabStop = false;
+            this.upgradeDmg.Text = "Damage modifier";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(120, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 15);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "000";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.checkBox1.Location = new System.Drawing.Point(6, 46);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(77, 19);
+            this.checkBox1.TabIndex = 22;
+            this.checkBox1.Text = "Multiplier";
+            this.checkBox1.UseVisualStyleBackColor = false;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 10;
+            this.trackBar1.Location = new System.Drawing.Point(6, 20);
+            this.trackBar1.Maximum = 400;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(142, 45);
+            this.trackBar1.TabIndex = 23;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trackBar1.Value = 1;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar_Scroll);
+            // 
+            // newUpgradeBtn
+            // 
+            this.newUpgradeBtn.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newUpgradeBtn.Location = new System.Drawing.Point(6, 446);
+            this.newUpgradeBtn.Name = "newUpgradeBtn";
+            this.newUpgradeBtn.Size = new System.Drawing.Size(145, 40);
+            this.newUpgradeBtn.TabIndex = 17;
+            this.newUpgradeBtn.Text = "New upgrade";
+            this.newUpgradeBtn.UseVisualStyleBackColor = true;
+            // 
+            // upgradeDesc
+            // 
+            this.upgradeDesc.AcceptsReturn = true;
+            this.upgradeDesc.Location = new System.Drawing.Point(808, 86);
+            this.upgradeDesc.Multiline = true;
+            this.upgradeDesc.Name = "upgradeDesc";
+            this.upgradeDesc.Size = new System.Drawing.Size(266, 159);
+            this.upgradeDesc.TabIndex = 16;
+            this.upgradeDesc.Text = "Sample description";
+            // 
+            // upgradeName
+            // 
+            this.upgradeName.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upgradeName.Location = new System.Drawing.Point(853, 43);
+            this.upgradeName.Name = "upgradeName";
+            this.upgradeName.Size = new System.Drawing.Size(182, 30);
+            this.upgradeName.TabIndex = 15;
+            this.upgradeName.Text = "Name";
+            this.upgradeName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // upgradeImageDrop
+            // 
+            this.upgradeImageDrop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.upgradeImageDrop.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.upgradeImageDrop.FormattingEnabled = true;
+            this.upgradeImageDrop.Location = new System.Drawing.Point(157, 112);
+            this.upgradeImageDrop.Name = "upgradeImageDrop";
+            this.upgradeImageDrop.Size = new System.Drawing.Size(100, 23);
+            this.upgradeImageDrop.TabIndex = 2;
+            // 
+            // upgradeIcon
+            // 
+            this.upgradeIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.upgradeIcon.Image = ((System.Drawing.Image)(resources.GetObject("upgradeIcon.Image")));
+            this.upgradeIcon.Location = new System.Drawing.Point(157, 6);
+            this.upgradeIcon.Name = "upgradeIcon";
+            this.upgradeIcon.Size = new System.Drawing.Size(100, 100);
+            this.upgradeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.upgradeIcon.TabIndex = 1;
+            this.upgradeIcon.TabStop = false;
+            // 
             // upgradeList
             // 
             this.upgradeList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nameHeader,
-            this.iconHeader,
-            this.descriptionHeader});
+            this.nameHeader});
             this.upgradeList.HideSelection = false;
             this.upgradeList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
@@ -309,25 +1190,16 @@ namespace ExternalTool
             this.upgradeList.Location = new System.Drawing.Point(6, 6);
             this.upgradeList.MultiSelect = false;
             this.upgradeList.Name = "upgradeList";
-            this.upgradeList.Size = new System.Drawing.Size(291, 480);
+            this.upgradeList.Size = new System.Drawing.Size(145, 480);
             this.upgradeList.TabIndex = 0;
             this.upgradeList.UseCompatibleStateImageBehavior = false;
             this.upgradeList.View = System.Windows.Forms.View.Details;
-            // 
-            // iconHeader
-            // 
-            this.iconHeader.Text = "Icon";
-            this.iconHeader.Width = 37;
+            this.upgradeList.SelectedIndexChanged += new System.EventHandler(this.upgradeList_SelectedIndexChanged);
             // 
             // nameHeader
             // 
-            this.nameHeader.Text = "Name";
-            this.nameHeader.Width = 93;
-            // 
-            // descriptionHeader
-            // 
-            this.descriptionHeader.Text = "Description";
-            this.descriptionHeader.Width = 156;
+            this.nameHeader.Text = "Upgrade name";
+            this.nameHeader.Width = 140;
             // 
             // tileSet
             // 
@@ -364,6 +1236,56 @@ namespace ExternalTool
             this.mapDivider.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mapBackground)).EndInit();
             this.upgradesTab.ResumeLayout(false);
+            this.upgradesTab.PerformLayout();
+            this.cost.ResumeLayout(false);
+            this.cost.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar16)).EndInit();
+            this.weight.ResumeLayout(false);
+            this.weight.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar15)).EndInit();
+            this.upgradeKnockResist.ResumeLayout(false);
+            this.upgradeKnockResist.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar14)).EndInit();
+            this.upgradeKnock.ResumeLayout(false);
+            this.upgradeKnock.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar13)).EndInit();
+            this.upgradeHealthRegen.ResumeLayout(false);
+            this.upgradeHealthRegen.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar12)).EndInit();
+            this.upgradeHealth.ResumeLayout(false);
+            this.upgradeHealth.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar11)).EndInit();
+            this.upgradeShieldCool.ResumeLayout(false);
+            this.upgradeShieldCool.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar10)).EndInit();
+            this.upgradeShieldRegen.ResumeLayout(false);
+            this.upgradeShieldRegen.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar9)).EndInit();
+            this.upgradeShieldHealth.ResumeLayout(false);
+            this.upgradeShieldHealth.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar8)).EndInit();
+            this.upgradeProjHome.ResumeLayout(false);
+            this.upgradeProjHome.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar7)).EndInit();
+            this.upgradeProjSpread.ResumeLayout(false);
+            this.upgradeProjSpread.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).EndInit();
+            this.upgradeProjSize.ResumeLayout(false);
+            this.upgradeProjSize.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).EndInit();
+            this.upgradeProjSpeed.ResumeLayout(false);
+            this.upgradeProjSpeed.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
+            this.upgradeROF.ResumeLayout(false);
+            this.upgradeROF.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            this.upgradeProjCount.ResumeLayout(false);
+            this.upgradeProjCount.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            this.upgradeDmg.ResumeLayout(false);
+            this.upgradeDmg.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.upgradeIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -397,8 +1319,74 @@ namespace ExternalTool
         private System.Windows.Forms.ImageList thumbnailSet;
         private System.Windows.Forms.Label tilesLabel;
         private System.Windows.Forms.ListView upgradeList;
-        private System.Windows.Forms.ColumnHeader iconHeader;
         private System.Windows.Forms.ColumnHeader nameHeader;
-        private System.Windows.Forms.ColumnHeader descriptionHeader;
+        private System.Windows.Forms.ComboBox upgradeImageDrop;
+        private System.Windows.Forms.PictureBox upgradeIcon;
+        private System.Windows.Forms.GroupBox upgradeDmg;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Button newUpgradeBtn;
+        private System.Windows.Forms.TextBox upgradeDesc;
+        private System.Windows.Forms.TextBox upgradeName;
+        private System.Windows.Forms.GroupBox upgradeROF;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.TrackBar trackBar3;
+        private System.Windows.Forms.GroupBox upgradeProjCount;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.GroupBox upgradeProjHome;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.TrackBar trackBar7;
+        private System.Windows.Forms.GroupBox upgradeProjSpread;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.TrackBar trackBar6;
+        private System.Windows.Forms.GroupBox upgradeProjSize;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.TrackBar trackBar5;
+        private System.Windows.Forms.GroupBox upgradeProjSpeed;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.TrackBar trackBar4;
+        private System.Windows.Forms.GroupBox upgradeShieldHealth;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.TrackBar trackBar8;
+        private System.Windows.Forms.GroupBox upgradeShieldRegen;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.TrackBar trackBar9;
+        private System.Windows.Forms.GroupBox upgradeShieldCool;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.TrackBar trackBar10;
+        private System.Windows.Forms.GroupBox upgradeHealthRegen;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.TrackBar trackBar12;
+        private System.Windows.Forms.GroupBox upgradeHealth;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.TrackBar trackBar11;
+        private System.Windows.Forms.GroupBox upgradeKnockResist;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckBox checkBox14;
+        private System.Windows.Forms.TrackBar trackBar14;
+        private System.Windows.Forms.GroupBox upgradeKnock;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox checkBox13;
+        private System.Windows.Forms.TrackBar trackBar13;
+        private System.Windows.Forms.GroupBox cost;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TrackBar trackBar16;
+        private System.Windows.Forms.GroupBox weight;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TrackBar trackBar15;
+        private System.Windows.Forms.CheckBox upgradeJump;
     }
 }

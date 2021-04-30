@@ -19,6 +19,7 @@ namespace ExternalTool
     public partial class Editor : Form
     {
         private PictureBox[,] map;
+        private List<Upgrade> upgrades;
         string currentBackground;
         bool unsavedChanges = false;
         const string CONTENTPATH = "../../../BankShot/Content/";
@@ -55,6 +56,14 @@ namespace ExternalTool
 
             // Update status bar.
             statusLabel.Text = "Content loaded, ready";
+        }
+
+        /// <summary>
+        /// Loads all upgrades in from the file.
+        /// </summary>
+        private void LoadUpgrades() 
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -202,7 +211,8 @@ namespace ExternalTool
             {
                 backgroundImages.Images.Add(Image.FromFile(backgroundPaths[i]));
                 backgroundList.Items.Add(
-                    "", 
+                    backgroundPaths[i].Substring(
+                        backgroundPaths[i].LastIndexOf('\\')), 
                     backgroundList.Items.Count);
             }
 
@@ -529,6 +539,38 @@ namespace ExternalTool
             SaveMap();
         }
 
+        private void upgradeList_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void trackBar_Scroll(object sender, EventArgs e)
+        {
+            if(((Control)sender).Parent.Controls[1] is CheckBox)
+            {
+                if (((CheckBox)((Control)sender).Parent.Controls[1]).Checked)
+                {
+                    if (((TrackBar)sender).Value < 100)
+                    {
+                        ((Control)sender).Parent.Controls[0].Text = "0." + ((TrackBar)sender).Value.ToString();
+                    } else
+                    {
+                        ((Control)sender).Parent.Controls[0].Text = ((TrackBar)sender).Value.ToString()[0] + "." + ((TrackBar)sender).Value.ToString().Substring(1);
+                    }
+                } else
+                {
+                    if(((TrackBar)sender).Value > 0)
+                    {
+                        ((Control)sender).Parent.Controls[0].Text = '+' + ((TrackBar)sender).Value.ToString();
+                    } else
+                    {
+                        ((Control)sender).Parent.Controls[0].Text = ((TrackBar)sender).Value.ToString();
+                    }
+                }
+            } else
+            {
+            ((Control)sender).Parent.Controls[0].Text = ((TrackBar)sender).Value.ToString();
+            }
+        }
     }
 }
