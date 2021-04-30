@@ -1,0 +1,43 @@
+Example name
+This is an example description for an upgrade that does nothing.
+Multiline descriptions are supported as demonstrated here.||
+false 1
+false 1
+false 1
+false 1
+2
+false 1
+false 1
+false 1
+false 1
+false 1
+false 1
+false 1
+false 1
+false 1
+false
+DmgIcon.png
+1
+0
+
+Example name2
+This is an example description for an upgrade that does nothing.
+Multiline descriptions are supported as demonstrated here.||
+false 0
+false 0
+false 0
+false 0
+1
+false 0
+false 0
+false 0
+false 0
+false 0
+false 0
+false 0
+false 0
+false 0
+false
+DmgIcon.png
+1
+0

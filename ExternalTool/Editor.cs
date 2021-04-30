@@ -52,18 +52,11 @@ namespace ExternalTool
             // Load each component
             LoadThumbnails();
             LoadMap();
+            LoadUpgrades();
             // TODO: Load other components when ready.
 
             // Update status bar.
             statusLabel.Text = "Content loaded, ready";
-        }
-
-        /// <summary>
-        /// Loads all upgrades in from the file.
-        /// </summary>
-        private void LoadUpgrades() 
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -228,6 +221,19 @@ namespace ExternalTool
                     tilePaths[i].Substring(
                         tilePaths[i].LastIndexOf('\\')), 
                     tileList.Items.Count);
+            }
+
+            // TODO: Load upgrade icons into an image list and put the paths in the dropdown in the same order
+            // Get the file paths of all icons in the UpgradeIcons folder
+            // and add them to the upgrade icon dropdown to be selected and used later.
+            string[] upgradeIconPaths
+                = Directory.GetFiles(CONTENTPATH + "UpgradeIcons");
+            for (int i = 0; i < upgradeIconPaths.Length; i++)
+            {
+                upgradeIcons.Images.Add(Image.FromFile(upgradeIconPaths[i]));
+                upgradeImageDrop.Items.Add(
+                    upgradeIconPaths[i].Substring(
+                        upgradeIconPaths[i].LastIndexOf('\\')+1));
             }
 
             // Update status bar.
@@ -435,6 +441,7 @@ namespace ExternalTool
         private void Save()
         {
             SaveMap();
+            SaveUpgrades();
         }
 
         /// <summary>
@@ -541,22 +548,118 @@ namespace ExternalTool
 
         private void upgradeList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            upgradeImageDrop.Text = upgrades[upgradeList.SelectedIndices[0]].iconPath;
 
+            ((CheckBox)upgradeDmg.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].damageIsMultiplier;
+            if (((CheckBox)upgradeDmg.Controls[1]).Checked)
+            {
+                ((TrackBar)upgradeDmg.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].damageModifier * 100);
+            } else
+            {
+                ((TrackBar)upgradeDmg.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].damageModifier);
+            }
+
+            ((CheckBox)upgradeProjSpeed.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].projectileSpeedIsMultiplier;
+            if (((CheckBox)upgradeProjSpeed.Controls[1]).Checked)
+            {
+                ((TrackBar)upgradeProjSpeed.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].projectileSpeedModifier * 100);
+            } else
+            {
+                ((TrackBar)upgradeProjSpeed.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].projectileSpeedModifier);
+            }
+
+            ((CheckBox)upgradeProjHome.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].projectileHomingIsMultiplier;
+            ((TrackBar)upgradeProjHome.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].projectileSpeedModifier*100);
+
+            ((CheckBox)upgradeShieldCool.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].shieldCooldownIsMultiplier;
+            ((TrackBar)upgradeShieldCool.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].shieldCooldownModifier * 100);
+
+            ((CheckBox)upgradeKnock.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].knockbackIsMultiplier;
+            if (((CheckBox)upgradeKnock.Controls[1]).Checked)
+            {
+                ((TrackBar)upgradeKnock.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].knockbackModifier * 100);
+            } else
+            {
+                ((TrackBar)upgradeKnock.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].knockbackModifier);
+            }
+
+
+            ((CheckBox)upgradeProjCount.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].projectileCountIsMultiplier;
+            if (((CheckBox)upgradeProjCount.Controls[1]).Checked)
+            {
+                ((TrackBar)upgradeProjCount.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].projectileCountModifier * 100);
+            } else
+            {
+                ((TrackBar)upgradeProjCount.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].projectileCountModifier);
+            }
+
+            ((TrackBar)upgradeProjSize.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].projectileSizeModifier * 100);
+
+            ((CheckBox)upgradeShieldHealth.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].shieldHealthIsMultiplier;
+            if (((CheckBox)upgradeShieldHealth.Controls[1]).Checked)
+            {
+                ((TrackBar)upgradeShieldHealth.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].shieldHealthModifier * 100);
+            } else
+            {
+                ((TrackBar)upgradeShieldHealth.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].shieldHealthModifier);
+            }
+
+            ((CheckBox)upgradeHealth.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].healthIsMultiplier;
+            if (((CheckBox)upgradeHealth.Controls[1]).Checked)
+            {
+                ((TrackBar)upgradeHealth.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].healthModifier * 100);
+            } else
+            {
+                ((TrackBar)upgradeHealth.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].healthModifier);
+            }
+
+            ((CheckBox)upgradeKnockResist.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].knockbackResistIsMultiplier;
+            if (((CheckBox)upgradeKnockResist.Controls[1]).Checked)
+            {
+                ((TrackBar)upgradeKnockResist.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].knockbackResistModifier * 100);
+            } else
+            {
+                ((TrackBar)upgradeKnockResist.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].knockbackResistModifier);
+            }
+
+            upgradeJump.Checked = upgrades[upgradeList.SelectedIndices[0]].additionalJump;
+
+
+            ((CheckBox)upgradeROF.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].rateOfFireIsMultiplier;
+            ((TrackBar)upgradeROF.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].rateOfFireModifier * 100);
+
+            ((CheckBox)upgradeProjSpread.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].projectileSpreadIsMultiplier;
+            ((TrackBar)upgradeProjSpread.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].projectileSpreadModifier * 100);
+
+            ((CheckBox)upgradeShieldRegen.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].shieldRegenIsMultiplier;
+            ((TrackBar)upgradeShieldRegen.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].shieldRegenModifier * 100);
+
+            ((CheckBox)upgradeHealthRegen.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].healthRegenIsMultiplier;
+            ((TrackBar)upgradeHealthRegen.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].healthRegenModifier * 100);
+
+            ((TrackBar)upgradeWeight.Controls[1]).Value = upgrades[upgradeList.SelectedIndices[0]].weight;
+
+
+            upgradeName.Text = upgrades[upgradeList.SelectedIndices[0]].name;
+
+            upgradeDesc.Text = upgrades[upgradeList.SelectedIndices[0]].description;
+
+            ((TrackBar)UpgradeCost.Controls[1]).Value = upgrades[upgradeList.SelectedIndices[0]].cost;
         }
 
+        /// <summary>
+        /// Set display to show correct value.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trackBar_Scroll(object sender, EventArgs e)
         {
+            //can simplify
             if(((Control)sender).Parent.Controls[1] is CheckBox)
             {
                 if (((CheckBox)((Control)sender).Parent.Controls[1]).Checked)
                 {
-                    if (((TrackBar)sender).Value < 100)
-                    {
-                        ((Control)sender).Parent.Controls[0].Text = "0." + ((TrackBar)sender).Value.ToString();
-                    } else
-                    {
-                        ((Control)sender).Parent.Controls[0].Text = ((TrackBar)sender).Value.ToString()[0] + "." + ((TrackBar)sender).Value.ToString().Substring(1);
-                    }
+                        ((Control)sender).Parent.Controls[0].Text = (((TrackBar)sender).Value/100.0).ToString();
                 } else
                 {
                     if(((TrackBar)sender).Value > 0)
@@ -571,6 +674,275 @@ namespace ExternalTool
             {
             ((Control)sender).Parent.Controls[0].Text = ((TrackBar)sender).Value.ToString();
             }
+        }
+
+        private void multiplier_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                ((TrackBar)((Control)sender).Parent.Controls[2]).Minimum = 0;
+                ((TrackBar)((Control)sender).Parent.Controls[2]).Maximum = 300;
+            } else
+            {
+                ((TrackBar)((Control)sender).Parent.Controls[2]).Minimum = -20;
+                ((TrackBar)((Control)sender).Parent.Controls[2]).Maximum = 20;
+            }
+        }
+
+        /// <summary>
+        /// Set display to show correct decimal value.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void trackBar_DecScroll(object sender, EventArgs e)
+        {
+            // TODO: Clean up this absolute mess. How dio I do this without having an anurism?
+            if (((Control)sender).Parent.Controls[1] is CheckBox)
+            {
+                if (((CheckBox)((Control)sender).Parent.Controls[1]).Checked)
+                {
+                    ((Control)sender).Parent.Controls[0].Text = (((TrackBar)sender).Value / 100.0).ToString();
+                } else
+                {
+                    if (((TrackBar)sender).Value > 0)
+                    {
+                        ((Control)sender).Parent.Controls[0].Text = '+' + (((TrackBar)sender).Value/ 100.0).ToString();
+                    } else
+                    {
+                        ((Control)sender).Parent.Controls[0].Text = (((TrackBar)sender).Value / 100.0).ToString();
+
+                    }
+                }
+            } else
+            {
+                ((Control)sender).Parent.Controls[0].Text = ((TrackBar)sender).Value.ToString();
+            }
+        }
+
+        private void multiplier_DecCheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                ((TrackBar)((Control)sender).Parent.Controls[2]).Minimum = 0;
+                ((TrackBar)((Control)sender).Parent.Controls[2]).Maximum = 300;
+            } else
+            {
+                ((TrackBar)((Control)sender).Parent.Controls[2]).Minimum = -2000;
+                ((TrackBar)((Control)sender).Parent.Controls[2]).Maximum = 2000;
+            }
+        }
+
+        private void upgradeImageDrop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            upgradeIcon.Image = upgradeIcons.Images[((ComboBox)sender).SelectedIndex];
+        }
+
+        private void UpdateUpgrade(object sender, EventArgs e)
+        {
+            upgrades[upgradeList.SelectedIndices[0]].iconPath = upgradeImageDrop.Text;
+
+            upgrades[upgradeList.SelectedIndices[0]].damageIsMultiplier = ((CheckBox)upgradeDmg.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].damageModifier = double.Parse(((Label)upgradeDmg.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].projectileSpeedIsMultiplier = ((CheckBox)upgradeProjSpeed.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].projectileSpeedModifier = double.Parse(((Label)upgradeProjSpeed.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].projectileHomingIsMultiplier = ((CheckBox)upgradeProjHome.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].projectileHomingModifier = double.Parse(((Label)upgradeProjHome.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].shieldCooldownIsMultiplier = ((CheckBox)upgradeShieldCool.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].shieldCooldownModifier = double.Parse(((Label)upgradeShieldCool.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].knockbackIsMultiplier = ((CheckBox)upgradeKnock.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].knockbackModifier = double.Parse(((Label)upgradeKnock.Controls[0]).Text);
+
+
+            upgrades[upgradeList.SelectedIndices[0]].projectileCountIsMultiplier = ((CheckBox)upgradeProjCount.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].projectileCountModifier = double.Parse(((Label)upgradeProjCount.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].projectileSizeModifier = double.Parse(((Label)upgradeProjSize.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].shieldHealthIsMultiplier = ((CheckBox)upgradeShieldHealth.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].shieldHealthModifier = double.Parse(((Label)upgradeShieldHealth.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].healthIsMultiplier = ((CheckBox)upgradeHealth.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].healthModifier = double.Parse(((Label)upgradeHealth.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].knockbackResistIsMultiplier = ((CheckBox)upgradeKnockResist.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].knockbackResistModifier = double.Parse(((Label)upgradeKnockResist.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].additionalJump = upgradeJump.Checked;
+
+
+            upgrades[upgradeList.SelectedIndices[0]].rateOfFireIsMultiplier = ((CheckBox)upgradeROF.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].rateOfFireModifier = double.Parse(((Label)upgradeROF.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].projectileSpreadIsMultiplier = ((CheckBox)upgradeProjSpread.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].projectileSpreadModifier = double.Parse(((Label)upgradeProjSpread.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].shieldRegenIsMultiplier = ((CheckBox)upgradeShieldRegen.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].shieldRegenModifier = double.Parse(((Label)upgradeShieldRegen.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].healthRegenIsMultiplier = ((CheckBox)upgradeHealthRegen.Controls[1]).Checked;
+            upgrades[upgradeList.SelectedIndices[0]].healthRegenModifier = double.Parse(((Label)upgradeHealthRegen.Controls[0]).Text);
+
+            upgrades[upgradeList.SelectedIndices[0]].weight = int.Parse(((Label)upgradeWeight.Controls[0]).Text);
+
+
+            upgrades[upgradeList.SelectedIndices[0]].name = upgradeName.Text;
+            upgradeList.Items[upgradeList.SelectedIndices[0]].Text = upgradeName.Text;
+
+            upgrades[upgradeList.SelectedIndices[0]].description = upgradeDesc.Text;
+
+            upgrades[upgradeList.SelectedIndices[0]].cost = int.Parse(((Label)UpgradeCost.Controls[0]).Text);
+        }
+
+        private void newUpgradeBtn_Click(object sender, EventArgs e)
+        {
+            // TODO: make new upgrade
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Loads all upgrades in from the file.
+        /// </summary>
+        private void LoadUpgrades() 
+        {
+            StreamReader reader = null;
+            try
+            {
+                upgrades = new List<Upgrade>();
+                reader = new StreamReader(CONTENTPATH + "upgrades.data");
+                do
+                {
+                    string name = reader.ReadLine();
+                    string description = "";
+                    do
+                    {
+                        description += reader.ReadLine();
+                    } while (description.Substring(description.Length - 2) != "||");
+
+                    string[] line = reader.ReadLine().Split(' ');
+                    bool damageIsMultiplier = bool.Parse(line[0]);
+                    double damageModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool projectileCountIsMultiplier = bool.Parse(line[0]);
+                    double projectileCountModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool rateOfFireIsMultiplier = bool.Parse(line[0]);
+                    double rateOfFireModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool projectileSpeedIsMultiplier = bool.Parse(line[0]);
+                    double projectileSpeedModifier = double.Parse(line[1]);
+
+                    double projectileSizeModifier = double.Parse(reader.ReadLine());
+
+                    line = reader.ReadLine().Split(' ');
+                    bool projectileSpreadIsMultiplier = bool.Parse(line[0]);
+                    double projectileSpreadModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool projectileHomingIsMultiplier = bool.Parse(line[0]);
+                    double projectileHomingModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool shieldHealthIsMultiplier = bool.Parse(line[0]);
+                    double shieldHealthModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool shieldRegenIsMultiplier = bool.Parse(line[0]);
+                    double shieldRegenModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool shieldCooldownIsMultiplier = bool.Parse(line[0]);
+                    double shieldCooldownModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool healthIsMultiplier = bool.Parse(line[0]);
+                    double healthModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool healthRegenIsMultiplier = bool.Parse(line[0]);
+                    double healthRegenModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool knockbackIsMultiplier = bool.Parse(line[0]);
+                    double knockbackModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool knockbackResistIsMultiplier = bool.Parse(line[0]);
+                    double knockbackResistModifier = double.Parse(line[1]);
+
+                    bool additionalJump = bool.Parse(reader.ReadLine());
+
+                    string iconPath = reader.ReadLine();
+                    int weight = int.Parse(reader.ReadLine());
+                    int cost = int.Parse(reader.ReadLine());
+
+                    upgrades.Add(new Upgrade(
+                        name,
+                        description.Substring(0, description.Length-2),
+                        damageIsMultiplier,
+                        damageModifier,
+                        projectileCountIsMultiplier,
+                        projectileCountModifier,
+                        rateOfFireIsMultiplier,
+                        rateOfFireModifier,
+                        projectileSpeedIsMultiplier,
+                        projectileSpeedModifier,
+                        projectileSizeModifier,
+                        projectileSpreadIsMultiplier,
+                        projectileSpreadModifier,
+                        projectileHomingIsMultiplier,
+                        projectileHomingModifier,
+                        shieldHealthIsMultiplier,
+                        shieldHealthModifier,
+                        shieldRegenIsMultiplier,
+                        shieldRegenModifier,
+                        shieldCooldownIsMultiplier,
+                        shieldCooldownModifier,
+                        healthIsMultiplier,
+                        healthModifier,
+                        healthRegenIsMultiplier,
+                        healthRegenModifier,
+                        knockbackIsMultiplier,
+                        knockbackModifier,
+                        knockbackResistIsMultiplier,
+                        knockbackResistModifier,
+                        additionalJump,
+                        iconPath,
+                        weight,
+                        cost));
+                    upgradeList.Items.Add(name);
+                } while (reader.ReadLine()!=null);
+
+
+
+            } catch (Exception)
+            {
+
+                throw;
+            }
+            if (reader != null)
+            {
+                reader.Close();
+            }
+        }
+
+        private void SaveUpgrades()
+        {
+            // TODO: Save upgrades
+            UpdateUpgrade(null, null);
+            throw new NotImplementedException();
+        }
+
+        private void DeleteUpgrade(object sender, EventArgs e)
+        {
+            // TODO: impliment this
+            throw new NotImplementedException();
         }
     }
 }
