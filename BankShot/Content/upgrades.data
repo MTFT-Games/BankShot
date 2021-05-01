@@ -1,43 +1,42 @@
-Example name
-This is an example description for an upgrade that does nothing.
-Multiline descriptions are supported as demonstrated here.||
-false 1
-false 1
-false 1
-false 1
+Random and alternating
+Random and alternating values to test file saving.multiline test.This line is the 4th and is after a break.||
+False -20
+True 0.5
+False -8.17
+False 1
 2
-false 1
-false 1
-false 1
-false 1
-false 1
-false 1
-false 1
-false 1
-false 1
-false
-DmgIcon.png
-1
-0
+False 6.78
+False -20
+True 0.5
+False -13.04
+False 20
+True 2
+False 16.87
+False -20
+True 0.5
+True
+HealthIcon.png
+3
+426
 
-Example name2
-This is an example description for an upgrade that does nothing.
-Multiline descriptions are supported as demonstrated here.||
-false 0
-false 0
-false 0
-false 0
+Blank
+This upgrade does nothing but demonstrate the ability to save several upgrades||
+False 0
+False 0
+False 0
+False 0
 1
-false 0
-false 0
-false 0
-false 0
-false 0
-false 0
-false 0
-false 0
-false 0
-false
-DmgIcon.png
-1
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False
+ShotSpeedIcon.png
 0
+0
+|||

@@ -442,6 +442,7 @@ namespace ExternalTool
         {
             SaveMap();
             SaveUpgrades();
+            unsavedChanges = false;
         }
 
         /// <summary>
@@ -569,7 +570,7 @@ namespace ExternalTool
             }
 
             ((CheckBox)upgradeProjHome.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].projectileHomingIsMultiplier;
-            ((TrackBar)upgradeProjHome.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].projectileSpeedModifier*100);
+            ((TrackBar)upgradeProjHome.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].projectileHomingModifier*100);
 
             ((CheckBox)upgradeShieldCool.Controls[1]).Checked = upgrades[upgradeList.SelectedIndices[0]].shieldCooldownIsMultiplier;
             ((TrackBar)upgradeShieldCool.Controls[2]).Value = (int)(upgrades[upgradeList.SelectedIndices[0]].shieldCooldownModifier * 100);
@@ -795,12 +796,35 @@ namespace ExternalTool
             upgrades[upgradeList.SelectedIndices[0]].description = upgradeDesc.Text;
 
             upgrades[upgradeList.SelectedIndices[0]].cost = int.Parse(((Label)UpgradeCost.Controls[0]).Text);
+
+            unsavedChanges = true;
         }
 
         private void newUpgradeBtn_Click(object sender, EventArgs e)
         {
-            // TODO: make new upgrade
-            throw new NotImplementedException();
+            upgrades.Add(new Upgrade(
+                "New upgrade",
+                "",
+                false, 0,
+                false, 0,
+                false, 0,
+                false, 0,
+                1,
+                false, 0,
+                false, 0,
+                false, 0,
+                false, 0,
+                false, 0,
+                false, 0,
+                false, 0,
+                false, 0,
+                false, 0,
+                false,
+                "DmgIcon.png",
+                0,
+                0));
+            upgradeList.Items.Add("New upgrade");
+            unsavedChanges = true;
         }
 
         /// <summary>
@@ -917,7 +941,7 @@ namespace ExternalTool
                         weight,
                         cost));
                     upgradeList.Items.Add(name);
-                } while (reader.ReadLine()!=null);
+                } while (reader.ReadLine()!="|||");
 
 
 
@@ -934,15 +958,75 @@ namespace ExternalTool
 
         private void SaveUpgrades()
         {
-            // TODO: Save upgrades
             UpdateUpgrade(null, null);
-            throw new NotImplementedException();
+
+            StreamWriter writer = null;
+            try
+            {
+                writer = new StreamWriter(CONTENTPATH + "upgrades.data", false);
+                for (int i = 0; i < upgrades.Count; i++)
+                {
+                    writer.WriteLine(upgrades[i].name);
+                    //check this later for multiline work
+                    writer.WriteLine(upgrades[i].description + "||");
+                    writer.WriteLine(upgrades[i].damageIsMultiplier.ToString() + " " + upgrades[i].damageModifier.ToString());
+                    writer.WriteLine(upgrades[i].projectileCountIsMultiplier.ToString() + " " + upgrades[i].projectileCountModifier.ToString());
+                    writer.WriteLine(upgrades[i].rateOfFireIsMultiplier.ToString() + " " + upgrades[i].rateOfFireModifier.ToString());
+                    writer.WriteLine(upgrades[i].projectileSpeedIsMultiplier.ToString() + " " + upgrades[i].projectileSpeedModifier.ToString());
+                    writer.WriteLine(upgrades[i].projectileSizeModifier.ToString());
+                    writer.WriteLine(upgrades[i].projectileSpreadIsMultiplier.ToString() + " " + upgrades[i].projectileSpreadModifier.ToString());
+                    writer.WriteLine(upgrades[i].projectileHomingIsMultiplier.ToString() + " " + upgrades[i].projectileHomingModifier.ToString());
+                    writer.WriteLine(upgrades[i].shieldHealthIsMultiplier.ToString() + " " + upgrades[i].shieldHealthModifier.ToString());
+                    writer.WriteLine(upgrades[i].shieldRegenIsMultiplier.ToString() + " " + upgrades[i].shieldRegenModifier.ToString());
+                    writer.WriteLine(upgrades[i].shieldCooldownIsMultiplier.ToString() + " " + upgrades[i].shieldCooldownModifier.ToString());
+                    writer.WriteLine(upgrades[i].healthIsMultiplier.ToString() + " " + upgrades[i].healthModifier.ToString());
+                    writer.WriteLine(upgrades[i].healthRegenIsMultiplier.ToString() + " " + upgrades[i].healthRegenModifier.ToString());
+                    writer.WriteLine(upgrades[i].knockbackIsMultiplier.ToString() + " " + upgrades[i].knockbackModifier.ToString());
+                    writer.WriteLine(upgrades[i].knockbackResistIsMultiplier.ToString() + " " + upgrades[i].knockbackResistModifier.ToString());
+                    writer.WriteLine(upgrades[i].additionalJump.ToString());
+                    writer.WriteLine(upgrades[i].iconPath);
+                    writer.WriteLine(upgrades[i].weight);
+                    writer.WriteLine(upgrades[i].cost);
+                    if(i == upgrades.Count - 1)
+                    {
+                        writer.WriteLine("|||");
+                    } else
+                    {
+                        writer.WriteLine();
+                    }
+                }
+            } catch (Exception)
+            {
+
+                throw;
+            }
+            if (writer != null)
+            {
+                writer.Close();
+            }
+
         }
 
         private void DeleteUpgrade(object sender, EventArgs e)
         {
             // TODO: impliment this
-            throw new NotImplementedException();
+            // TODO: addd 'are you sure' dialogue
+            upgrades.RemoveAt(upgradeList.SelectedIndices[0]);
+            upgradeList.Items.RemoveAt(upgradeList.SelectedIndices[0]);
+            upgradeList.Items[0].Selected = true;
+            upgradeList_SelectedIndexChanged(upgradeList, null);
+            unsavedChanges = true;
+        }
+
+        private void Editor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (unsavedChanges)
+            {
+                if (UnsavedWarning())
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

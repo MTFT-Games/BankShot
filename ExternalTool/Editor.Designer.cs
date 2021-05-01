@@ -127,6 +127,7 @@ namespace ExternalTool
             this.tileSet = new System.Windows.Forms.ImageList(this.components);
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.upgradeIcons = new System.Windows.Forms.ImageList(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tabSystem.SuspendLayout();
@@ -1136,6 +1137,8 @@ namespace ExternalTool
             this.upgradeDmg.TabIndex = 22;
             this.upgradeDmg.TabStop = false;
             this.upgradeDmg.Text = "Damage modifier";
+            this.toolTip1.SetToolTip(this.upgradeDmg, "Adds to, subtracts from, or multiplies the damage value of the players current we" +
+        "apon.");
             // 
             // label2
             // 
@@ -1208,6 +1211,7 @@ namespace ExternalTool
             // upgradeImageDrop
             // 
             this.upgradeImageDrop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.upgradeImageDrop.DropDownWidth = 150;
             this.upgradeImageDrop.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.upgradeImageDrop.FormattingEnabled = true;
             this.upgradeImageDrop.Location = new System.Drawing.Point(157, 112);
@@ -1277,6 +1281,7 @@ namespace ExternalTool
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Editor";
             this.Text = "Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editor_FormClosing);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);
@@ -1444,5 +1449,6 @@ namespace ExternalTool
         private System.Windows.Forms.CheckBox upgradeJump;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ImageList upgradeIcons;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
