@@ -86,6 +86,8 @@ namespace BankShot
         /// <param name="time">The gametime object for this game.</param>
         public void Update(GameTime time)
         {
+
+
             // Check if the wave has been cleared or the time has run out
             if ((Program.game.enemyManager.SpawnedEnemies.Count == 0) || (timer > 30))
             {

@@ -233,6 +233,8 @@ namespace BankShot
                     break;
                 case GameState.Game:
 
+                   
+
                     //Commented these out because they were breaking everything
                     mapManager.Draw(_spriteBatch);
                     player.Draw(_spriteBatch);
@@ -276,6 +278,17 @@ namespace BankShot
                         "Current Haul: " + player.Money,
                         new Vector2(Program.game.GetWindowSize().Width / 2, 0),
                         Color.White);
+
+                    if (waveManager.Wave == 1)
+                    {
+                        if (waveManager.Timer < 5)
+                        {
+                            _spriteBatch.DrawString(font,
+                                "Use WASD to move, and Left Click to shoot!",
+                                new Vector2((Program.game.GetWindowSize().Width / 2) - 150, 150),
+                                Color.Red);
+                        }
+                    }
 
 
                     break;
