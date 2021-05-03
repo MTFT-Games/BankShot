@@ -1192,6 +1192,7 @@ namespace ExternalTool
             this.upgradeDesc.Location = new System.Drawing.Point(808, 86);
             this.upgradeDesc.Multiline = true;
             this.upgradeDesc.Name = "upgradeDesc";
+            this.upgradeDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.upgradeDesc.Size = new System.Drawing.Size(266, 159);
             this.upgradeDesc.TabIndex = 16;
             this.upgradeDesc.Text = "Select an upgrade to edit its description.";

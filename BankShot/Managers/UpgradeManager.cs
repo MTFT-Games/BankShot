@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection.Metadata;
 using System.Text;
 using Microsoft.Xna.Framework;
@@ -26,79 +27,7 @@ namespace BankShot
             Rectangle transformForShop, List<Rectangle> collisionBoxesForShop,
             bool activeForShop)
         {
-            upgrades = new List<Upgrade>();
-            
-            Upgrade upgrade1 = new Upgrade(
-                true, 2,   //Damage
-                false, 0,    //Projectile count
-                false, 0,    //Rate of fire
-                false, 0,    //Projectile speed
-                1,           //Projectile size
-                false, 0,    //Projectile spread
-                false, 0,    //Projectile homing
-                false, 0,    //Shield health
-                false, 0,    //Shield regeneration
-                false, 0,    //Shield cooldown
-                false, 0,    //Health
-                false, 0,    //Health regeneration
-                false, 0,    //Knockback
-                false, 0,    //Knockback resist
-                false,      //Additional Jump
-                Program.game.Content.Load<Texture2D>("DmgIcon"),
-                "Damage Boost",
-                "Doubles damage done by player",
-                1,
-                2000);
-
-            upgrades.Add(upgrade1);
-
-            Upgrade upgrade2 = new Upgrade(
-                false, 0,   //Damage
-                false, 0,   //Projectile count
-                false, 0,   //Rate of fire
-                true, 1.50f,//Projectile speed 
-                1,          //Projectile size
-                false, 0,   //Projectile spread
-                false, 0,   //Projectile homing
-                false, 0,   //Shield health
-                false, 0,   //Shield regeneration
-                false, 0,   //Shield cooldown
-                false, 0,   //Health
-                false, 0,   //Health regeneration
-                false, 0,   //Knockback
-                false, 0,   //Knockback resist
-                false,      //Additional Jump
-                Program.game.Content.Load<Texture2D>("ShotSpeedIcon"),
-                "Projectile Boost",
-                "Speeds up projectiles by 50%",
-                1,
-                1000);
-
-            upgrades.Add(upgrade2);
-
-            Upgrade upgrade3 = new Upgrade(
-                false, 0,   //Damage
-                false, 0,   //Projectile count
-                false, 0,   //Rate of fire
-                false, 0,   //Projectile speed
-                1,          //Projectile size
-                false, 0,   //Projectile spread
-                false, 0,   //Projectile homing
-                false, 0,   //Shield health
-                false, 0,   //Shield regeneration
-                false, 0,   //Shield cooldown
-                true, 1.5f, //Health
-                false, 0,   //Health regeneration
-                false, 0,   //Knockback
-                false, 0,   //Knockback resist
-                false,      //Additional Jump
-                Program.game.Content.Load<Texture2D>("HealthIcon"),
-                "Health Boost",
-                "Increases max health by 50%",
-                1,
-                1500);
-
-            upgrades.Add(upgrade3);
+            LoadUpgrades();
 
             int tWeight = 0;
             foreach (Upgrade u in upgrades)
@@ -112,6 +41,7 @@ namespace BankShot
             shops = new List<Shop>();
             collisionBoxesShop = new List<Rectangle> { transformShop };
 
+            Shop.shopTexture = Program.game.Content.Load<Texture2D>("PlayerBetaSprite");
             Shop.ShopWindow = Program.game.Content.Load<Texture2D>("ShopWindow");
         }
 
@@ -185,23 +115,25 @@ namespace BankShot
                 //takes in an upgrade and applies it to the Player
                 if (upgrade.damageIsMultiplier)
                 {
-                    p.CurrentWeapon.Damage *= upgrade.damageModifier;
+                    p.CurrentWeapon.Damage = 
+                        (int)(p.CurrentWeapon.Damage*upgrade.damageModifier);
 
                 } else
                 {
-                    p.CurrentWeapon.Damage += upgrade.damageModifier;
+                    p.CurrentWeapon.Damage += (int)upgrade.damageModifier;
                 }
 
                 if (p.CurrentWeapon is Gun)
                 {
                     if (upgrade.projectileCountIsMultiplier)
                     {
-                        ((Gun)p.CurrentWeapon).ProjectileCount *=
-                            upgrade.projectileCountModifier;
+                        ((Gun)p.CurrentWeapon).ProjectileCount =
+                            (int)(((Gun)p.CurrentWeapon).ProjectileCount 
+                            * upgrade.projectileCountModifier);
                     } else
                     {
                         ((Gun)p.CurrentWeapon).ProjectileCount +=
-                            upgrade.projectileCountModifier;
+                            (int)upgrade.projectileCountModifier;
                     }
 
                     if (upgrade.projectileSpeedIsMultiplier)
@@ -216,17 +148,17 @@ namespace BankShot
                     ((Gun)p.CurrentWeapon).ProjectileTransform = new Rectangle(
                         tmpProjRect.X,
                         tmpProjRect.Y,
-                        tmpProjRect.Width * upgrade.projectileSizeModifier,
-                        tmpProjRect.Height * upgrade.projectileSizeModifier);
+                        (int)(tmpProjRect.Width * upgrade.projectileSizeModifier),
+                        (int)(tmpProjRect.Height * upgrade.projectileSizeModifier));
 
                     if (upgrade.projectileSpreadIsMultiplier)
                     {
                         ((Gun)p.CurrentWeapon).ProjectileSpread *=
-                            upgrade.projectileSpreadModifier;
+                            (float)upgrade.projectileSpreadModifier;
                     } else
                     {
                         ((Gun)p.CurrentWeapon).ProjectileSpread +=
-                            upgrade.projectileSpreadModifier;
+                            (float)upgrade.projectileSpreadModifier;
                     }
 
                     if (upgrade.projectileHomingIsMultiplier)
@@ -242,32 +174,33 @@ namespace BankShot
                     p.CurrentWeapon.Rect = new Rectangle(
                         tmpWepRect.X,
                         tmpWepRect.Y,
-                        tmpWepRect.Width * upgrade.projectileSizeModifier,
-                        tmpWepRect.Height * upgrade.projectileSizeModifier);
+                        (int)(tmpWepRect.Width * upgrade.projectileSizeModifier),
+                        (int)(tmpWepRect.Height * upgrade.projectileSizeModifier));
                 }
 
                 if (upgrade.rateOfFireIsMultiplier)
                 {
-                    p.CurrentWeapon.AttackRate *= upgrade.rateOfFireModifier;
+                    p.CurrentWeapon.AttackRate *= (float)upgrade.rateOfFireModifier;
                 } else
                 {
-                    p.CurrentWeapon.AttackRate += upgrade.rateOfFireModifier;
+                    p.CurrentWeapon.AttackRate += (float)upgrade.rateOfFireModifier;
                 }
 
                 if (upgrade.shieldHealthIsMultiplier)
                 {
-                    p.CurrentShield.MaxHealth *= upgrade.shieldHealthModifier;
+                    p.CurrentShield.MaxHealth =
+                        (int)(p.CurrentShield.MaxHealth * upgrade.shieldHealthModifier);
                 } else
                 {
-                    p.CurrentShield.MaxHealth *= upgrade.shieldHealthModifier;
+                    p.CurrentShield.MaxHealth += (int)upgrade.shieldHealthModifier;
                 }
 
                 if (upgrade.shieldRegenIsMultiplier)
                 {
-                    p.CurrentShield.RegenRate *= upgrade.shieldRegenModifier;
+                    p.CurrentShield.RegenRate *= (float)upgrade.shieldRegenModifier;
                 } else
                 {
-                    p.CurrentShield.RegenRate += upgrade.shieldRegenModifier;
+                    p.CurrentShield.RegenRate += (float)upgrade.shieldRegenModifier;
                 }
 
                 if (upgrade.shieldCooldownIsMultiplier)
@@ -292,18 +225,18 @@ namespace BankShot
 
                 if (upgrade.healthRegenIsMultiplier)
                 {
-                    p.RegenRate *= upgrade.healthRegenModifier;
+                    p.RegenRate *= (float)upgrade.healthRegenModifier;
                 } else
                 {
-                    p.RegenRate += upgrade.healthRegenModifier;
+                    p.RegenRate += (float)upgrade.healthRegenModifier;
                 }
 
                 if (upgrade.knockbackIsMultiplier)
                 {
-                    p.CurrentWeapon.Knockback *= upgrade.knockbackModifier;
+                    p.CurrentWeapon.Knockback *= (float)upgrade.knockbackModifier;
                 } else
                 {
-                    p.CurrentWeapon.Knockback += upgrade.knockbackModifier;
+                    p.CurrentWeapon.Knockback += (float)upgrade.knockbackModifier;
                 }
 
                 if (upgrade.knockbackResistIsMultiplier)
@@ -325,11 +258,132 @@ namespace BankShot
         }
 
 
-        public string ReadUpgrades()
+        /// <summary>
+        /// Loads all upgrades in from the file.
+        /// </summary>
+        private void LoadUpgrades()
         {
-            //will return a string list of upgrades that are applied to the player
-            return "";
+            StreamReader reader = null;
+            try
+            {
+                upgrades = new List<Upgrade>();
+                reader = new StreamReader("Content/upgrades.data");
+                do
+                {
+                    string name = reader.ReadLine();
+                    string description = "";
+                    do
+                    {
+                        description += reader.ReadLine();
+                    } while (description.Substring(description.Length - 2) != "||");
 
+                    string[] line = reader.ReadLine().Split(' ');
+                    bool damageIsMultiplier = bool.Parse(line[0]);
+                    double damageModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool projectileCountIsMultiplier = bool.Parse(line[0]);
+                    double projectileCountModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool rateOfFireIsMultiplier = bool.Parse(line[0]);
+                    double rateOfFireModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool projectileSpeedIsMultiplier = bool.Parse(line[0]);
+                    double projectileSpeedModifier = double.Parse(line[1]);
+
+                    double projectileSizeModifier = double.Parse(reader.ReadLine());
+
+                    line = reader.ReadLine().Split(' ');
+                    bool projectileSpreadIsMultiplier = bool.Parse(line[0]);
+                    double projectileSpreadModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool projectileHomingIsMultiplier = bool.Parse(line[0]);
+                    double projectileHomingModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool shieldHealthIsMultiplier = bool.Parse(line[0]);
+                    double shieldHealthModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool shieldRegenIsMultiplier = bool.Parse(line[0]);
+                    double shieldRegenModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool shieldCooldownIsMultiplier = bool.Parse(line[0]);
+                    double shieldCooldownModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool healthIsMultiplier = bool.Parse(line[0]);
+                    double healthModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool healthRegenIsMultiplier = bool.Parse(line[0]);
+                    double healthRegenModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool knockbackIsMultiplier = bool.Parse(line[0]);
+                    double knockbackModifier = double.Parse(line[1]);
+
+                    line = reader.ReadLine().Split(' ');
+                    bool knockbackResistIsMultiplier = bool.Parse(line[0]);
+                    double knockbackResistModifier = double.Parse(line[1]);
+
+                    bool additionalJump = bool.Parse(reader.ReadLine());
+
+                    string iconPath = reader.ReadLine();
+                    int weight = int.Parse(reader.ReadLine());
+                    int cost = int.Parse(reader.ReadLine());
+
+                    upgrades.Add(new Upgrade(
+                        damageIsMultiplier,
+                        damageModifier,
+                        projectileCountIsMultiplier,
+                        projectileCountModifier,
+                        rateOfFireIsMultiplier,
+                        rateOfFireModifier,
+                        projectileSpeedIsMultiplier,
+                        projectileSpeedModifier,
+                        projectileSizeModifier,
+                        projectileSpreadIsMultiplier,
+                        projectileSpreadModifier,
+                        projectileHomingIsMultiplier,
+                        projectileHomingModifier,
+                        shieldHealthIsMultiplier,
+                        shieldHealthModifier,
+                        shieldRegenIsMultiplier,
+                        shieldRegenModifier,
+                        shieldCooldownIsMultiplier,
+                        shieldCooldownModifier,
+                        healthIsMultiplier,
+                        healthModifier,
+                        healthRegenIsMultiplier,
+                        healthRegenModifier,
+                        knockbackIsMultiplier,
+                        knockbackModifier,
+                        knockbackResistIsMultiplier,
+                        knockbackResistModifier,
+                        additionalJump,
+                        Program.game.Content.Load<Texture2D>("UpgradeIcons/" + iconPath.Substring(0, iconPath.Length-4)),
+                        name,
+                        description.Substring(0, description.Length - 2),
+                        weight,
+                        cost));
+                } while (reader.ReadLine() != "|||");
+
+
+
+            } catch (Exception)
+            {
+
+                throw;
+            }
+            if (reader != null)
+            {
+                reader.Close();
+            }
         }
 
 

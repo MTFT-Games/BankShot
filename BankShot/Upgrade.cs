@@ -10,45 +10,45 @@ namespace BankShot
     public struct Upgrade
     {
         public bool damageIsMultiplier;
-        public int damageModifier;
+        public double damageModifier;
 
         public bool projectileCountIsMultiplier;
-        public int projectileCountModifier;
+        public double projectileCountModifier;
 
         public bool rateOfFireIsMultiplier;
-        public float rateOfFireModifier;
+        public double rateOfFireModifier;
 
         public bool projectileSpeedIsMultiplier;
-        public float projectileSpeedModifier;
+        public double projectileSpeedModifier;
 
-        public int projectileSizeModifier;
+        public double projectileSizeModifier;
 
         public bool projectileSpreadIsMultiplier;
-        public float projectileSpreadModifier;
+        public double projectileSpreadModifier;
 
         public bool projectileHomingIsMultiplier;
-        public float projectileHomingModifier;
+        public double projectileHomingModifier;
 
         public bool shieldHealthIsMultiplier;
-        public int shieldHealthModifier;
+        public double shieldHealthModifier;
 
         public bool shieldRegenIsMultiplier;
-        public float shieldRegenModifier;
+        public double shieldRegenModifier;
 
         public bool shieldCooldownIsMultiplier;
-        public float shieldCooldownModifier;
+        public double shieldCooldownModifier;
 
         public bool healthIsMultiplier;
-        public float healthModifier;
+        public double healthModifier;
 
         public bool healthRegenIsMultiplier;
-        public float healthRegenModifier;
+        public double healthRegenModifier;
 
         public bool knockbackIsMultiplier;
-        public float knockbackModifier;
+        public double knockbackModifier;
 
         public bool knockbackResistIsMultiplier;
-        public int knockbackResistModifier;
+        public double knockbackResistModifier;
 
         public bool additionalJump;
 
@@ -142,6 +142,7 @@ namespace BankShot
         /// <param name="knockbackResistModifier">Modifier to be applied to the 
         /// players resistance to being knocked back as either a percentage 
         /// multiplier or a flat number of percentage points to add.</param>
+        ///<param name="jump">Determines if this upgrade gives an extra jump.</param>
         /// <param name="icon">The image to be displayed in the shop along side 
         /// this upgrade.</param>
         /// <param name="name">The name of this upgrade as displayed to the 
@@ -151,20 +152,20 @@ namespace BankShot
         /// <param name="weight">The weight associated with this upgrade to give 
         /// it rarity in the random generator.</param>
         /// <param name="cost">The cost of the upgrade.</param>
-        public Upgrade(bool damageIsMultiplier, int damageModifier,
-            bool projectileCountIsMultiplier, int projectileCountModifier,
-            bool rateOfFireIsMultiplier, float rateOfFireModifier,
-            bool projectileSpeedIsMultiplier, float projectileSpeedModifier,
-            int projectileSizeModifier, bool projectileSpreadIsMultiplier,
-            float projectileSpreadModifier, bool projectileHomingIsMultiplier,
-            float projectileHomingModifier, bool shieldHealthIsMultiplier,
-            int shieldHealthModifier, bool shieldRegenIsMultiplier,
-            float shieldRegenModifier, bool shieldCooldownIsMultiplier,
-            float shieldCooldownModifier, bool healthIsMultiplier,
-            float healthModifier, bool healthRegenIsMultiplier,
-            float healthRegenModifier, bool knockbackIsMultiplier,
-            float knockbackModifier, bool knockbackResistIsMultiplier,
-            int knockbackResistModifier, bool jump, Texture2D icon, string name,
+        public Upgrade(bool damageIsMultiplier, double damageModifier,
+            bool projectileCountIsMultiplier, double projectileCountModifier,
+            bool rateOfFireIsMultiplier, double rateOfFireModifier,
+            bool projectileSpeedIsMultiplier, double projectileSpeedModifier,
+            double projectileSizeModifier, bool projectileSpreadIsMultiplier,
+            double projectileSpreadModifier, bool projectileHomingIsMultiplier,
+            double projectileHomingModifier, bool shieldHealthIsMultiplier,
+            double shieldHealthModifier, bool shieldRegenIsMultiplier,
+            double shieldRegenModifier, bool shieldCooldownIsMultiplier,
+            double shieldCooldownModifier, bool healthIsMultiplier,
+            double healthModifier, bool healthRegenIsMultiplier,
+            double healthRegenModifier, bool knockbackIsMultiplier,
+            double knockbackModifier, bool knockbackResistIsMultiplier,
+            double knockbackResistModifier, bool jump, Texture2D icon, string name,
             string description, int weight, int cost)
         {
             this.damageIsMultiplier = damageIsMultiplier;

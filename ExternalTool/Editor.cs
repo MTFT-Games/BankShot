@@ -442,7 +442,7 @@ namespace ExternalTool
         {
             SaveMap();
             SaveUpgrades();
-            unsavedChanges = false;
+            unsavedChanges = false; 
         }
 
         /// <summary>
@@ -832,6 +832,7 @@ namespace ExternalTool
         /// </summary>
         private void LoadUpgrades() 
         {
+            // TODO: Error loading multiline
             StreamReader reader = null;
             try
             {

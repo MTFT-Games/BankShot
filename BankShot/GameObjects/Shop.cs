@@ -19,6 +19,7 @@ namespace BankShot
         private Rectangle upgrade3Rect;
         private bool leaving;
         private static Texture2D shopWindow;
+        public static Texture2D shopTexture;
 
         //Properties
         public Vector2 Velocity
@@ -46,7 +47,7 @@ namespace BankShot
         /// </summary>
         /// 
         public Shop(Rectangle transform, List<Rectangle> collisionBoxes, bool active, List<Upgrade> sale)
-            : base(Program.game.Content.Load<Texture2D>("PlayerBetaSprite"), transform, collisionBoxes, active)
+            : base(shopTexture, transform, collisionBoxes, active)
         {
             forSale = sale;
             upgrade1Rect = new Rectangle(rect.X + (rect.Width / 2) - 200, rect.Y - 580, 100, 100);
