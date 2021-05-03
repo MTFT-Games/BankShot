@@ -283,6 +283,8 @@ namespace BankShot
                     {
                         if (waveManager.Timer < 5)
                         {
+                            _spriteBatch.Draw(buttonTx, new Rectangle(Program.game.GetWindowSize().Width / 2 - 170, 130, 350, 50), Color.White);
+
                             _spriteBatch.DrawString(font,
                                 "Use WASD to move, and Left Click to shoot!",
                                 new Vector2((Program.game.GetWindowSize().Width / 2) - 150, 150),
