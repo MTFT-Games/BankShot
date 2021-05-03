@@ -17,9 +17,12 @@ namespace BankShot
         private Rectangle upgrade1Rect;
         private Rectangle upgrade2Rect;
         private Rectangle upgrade3Rect;
+        private Rectangle rerollRect;
+        private Rectangle exitRect;
         private bool leaving;
         private static Texture2D shopWindow;
         public static Texture2D shopTexture;
+        
 
         //Properties
         public Vector2 Velocity
@@ -53,6 +56,8 @@ namespace BankShot
             upgrade1Rect = new Rectangle(rect.X + (rect.Width / 2) - 200, rect.Y - 580, 100, 100);
             upgrade2Rect = new Rectangle(rect.X + (rect.Width / 2) - 50, rect.Y - 580, 100, 100);
             upgrade3Rect = new Rectangle(rect.X + (rect.Width / 2) + 100, rect.Y - 580, 100, 100);
+            rerollRect = new Rectangle(rect.X + (rect.Width / 2) + 50, rect.Y - 200, 100, 100);
+            exitRect = new Rectangle(rect.X + (rect.Width / 2) -150, rect.Y - 200, 100, 100);
 
             leaving = false;
         }
@@ -95,16 +100,24 @@ namespace BankShot
 
                 Color hoverExit = Color.White;
 
-                if (msLoc.Intersects(new Rectangle((int)Position.X + (rect.Width / 2) - 250, (int)position.Y - 200, 500, 200)))
+                if (msLoc.Intersects(exitRect))
                 {
                     hoverExit = Color.Red;
                 }
 
+                Color hoverReroll = Color.White;
+
+                if (msLoc.Intersects(rerollRect))
+                {
+                    hoverReroll = Color.Red;
+                }
 
                 sb.Draw(
                 Game1.buttonTx,
-                new Rectangle((int)Position.X + (rect.Width / 2) - 250, (int)position.Y - 200, 500, 200),
+                exitRect,
                 hoverExit);
+
+                sb.DrawString(Game1.font, "EXIT", new Vector2(exitRect.X + 25, exitRect.Y + 40), Color.White);
 
                 if (msLoc.Intersects(upgrade1Rect))
                 {
@@ -131,7 +144,8 @@ namespace BankShot
                     sb.DrawString(Program.game.Font, $"Cost: {forSale[2].cost}", new Vector2(rect.X + (rect.Width / 2) - 240, Y - 480), Color.White);
                 }
 
-
+                sb.Draw(Game1.buttonTx, rerollRect, hoverReroll);
+                sb.DrawString(Game1.font, "REROLL", new Vector2(rerollRect.X + 25, rerollRect.Y + 40), Color.White);
                 sb.Draw(forSale[0].icon, upgrade1Rect, colorUp1);
                 sb.Draw(forSale[1].icon, upgrade2Rect, colorUp2);
                 sb.Draw(forSale[2].icon, upgrade3Rect, colorUp3);
@@ -169,10 +183,15 @@ namespace BankShot
                 Game1.upgradeManager.ApplyUpgrade(forSale[2], Game1.player);
             }
 
-            if (Input.MouseClick(1) && msLoc.Intersects(new Rectangle((int)Position.X + (rect.Width / 2) - 250, (int)position.Y - 200, 500, 200)))
+            if (Input.MouseClick(1) && msLoc.Intersects(exitRect))
             {
                 Game1.upgradeManager.EndShopping();
                 leaving = true;
+            }
+
+            if(Input.MouseClick(1) && msLoc.Intersects(rerollRect))
+            {
+                //replace upgrades
             }
 
             if (Input.KeyClick(Keys.Tab))
