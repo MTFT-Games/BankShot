@@ -233,7 +233,7 @@ namespace BankShot
                     break;
                 case GameState.Game:
 
-                   
+                  
 
                     //Commented these out because they were breaking everything
                     mapManager.Draw(_spriteBatch);

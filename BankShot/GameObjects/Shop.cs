@@ -22,7 +22,9 @@ namespace BankShot
         private bool leaving;
         private static Texture2D shopWindow;
         public static Texture2D shopTexture;
-        
+        private Random rng;
+        private bool rerollable;
+
 
         //Properties
         public Vector2 Velocity
@@ -58,6 +60,8 @@ namespace BankShot
             upgrade3Rect = new Rectangle(rect.X + (rect.Width / 2) + 100, rect.Y - 580, 100, 100);
             rerollRect = new Rectangle(rect.X + (rect.Width / 2) + 50, rect.Y - 200, 100, 100);
             exitRect = new Rectangle(rect.X + (rect.Width / 2) -150, rect.Y - 200, 100, 100);
+            rng = new Random();
+            rerollable = true;
 
             leaving = false;
         }
@@ -185,13 +189,27 @@ namespace BankShot
 
             if (Input.MouseClick(1) && msLoc.Intersects(exitRect))
             {
-                Game1.upgradeManager.EndShopping();
-                leaving = true;
+                
+                    Game1.upgradeManager.EndShopping();
+                    leaving = true;
+                
             }
 
             if(Input.MouseClick(1) && msLoc.Intersects(rerollRect))
             {
-                //replace upgrades
+                if (rerollable)
+                {
+                    //replace upgrades
+                    int oneDex = rng.Next(0,3);
+                    int twoDex = rng.Next(0, 3);
+                    int threeDex = rng.Next(0, 3);
+                    forSale[0] = Game1.upgradeManager.Upgrades[oneDex];
+                    forSale[1] = Game1.upgradeManager.Upgrades[twoDex];
+                    forSale[2] = Game1.upgradeManager.Upgrades[threeDex];
+
+                    rerollable = false;
+                }
+
             }
 
             if (Input.KeyClick(Keys.Tab))
