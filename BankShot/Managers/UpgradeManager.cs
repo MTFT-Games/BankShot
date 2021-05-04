@@ -315,8 +315,8 @@ namespace BankShot
                     string description = "";
                     do
                     {
-                        description += reader.ReadLine();
-                    } while (description.Substring(description.Length - 2) != "||");
+                        description += reader.ReadLine()+"\n";
+                    } while (description.Substring(description.Length - 3) != "||\n");
 
                     string[] line = reader.ReadLine().Split(' ');
                     bool damageIsMultiplier = bool.Parse(line[0]);
