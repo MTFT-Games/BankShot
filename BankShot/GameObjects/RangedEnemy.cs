@@ -59,6 +59,7 @@ namespace BankShot
 
         public void Attack(GameTime gameTime)
         {
+         
             int distance = (int)Math.Sqrt(Math.Pow(X - Game1.player.X, 2) +
                Math.Pow(Y - Game1.player.Y, 2));
             if (elapsedTime >= reloadTime &&
@@ -68,6 +69,30 @@ namespace BankShot
                 //vector.Y = 0;
                 vector.Normalize();
                 gun.Attack(vector);
+                if (Game1.waveManager.Wave > 5)
+                {
+                    Vector2 perp = new Vector2(vector.Y * -1, vector.X);
+                    Vector2 leftVect = Game1.player.Position + (perp * 75);
+                    Vector2 rightVect = Game1.player.Position + (-1 * perp * 75);
+                    leftVect = leftVect - position;
+                    rightVect = rightVect - position;
+                    leftVect.Normalize();
+                    rightVect.Normalize();
+                    
+                    gun.Attack(leftVect);
+                    gun.Attack(rightVect);
+                    if (Game1.waveManager.Wave > 12)
+                    {
+                        leftVect = Game1.player.Position + (perp * 75 * 2);
+                        rightVect = Game1.player.Position + (-1 * perp * 75 * 2);
+                        leftVect = leftVect - position;
+                        rightVect = rightVect - position;
+                        leftVect.Normalize();
+                        rightVect.Normalize();
+                        gun.Attack(leftVect);
+                        gun.Attack(rightVect);
+                    }
+                }
                 elapsedTime = 0;
                 if (vector.X > 0)
                 {

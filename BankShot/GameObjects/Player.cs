@@ -360,6 +360,7 @@ namespace BankShot
         {
             if (!Program.game.Test && !invincible)
             {
+                Game1.soundEffects[6].Play();
                 base.TakeDamage(damage, knockback, damageDealer);
                 if (knockback != 0)
                 {

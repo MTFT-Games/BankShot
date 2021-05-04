@@ -110,6 +110,18 @@
 /processorParam:TextureFormat=Color
 /build:button2.png
 
+#begin chaching.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:chaching.wav
+
+#begin coin.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:coin.wav
+
 #begin Chester.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -133,6 +145,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:CoinBullet.png
+
+#begin coinflip.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:coinflip.wav
 
 #begin DmgIcon.png
 /importer:TextureImporter
@@ -169,6 +187,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GameOverScreen.png
+
+#begin gameover.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:gameover.wav
 
 #begin GoldSlime.png
 /importer:TextureImporter
@@ -353,6 +377,12 @@
 /processorParam:TextureFormat=Color
 /build:MapTiles/upright.png
 
+#begin ouch.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ouch.wav
+
 #begin PauseScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -412,6 +442,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Shop.png
+
+#begin shoproll.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:shoproll.wav
 
 #begin ShopWindow.png
 /importer:TextureImporter
@@ -487,6 +523,12 @@
 
 #begin upgrades.data
 /copy:upgrades.data
+
+#begin warning.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:warning.wav
 
 #begin waves.data
 /copy:waves.data

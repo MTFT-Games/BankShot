@@ -45,6 +45,10 @@ namespace BankShot
             {
                 return health;
             }
+            set
+            {
+                health = value;
+            }
         }
         public double InvincibleTime
         {

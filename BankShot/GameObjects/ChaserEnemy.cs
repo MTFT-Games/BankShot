@@ -16,6 +16,7 @@ namespace BankShot
         public int Speed
         {
             get { return speed; }
+            set { speed = value; }
         }
         //Constructor
         public ChaserEnemy(Texture2D texture, Rectangle rect, bool active,
