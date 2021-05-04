@@ -12,7 +12,7 @@ namespace BankShot
     public class Shop : GameObject, IMoveable
     {
         //Fields
-        private List<Upgrade> forSale;
+        private Upgrade[] forSale;
         protected Vector2 velocity;
         private Rectangle upgrade1Rect;
         private Rectangle upgrade2Rect;
@@ -24,7 +24,7 @@ namespace BankShot
         public static Texture2D shopTexture;
         private Random rng;
         private bool rerollable;
-
+        
 
         //Properties
         public Vector2 Velocity
@@ -51,8 +51,8 @@ namespace BankShot
         /// Constructor
         /// </summary>
         /// 
-        public Shop(Rectangle transform, List<Rectangle> collisionBoxes, bool active, List<Upgrade> sale)
-            : base(shopTexture, transform, collisionBoxes, active)
+        public Shop(int whereToDrive, List<Rectangle> collisionBoxes, bool active, Upgrade[] sale)
+            : base(shopTexture, new Rectangle(whereToDrive, 960 - MapManager.tileSize - 145, 200, 145), collisionBoxes, active)
         {
             forSale = sale;
             upgrade1Rect = new Rectangle(rect.X + (rect.Width / 2) - 200, rect.Y - 580, 100, 100);
@@ -191,23 +191,15 @@ namespace BankShot
             {
                 
                     Game1.upgradeManager.EndShopping();
-                    leaving = true;
                 
             }
 
             if(Input.MouseClick(1) && msLoc.Intersects(rerollRect))
             {
-                if (rerollable)
+                if (Game1.player.Money > 100)
                 {
-                    //replace upgrades
-                    int oneDex = rng.Next(0,3);
-                    int twoDex = rng.Next(0, 3);
-                    int threeDex = rng.Next(0, 3);
-                    forSale[0] = Game1.upgradeManager.Upgrades[oneDex];
-                    forSale[1] = Game1.upgradeManager.Upgrades[twoDex];
-                    forSale[2] = Game1.upgradeManager.Upgrades[threeDex];
-
-                    rerollable = false;
+                    Game1.player.Money -= 100;
+                    Game1.upgradeManager.MakeShop();
                 }
 
             }

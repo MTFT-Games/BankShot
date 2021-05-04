@@ -11,6 +11,13 @@ namespace BankShot
     {
         //Fields
         private int speed;
+
+        //Properties
+        public int Speed
+        {
+            get { return speed; }
+        }
+        //Constructor
         public ChaserEnemy(Texture2D texture, Rectangle rect, bool active,
                            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money,
                            int speed) :
@@ -20,6 +27,12 @@ namespace BankShot
             this.speed = speed;
         }
 
+        public ChaserEnemy(ChaserEnemy template, Vector2 position)
+            : base(template, position)
+        {
+            speed = template.Speed;
+        }
+        //Methods
         /// <summary>
         /// Sets velocity in the direction of the player
         /// <param name="target"></param>

@@ -25,11 +25,22 @@ namespace BankShot
         //Enemy Stats will be included as Fields
 
         //Properties
+        public int AttackPower
+        {
+            get { return attackPower; }
+        }
+        
+        public float KnockbackDistance
+        {
+            get { return knockbackDistance; }
+        }
+
         public int Money
         {
             get { return money; }
         }
-        //Constructor
+
+        //Constructors
         public Enemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active,
             int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money)
             : base(texture, rect, collisionBoxes, active, maxHealth, velocity)
@@ -38,21 +49,16 @@ namespace BankShot
             this.knockbackDistance = knockbackDistance;
             this.money = money;
             leftFacing = true;
+        }
 
-            //adds stats to a list for manager
-            //stats format: texture, rectangle, boxes(list rectangle),
-            //active(bool), maxhp(int), velocity (vector2), atk power (int),
-            //knock distance (float)
-            stats = new List<object>();
-            stats.Add(texture);
-            stats.Add(rect);
-            stats.Add(collisionBoxes);
-            stats.Add(active);
-            stats.Add(maxHealth);
-            stats.Add(velocity);
-            stats.Add(attackPower);
-            stats.Add(knockbackDistance);
-            stats.Add(money);
+        public Enemy(Enemy template, Vector2 position)
+            :base(template.Texture, new Rectangle((int)position.X, (int)position.Y, template.Rect.Width, template.Rect.Height), 
+                 template.CollisionBoxes, template.Active, template.MaxHealth, template.Velocity)
+        {
+            attackPower = template.AttackPower;
+            knockbackDistance = template.KnockbackDistance;
+            money = template.Money;
+            leftFacing = true;
         }
 
         public Enemy(Texture2D texture, Rectangle rect, bool active,
@@ -92,14 +98,6 @@ namespace BankShot
             DealDamage(Game1.player);
             base.Update();
         }
-
-        //accessors
-
-        public int AttackPower
-        {
-            get { return attackPower; }
-        }
-
 
         /// <summary>
         /// Sets enemy direction and moves

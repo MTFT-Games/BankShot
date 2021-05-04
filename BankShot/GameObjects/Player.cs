@@ -191,7 +191,7 @@ namespace BankShot
         public Player(Rectangle transform,
                     List<Rectangle> collisionBoxes, bool active,
                     int maxHealth, Vector2 velocity)
-                    : base(Program.game.Content.Load<Texture2D>("PlayerBetaSprite"), transform, collisionBoxes, active,
+                    : base(Program.game.Content.Load<Texture2D>("PlayerSprite"), transform, collisionBoxes, active,
                         maxHealth, velocity)
         {
             weaponSide = "right";
@@ -199,8 +199,33 @@ namespace BankShot
             money = 0;
 
 
-            CurrentWeapon = new Gun(true, new Rectangle(50, 50, 100, 50), new List<Rectangle>(), true, 2, 0, true, .8, 20, new Vector2(0, 0), new Rectangle(400, 100, 20, 20), new List<Rectangle>(), .0035, true, true, false);
-            CurrentShield = new Shield(new Rectangle(Rect.X - 10, Rect.Y - 10, Rect.Width + 20, Rect.Height + 20), new List<Rectangle>(), true, new Vector2(0, 0), 2.5);
+            CurrentWeapon = new Gun(
+                true, 
+                new Rectangle(50, 50, 100, 50), 
+                new List<Rectangle>(), 
+                true, 
+                2, 
+                0, 
+                true, 
+                .8, 
+                20, 
+                new Vector2(0, 0), 
+                Program.game.Content.Load<Texture2D>("Bullet"), 
+                new Rectangle(400, 100, 20, 20), 
+                new List<Rectangle>(), 
+                .0035, 
+                true, 
+                true, 
+                false);
+            CurrentShield = new Shield(new Rectangle(
+                Rect.X - 10, 
+                Rect.Y - 10, 
+                Rect.Width + 20, 
+                Rect.Height + 20), 
+                new List<Rectangle>(), 
+                true, 
+                new Vector2(0, 0), 
+                2.5);
 
 
             //Initializing the Upgrade Modifiers

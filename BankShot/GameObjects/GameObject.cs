@@ -63,6 +63,19 @@ namespace BankShot
             }
         }
 
+        public Texture2D Texture
+        {
+            get { return texture; }
+        }
+
+        public List<Rectangle> CollisionBoxes
+        {
+            get { return collisionBoxes; }
+        }
+        public bool Active
+        {
+            get { return active; }
+        }
         //Constructor 
         public GameObject(Texture2D texture, Rectangle transform, List<Rectangle> collisionBoxes, bool active)
         {
