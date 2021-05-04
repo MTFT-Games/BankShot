@@ -87,6 +87,8 @@ namespace BankShot
 
                 //changes game state to game mode
                 MediaPlayer.Play(Game1.song);
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Volume = .5f;
                 state = GameState.Game;
                 
 

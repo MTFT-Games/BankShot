@@ -174,16 +174,19 @@ namespace BankShot
 
             if (Input.MouseClick(1) && msLoc.Intersects(upgrade1Rect))
             {
+                Game1.soundEffects[0].Play();
                 Game1.upgradeManager.ApplyUpgrade(forSale[0], Game1.player);
             }
 
             if (Input.MouseClick(1) && msLoc.Intersects(upgrade2Rect))
             {
+                Game1.soundEffects[0].Play();
                 Game1.upgradeManager.ApplyUpgrade(forSale[1], Game1.player);
             }
 
             if (Input.MouseClick(1) && msLoc.Intersects(upgrade3Rect))
             {
+                Game1.soundEffects[0].Play();
                 Game1.upgradeManager.ApplyUpgrade(forSale[2], Game1.player);
             }
 

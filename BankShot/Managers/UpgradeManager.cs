@@ -100,6 +100,7 @@ namespace BankShot
 
         public void MakeShop()
         {
+            Game1.soundEffects[4].Play();
             Upgrade upgrade1 = GetRandomUpgrade();
             Upgrade upgrade2 = GetRandomUpgrade();
             while (upgrade2.name == upgrade1.name)

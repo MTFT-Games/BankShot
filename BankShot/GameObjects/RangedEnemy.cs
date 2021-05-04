@@ -59,6 +59,7 @@ namespace BankShot
 
         public void Attack(GameTime gameTime)
         {
+         
             int distance = (int)Math.Sqrt(Math.Pow(X - Game1.player.X, 2) +
                Math.Pow(Y - Game1.player.Y, 2));
             if (elapsedTime >= reloadTime &&
