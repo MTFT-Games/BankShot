@@ -112,11 +112,11 @@ namespace BankShot
         {
             if (!leftFacing)
             {
-                spriteBatch.Draw(texture, rect, null, Color.DimGray, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.Draw(texture, rect, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
             }
             else
             {
-                spriteBatch.Draw(texture, rect, Color.DimGray);
+                spriteBatch.Draw(texture, rect, Color.White);
             }
         }
     }

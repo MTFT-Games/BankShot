@@ -73,7 +73,7 @@ namespace BankShot
 
             //Registering Flying enemy
             enemies.Add(new FlyingEnemy(
-                Program.game.enemyTextureSlime,
+                Program.game.enemyTextureChest,
                 new Rectangle(0, 0, 100, 100), //enemy rectangle
                 new List<Rectangle>(), //enemy hitboxes
                 true, //enemy active state
