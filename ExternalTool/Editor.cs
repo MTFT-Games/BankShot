@@ -19,6 +19,7 @@ namespace ExternalTool
     public partial class Editor : Form
     {
         private PictureBox[,] map;
+        private List<PictureBox[,]> waves;
         private List<Upgrade> upgrades;
         string currentBackground;
         bool unsavedChanges = false;
@@ -52,6 +53,7 @@ namespace ExternalTool
             // Load each component
             LoadThumbnails();
             LoadMap();
+            LoadWaves();
             LoadUpgrades();
             // TODO: Load other components when ready.
 
@@ -98,76 +100,7 @@ namespace ExternalTool
                         if (int.TryParse(line[x], out tileID)){
                             map[x, y].Image = tileSet.Images[tileID];
                             map[x, y].Controls[0].Text = line[x];
-                        }
-
-                        /*
-                        // Map the read character to an image to load in place.
-                        switch (line[x])
-                        {
-                            default:
-                                break;
-                            case '0':
-                                //map[x, y].Image = Image.FromFile(
-                                    //CONTENTPATH + "MapTiles/down.png");
-                                map[x, y].Image =
-                                    tileSet.Images[0];
-                                break;
-                            case '1':
-                                //map[x, y].Image = Image.FromFile(
-                                //  CONTENTPATH + "MapTiles/downleft.png");
-                                map[x, y].Image =
-                                    tileSet.Images[1];
-                                break;
-                            case '2':
-                               // map[x, y].Image = Image.FromFile(
-                                 //   CONTENTPATH + "MapTiles/downright.png");
-                                map[x, y].Image =
-                                    tileSet.Images[2];
-                                break;
-                            case '3':
-                                //map[x, y].Image = Image.FromFile(
-                                //  CONTENTPATH + "MapTiles/left.png");
-                                map[x, y].Image =
-                                  tileSet.Images[3];
-                                break;
-                            case '4':
-                               // map[x, y].Image = Image.FromFile(
-                                 //   CONTENTPATH + "MapTiles/right.png");
-                                map[x, y].Image =
-                                    tileSet.Images[4];
-                                break;
-                            case '5':
-                                //map[x, y].Image = Image.FromFile(
-                                 //   CONTENTPATH + "MapTiles/up.png");
-                                map[x, y].Image =
-                                    tileSet.Images[5];
-                                break;
-                            case '6':
-                                //map[x, y].Image = Image.FromFile(
-                                //  CONTENTPATH + "MapTiles/upleft.png");
-                                map[x, y].Image =
-                                    tileSet.Images[6];
-                                break;
-                            case '7':
-                                //map[x, y].Image = Image.FromFile(
-                                //  CONTENTPATH + "MapTiles/upright.png");
-                                map[x, y].Image =
-                                    tileSet.Images[7];
-                                break;
-                            case '8':
-                                map[x, y].Image = Image.FromFile(
-                                    CONTENTPATH + "MapTiles/center.png");
-                                break;
-                            case '9':
-                                break;
-                            case 'a':
-                                break;
-                            case 'b':
-                                break;
-                            case 'c':
-                                break;
-                        }
-                        */
+                        }              
                     }
                 }
 
@@ -442,6 +375,7 @@ namespace ExternalTool
         {
             SaveMap();
             SaveUpgrades();
+            SaveWaves();
             unsavedChanges = false; 
         }
 
@@ -467,8 +401,6 @@ namespace ExternalTool
 
                 writer.WriteLine(currentBackground);
                 
-                //string[] tilePaths
-                   // = Directory.GetFiles(CONTENTPATH + "MapTiles");
                 for (int y = 0; y < map.GetLength(1); y++)
                 {
                     for (int x = 0; x < map.GetLength(0); x++)
@@ -480,41 +412,6 @@ namespace ExternalTool
                         {
                             writer.Write(".|");
                         }
-                        /*
-                        switch (tile)
-                        {
-                            default:
-                                writer.Write('.');
-                                break;
-                            case CONTENTPATH + "MapTiles/down.png":
-                                writer.Write(0);
-                                break;
-                            case CONTENTPATH + "MapTiles/downleft.png":
-                                writer.Write(1);
-                                break;
-                            case CONTENTPATH + "MapTiles/downright.png":
-                                writer.Write(2);
-                                break;
-                            case CONTENTPATH + "MapTiles/left.png":
-                                writer.Write(3);
-                                break;
-                            case CONTENTPATH + "MapTiles/right.png":
-                                writer.Write(4);
-                                break;
-                            case CONTENTPATH + "MapTiles/up.png":
-                                writer.Write(5);
-                                break;
-                            case CONTENTPATH + "MapTiles/upleft.png":
-                                writer.Write(6);
-                                break;
-                            case CONTENTPATH + "MapTiles/upright.png":
-                                writer.Write(7);
-                                break;
-                            case CONTENTPATH + "MapTiles/center.png":
-                                writer.Write(8);
-                                break;
-                        }
-                        */
                     }
                         
                     writer.WriteLine();
@@ -740,64 +637,67 @@ namespace ExternalTool
 
         private void UpdateUpgrade(object sender, EventArgs e)
         {
-            upgrades[upgradeList.SelectedIndices[0]].iconPath = upgradeImageDrop.Text;
+            if (upgradeList.SelectedIndices.Count > 0)
+            {
+                upgrades[upgradeList.SelectedIndices[0]].iconPath = upgradeImageDrop.Text;
 
-            upgrades[upgradeList.SelectedIndices[0]].damageIsMultiplier = ((CheckBox)upgradeDmg.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].damageModifier = double.Parse(((Label)upgradeDmg.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].damageIsMultiplier = ((CheckBox)upgradeDmg.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].damageModifier = double.Parse(((Label)upgradeDmg.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].projectileSpeedIsMultiplier = ((CheckBox)upgradeProjSpeed.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].projectileSpeedModifier = double.Parse(((Label)upgradeProjSpeed.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].projectileSpeedIsMultiplier = ((CheckBox)upgradeProjSpeed.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].projectileSpeedModifier = double.Parse(((Label)upgradeProjSpeed.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].projectileHomingIsMultiplier = ((CheckBox)upgradeProjHome.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].projectileHomingModifier = double.Parse(((Label)upgradeProjHome.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].projectileHomingIsMultiplier = ((CheckBox)upgradeProjHome.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].projectileHomingModifier = double.Parse(((Label)upgradeProjHome.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].shieldCooldownIsMultiplier = ((CheckBox)upgradeShieldCool.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].shieldCooldownModifier = double.Parse(((Label)upgradeShieldCool.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].shieldCooldownIsMultiplier = ((CheckBox)upgradeShieldCool.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].shieldCooldownModifier = double.Parse(((Label)upgradeShieldCool.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].knockbackIsMultiplier = ((CheckBox)upgradeKnock.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].knockbackModifier = double.Parse(((Label)upgradeKnock.Controls[0]).Text);
-
-
-            upgrades[upgradeList.SelectedIndices[0]].projectileCountIsMultiplier = ((CheckBox)upgradeProjCount.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].projectileCountModifier = double.Parse(((Label)upgradeProjCount.Controls[0]).Text);
-
-            upgrades[upgradeList.SelectedIndices[0]].projectileSizeModifier = double.Parse(((Label)upgradeProjSize.Controls[0]).Text);
-
-            upgrades[upgradeList.SelectedIndices[0]].shieldHealthIsMultiplier = ((CheckBox)upgradeShieldHealth.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].shieldHealthModifier = double.Parse(((Label)upgradeShieldHealth.Controls[0]).Text);
-
-            upgrades[upgradeList.SelectedIndices[0]].healthIsMultiplier = ((CheckBox)upgradeHealth.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].healthModifier = double.Parse(((Label)upgradeHealth.Controls[0]).Text);
-
-            upgrades[upgradeList.SelectedIndices[0]].knockbackResistIsMultiplier = ((CheckBox)upgradeKnockResist.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].knockbackResistModifier = double.Parse(((Label)upgradeKnockResist.Controls[0]).Text);
-
-            upgrades[upgradeList.SelectedIndices[0]].additionalJump = upgradeJump.Checked;
+                upgrades[upgradeList.SelectedIndices[0]].knockbackIsMultiplier = ((CheckBox)upgradeKnock.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].knockbackModifier = double.Parse(((Label)upgradeKnock.Controls[0]).Text);
 
 
-            upgrades[upgradeList.SelectedIndices[0]].rateOfFireIsMultiplier = ((CheckBox)upgradeROF.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].rateOfFireModifier = double.Parse(((Label)upgradeROF.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].projectileCountIsMultiplier = ((CheckBox)upgradeProjCount.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].projectileCountModifier = double.Parse(((Label)upgradeProjCount.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].projectileSpreadIsMultiplier = ((CheckBox)upgradeProjSpread.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].projectileSpreadModifier = double.Parse(((Label)upgradeProjSpread.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].projectileSizeModifier = double.Parse(((Label)upgradeProjSize.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].shieldRegenIsMultiplier = ((CheckBox)upgradeShieldRegen.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].shieldRegenModifier = double.Parse(((Label)upgradeShieldRegen.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].shieldHealthIsMultiplier = ((CheckBox)upgradeShieldHealth.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].shieldHealthModifier = double.Parse(((Label)upgradeShieldHealth.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].healthRegenIsMultiplier = ((CheckBox)upgradeHealthRegen.Controls[1]).Checked;
-            upgrades[upgradeList.SelectedIndices[0]].healthRegenModifier = double.Parse(((Label)upgradeHealthRegen.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].healthIsMultiplier = ((CheckBox)upgradeHealth.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].healthModifier = double.Parse(((Label)upgradeHealth.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].weight = int.Parse(((Label)upgradeWeight.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].knockbackResistIsMultiplier = ((CheckBox)upgradeKnockResist.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].knockbackResistModifier = double.Parse(((Label)upgradeKnockResist.Controls[0]).Text);
+
+                upgrades[upgradeList.SelectedIndices[0]].additionalJump = upgradeJump.Checked;
 
 
-            upgrades[upgradeList.SelectedIndices[0]].name = upgradeName.Text;
-            upgradeList.Items[upgradeList.SelectedIndices[0]].Text = upgradeName.Text;
+                upgrades[upgradeList.SelectedIndices[0]].rateOfFireIsMultiplier = ((CheckBox)upgradeROF.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].rateOfFireModifier = double.Parse(((Label)upgradeROF.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].description = upgradeDesc.Text;
+                upgrades[upgradeList.SelectedIndices[0]].projectileSpreadIsMultiplier = ((CheckBox)upgradeProjSpread.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].projectileSpreadModifier = double.Parse(((Label)upgradeProjSpread.Controls[0]).Text);
 
-            upgrades[upgradeList.SelectedIndices[0]].cost = int.Parse(((Label)UpgradeCost.Controls[0]).Text);
+                upgrades[upgradeList.SelectedIndices[0]].shieldRegenIsMultiplier = ((CheckBox)upgradeShieldRegen.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].shieldRegenModifier = double.Parse(((Label)upgradeShieldRegen.Controls[0]).Text);
 
-            unsavedChanges = true;
+                upgrades[upgradeList.SelectedIndices[0]].healthRegenIsMultiplier = ((CheckBox)upgradeHealthRegen.Controls[1]).Checked;
+                upgrades[upgradeList.SelectedIndices[0]].healthRegenModifier = double.Parse(((Label)upgradeHealthRegen.Controls[0]).Text);
+
+                upgrades[upgradeList.SelectedIndices[0]].weight = int.Parse(((Label)upgradeWeight.Controls[0]).Text);
+
+
+                upgrades[upgradeList.SelectedIndices[0]].name = upgradeName.Text;
+                upgradeList.Items[upgradeList.SelectedIndices[0]].Text = upgradeName.Text;
+
+                upgrades[upgradeList.SelectedIndices[0]].description = upgradeDesc.Text;
+
+                upgrades[upgradeList.SelectedIndices[0]].cost = int.Parse(((Label)UpgradeCost.Controls[0]).Text);
+
+                unsavedChanges = true;
+            }
         }
 
         private void newUpgradeBtn_Click(object sender, EventArgs e)
@@ -943,9 +843,6 @@ namespace ExternalTool
                         cost));
                     upgradeList.Items.Add(name);
                 } while (reader.ReadLine()!="|||");
-
-
-
             } catch (Exception)
             {
 
@@ -1010,7 +907,6 @@ namespace ExternalTool
 
         private void DeleteUpgrade(object sender, EventArgs e)
         {
-            // TODO: impliment this
             // TODO: addd 'are you sure' dialogue
             upgrades.RemoveAt(upgradeList.SelectedIndices[0]);
             upgradeList.Items.RemoveAt(upgradeList.SelectedIndices[0]);
@@ -1027,6 +923,212 @@ namespace ExternalTool
                 {
                     e.Cancel = true;
                 }
+            }
+        }
+
+        private void MapMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(((TabControl)sender).SelectedIndex == 1)
+            {
+                WaveEnable((int)waveCounter.Value, true);
+            } else
+            {
+                WaveEnable((int)waveCounter.Value, false);
+            }
+        }
+
+        private void WaveEnable(int wave, bool enable)
+        {
+            for (int y = 0; y < waves[0].GetLength(1); y++)
+            {
+                for (int x = 0; x < waves[0].GetLength(0); x++)
+                {
+                    waves[wave][x, y].Enabled = enable;
+                    waves[wave][x, y].Visible = enable;
+                }
+            }
+        }
+
+        private void LoadWaves()
+        {
+            StreamReader reader = null;
+            try
+            {
+                reader = new StreamReader(CONTENTPATH + "waves.data");
+                waves = new List<PictureBox[,]>();
+
+                string[] splitLine = reader.ReadLine().Split('x');
+                int width = int.Parse(splitLine[0]);
+                int height = int.Parse(splitLine[1]);
+                int wave = 0;
+
+                do
+                {
+                    reader.ReadLine();
+
+                    waves.Add(new PictureBox[width, height]);
+
+
+                    // Find proper tile size.
+                    int tileSize = mapBackground.Height / height;
+
+                    // Fill the map.
+                    for (int y = 0; y < height; y++)
+                    {
+                        splitLine = reader.ReadLine().Split('|');
+                        for (int x = 0; x < width; x++)
+                        {
+                            waves[wave][x, y] = new PictureBox();
+                            waves[wave][x, y].BackColor = Color.Transparent;
+                            //waves[wave][x, y].Location =
+                            //    new Point((x * tileSize), (y * tileSize));
+                            waves[wave][x, y].SizeMode = PictureBoxSizeMode.StretchImage;
+                            waves[wave][x, y].Size = new Size(tileSize, tileSize);
+                            waves[wave][x, y].Cursor = Cursors.Cross;
+                            waves[wave][x, y].MouseDown += WaveTileClicked;
+                            waves[wave][x, y].Enabled = false;
+                            waves[wave][x, y].Visible = false;
+                            waves[wave][x, y].Controls.Add(new Label());
+                            waves[wave][x, y].Controls[0].Visible = false;
+                            waves[wave][x, y].Controls[0].Enabled = false;
+
+                            int tileID;
+                            if (int.TryParse(splitLine[x], out tileID))
+                            {
+                                waves[wave][x, y].Controls[0].Text = splitLine[x];
+                                waves[wave][x, y].Image = enemyIcons.Images[0];
+                                switch (tileID)
+                                {
+                                    case 1:
+                                        waves[wave][x, y].BackColor = Color.Red;
+                                        break;
+                                    case 2:
+                                        break;
+                                    case 3:
+                                        waves[wave][x, y].BackColor = Color.Green;
+                                        break;
+                                    case 4:
+                                        waves[wave][x, y].BackColor = Color.Brown;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                            
+                            map[x, y].Controls.Add(waves[wave][x, y]);
+                        }
+                    }
+
+                    wave++;
+                } while (reader.ReadLine() != "|EOF|");
+
+                waveCounter.Maximum = wave - 1;
+            } catch (Exception)
+            {
+
+                throw;
+            }
+            if(reader != null)
+            {
+                reader.Close();
+            }
+        }
+
+        private void WaveTileClicked(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                // Clear the image of sender if clear param is set.
+                ((PictureBox)sender).Image = null;
+                ((PictureBox)sender).Controls[0].Text = "";
+                ((PictureBox)sender).BackColor = Color.Transparent;
+            } else if (enemySelect.SelectedIndex != -1)
+            {
+                // Set the image of sender to the selected tile.
+                ((PictureBox)sender).Image = enemyIcons.Images[0];
+                ((PictureBox)sender).Controls[0].Text = (enemySelect.SelectedIndex + 1).ToString();
+                switch ((int)enemySelect.SelectedIndex + 1)
+                {
+                    case 1:
+                        ((PictureBox)sender).BackColor = Color.Red;
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        ((PictureBox)sender).BackColor = Color.Green;
+                        break;
+                    case 4:
+                        ((PictureBox)sender).BackColor = Color.Brown;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            // Set unsaved changes.
+            if (!unsavedChanges)
+            {
+                unsavedChanges = true;
+                Text += '*';
+            }
+        }
+
+        private void waveCounter_ValueChanged(object sender, EventArgs e)
+        {
+            WaveEnable((int)waveCounter.Value, true);
+
+            if (((int)waveCounter.Value + 1) < waves.Count)
+            {
+                WaveEnable((int)waveCounter.Value + 1, false);
+            }
+
+            if (((int)waveCounter.Value - 1) >= 0)
+            {
+            WaveEnable((int)waveCounter.Value-1, false);
+            }
+        }
+
+        private void SaveWaves()
+        {
+            StreamWriter writer = null;
+            try
+            {
+                writer = new StreamWriter(CONTENTPATH + "waves.data", false);
+
+                writer.WriteLine($"{waves[0].GetLength(0)}x{waves[0].GetLength(1)}");
+                for (int i = 0; i < waves.Count; i++)
+                {
+                    writer.WriteLine(i);
+                    for (int y = 0; y < waves[0].GetLength(1); y++)
+                    {
+                        for (int x = 0; x < waves[0].GetLength(0); x++)
+                        {
+                            if (waves[i][x, y].Controls[0].Text != "")
+                            {
+                                writer.Write(waves[i][x, y].Controls[0].Text + "|");
+                            } else
+                            {
+                                writer.Write(".|");
+                            }
+                        }
+                        writer.WriteLine();
+                    }
+                    if (i == waves.Count - 1)
+                    {
+                        writer.WriteLine("|EOF|");
+                    } else
+                    {
+                        writer.WriteLine();
+                    }
+                }
+            } catch (Exception)
+            {
+
+                throw;
+            }
+            if (writer != null)
+            {
+                writer.Close();
             }
         }
     }

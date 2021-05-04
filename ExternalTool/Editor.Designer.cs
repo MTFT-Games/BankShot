@@ -45,12 +45,18 @@ namespace ExternalTool
             this.tabSystem = new System.Windows.Forms.TabControl();
             this.mapTab = new System.Windows.Forms.TabPage();
             this.mapDivider = new System.Windows.Forms.SplitContainer();
-            this.tilesLabel = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.backgroundLabel = new System.Windows.Forms.Label();
-            this.backgroundList = new System.Windows.Forms.ListView();
-            this.backgroundImages = new System.Windows.Forms.ImageList(this.components);
             this.tileList = new System.Windows.Forms.ListView();
             this.thumbnailSet = new System.Windows.Forms.ImageList(this.components);
+            this.tilesLabel = new System.Windows.Forms.Label();
+            this.backgroundList = new System.Windows.Forms.ListView();
+            this.backgroundImages = new System.Windows.Forms.ImageList(this.components);
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.enemySelect = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.waveCounter = new System.Windows.Forms.NumericUpDown();
             this.mapBackground = new System.Windows.Forms.PictureBox();
             this.upgradesTab = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
@@ -128,6 +134,7 @@ namespace ExternalTool
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.upgradeIcons = new System.Windows.Forms.ImageList(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.enemyIcons = new System.Windows.Forms.ImageList(this.components);
             this.statusStrip.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.tabSystem.SuspendLayout();
@@ -136,6 +143,10 @@ namespace ExternalTool
             this.mapDivider.Panel1.SuspendLayout();
             this.mapDivider.Panel2.SuspendLayout();
             this.mapDivider.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waveCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapBackground)).BeginInit();
             this.upgradesTab.SuspendLayout();
             this.UpgradeCost.SuspendLayout();
@@ -299,10 +310,7 @@ namespace ExternalTool
             // 
             // mapDivider.Panel1
             // 
-            this.mapDivider.Panel1.Controls.Add(this.tilesLabel);
-            this.mapDivider.Panel1.Controls.Add(this.backgroundLabel);
-            this.mapDivider.Panel1.Controls.Add(this.backgroundList);
-            this.mapDivider.Panel1.Controls.Add(this.tileList);
+            this.mapDivider.Panel1.Controls.Add(this.tabControl1);
             // 
             // mapDivider.Panel2
             // 
@@ -311,48 +319,39 @@ namespace ExternalTool
             this.mapDivider.SplitterDistance = 311;
             this.mapDivider.TabIndex = 0;
             // 
-            // tilesLabel
+            // tabControl1
             // 
-            this.tilesLabel.AutoSize = true;
-            this.tilesLabel.Location = new System.Drawing.Point(5, 238);
-            this.tilesLabel.Name = "tilesLabel";
-            this.tilesLabel.Size = new System.Drawing.Size(35, 15);
-            this.tilesLabel.TabIndex = 4;
-            this.tilesLabel.Text = "Tiles:";
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(5, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(303, 480);
+            this.tabControl1.TabIndex = 5;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.MapMode_SelectedIndexChanged);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.backgroundLabel);
+            this.tabPage1.Controls.Add(this.tileList);
+            this.tabPage1.Controls.Add(this.tilesLabel);
+            this.tabPage1.Controls.Add(this.backgroundList);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(295, 452);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Map controls";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // backgroundLabel
             // 
             this.backgroundLabel.AutoSize = true;
-            this.backgroundLabel.Location = new System.Drawing.Point(5, 5);
+            this.backgroundLabel.Location = new System.Drawing.Point(6, 3);
             this.backgroundLabel.Name = "backgroundLabel";
             this.backgroundLabel.Size = new System.Drawing.Size(75, 15);
             this.backgroundLabel.TabIndex = 3;
             this.backgroundLabel.Text = "Backgrounds:";
-            // 
-            // backgroundList
-            // 
-            this.backgroundList.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.backgroundList.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backgroundList.ForeColor = System.Drawing.Color.Transparent;
-            this.backgroundList.HideSelection = false;
-            this.backgroundList.LabelWrap = false;
-            this.backgroundList.LargeImageList = this.backgroundImages;
-            this.backgroundList.Location = new System.Drawing.Point(3, 23);
-            this.backgroundList.MultiSelect = false;
-            this.backgroundList.Name = "backgroundList";
-            this.backgroundList.RightToLeftLayout = true;
-            this.backgroundList.Size = new System.Drawing.Size(234, 141);
-            this.backgroundList.TabIndex = 2;
-            this.backgroundList.TileSize = new System.Drawing.Size(110, 70);
-            this.backgroundList.UseCompatibleStateImageBehavior = false;
-            this.backgroundList.View = System.Windows.Forms.View.Tile;
-            this.backgroundList.ItemActivate += new System.EventHandler(this.backgroundList_ItemActivate);
-            // 
-            // backgroundImages
-            // 
-            this.backgroundImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.backgroundImages.ImageSize = new System.Drawing.Size(100, 60);
-            this.backgroundImages.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // tileList
             // 
@@ -362,7 +361,7 @@ namespace ExternalTool
             this.errorProvider.SetIconAlignment(this.tileList, System.Windows.Forms.ErrorIconAlignment.TopLeft);
             this.tileList.LabelWrap = false;
             this.tileList.LargeImageList = this.thumbnailSet;
-            this.tileList.Location = new System.Drawing.Point(5, 283);
+            this.tileList.Location = new System.Drawing.Point(9, 199);
             this.tileList.MultiSelect = false;
             this.tileList.Name = "tileList";
             this.tileList.Size = new System.Drawing.Size(266, 200);
@@ -377,6 +376,90 @@ namespace ExternalTool
             this.thumbnailSet.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.thumbnailSet.ImageSize = new System.Drawing.Size(60, 60);
             this.thumbnailSet.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // tilesLabel
+            // 
+            this.tilesLabel.AutoSize = true;
+            this.tilesLabel.Location = new System.Drawing.Point(6, 181);
+            this.tilesLabel.Name = "tilesLabel";
+            this.tilesLabel.Size = new System.Drawing.Size(35, 15);
+            this.tilesLabel.TabIndex = 4;
+            this.tilesLabel.Text = "Tiles:";
+            // 
+            // backgroundList
+            // 
+            this.backgroundList.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.backgroundList.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backgroundList.ForeColor = System.Drawing.Color.Transparent;
+            this.backgroundList.HideSelection = false;
+            this.backgroundList.LabelWrap = false;
+            this.backgroundList.LargeImageList = this.backgroundImages;
+            this.backgroundList.Location = new System.Drawing.Point(9, 21);
+            this.backgroundList.MultiSelect = false;
+            this.backgroundList.Name = "backgroundList";
+            this.backgroundList.RightToLeftLayout = true;
+            this.backgroundList.Size = new System.Drawing.Size(251, 141);
+            this.backgroundList.TabIndex = 2;
+            this.backgroundList.TileSize = new System.Drawing.Size(110, 70);
+            this.backgroundList.UseCompatibleStateImageBehavior = false;
+            this.backgroundList.View = System.Windows.Forms.View.Tile;
+            this.backgroundList.ItemActivate += new System.EventHandler(this.backgroundList_ItemActivate);
+            // 
+            // backgroundImages
+            // 
+            this.backgroundImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.backgroundImages.ImageSize = new System.Drawing.Size(100, 60);
+            this.backgroundImages.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.enemySelect);
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.waveCounter);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(295, 452);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Wave controls";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // enemySelect
+            // 
+            this.enemySelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.enemySelect.FormattingEnabled = true;
+            this.enemySelect.Items.AddRange(new object[] {
+            "Ranged",
+            "Chaser",
+            "Pacer",
+            "Flyer"});
+            this.enemySelect.Location = new System.Drawing.Point(10, 76);
+            this.enemySelect.Name = "enemySelect";
+            this.enemySelect.Size = new System.Drawing.Size(168, 23);
+            this.enemySelect.TabIndex = 2;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 11);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(37, 15);
+            this.label17.TabIndex = 1;
+            this.label17.Text = "Wave";
+            // 
+            // waveCounter
+            // 
+            this.waveCounter.Location = new System.Drawing.Point(6, 30);
+            this.waveCounter.Maximum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
+            this.waveCounter.Name = "waveCounter";
+            this.waveCounter.ReadOnly = true;
+            this.waveCounter.Size = new System.Drawing.Size(44, 23);
+            this.waveCounter.TabIndex = 0;
+            this.waveCounter.ValueChanged += new System.EventHandler(this.waveCounter_ValueChanged);
             // 
             // mapBackground
             // 
@@ -1270,6 +1353,12 @@ namespace ExternalTool
             this.upgradeIcons.ImageSize = new System.Drawing.Size(100, 100);
             this.upgradeIcons.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // enemyIcons
+            // 
+            this.enemyIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("enemyIcons.ImageStream")));
+            this.enemyIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.enemyIcons.Images.SetKeyName(0, "GoldSlime.png");
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1290,10 +1379,15 @@ namespace ExternalTool
             this.tabSystem.ResumeLayout(false);
             this.mapTab.ResumeLayout(false);
             this.mapDivider.Panel1.ResumeLayout(false);
-            this.mapDivider.Panel1.PerformLayout();
             this.mapDivider.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mapDivider)).EndInit();
             this.mapDivider.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waveCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mapBackground)).EndInit();
             this.upgradesTab.ResumeLayout(false);
             this.upgradesTab.PerformLayout();
@@ -1451,5 +1545,12 @@ namespace ExternalTool
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ImageList upgradeIcons;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.NumericUpDown waveCounter;
+        private System.Windows.Forms.ImageList enemyIcons;
+        private System.Windows.Forms.ComboBox enemySelect;
     }
 }
