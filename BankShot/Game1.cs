@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace BankShot
 {
@@ -23,7 +24,9 @@ namespace BankShot
 
         //music
         public static Song song;
-        
+
+        //sound fx
+        public static List<SoundEffect> soundEffects;
 
 
         // Menu fields.
@@ -88,6 +91,7 @@ namespace BankShot
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            soundEffects = new List<SoundEffect>();
         }
 
         protected override void Initialize()
@@ -108,9 +112,17 @@ namespace BankShot
 
         protected override void LoadContent()
         {
-
+            //sound loading
             song = Content.Load<Song>("BankShotRough");
-            MediaPlayer.IsRepeating = true;
+          
+
+            soundEffects.Add(Content.Load<SoundEffect>("chaching"));
+            soundEffects.Add(Content.Load<SoundEffect>("coinflip"));
+            soundEffects.Add(Content.Load<SoundEffect>("coin"));
+            soundEffects.Add(Content.Load<SoundEffect>("warning"));
+            soundEffects.Add(Content.Load<SoundEffect>("shoproll"));
+            soundEffects.Add(Content.Load<SoundEffect>("gameover"));
+            soundEffects.Add(Content.Load<SoundEffect>("ouch"));
 
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -168,6 +180,10 @@ namespace BankShot
             switch (state)
             {
                 case GameState.MainMenu:
+                    if (Input.MouseClick(1))
+                    {
+                        soundEffects[0].Play();
+                    }
                     resetGame();
                     mainMenu.Update(out state);
                     break;
@@ -181,6 +197,7 @@ namespace BankShot
 
                     if (player.Health <= 0)
                     {
+                        Game1.soundEffects[5].Play();
                         state = GameState.GameOver;
                     }
 
@@ -194,12 +211,25 @@ namespace BankShot
 
                     break;
                 case GameState.Pause:
+                    if (Input.MouseClick(1))
+                    {
+                        soundEffects[0].Play();
+                    }
                     pauseMenu.Update(testMode, out state);
                     break;
                 case GameState.Leaderboard:
+                    if (Input.MouseClick(1))
+                    {
+                        soundEffects[0].Play();
+                    }
                     leaderboardMenu.Update(out state);
                     break;
                 case GameState.GameOver:
+                    MediaPlayer.Stop();
+                    if (Input.MouseClick(1))
+                    {
+                        soundEffects[0].Play();
+                    }
                     gameOverMenu.Update(out state);
                     break;
                     //case GameState.Shop:

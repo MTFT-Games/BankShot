@@ -137,6 +137,7 @@ namespace BankShot
 
         public virtual void Attack(Vector2 direction)
         {
+            Game1.soundEffects[2].Play();
             direction.Normalize();
             projectileTransform.X = X;
             projectileTransform.Y = Y;
@@ -157,6 +158,7 @@ namespace BankShot
             //yet.
             if (Input.MouseClick(1))
             {
+                Game1.soundEffects[1].Play();
                 Attack();
             }
             base.Update();
