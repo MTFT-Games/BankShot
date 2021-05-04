@@ -377,7 +377,6 @@ namespace BankShot
 
             } catch (Exception)
             {
-
                 throw;
             }
             if (reader != null)

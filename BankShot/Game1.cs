@@ -44,6 +44,9 @@ namespace BankShot
 
         // Texture fields.
         public Texture2D titleBG;
+        public Texture2D pauseBG;
+        public Texture2D gameoverBG;
+        public Texture2D leaderboardBG;
         // TODO: Move enemyTexture into enemy manager with file read overhaul.
         public Texture2D enemyTextureSlime;
         public Texture2D enemyTextureCat;
@@ -106,6 +109,9 @@ namespace BankShot
 
             // Load Backgrounds
             titleBG = Content.Load<Texture2D>("TitleScreen");
+            pauseBG = Content.Load<Texture2D>("PauseScreen");
+            gameoverBG = Content.Load<Texture2D>("GameOverScreen");
+            leaderboardBG = Content.Load<Texture2D>("LeaderboardScreen");
 
             // Load Textures
             buttonTx = Content.Load<Texture2D>("Button");
@@ -284,13 +290,17 @@ namespace BankShot
                     waveManager.Draw(_spriteBatch);
                     break;
                 case GameState.Pause:
+                    _spriteBatch.Draw(pauseBG, new Vector2(0, 0), Color.White);
+
                     pauseMenu.Draw(_spriteBatch, _graphics);
 
                     break;
                 case GameState.Leaderboard:
+                    _spriteBatch.Draw(leaderboardBG, new Vector2(0, 0), Color.White);
                     leaderboardMenu.Draw(_spriteBatch, _graphics, buttonTx);
                     break;
                 case GameState.GameOver:
+                    _spriteBatch.Draw(gameoverBG, new Vector2(0, 0), Color.White);
                     gameOverMenu.Draw(_spriteBatch, _graphics, buttonTx);
                     break;
 
