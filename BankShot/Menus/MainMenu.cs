@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace BankShot
 {
@@ -85,7 +86,9 @@ namespace BankShot
             {
 
                 //changes game state to game mode
+                MediaPlayer.Play(Game1.song);
                 state = GameState.Game;
+                
 
             } else
             {

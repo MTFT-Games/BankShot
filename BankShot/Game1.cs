@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace BankShot
 {
@@ -19,6 +20,11 @@ namespace BankShot
     {
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        //music
+        public static Song song;
+        
+
 
         // Menu fields.
         private MainMenu mainMenu;
@@ -99,6 +105,11 @@ namespace BankShot
 
         protected override void LoadContent()
         {
+
+            song = Content.Load<Song>("BankShotRough");
+            MediaPlayer.IsRepeating = true;
+
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load fonts.
@@ -308,6 +319,7 @@ namespace BankShot
         /// </summary>
         public void resetGame()
         {
+           
             Initialize();
             LoadContent();
         }
