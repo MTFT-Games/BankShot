@@ -41,7 +41,7 @@ namespace BankShot
             shops = new List<Shop>();
             collisionBoxesShop = new List<Rectangle> { transformShop };
 
-            Shop.shopTexture = Program.game.Content.Load<Texture2D>("PlayerBetaSprite");
+            Shop.shopTexture = Program.game.Content.Load<Texture2D>("Shop");
             Shop.ShopWindow = Program.game.Content.Load<Texture2D>("ShopWindow");
         }
 

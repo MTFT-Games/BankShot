@@ -9,9 +9,28 @@ namespace BankShot
 {
     class PlatformEnemy : Enemy
     {
+        //Fields
         private int speed;
         private Rectangle platformEdgeFinder;
         private Rectangle wallFinder;
+
+        //Properties
+
+        public int Speed
+        {
+            get { return speed; }
+        }
+
+        public Rectangle PlatformEdgeFinder
+        {
+            get { return platformEdgeFinder; }
+        }
+
+        public Rectangle WallFinder
+        {
+            get { return wallFinder; }
+        }
+        //Constructors
         public PlatformEnemy(Texture2D texture, Rectangle rect, bool active,
             int maxHealth, Vector2 velocity, int attackPower,
             float knockbackDistance, int money, int speed) 
@@ -23,6 +42,14 @@ namespace BankShot
             wallFinder = new Rectangle(X, Y, rect.Width, rect.Height);
         }
 
+        public PlatformEnemy(PlatformEnemy template, Vector2 position)
+            : base(template, position)
+        {
+            speed = template.Speed;
+            platformEdgeFinder = new Rectangle(X + speed, Y, rect.Width, rect.Height);
+            wallFinder = new Rectangle(X, Y, rect.Width, rect.Height);
+        }
+        //Methods
         public override void Update()
         {
             base.Update();

@@ -14,13 +14,13 @@ namespace BankShot
                       List<Rectangle> collisionBoxes, bool active,
                       int damage, int knockback, bool interceptable,
                       double lifeSpan, int speed, Vector2 velocity,
-                      Rectangle projectileTransform,
+                      Texture2D projectileTexture,Rectangle projectileTransform,
                       List<Rectangle> projectileCollisionBoxes,
                       double projectileHoming, bool projectileBounce,
                       bool projectileActive, bool fromEnemy, Type enemyType)
                       : base(visible, transform, collisionBoxes, active,
                             damage, knockback, interceptable, lifeSpan, 
-                            speed, velocity, projectileTransform, 
+                            speed, velocity, projectileTexture, projectileTransform, 
                             projectileCollisionBoxes, projectileHoming, 
                             projectileBounce, projectileActive, fromEnemy)
         {

@@ -45,7 +45,8 @@ namespace BankShot
         // Texture fields.
         public Texture2D titleBG;
         // TODO: Move enemyTexture into enemy manager with file read overhaul.
-        public Texture2D enemyTexture;
+        public Texture2D enemyTextureSlime;
+        public Texture2D enemyTextureCat;
         // TODO: Use here instead of passing everywhere
         public static Texture2D buttonTx;
 
@@ -108,7 +109,8 @@ namespace BankShot
 
             // Load Textures
             buttonTx = Content.Load<Texture2D>("Button");
-            enemyTexture = Content.Load<Texture2D>("GoldSlime");
+            enemyTextureSlime = Content.Load<Texture2D>("GoldSlime");
+            enemyTextureCat = Content.Load<Texture2D>("LuckyCat");
             warningTexture = Content.Load<Texture2D>("exclamationPoint");
             // Load menus.
             mainMenu = new MainMenu(font, buttonTx);
@@ -130,22 +132,7 @@ namespace BankShot
                 true, 
                 15, 
                 new Vector2(0, 0));
-            enemyManager = new EnemyManager(
-                new List<List<object>>() 
-                { 
-                    new List<object>()
-                    {
-                        enemyTexture,
-                        new Rectangle(0, 0, 100, 100), //enemy rectangle
-                        new List<Rectangle>(), //enemy 
-                        true, //enemy active state
-                        5, //enemy health
-                        new Vector2(0, 0), //enemy velocity
-                        5, //enemy attack power
-                        15f, //Enemy knockback distance
-                        250//Enemy's money value
-                    }
-                });                        
+            enemyManager = new EnemyManager();                        
         }
 
         protected override void Update(GameTime gameTime)

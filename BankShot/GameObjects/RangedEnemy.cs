@@ -13,6 +13,22 @@ namespace BankShot
         private double reloadTime;
         private double elapsedTime;
         private int range;
+        //Properties
+        public Gun Gun
+        {
+            get { return gun; }
+        }
+
+        public double ReloadTime
+        {
+            get { return reloadTime; }
+        }
+
+        public int Range
+        {
+            get { return range; }
+        }
+        //Constructors
         public RangedEnemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active,
             int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money, Gun gun, double reloadTime, int range)
             : base(texture, rect, collisionBoxes, active, maxHealth, velocity, attackPower, knockbackDistance, money)
@@ -23,6 +39,15 @@ namespace BankShot
             this.range = range;
         }
 
+        public RangedEnemy(RangedEnemy template, Vector2 position)
+            : base(template, position)
+        {
+            gun = template.Gun;
+            reloadTime = template.ReloadTime;
+            elapsedTime = 0;
+            range = template.Range;
+        }
+        //Methods
         public void Update(GameTime gameTime)
         {
             base.Update();
@@ -58,10 +83,10 @@ namespace BankShot
         {
             if (leftFacing)
             {
-                spriteBatch.Draw(texture, rect, Color.Red);
+                spriteBatch.Draw(texture, rect, Color.White);
             } else
             {
-                spriteBatch.Draw(texture, rect, null, Color.Red, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
+                spriteBatch.Draw(texture, rect, null, Color.White, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 1);
             }
         }
 

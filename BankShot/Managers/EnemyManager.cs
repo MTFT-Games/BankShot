@@ -15,20 +15,97 @@ namespace BankShot
         //stats format: texture, rectangle, boxes(list rectangle),
         //active(bool), maxhp(int), velocity (vector2), atk power (int),
         //knock distance (float)
-        private List<List<object>> enemies;
+        private List<Enemy> enemies;
         private List<Enemy> spawnedEnemies;
 
         //constructor -----------------------------------------------------------------------------
 
-        public EnemyManager(List<List<object>> e)
+        public EnemyManager()
         {
             //takes in number of enemies and a list of their stats
-            enemies = e;
+            enemies = new List<Enemy>();
             spawnedEnemies = new List<Enemy>();
+
+            //Registering Chaser Enemy
+            enemies.Add(new ChaserEnemy(
+                Program.game.enemyTextureSlime,
+                new Rectangle(0, 0, 100, 100), //enemy rectangle
+                true, //enemy active state
+                5, //enemy health
+                new Vector2(0, 0), //enemy velocity
+                5, //enemy attack power
+                15f, //Enemy knockback distance
+                250,//Enemy's money value
+                2));
+            
+
+            //Registering Ranged Enemy
+            enemies.Add(new RangedEnemy(
+                Program.game.enemyTextureCat,
+                new Rectangle(0, 0, 80, 120), //enemy rectangle
+                new List<Rectangle>(), //enemy hitboxes
+                true, //enemy active state
+                5, //enemy health
+                new Vector2(0, 0), //enemy velocity
+                5, //enemy attack power
+                15f, //Enemy knockback distance
+                250,//Enemy's money value
+                new Gun(false,
+                    new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10,
+                    true, 1.4, 13, new Vector2(0, 0),
+                    Program.game.Content.Load<Texture2D>("CoinBullet"),
+                    new Rectangle(400, 100, 20, 20),
+                    new List<Rectangle>(), 0, false, true, true),
+                2,
+                800));
+
+            //Registering Platform Enemy
+            enemies.Add(new PlatformEnemy(
+                Program.game.enemyTextureSlime,
+                new Rectangle(0, 0, 100, 100), //enemy rectangle
+                true, //enemy active state
+                5, //enemy health
+                new Vector2(0, 0), //enemy velocity
+                5, //enemy attack power
+                15f, //Enemy knockback distance
+                250,//Enemy's money value
+                2));
+
+            //Registering Flying enemy
+            enemies.Add(new FlyingEnemy(
+                Program.game.enemyTextureSlime,
+                new Rectangle(0, 0, 100, 100), //enemy rectangle
+                new List<Rectangle>(), //enemy hitboxes
+                true, //enemy active state
+                5, //enemy health
+                new Vector2(0, 0), //enemy velocity
+                5, //enemy attack power
+                15f, //Enemy knockback distance
+                250,//Enemy's money value
+                2,
+                new SpawnerGun(false,
+                        new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10,
+                        true, 1.4, 13, new Vector2(0, 0),
+                        Program.game.Content.Load<Texture2D>("CoinBullet"), new Rectangle(400, 100, 20, 20),
+                        new List<Rectangle>(), 0, false, true, true, typeof(ChaserEnemy)),
+                2));
+
+            //Registering Basic Enemy
+            enemies.Add(new Enemy(
+                Program.game.enemyTextureSlime,
+                new Rectangle(0, 0, 100, 100), //enemy rectangle
+                new List<Rectangle>(), //enemy hitboxes
+                true, //enemy active state
+                5, //enemy health
+                new Vector2(0, 0), //enemy velocity
+                5, //enemy attack power
+                15f, //Enemy knockback distance
+                250//Enemy's money value
+            ));
         }
 
         //accessors------------------------------------------------------------
-        public List<List<object>> Enemies
+        public List<Enemy> Enemies
         {
             //probably wont need a set. may need indexed accessor
             get { return enemies; }
@@ -50,22 +127,11 @@ namespace BankShot
         public void SpawnEnemies()
         {
 
-            foreach (List<object> stats in enemies)
+            foreach (Enemy stats in enemies)
             {
-                //stats format: texture, rectangle, boxes(list rectangle),
-                //active(bool), maxhp(int), velocity (vector2), atk power (int),
-                //knock distance (float), money (int)
-                Enemy e = new Enemy((Texture2D)stats[0],
-                    (Rectangle)stats[1],
-                    (List<Rectangle>)stats[2],
-                    (bool)stats[3],
-                    (int)stats[4],
-                    (Vector2)stats[5],
-                    (int)stats[6],
-                    (float)stats[7],
-                    (int)stats[8]);
+                Enemy copy = new Enemy(stats, new Vector2(0,0));
 
-                spawnedEnemies.Add(e);
+                spawnedEnemies.Add(copy);
             }
         }
 
@@ -80,73 +146,22 @@ namespace BankShot
             // TODO: Setup with new stats template when we get to that.
             // TODO: Implement scaling.
             Type type = typeof(enemyType);
+
             if  (type == typeof(ChaserEnemy))
             {
-                spawnedEnemies.Add(new ChaserEnemy(
-                (Texture2D)enemies[0][0],
-                new Rectangle((int)position.X, (int)position.Y, 100, 100),
-                (bool)enemies[0][3],
-                (int)enemies[0][4],
-                (Vector2)enemies[0][5],
-                (int)enemies[0][6],
-                (float)enemies[0][7],
-                (int)enemies[0][8], 
-                //The Chaser Enemy cannot have a speed of 1 or it will 
-                //cause a bug that stops its movement
-                //when walking left.
-                2));
+                spawnedEnemies.Add(new ChaserEnemy((ChaserEnemy)enemies[0],position));
             }
             if (type == typeof(RangedEnemy))
             {
-                spawnedEnemies.Add(new RangedEnemy(
-                (Texture2D)enemies[0][0],
-                new Rectangle((int)position.X, (int)position.Y, 100, 100),
-                (List<Rectangle>)enemies[0][2],
-                (bool)enemies[0][3],
-                (int)enemies[0][4],
-                (Vector2)enemies[0][5],
-                (int)enemies[0][6],
-                (float)enemies[0][7],
-                (int)enemies[0][8], 
-                new Gun(false, 
-                        new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10, 
-                        true, 1.4, 13, new Vector2(0, 0), 
-                        new Rectangle(400, 100, 20, 20), 
-                        new List<Rectangle>(), 0, false, true, true), 
-                2, 800));
+                spawnedEnemies.Add(new RangedEnemy((RangedEnemy)enemies[1],position));
             }
             if (type == typeof(PlatformEnemy))
             {
-                spawnedEnemies.Add(new PlatformEnemy(
-                (Texture2D)enemies[0][0],
-                new Rectangle((int)position.X, (int)position.Y, 100, 100),
-                (bool)enemies[0][3],
-                (int)enemies[0][4],
-                (Vector2)enemies[0][5],
-                (int)enemies[0][6],
-                (float)enemies[0][7],
-                (int)enemies[0][8],
-                2));
+                spawnedEnemies.Add(new PlatformEnemy((PlatformEnemy)enemies[2],position));
             }
             if (type == typeof(FlyingEnemy))
             {
-                spawnedEnemies.Add(new FlyingEnemy(
-                (Texture2D)enemies[0][0],
-                new Rectangle((int)position.X, (int)position.Y, 100, 100),
-                (List<Rectangle>)enemies[0][2],
-                (bool)enemies[0][3],
-                (int)enemies[0][4],
-                (Vector2)enemies[0][5],
-                (int)enemies[0][6],
-                (float)enemies[0][7],
-                (int)enemies[0][8],
-                2,
-                new SpawnerGun(false,
-                        new Rectangle(100, 100, 1, 1), new List<Rectangle>(), true, 6, 10,
-                        true, 1.4, 13, new Vector2(0, 0),
-                        new Rectangle(400, 100, 20, 20),
-                        new List<Rectangle>(), 0, false, true, true, typeof(ChaserEnemy)),
-                2));
+                spawnedEnemies.Add(new FlyingEnemy((FlyingEnemy)enemies[3],position));
             }
         }
 
