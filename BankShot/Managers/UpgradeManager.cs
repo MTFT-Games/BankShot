@@ -192,6 +192,10 @@ namespace BankShot
                         tmpProjRect.Y,
                         (int)(tmpProjRect.Width * upgrade.projectileSizeModifier),
                         (int)(tmpProjRect.Height * upgrade.projectileSizeModifier));
+                    if (((Gun)(p.CurrentWeapon)).ProjectileTransform.Width > 40)
+                    {
+                        ((Gun)(p.CurrentWeapon)).ProjectileTransform = new Rectangle(tmpProjRect.X, tmpProjRect.Y, 40, 40);
+                    }
 
                     if (upgrade.projectileSpreadIsMultiplier)
                     {
