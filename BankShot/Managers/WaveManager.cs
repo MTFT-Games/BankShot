@@ -265,6 +265,7 @@ namespace BankShot
                     warningsToDraw.Add(new Rectangle(Convert.ToInt32(splitEntry[1]), Convert.ToInt32(splitEntry[2]), 100, 100));
                 }
                 //Game1.upgradeManager.EndShopping();
+                //
             }
 
         }
