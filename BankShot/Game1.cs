@@ -48,6 +48,8 @@ namespace BankShot
         public Texture2D enemyTexture;
         // TODO: Use here instead of passing everywhere
         public static Texture2D buttonTx;
+
+        public Texture2D warningTexture;
         
 
         // Font fields.
@@ -107,7 +109,7 @@ namespace BankShot
             // Load Textures
             buttonTx = Content.Load<Texture2D>("Button");
             enemyTexture = Content.Load<Texture2D>("GoldSlime");
-
+            warningTexture = Content.Load<Texture2D>("exclamationPoint");
             // Load menus.
             mainMenu = new MainMenu(font, buttonTx);
             pauseMenu = new PauseMenu(font, buttonTx);
@@ -233,7 +235,7 @@ namespace BankShot
                     break;
                 case GameState.Game:
 
-                   
+                  
 
                     //Commented these out because they were breaking everything
                     mapManager.Draw(_spriteBatch);
@@ -283,6 +285,8 @@ namespace BankShot
                     {
                         if (waveManager.Timer < 5)
                         {
+                            _spriteBatch.Draw(buttonTx, new Rectangle(Program.game.GetWindowSize().Width / 2 - 170, 130, 350, 50), Color.White);
+
                             _spriteBatch.DrawString(font,
                                 "Use WASD to move, and Left Click to shoot!",
                                 new Vector2((Program.game.GetWindowSize().Width / 2) - 150, 150),
@@ -290,7 +294,7 @@ namespace BankShot
                         }
                     }
 
-
+                    waveManager.Draw(_spriteBatch);
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);

@@ -21,6 +21,13 @@ namespace BankShot
         private double timeBetweenWaves;
         private double timePassed;
 
+        private bool waveChosen;
+        private int waveToSpawn;
+
+        private List<Rectangle> warningsToDraw;
+        private double nextBlinkTime;
+        private bool blink;
+
         /// <summary>
         /// Gets the current wave number.
         /// </summary>
@@ -72,12 +79,23 @@ namespace BankShot
                     "Ranged|810|200",
                     "Flying|810|150",
                     "Platform|400|680"
+                },
+                new List<string>
+                {
+                    "Chaser|400|480",
+                    "Chaser|840|150",
+                    "Platform|970|470",
+                    "Chaser|1180|480",
+                    "Ranged|810|200",
+                    "Platform|400|680"
                 }
             };
             waveBreak = false;
-            timeBetweenWaves = 5;
+            timeBetweenWaves = 2;
             //This can be changed to change the amount of time before the first wave.
-            timePassed = 10;
+            timePassed = 0;
+            warningsToDraw = new List<Rectangle>();
+            blink = true;
         }
 
         /// <summary>
@@ -104,11 +122,14 @@ namespace BankShot
                     }
                     timePassed += time.ElapsedGameTime.TotalSeconds;
                     Game1.player.Heal(Game1.player.MaxHealth / 10);
+                    NextWave();
+                    /*
                     if (timePassed > timeBetweenWaves)
                     {
                         NextWave();
                         timePassed = -1;
                     }
+                    */
                 }
             }
 
@@ -123,54 +144,94 @@ namespace BankShot
         /// </summary>
         public void NextWave()
         {
-            wave++;
-            timer = 0;
-            int waveToSpawn = rng.Next(0, waves.Count);
-
-            for (int i = 0; i < waves[waveToSpawn].Count; i++)
+            if (!waveChosen)
             {
-                string[] splitEntry = waves[waveToSpawn][i].Split('|');
-                switch (splitEntry[0])
+                waveToSpawn = rng.Next(0, waves.Count);
+                waveChosen = true;
+            }
+            if (timePassed > timeBetweenWaves)
+            {
+                wave++;
+                timer = 0;
+                warningsToDraw.Clear();
+                for (int i = 0; i < waves[waveToSpawn].Count; i++)
                 {
-                    case "Enemy":
-                        Program.game.enemyManager.Spawn<Enemy>(
-                        new Vector2(
-                            float.Parse(splitEntry[1]),
-                            float.Parse(splitEntry[2])));
-                        break;
+                    string[] splitEntry = waves[waveToSpawn][i].Split('|');
+                    switch (splitEntry[0])
+                    {
+                        case "Enemy":
+                            Program.game.enemyManager.Spawn<Enemy>(
+                            new Vector2(
+                                float.Parse(splitEntry[1]),
+                                float.Parse(splitEntry[2])));
+                            break;
 
-                    case "Chaser":
-                        Program.game.enemyManager.Spawn<ChaserEnemy>(
-                        new Vector2(
-                            float.Parse(splitEntry[1]),
-                            float.Parse(splitEntry[2])));
-                        break;
+                        case "Chaser":
+                            Program.game.enemyManager.Spawn<ChaserEnemy>(
+                            new Vector2(
+                                float.Parse(splitEntry[1]),
+                                float.Parse(splitEntry[2])));
+                            break;
 
-                    case "Ranged":
-                        Program.game.enemyManager.Spawn<RangedEnemy>(
-                        new Vector2(
-                            float.Parse(splitEntry[1]),
-                            float.Parse(splitEntry[2])));
-                        break;
+                        case "Ranged":
+                            Program.game.enemyManager.Spawn<RangedEnemy>(
+                            new Vector2(
+                                float.Parse(splitEntry[1]),
+                                float.Parse(splitEntry[2])));
+                            break;
 
-                    case "Flying":
-                        Program.game.enemyManager.Spawn<FlyingEnemy>(
-                        new Vector2(
-                            float.Parse(splitEntry[1]),
-                            float.Parse(splitEntry[2])));
-                        break;
-                    case "Platform":
-                        Program.game.enemyManager.Spawn<PlatformEnemy>(
-                        new Vector2(
-                            float.Parse(splitEntry[1]),
-                            float.Parse(splitEntry[2])));
-                        break;
+                        case "Flying":
+                            Program.game.enemyManager.Spawn<FlyingEnemy>(
+                            new Vector2(
+                                float.Parse(splitEntry[1]),
+                                float.Parse(splitEntry[2])));
+                            break;
+                        case "Platform":
+                            Program.game.enemyManager.Spawn<PlatformEnemy>(
+                            new Vector2(
+                                float.Parse(splitEntry[1]),
+                                float.Parse(splitEntry[2])));
+                            break;
+                    } 
+                }
+                timePassed = -1;
+                waveChosen = false;
+                nextBlinkTime = 0;
+                blink = true;
+                if (wave % 3 == 0)
+                {
+                    waveBreak = true;
+                }
+            }
+            else if (warningsToDraw.Count == 0)
+            {
+                Rectangle rect = new Rectangle(0, 0, 100, 100);
+                string[] splitEntry = null;
+                for (int i = 0; i < waves[waveToSpawn].Count; i++)
+                {
+                    splitEntry = waves[waveToSpawn][i].Split('|');
+                    warningsToDraw.Add(new Rectangle(Convert.ToInt32(splitEntry[1]), Convert.ToInt32(splitEntry[2]), 100, 100));
                 }
             }
 
-            if (wave % 3 == 0)
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+            //Every .5 seconds, the blink bool changes to its opposite
+            //If it's true, then the warnings are drawn
+            if (timePassed > nextBlinkTime)
             {
-                waveBreak = true;
+                nextBlinkTime = timePassed + .5;
+                
+                blink = !blink;
+            }
+            if (blink)
+            {
+                foreach (Rectangle rect in warningsToDraw)
+                {
+                    sb.Draw(Program.game.warningTexture, rect, Color.White);
+                }
             }
         }
     }
