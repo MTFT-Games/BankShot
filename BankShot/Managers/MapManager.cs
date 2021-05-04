@@ -17,6 +17,7 @@ namespace BankShot
         //Fields///////////////////////////////////////////
         private Map currentMap;
         private List<Map> mapList;
+        public static int tileSize;
         //Constructors/////////////////////////////////////
         public MapManager(Map currentMap, List<Map> mapList)
         {
@@ -55,7 +56,7 @@ namespace BankShot
                 int width = int.Parse(header[0]);
                 int height = int.Parse(header[1]);
 
-                int tileSize = Program.game.GetWindowSize().Height / height;
+                tileSize = Program.game.GetWindowSize().Height / height;
 
                 // Read and set background image path
                 string readBackground = reader.ReadLine();

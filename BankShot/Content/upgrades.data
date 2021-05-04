@@ -1,5 +1,7 @@
 Steel armour
-Upgrading your armour plates to steel results it a 50% health boost!1.5x Max Health||
+Upgrading your armour plates to steel results it a 50% health boost!
+
+1.5x Max Health||
 False 0
 False 0
 False 0
@@ -20,7 +22,9 @@ HealthIcon.png
 365
 
 Longer barrel
-You extend your barrel length to increase muzzle velocity.1.5x Projectile Speed||
+You extend your barrel length to increase muzzle velocity.
+
+1.5x Projectile Speed||
 False 0
 False 0
 False 0
@@ -41,7 +45,26 @@ ShotSpeedIcon.png
 348
 
 Overengineered amunition
-Upgrade your ammo to APHEFSDSHEATHECBChttps://youtu.be/e7F0f0VWJnQ?t=47Armor Peircing High Explosive Fin Stabilized Discarding Sabot High Explosive Anti Tank High Explosive Capped Ballistic Capped2x Damage||
+Upgrade your ammo to APHEFSDSHEATHECBC
+https://youtu.be/e7F0f0VWJnQ?t=47
+Armor 
+Peircing 
+High 
+Explosive 
+Fin 
+Stabilized
+Discarding 
+Sabot 
+High
+Explosive 
+Anti 
+Tank 
+High 
+Explosive 
+Capped 
+Ballistic 
+Capped
+2x Damage||
 True 2
 False 0
 False 0

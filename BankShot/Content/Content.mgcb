@@ -56,6 +56,12 @@
 /processorParam:TextureFormat=Color
 /build:Backgrounds/example2.png
 
+#begin BankShotRough.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:BankShotRough.wav
+
 #begin Bullet.png
 /importer:TextureImporter
 /processor:TextureProcessor
