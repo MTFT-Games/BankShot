@@ -56,8 +56,11 @@ namespace BankShot
         // TODO: Move enemyTexture into enemy manager with file read overhaul.
         public Texture2D enemyTextureSlime;
         public Texture2D enemyTextureCat;
+        public Texture2D enemyTextureChest;
         // TODO: Use here instead of passing everywhere
         public static Texture2D buttonTx;
+        public Texture2D healthBar;
+        public Texture2D waveBar;
 
         public Texture2D warningTexture;
         
@@ -124,10 +127,15 @@ namespace BankShot
             gameoverBG = Content.Load<Texture2D>("GameOverScreen");
             leaderboardBG = Content.Load<Texture2D>("LeaderboardScreen");
 
-            // Load Textures
+            // Load UI Textures
             buttonTx = Content.Load<Texture2D>("Button");
+            healthBar = Content.Load<Texture2D>("HealthBar");
+            waveBar = Content.Load<Texture2D>("WaveTimer");
+
+            //Load Enemy Textures
             enemyTextureSlime = Content.Load<Texture2D>("GoldSlime");
             enemyTextureCat = Content.Load<Texture2D>("LuckyCat");
+            enemyTextureChest = Content.Load<Texture2D>("Chester");
             warningTexture = Content.Load<Texture2D>("exclamationPoint");
             // Load menus.
             mainMenu = new MainMenu(font, buttonTx);
@@ -263,14 +271,14 @@ namespace BankShot
                     double currHealthBar = ((double)player.Health / (double)player.MaxHealth) * 200;
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, (int)currHealthBar, 50), Color.Red);
+                    _spriteBatch.Draw(healthBar, new Rectangle(15, 15, (int)currHealthBar, 50), Color.White);
 
                     _spriteBatch.DrawString(font, $"Wave Number: {waveManager.Wave}", new Vector2(15, 65), Color.White);
 
                     double currTime = (waveManager.Timer / 30) * 200;
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200 - (int)currTime, 50), Color.Gold);
+                    _spriteBatch.Draw(waveBar, new Rectangle(15, 80, 200 - (int)currTime, 50), Color.White);
 
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {

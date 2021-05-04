@@ -110,6 +110,18 @@
 /processorParam:TextureFormat=Color
 /build:button2.png
 
+#begin Chester.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Chester.png
+
 #begin CoinBullet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -181,6 +193,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GunSprite.png
+
+#begin HealthBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HealthBar.png
 
 #begin HealthIcon.png
 /importer:TextureImporter
@@ -466,4 +490,16 @@
 
 #begin waves.data
 /copy:waves.data
+
+#begin WaveTimer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:WaveTimer.png
 
