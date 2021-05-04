@@ -121,7 +121,7 @@ namespace BankShot
                 exitRect,
                 hoverExit);
 
-                sb.DrawString(Game1.font, "EXIT", new Vector2(exitRect.X + 25, exitRect.Y + 40), Color.White);
+                sb.DrawString(Game1.font, "EXIT", new Vector2(exitRect.X + 33, exitRect.Y + 40), Color.White);
 
                 if (msLoc.Intersects(upgrade1Rect))
                 {
@@ -149,7 +149,8 @@ namespace BankShot
                 }
 
                 sb.Draw(Game1.buttonTx, rerollRect, hoverReroll);
-                sb.DrawString(Game1.font, "REROLL", new Vector2(rerollRect.X + 25, rerollRect.Y + 40), Color.White);
+                sb.DrawString(Game1.font, "REROLL", new Vector2(rerollRect.X + 20, rerollRect.Y + 35), Color.White);
+                sb.DrawString(Game1.font, "($100)", new Vector2(rerollRect.X + 25, rerollRect.Y + 55), Color.White);
                 sb.Draw(forSale[0].icon, upgrade1Rect, colorUp1);
                 sb.Draw(forSale[1].icon, upgrade2Rect, colorUp2);
                 sb.Draw(forSale[2].icon, upgrade3Rect, colorUp3);
@@ -203,6 +204,7 @@ namespace BankShot
                 {
                     Game1.player.Money -= 100;
                     Game1.upgradeManager.MakeShop();
+                    this.ExitScreen();
                 }
 
             }

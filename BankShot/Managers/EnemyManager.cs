@@ -152,7 +152,11 @@ namespace BankShot
                 enemy = new ChaserEnemy((ChaserEnemy)enemies[0], position);
                 enemy.AttackPower += (Game1.waveManager.Wave - 1) * 3;
                 enemy.MaxHealth += (Game1.waveManager.Wave - 1) * 3;
-                ((ChaserEnemy)enemy).Speed += (Game1.waveManager.Wave - 1);
+                ((ChaserEnemy)enemy).Speed += (Game1.waveManager.Wave - 1) / 5;
+                if (((ChaserEnemy)enemy).Speed > 10)
+                {
+                    ((ChaserEnemy)enemy).Speed = 10;
+                }
                 enemy.Health = enemy.MaxHealth;
                 spawnedEnemies.Add((ChaserEnemy)enemy);
             }

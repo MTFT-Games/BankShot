@@ -1,5 +1,5 @@
 Steel armour
-Upgrading your armour plates to steel results it a 50% health boost!1.5x Max Health||
+Upgrading your armour plates to steel results it a 50% health boost! 1.5x Max Health||
 False 0
 False 0
 False 0
@@ -20,7 +20,7 @@ HealthIcon.png
 365
 
 Longer barrel
-You extend your barrel length to increase muzzle velocity.1.5x Projectile Speed||
+You extend your barrel length to increase muzzle velocity. 1.5x Projectile Speed||
 False 0
 False 0
 False 0
@@ -61,13 +61,13 @@ DmgIcon.png
 10
 1000
 
-Random test 1
-||
+Advanced Hydraulics
+You upgrade your ride and gain an extra jump!||
 False 0
 False 0
 False 0
 False 0
-1
+0
 False 0
 False 0
 False 0
@@ -77,10 +77,10 @@ False 0
 False 0
 False 0
 False 0
-False
+True
 DmgIcon.png
 1
-0
+1000
 
 random test 2
 ||
