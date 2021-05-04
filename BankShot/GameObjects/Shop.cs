@@ -191,7 +191,6 @@ namespace BankShot
             {
                 
                     Game1.upgradeManager.EndShopping();
-                    leaving = true;
                 
             }
 
@@ -206,8 +205,6 @@ namespace BankShot
                     forSale[0] = Game1.upgradeManager.Upgrades[oneDex];
                     forSale[1] = Game1.upgradeManager.Upgrades[twoDex];
                     forSale[2] = Game1.upgradeManager.Upgrades[threeDex];
-
-                    rerollable = false;
                 }
 
             }

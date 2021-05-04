@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
 
 namespace BankShot
 {
@@ -68,34 +69,77 @@ namespace BankShot
             wave = 0;
             timer = 0;
             // TODO: Read from file
-            waves = new List<List<string>>
-            {
-                new List<string>
-                {
-                    "Chaser|400|480",
-                    "Chaser|840|150",
-                    "Platform|970|470",
-                    "Chaser|1180|480",
-                    "Ranged|810|200",
-                    "Flying|810|150",
-                    "Platform|400|680"
-                },
-                new List<string>
-                {
-                    "Chaser|400|480",
-                    "Chaser|840|150",
-                    "Platform|970|470",
-                    "Chaser|1180|480",
-                    "Ranged|810|200",
-                    "Platform|400|680"
-                }
-            };
+            waves = new List<List<string>>();
+            ReadWaves();
             waveBreak = false;
             timeBetweenWaves = 2;
             //This can be changed to change the amount of time before the first wave.
             timePassed = 0;
             warningsToDraw = new List<Rectangle>();
             blink = true;
+        }
+
+        private void ReadWaves()
+        {
+            StreamReader reader;
+            try
+            {
+                reader = new StreamReader("Content/waves.data");
+
+                string[] splitLine = reader.ReadLine().Split('x');
+                int width = int.Parse(splitLine[0]);
+                int height = int.Parse(splitLine[1]);
+
+                int tileSize = Program.game.GetWindowSize().Height / height;
+                int readWave = 0;
+                do
+                {
+                    reader.ReadLine();
+                    waves.Add(new List<string>());
+                    for (int y = 0; y < height; y++)
+                    {
+                        string[] line = reader.ReadLine().Split('|');
+                        for (int x = 0; x < width; x++)
+                        {
+                            int enemyID;
+                            if (int.TryParse(line[x], out enemyID))
+                            {
+                                string parsedEnemyType = "";
+                                switch (enemyID)
+                                {
+                                    case 1:
+                                        parsedEnemyType = "Ranged";
+                                        break;
+                                    case 2:
+                                        parsedEnemyType = "Chaser";
+                                        break;
+                                    case 3:
+                                        parsedEnemyType = "Pacer";
+                                        break;
+                                    case 4:
+                                        parsedEnemyType = "Flying";
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                waves[readWave].Add($"{parsedEnemyType}|{tileSize * x}|{(tileSize * (y+1))-100}");
+                            }
+                        }
+                    }
+                    readWave++;
+                } while (reader.ReadLine() != "|EOF|");
+
+                
+                
+            } catch (Exception)
+            {
+
+                throw;
+            }
+            if (reader != null)
+            {
+                reader.Close();
+            }
         }
 
         /// <summary>
@@ -146,7 +190,7 @@ namespace BankShot
         {
             if (!waveChosen)
             {
-                waveToSpawn = rng.Next(0, waves.Count);
+                waveToSpawn = rng.Next(0, 3);
                 waveChosen = true;
             }
             if (timePassed > timeBetweenWaves)
@@ -186,7 +230,7 @@ namespace BankShot
                                 float.Parse(splitEntry[1]),
                                 float.Parse(splitEntry[2])));
                             break;
-                        case "Platform":
+                        case "Pacer":
                             Program.game.enemyManager.Spawn<PlatformEnemy>(
                             new Vector2(
                                 float.Parse(splitEntry[1]),
