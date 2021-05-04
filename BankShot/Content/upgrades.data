@@ -67,7 +67,7 @@ False 0
 False 0
 False 0
 False 0
-1
+0
 False 0
 False 0
 False 0
@@ -78,19 +78,19 @@ False 0
 False 0
 False 0
 True
-JumpUpgradeIcon.png
+DmgIcon.png
 1
 1000
 
-Heat Seeking Bullets
-Your bullets now home to the closest enemy.||
+random test 2
+||
 False 0
 False 0
 False 0
 False 0
 1
 False 0
-True 1.2
+False 0
 False 0
 False 0
 False 0
@@ -99,7 +99,7 @@ False 0
 False 0
 False 0
 False
-HomingIcon.png
+DmgIcon.png
 1
-400
+0
 |||

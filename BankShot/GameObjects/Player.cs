@@ -213,7 +213,7 @@ namespace BankShot
                 Program.game.Content.Load<Texture2D>("Bullet"), 
                 new Rectangle(400, 100, 20, 20), 
                 new List<Rectangle>(), 
-                0, 
+                .0035, 
                 true, 
                 true, 
                 false);

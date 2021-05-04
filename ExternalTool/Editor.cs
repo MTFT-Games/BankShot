@@ -410,7 +410,7 @@ namespace ExternalTool
                             writer.Write(map[x, y].Controls[0].Text + "|");
                         } else
                         {
-                            writer.Write(".");
+                            writer.Write(".|");
                         }
                     }
                         
@@ -1130,11 +1130,6 @@ namespace ExternalTool
             {
                 writer.Close();
             }
-        }
-
-        private void Editor_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

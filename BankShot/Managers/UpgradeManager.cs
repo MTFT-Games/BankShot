@@ -82,11 +82,11 @@ namespace BankShot
 
         //methods. currently only headers. --------------------------------------------------------
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             for (int i = 0; i < shops.Count; i++)
             {
-                shops[i].Update(gameTime);
+                shops[i].Update();
             }
         }
 
@@ -111,28 +111,10 @@ namespace BankShot
             while (upgrade3.name == upgrade1.name || upgrade3.name == upgrade2.name)
             {
                 upgrade3 = GetRandomUpgrade();
-            }      
-
-            shops.Add(new Shop(rng.Next(300, 1100), collisionBoxesShop, activeShop, new Upgrade[] { upgrade1, upgrade2, upgrade3 }));
-
-        }
-        public void MakeShop(int x)
-        {
-            Game1.soundEffects[4].Play();
-            Upgrade upgrade1 = GetRandomUpgrade();
-            Upgrade upgrade2 = GetRandomUpgrade();
-            while (upgrade2.name == upgrade1.name)
-            {
-                upgrade2 = GetRandomUpgrade();
-            }
-            Upgrade upgrade3 = GetRandomUpgrade();
-            while (upgrade3.name == upgrade1.name || upgrade3.name == upgrade2.name)
-            {
-                upgrade3 = GetRandomUpgrade();
             }
 
 
-            shops.Add(new Shop(x, collisionBoxesShop, activeShop, new Upgrade[] { upgrade1, upgrade2, upgrade3 }, false));
+            shops.Add(new Shop(rng.Next(100, 1300), collisionBoxesShop, activeShop, new Upgrade[] { upgrade1, upgrade2, upgrade3 }));
 
         }
 
@@ -227,14 +209,7 @@ namespace BankShot
 
                     if (upgrade.projectileHomingIsMultiplier)
                     {
-                        if (((Gun)p.CurrentWeapon).Homing == 0)
-                        {
-                            ((Gun)p.CurrentWeapon).Homing = .0035;                        
-                        }
-                        else
-                        {
-                            ((Gun)p.CurrentWeapon).Homing *= upgrade.projectileHomingModifier;
-                        }
+                        ((Gun)p.CurrentWeapon).Homing *= upgrade.projectileHomingModifier;
                     } else
                     {
                         ((Gun)p.CurrentWeapon).Homing += upgrade.projectileHomingModifier;
