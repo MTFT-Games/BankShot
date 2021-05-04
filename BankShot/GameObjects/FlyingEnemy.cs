@@ -14,6 +14,22 @@ namespace BankShot
         private Gun gun;
         private double reloadTime;
         private double elapsedTime;
+        //Properties
+        public int Speed
+        {
+            get { return speed; }
+        }
+
+        public Gun Gun
+        {
+            get { return gun; }
+        }
+
+        public double ReloadTime
+        {
+            get { return reloadTime; }
+        }
+        //Constructors
         public FlyingEnemy(Texture2D texture, Rectangle rect, List<Rectangle> collisionBoxes, bool active,
                            int maxHealth, Vector2 velocity, int attackPower, float knockbackDistance, int money,
                            int speed, Gun gun, double reloadTime) :
@@ -25,6 +41,16 @@ namespace BankShot
             elapsedTime = 0;
             this.gun = gun;
         }
+
+        public FlyingEnemy(FlyingEnemy template, Vector2 position)
+            : base(template, position)
+        {
+            speed = template.Speed;
+            reloadTime = template.ReloadTime;
+            elapsedTime = 0;
+            gun = template.Gun;
+        }
+        //Methods
         public void Update(GameTime gameTime)
         {
             ApplyKnockBack();
