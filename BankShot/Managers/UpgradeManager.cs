@@ -12,7 +12,7 @@ namespace BankShot
     public class UpgradeManager
     {
         //fields
-
+        private Random rng;
         private List<Upgrade> upgrades;
         private int totalWeight;
         private List<Shop> shops;
@@ -27,6 +27,7 @@ namespace BankShot
             Rectangle transformForShop, List<Rectangle> collisionBoxesForShop,
             bool activeForShop)
         {
+            rng = new Random();
             LoadUpgrades();
 
             int tWeight = 0;
@@ -87,11 +88,39 @@ namespace BankShot
 
         public void MakeShop()
         {
-//takes in an array of objects and creates an instance of "Shop" to be used by the player
-            shops.Add(new Shop(transformShop, collisionBoxesShop, activeShop, upgrades));
+            Upgrade upgrade1 = GetRandomUpgrade();
+            Upgrade upgrade2 = GetRandomUpgrade();
+            while (upgrade2.name == upgrade1.name)
+            {
+                upgrade2 = GetRandomUpgrade();
+            }
+            Upgrade upgrade3 = GetRandomUpgrade();
+            while (upgrade3.name == upgrade1.name || upgrade3.name == upgrade2.name)
+            {
+                upgrade3 = GetRandomUpgrade();
+            }
+
+
+            shops.Add(new Shop(rng.Next(100, 1300), collisionBoxesShop, activeShop, new Upgrade[] { upgrade1, upgrade2, upgrade3 }));
 
         }
 
+        private Upgrade GetRandomUpgrade()
+        {
+            int rand = rng.Next(0, totalWeight);
+            int checkedWeight = 0;
+            foreach (Upgrade upgrade in upgrades)
+            {
+                if (rand >= checkedWeight && rand < checkedWeight + upgrade.weight)
+                {
+                    return upgrade;
+                } else
+                {
+                    checkedWeight += upgrade.weight;
+                }
+            }
+            return upgrades[0];
+        }
 
         public void EndShopping()
         {
