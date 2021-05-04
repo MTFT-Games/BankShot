@@ -48,6 +48,8 @@ namespace BankShot
         public Texture2D enemyTexture;
         // TODO: Use here instead of passing everywhere
         public static Texture2D buttonTx;
+
+        public Texture2D warningTexture;
         
 
         // Font fields.
@@ -107,7 +109,7 @@ namespace BankShot
             // Load Textures
             buttonTx = Content.Load<Texture2D>("Button");
             enemyTexture = Content.Load<Texture2D>("GoldSlime");
-
+            warningTexture = Content.Load<Texture2D>("exclamationPoint");
             // Load menus.
             mainMenu = new MainMenu(font, buttonTx);
             pauseMenu = new PauseMenu(font, buttonTx);
@@ -292,7 +294,7 @@ namespace BankShot
                         }
                     }
 
-
+                    waveManager.Draw(_spriteBatch);
                     break;
                 case GameState.Pause:
                     pauseMenu.Draw(_spriteBatch, _graphics);
