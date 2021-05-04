@@ -201,7 +201,7 @@ namespace BankShot
                     player.Update(gameTime);
                     enemyManager.UpdateEnemies(gameTime);
                     waveManager.Update(gameTime);
-                    upgradeManager.Update();
+                    upgradeManager.Update(gameTime);
 
                     if (player.Health <= 0)
                     {
