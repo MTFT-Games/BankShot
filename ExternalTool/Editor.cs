@@ -411,6 +411,7 @@ namespace ExternalTool
                         } else
                         {
                             writer.Write(".|");
+                            //
                         }
                     }
                         
