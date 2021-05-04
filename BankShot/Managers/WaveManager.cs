@@ -40,8 +40,7 @@ namespace BankShot
         /// </summary>
         public bool WaveBreak
         {
-            get { return waveBreak; }
-            set { waveBreak = value; }
+        set { waveBreak = value; }
         }
         public double TimePassed
         {

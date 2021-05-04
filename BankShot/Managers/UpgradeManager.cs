@@ -67,6 +67,18 @@ namespace BankShot
             set { shops = value; }
         }
 
+        public bool ActiveShop
+        {
+            get
+            {
+                return activeShop;
+            }
+            set
+            {
+                activeShop = value;
+            }
+        }
+
         //methods. currently only headers. --------------------------------------------------------
 
         public void Update()
