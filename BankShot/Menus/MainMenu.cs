@@ -23,6 +23,7 @@ namespace BankShot
 
         public MainMenu(SpriteFont f, Texture2D tx)
         {
+
             font = f;
             buttonTx = tx;
             startBtn = new Rectangle(200, 200, 100, 50);
@@ -80,11 +81,12 @@ namespace BankShot
         {
             if (Input.MouseClick(1) && startBtn.Contains(Input.MousePosition))
             {
-
-                //changes game state to game mode
-                MediaPlayer.Play(Game1.song);
                 MediaPlayer.IsRepeating = true;
+                MediaPlayer.Play(Game1.song);
+               
                 MediaPlayer.Volume = .5f;
+                //changes game state to game mode
+
                 state = GameState.Game;
                 
 

@@ -132,6 +132,7 @@ namespace BankShot
             soundEffects.Add(Content.Load<SoundEffect>("shieldbreak"));
 
 
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Load fonts.
@@ -186,6 +187,8 @@ namespace BankShot
                 Exit();
             }
 
+
+
             Input.Update();
 
             // State machine based on the GameState.
@@ -201,6 +204,7 @@ namespace BankShot
                     break;
                 case GameState.Game:
 
+                    
 
                     //Testing gun and projectile creation.
                     projectileManager.UpdateProjectiles(gameTime);

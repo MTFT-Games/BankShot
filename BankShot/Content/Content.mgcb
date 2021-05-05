@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../../../../../Desktop/BankShotRough.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:../../../../../Desktop/BankShotRough.wav;BankShotRough.wav
+
 #begin Arial12.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -55,12 +61,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Backgrounds/example2.png
-
-#begin BankShotRough.wav
-/importer:WavImporter
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:BankShotRough.wav
 
 #begin Bullet.png
 /importer:TextureImporter
