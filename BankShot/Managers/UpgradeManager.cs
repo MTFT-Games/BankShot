@@ -442,6 +442,7 @@ namespace BankShot
                         description.Substring(0, description.Length - 2),
                         weight,
                         cost));
+                    //
                 } while (reader.ReadLine() != "|||");
 
 
