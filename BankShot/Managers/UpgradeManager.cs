@@ -439,7 +439,7 @@ namespace BankShot
                         additionalJump,
                         Program.game.Content.Load<Texture2D>("UpgradeIcons/" + iconPath.Substring(0, iconPath.Length-4)),
                         name,
-                        description.Substring(0, description.Length - 2),
+                        description.Substring(0, description.Length - 3),
                         weight,
                         cost));
                     //
