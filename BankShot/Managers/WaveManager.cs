@@ -189,14 +189,7 @@ namespace BankShot
         {
             if (!waveChosen)
             {
-                if (wave / 2 + 1 > 4)
-                {
-                    waveToSpawn = rng.Next(0, 4);
-                }
-                else
-                {
-                    waveToSpawn = rng.Next(0, wave / 2 + 1);
-                }
+                waveToSpawn = rng.Next(0, 4);
                 waveChosen = true;
             }
             if (timePassed > timeBetweenWaves)

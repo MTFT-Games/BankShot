@@ -16,16 +16,17 @@ namespace BankShot
         //fields for spritefont and button rectangles
         private SpriteFont font;
         private Rectangle mainmenuBtn;
+        private int currentScore;
         int[] scores;
 
 
 
-        public LeaderboardMenu(SpriteFont f, int[] s)
+        public LeaderboardMenu(SpriteFont f, int[] s, int score)
         {
             font = f;
             mainmenuBtn = new Rectangle(200, 400, 200, 50);
             scores = s;
-
+            currentScore = score;
 
         }
 
@@ -34,11 +35,12 @@ namespace BankShot
             //draws leaderbaord
             sb.DrawString(font,
                 $"LEADERBOARD\n" +
-                $"1: {scores[0]}\n" +
-                $"2: {scores[1]}\n" +
-                $"3: {scores[2]}\n" +
-                $"4: {scores[3]}\n" +
-                $"5: {scores[4]}\n",
+                $"1: {scores[5]}\n" +
+                $"2: {scores[4]}\n" +
+                $"3: {scores[3]}\n" +
+                $"4: {scores[2]}\n" +
+                $"5: {scores[1]}\n\n" +
+                $"This attempts score: {currentScore}",
                 new Vector2(g.PreferredBackBufferWidth / 2,
                 g.PreferredBackBufferHeight / 2),
                 Color.White);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -46,6 +47,7 @@ namespace BankShot
         private bool testMode;
         // TODO: Put this in the learderboard menu.
         private int[] scores;
+        public int score;
 
         // Manager fields.
         public EnemyManager enemyManager;
@@ -87,6 +89,13 @@ namespace BankShot
             set { testMode = value; }
         }
 
+        internal void SortScores()
+        {
+            scores[5] = score;
+            Array.Sort(scores);
+            leaderboardMenu = new LeaderboardMenu(Font, scores, score);
+        }
+
         /// <summary>
         /// Gets the placeholder font.
         /// </summary>
@@ -103,7 +112,8 @@ namespace BankShot
         protected override void Initialize()
         {
             state = GameState.MainMenu;
-            scores = new int[5];
+            scores = new int[6];
+            score = 0;
             testMode = false;
 
             // PLEASE TELL NOAH IF WE NEED TO CHANGE THE WINDOW ASPECT RATIO
@@ -157,7 +167,7 @@ namespace BankShot
             // Load menus.
             mainMenu = new MainMenu(font, buttonTx);
             pauseMenu = new PauseMenu(font, buttonTx);
-            leaderboardMenu = new LeaderboardMenu(font, scores);
+            //leaderboardMenu = new LeaderboardMenu(font, scores, score);
             gameOverMenu = new GameOverMenu(font);
 
             // Load managers.
