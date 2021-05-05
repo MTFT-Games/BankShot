@@ -22,8 +22,8 @@ namespace BankShot
         public GameOverMenu(SpriteFont f)
         {
             font = f;
-            menuBtn = new Rectangle(200, 400, 100, 50);
-            leaderBtn = new Rectangle(200, 550, 100, 50);
+            menuBtn = new Rectangle(200, 400, 150, 50);
+            leaderBtn = new Rectangle(200, 550, 150, 50);
         }
 
         public void Draw(SpriteBatch sb, GraphicsDeviceManager g, Texture2D buttonTx)
@@ -44,12 +44,12 @@ namespace BankShot
             //main menu button text
             sb.DrawString(font,
                 "MAIN MENU",
-                new Vector2(200, 400),
+                new Vector2(210, 415),
                 Color.White);
             //leaderboard button text
             sb.DrawString(font,
                "LEADERBOARD",
-               new Vector2(200, 550),
+               new Vector2(210, 570),
                Color.White);
         }
 

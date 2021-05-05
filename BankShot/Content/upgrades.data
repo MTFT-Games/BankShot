@@ -1,7 +1,5 @@
 Steel armour
-Upgrading your armour plates to steel results it a 50% health boost!
-
-1.5x Max Health||
+Upgrading your armour plates to steel results it a 50% health boost! 1.5x Max Health||
 False 0
 False 0
 False 0
@@ -21,50 +19,8 @@ HealthIcon.png
 3
 365
 
-Longer barrel
-You extend your barrel length to increase muzzle velocity.
-
-1.5x Projectile Speed||
-False 0
-False 0
-False 0
-False 0
-1
-True 1.5
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-False
-ShotSpeedIcon.png
-0
-348
-
 Overengineered amunition
-Upgrade your ammo to APHEFSDSHEATHECBC
-https://youtu.be/e7F0f0VWJnQ?t=47
-Armor 
-Peircing 
-High 
-Explosive 
-Fin 
-Stabilized
-Discarding 
-Sabot 
-High
-Explosive 
-Anti 
-Tank 
-High 
-Explosive 
-Capped 
-Ballistic 
-Capped
-2x Damage||
+Upgrade your ammo to APHEFSDSHEATHECBChttps://youtu.be/e7F0f0VWJnQ?t=47Armor Peircing High Explosive Fin StabilizedDiscarding Sabot HighExplosive Anti Tank High Explosive Capped Ballistic Capped2x Damage||
 True 2
 False 0
 False 0
@@ -84,15 +40,15 @@ DmgIcon.png
 10
 1000
 
-Random test 1
-||
+Heat Seaking Bullets
+Your bullets now home to the closest enemy.||
 False 0
 False 0
 False 0
 False 0
 1
 False 0
-False 0
+True 1.2
 False 0
 False 0
 False 0
@@ -101,16 +57,37 @@ False 0
 False 0
 False 0
 False
-DmgIcon.png
+HomingIcon.png
 1
-0
+400
 
-random test 2
-||
+Advanced Hydaulics
+You upgrade your ride and gain a jump!||
 False 0
 False 0
 False 0
 False 0
+1
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+True
+JumpUpgradeIcon.png
+0
+600
+
+Longer Barrel
+You extend your barrel length to increase muzzle velocity. 33% more projectile speed.||
+False 0
+False 0
+False 0
+True 1.33
 1
 False 0
 False 0
@@ -122,7 +99,7 @@ False 0
 False 0
 False 0
 False
-DmgIcon.png
-1
+ShotSpeedIcon.png
 0
+243
 |||

@@ -24,7 +24,7 @@ namespace BankShot
         public LeaderboardMenu(SpriteFont f, int[] s, int score)
         {
             font = f;
-            mainmenuBtn = new Rectangle(200, 400, 100, 50);
+            mainmenuBtn = new Rectangle(200, 400, 200, 50);
             scores = s;
             currentScore = score;
 
@@ -54,7 +54,7 @@ namespace BankShot
             //main menu button text
             sb.DrawString(font,
                 "RETURN TO MENU",
-                new Vector2(200, 400),
+                new Vector2(225, 415),
                 Color.White);
 
         }

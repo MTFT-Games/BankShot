@@ -82,11 +82,11 @@ namespace BankShot
 
         //methods. currently only headers. --------------------------------------------------------
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             for (int i = 0; i < shops.Count; i++)
             {
-                shops[i].Update();
+                shops[i].Update(gameTime);
             }
         }
 
@@ -100,6 +100,25 @@ namespace BankShot
 
         public void MakeShop()
         {
+            Game1.soundEffects[4].Play();
+            Upgrade upgrade1 = GetRandomUpgrade();
+            Upgrade upgrade2 = GetRandomUpgrade();
+            while (upgrade2.name == upgrade1.name)
+            {
+                upgrade2 = GetRandomUpgrade();
+            }
+            Upgrade upgrade3 = GetRandomUpgrade();
+            while (upgrade3.name == upgrade1.name || upgrade3.name == upgrade2.name)
+            {
+                upgrade3 = GetRandomUpgrade();
+            }      
+
+            shops.Add(new Shop(rng.Next(300, 1100), collisionBoxesShop, activeShop, new Upgrade[] { upgrade1, upgrade2, upgrade3 }));
+
+        }
+        public void MakeShop(int x)
+        {
+            Game1.soundEffects[4].Play();
             Upgrade upgrade1 = GetRandomUpgrade();
             Upgrade upgrade2 = GetRandomUpgrade();
             while (upgrade2.name == upgrade1.name)
@@ -113,7 +132,7 @@ namespace BankShot
             }
 
 
-            shops.Add(new Shop(rng.Next(100, 1300), collisionBoxesShop, activeShop, new Upgrade[] { upgrade1, upgrade2, upgrade3 }));
+            shops.Add(new Shop(x, collisionBoxesShop, activeShop, new Upgrade[] { upgrade1, upgrade2, upgrade3 }, false));
 
         }
 
@@ -191,6 +210,10 @@ namespace BankShot
                         tmpProjRect.Y,
                         (int)(tmpProjRect.Width * upgrade.projectileSizeModifier),
                         (int)(tmpProjRect.Height * upgrade.projectileSizeModifier));
+                    if (((Gun)(p.CurrentWeapon)).ProjectileTransform.Width > 40)
+                    {
+                        ((Gun)(p.CurrentWeapon)).ProjectileTransform = new Rectangle(tmpProjRect.X, tmpProjRect.Y, 40, 40);
+                    }
 
                     if (upgrade.projectileSpreadIsMultiplier)
                     {
@@ -204,7 +227,14 @@ namespace BankShot
 
                     if (upgrade.projectileHomingIsMultiplier)
                     {
-                        ((Gun)p.CurrentWeapon).Homing *= upgrade.projectileHomingModifier;
+                        if (((Gun)p.CurrentWeapon).Homing == 0)
+                        {
+                            ((Gun)p.CurrentWeapon).Homing = .0035;                        
+                        }
+                        else
+                        {
+                            ((Gun)p.CurrentWeapon).Homing *= upgrade.projectileHomingModifier;
+                        }
                     } else
                     {
                         ((Gun)p.CurrentWeapon).Homing += upgrade.projectileHomingModifier;
@@ -412,13 +442,13 @@ namespace BankShot
                         description.Substring(0, description.Length - 2),
                         weight,
                         cost));
+                    //
                 } while (reader.ReadLine() != "|||");
 
 
 
             } catch (Exception)
             {
-
                 throw;
             }
             if (reader != null)

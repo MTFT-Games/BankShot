@@ -73,7 +73,7 @@ namespace BankShot
 
             //Registering Flying enemy
             enemies.Add(new FlyingEnemy(
-                Program.game.enemyTextureSlime,
+                Program.game.enemyTextureChest,
                 new Rectangle(0, 0, 100, 100), //enemy rectangle
                 new List<Rectangle>(), //enemy hitboxes
                 true, //enemy active state
@@ -146,22 +146,43 @@ namespace BankShot
             // TODO: Setup with new stats template when we get to that.
             // TODO: Implement scaling.
             Type type = typeof(enemyType);
-
+            Enemy enemy;
             if  (type == typeof(ChaserEnemy))
             {
-                spawnedEnemies.Add(new ChaserEnemy((ChaserEnemy)enemies[0],position));
+                enemy = new ChaserEnemy((ChaserEnemy)enemies[0], position);
+                enemy.AttackPower += (Game1.waveManager.Wave - 1) * 3;
+                enemy.MaxHealth += (Game1.waveManager.Wave - 1) * 3;
+                ((ChaserEnemy)enemy).Speed += (Game1.waveManager.Wave - 1) / 5;
+                if (((ChaserEnemy)enemy).Speed > 10)
+                {
+                    ((ChaserEnemy)enemy).Speed = 10;
+                }
+                enemy.Health = enemy.MaxHealth;
+                spawnedEnemies.Add((ChaserEnemy)enemy);
             }
             if (type == typeof(RangedEnemy))
             {
-                spawnedEnemies.Add(new RangedEnemy((RangedEnemy)enemies[1],position));
+                enemy = new RangedEnemy((RangedEnemy)enemies[1], position);
+                enemy.AttackPower += (Game1.waveManager.Wave - 1) * 3;
+                enemy.MaxHealth += (Game1.waveManager.Wave - 1) * 3;
+                enemy.Health = enemy.MaxHealth;
+                spawnedEnemies.Add((RangedEnemy)enemy);
             }
             if (type == typeof(PlatformEnemy))
             {
-                spawnedEnemies.Add(new PlatformEnemy((PlatformEnemy)enemies[2],position));
+                enemy = new PlatformEnemy((PlatformEnemy)enemies[2], position);
+                enemy.AttackPower += (Game1.waveManager.Wave - 1) * 3;
+                enemy.MaxHealth += (Game1.waveManager.Wave - 1) * 3;
+                enemy.Health = enemy.MaxHealth;
+                spawnedEnemies.Add((PlatformEnemy)enemy);
             }
             if (type == typeof(FlyingEnemy))
             {
-                spawnedEnemies.Add(new FlyingEnemy((FlyingEnemy)enemies[3],position));
+                enemy = new FlyingEnemy((FlyingEnemy)enemies[3], position);
+                enemy.AttackPower += (Game1.waveManager.Wave - 1) * 3;
+                enemy.MaxHealth += (Game1.waveManager.Wave - 1) * 3;
+                enemy.Health = enemy.MaxHealth;
+                spawnedEnemies.Add((FlyingEnemy)enemy);
             }
         }
 

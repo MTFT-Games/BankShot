@@ -213,7 +213,7 @@ namespace BankShot
                 Program.game.Content.Load<Texture2D>("Bullet"), 
                 new Rectangle(400, 100, 20, 20), 
                 new List<Rectangle>(), 
-                .0035, 
+                0, 
                 true, 
                 true, 
                 false);
@@ -235,6 +235,7 @@ namespace BankShot
             projectileSpreadMods = new double[] { 1, 0 };
             projectileHoming = 1;
             numberOfJumps = 2;
+            //knockBackVector = new Vector2(5, 0);
         }
 
         //Methods
@@ -360,6 +361,7 @@ namespace BankShot
         {
             if (!Program.game.Test && !invincible)
             {
+                Game1.soundEffects[6].Play();
                 base.TakeDamage(damage, knockback, damageDealer);
                 if (knockback != 0)
                 {

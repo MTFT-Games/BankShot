@@ -24,7 +24,7 @@ namespace BankShot
         public static Texture2D shopTexture;
         private Random rng;
         private bool rerollable;
-        
+        private double timeSinceLastShop;
 
         //Properties
         public Vector2 Velocity
@@ -66,6 +66,21 @@ namespace BankShot
             leaving = false;
         }
 
+        public Shop(int whereToDrive, List<Rectangle> collisionBoxes, bool active, Upgrade[] sale, bool rerollable)
+            : base(shopTexture, new Rectangle(whereToDrive, 960 - MapManager.tileSize - 145, 200, 145), collisionBoxes, active)
+        {
+            forSale = sale;
+            upgrade1Rect = new Rectangle(rect.X + (rect.Width / 2) - 200, rect.Y - 580, 100, 100);
+            upgrade2Rect = new Rectangle(rect.X + (rect.Width / 2) - 50, rect.Y - 580, 100, 100);
+            upgrade3Rect = new Rectangle(rect.X + (rect.Width / 2) + 100, rect.Y - 580, 100, 100);
+            rerollRect = new Rectangle(rect.X + (rect.Width / 2) + 50, rect.Y - 200, 100, 100);
+            exitRect = new Rectangle(rect.X + (rect.Width / 2) - 150, rect.Y - 200, 100, 100);
+            rng = new Random();
+            this.rerollable = rerollable;
+            timeSinceLastShop = 0;
+            leaving = false;
+        }
+
         public void ExitScreen()
         {
             leaving = true;
@@ -95,7 +110,7 @@ namespace BankShot
 
             Rectangle msLoc = new Rectangle(Input.MousePosition.ToPoint(), new Point(1, 1));
 
-            if (Game1.player.Rect.Intersects(rect))
+            if (Game1.player.Rect.Intersects(rect) && !leaving)
             {
                 sb.Draw(
                     shopWindow,
@@ -121,7 +136,7 @@ namespace BankShot
                 exitRect,
                 hoverExit);
 
-                sb.DrawString(Game1.font, "EXIT", new Vector2(exitRect.X + 25, exitRect.Y + 40), Color.White);
+                sb.DrawString(Game1.font, "EXIT", new Vector2(exitRect.X + 33, exitRect.Y + 40), Color.White);
 
                 if (msLoc.Intersects(upgrade1Rect))
                 {
@@ -149,7 +164,8 @@ namespace BankShot
                 }
 
                 sb.Draw(Game1.buttonTx, rerollRect, hoverReroll);
-                sb.DrawString(Game1.font, "REROLL", new Vector2(rerollRect.X + 25, rerollRect.Y + 40), Color.White);
+                sb.DrawString(Game1.font, "REROLL", new Vector2(rerollRect.X + 20, rerollRect.Y + 35), Color.White);
+                sb.DrawString(Game1.font, "($100)", new Vector2(rerollRect.X + 25, rerollRect.Y + 55), Color.White);
                 sb.Draw(forSale[0].icon, upgrade1Rect, colorUp1);
                 sb.Draw(forSale[1].icon, upgrade2Rect, colorUp2);
                 sb.Draw(forSale[2].icon, upgrade3Rect, colorUp3);
@@ -164,49 +180,74 @@ namespace BankShot
             position += velocity;
         }
 
-        public override void Update()
+        public void Update(GameTime gameTime)
         {
             Rectangle msLoc = new Rectangle(Input.MousePosition.ToPoint(), new Point(1, 1));
 
             //check cost with player wallet
 
-            //calls apply upgrade upon clicking on a chosen upgrade
-
-            if (Input.MouseClick(1) && msLoc.Intersects(upgrade1Rect))
+            if (!rerollable)
             {
-                Game1.upgradeManager.ApplyUpgrade(forSale[0], Game1.player);
-            }
-
-            if (Input.MouseClick(1) && msLoc.Intersects(upgrade2Rect))
-            {
-                Game1.upgradeManager.ApplyUpgrade(forSale[1], Game1.player);
-            }
-
-            if (Input.MouseClick(1) && msLoc.Intersects(upgrade3Rect))
-            {
-                Game1.upgradeManager.ApplyUpgrade(forSale[2], Game1.player);
-            }
-
-            if (Input.MouseClick(1) && msLoc.Intersects(exitRect))
-            {
-                
-                    Game1.upgradeManager.EndShopping();
-                
-            }
-
-            if(Input.MouseClick(1) && msLoc.Intersects(rerollRect))
-            {
-                if (Game1.player.Money > 100)
+                timeSinceLastShop += gameTime.ElapsedGameTime.TotalSeconds;
+                if (timeSinceLastShop > 2)
                 {
-                    Game1.player.Money -= 100;
-                    Game1.upgradeManager.MakeShop();
+                    rerollable = true;
+                }
+            }
+            //Changing the homing upgrade text if the player has homing already
+            for (int i = 0; i < forSale.Length; i++)
+            {
+                if (forSale[i].projectileHomingIsMultiplier == true)
+                {
+                    if (((Gun)Game1.player.CurrentWeapon).Homing != 0)
+                    {
+                        forSale[i].description = "Your homing is increased by 20%.";
+                    }
+                }
+            }
+            //calls apply upgrade upon clicking on a chosen upgrade
+            if (!leaving)
+            {
+                if (Input.MouseClick(1) && msLoc.Intersects(upgrade1Rect))
+                {
+                    Game1.soundEffects[0].Play();
+                    Game1.upgradeManager.ApplyUpgrade(forSale[0], Game1.player);                  
                 }
 
-            }
+                if (Input.MouseClick(1) && msLoc.Intersects(upgrade2Rect))
+                {
+                    Game1.soundEffects[0].Play();
+                    Game1.upgradeManager.ApplyUpgrade(forSale[1], Game1.player);
+                }
 
-            if (Input.KeyClick(Keys.Tab))
-            {
-                Game1.upgradeManager.EndShopping();
+                if (Input.MouseClick(1) && msLoc.Intersects(upgrade3Rect))
+                {
+                    Game1.soundEffects[0].Play();
+                    Game1.upgradeManager.ApplyUpgrade(forSale[2], Game1.player);
+                }
+
+                if (Input.MouseClick(1) && msLoc.Intersects(exitRect))
+                {
+
+                    Game1.upgradeManager.EndShopping();
+
+                }
+
+                if (rerollable && Input.MouseClick(1) && msLoc.Intersects(rerollRect))
+                {
+                    if (Game1.player.Money > 100)
+                    {
+                        Game1.player.Money -= 100;
+                        Game1.upgradeManager.MakeShop(this.X);
+                        this.ExitScreen();
+                    }
+
+                }
+
+                if (Input.KeyClick(Keys.Tab))
+                {
+                    Game1.upgradeManager.EndShopping();
+                }
             }
             if (leaving)
             {

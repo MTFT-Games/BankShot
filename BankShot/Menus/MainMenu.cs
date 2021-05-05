@@ -23,6 +23,7 @@ namespace BankShot
 
         public MainMenu(SpriteFont f, Texture2D tx)
         {
+
             font = f;
             buttonTx = tx;
             startBtn = new Rectangle(200, 200, 100, 50);
@@ -31,12 +32,8 @@ namespace BankShot
 
         public void Draw(SpriteBatch sb, GraphicsDeviceManager g)
         {
-            //draws game title
-            sb.DrawString(font,
-                "BANK SHOT",
-                new Vector2(350,
-               100),
-                Color.White);
+          
+           
             //button textures to be incorporated
             //start button
             sb.Draw(buttonTx, startBtn, Color.White);
@@ -47,12 +44,12 @@ namespace BankShot
             //start button text
             sb.DrawString(font,
                 "START",
-                new Vector2(200, 200),
+                new Vector2(225, 215),
                 Color.White);
             //exit button text
             sb.DrawString(font,
                "EXIT",
-               new Vector2(200, 300),
+               new Vector2(225, 315),
                Color.White);
         }
 
@@ -84,9 +81,12 @@ namespace BankShot
         {
             if (Input.MouseClick(1) && startBtn.Contains(Input.MousePosition))
             {
-
-                //changes game state to game mode
+                MediaPlayer.IsRepeating = true;
                 MediaPlayer.Play(Game1.song);
+               
+                MediaPlayer.Volume = .5f;
+                //changes game state to game mode
+
                 state = GameState.Game;
                 
 

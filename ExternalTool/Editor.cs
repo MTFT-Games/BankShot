@@ -411,6 +411,7 @@ namespace ExternalTool
                         } else
                         {
                             writer.Write(".|");
+                            //
                         }
                     }
                         
@@ -1130,6 +1131,11 @@ namespace ExternalTool
             {
                 writer.Close();
             }
+        }
+
+        private void Editor_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

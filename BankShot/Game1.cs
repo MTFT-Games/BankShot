@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace BankShot
 {
@@ -17,14 +18,19 @@ namespace BankShot
         Shop
     }
 
+
+
     public class Game1 : Game
     {
+
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
         //music
         public static Song song;
-        
+
+        //sound fx
+        public static List<SoundEffect> soundEffects;
 
 
         // Menu fields.
@@ -52,11 +58,17 @@ namespace BankShot
 
         // Texture fields.
         public Texture2D titleBG;
+        public Texture2D pauseBG;
+        public Texture2D gameoverBG;
+        public Texture2D leaderboardBG;
         // TODO: Move enemyTexture into enemy manager with file read overhaul.
         public Texture2D enemyTextureSlime;
         public Texture2D enemyTextureCat;
+        public Texture2D enemyTextureChest;
         // TODO: Use here instead of passing everywhere
         public static Texture2D buttonTx;
+        public Texture2D healthBar;
+        public Texture2D waveBar;
 
         public Texture2D warningTexture;
         
@@ -94,6 +106,7 @@ namespace BankShot
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            soundEffects = new List<SoundEffect>();
         }
 
         protected override void Initialize()
@@ -115,9 +128,19 @@ namespace BankShot
 
         protected override void LoadContent()
         {
-
+            //sound loading
             song = Content.Load<Song>("BankShotRough");
-            MediaPlayer.IsRepeating = true;
+          
+
+            soundEffects.Add(Content.Load<SoundEffect>("chaching"));
+            soundEffects.Add(Content.Load<SoundEffect>("coinflip"));
+            soundEffects.Add(Content.Load<SoundEffect>("coin"));
+            soundEffects.Add(Content.Load<SoundEffect>("warning"));
+            soundEffects.Add(Content.Load<SoundEffect>("shoproll"));
+            soundEffects.Add(Content.Load<SoundEffect>("gameover"));
+            soundEffects.Add(Content.Load<SoundEffect>("ouch"));
+            soundEffects.Add(Content.Load<SoundEffect>("shieldbreak"));
+
 
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -127,11 +150,19 @@ namespace BankShot
 
             // Load Backgrounds
             titleBG = Content.Load<Texture2D>("TitleScreen");
+            pauseBG = Content.Load<Texture2D>("PauseScreen");
+            gameoverBG = Content.Load<Texture2D>("GameOverScreen");
+            leaderboardBG = Content.Load<Texture2D>("LeaderboardScreen");
 
-            // Load Textures
+            // Load UI Textures
             buttonTx = Content.Load<Texture2D>("Button");
+            healthBar = Content.Load<Texture2D>("HealthBar");
+            waveBar = Content.Load<Texture2D>("WaveTimer");
+
+            //Load Enemy Textures
             enemyTextureSlime = Content.Load<Texture2D>("GoldSlime");
             enemyTextureCat = Content.Load<Texture2D>("LuckyCat");
+            enemyTextureChest = Content.Load<Texture2D>("Chester");
             warningTexture = Content.Load<Texture2D>("exclamationPoint");
             // Load menus.
             mainMenu = new MainMenu(font, buttonTx);
@@ -166,25 +197,35 @@ namespace BankShot
                 Exit();
             }
 
+
+
             Input.Update();
 
             // State machine based on the GameState.
             switch (state)
             {
                 case GameState.MainMenu:
+                    if (Input.MouseClick(1))
+                    {
+                        soundEffects[0].Play();
+                    }
                     resetGame();
                     mainMenu.Update(out state);
                     break;
                 case GameState.Game:
+
+                    
+
                     //Testing gun and projectile creation.
                     projectileManager.UpdateProjectiles(gameTime);
                     player.Update(gameTime);
                     enemyManager.UpdateEnemies(gameTime);
                     waveManager.Update(gameTime);
-                    upgradeManager.Update();
+                    upgradeManager.Update(gameTime);
 
                     if (player.Health <= 0)
                     {
+                        Game1.soundEffects[5].Play();
                         state = GameState.GameOver;
                     }
 
@@ -198,12 +239,25 @@ namespace BankShot
 
                     break;
                 case GameState.Pause:
+                    if (Input.MouseClick(1))
+                    {
+                        soundEffects[0].Play();
+                    }
                     pauseMenu.Update(testMode, out state);
                     break;
                 case GameState.Leaderboard:
+                    if (Input.MouseClick(1))
+                    {
+                        soundEffects[0].Play();
+                    }
                     leaderboardMenu.Update(out state);
                     break;
                 case GameState.GameOver:
+                   
+                    if (Input.MouseClick(1))
+                    {
+                        soundEffects[0].Play();
+                    }
                     gameOverMenu.Update(out state);
                     break;
                     //case GameState.Shop:
@@ -267,14 +321,14 @@ namespace BankShot
                     double currHealthBar = ((double)player.Health / (double)player.MaxHealth) * 200;
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, (int)currHealthBar, 50), Color.Red);
+                    _spriteBatch.Draw(healthBar, new Rectangle(15, 15, (int)currHealthBar, 50), Color.White);
 
                     _spriteBatch.DrawString(font, $"Wave Number: {waveManager.Wave}", new Vector2(15, 65), Color.White);
 
                     double currTime = (waveManager.Timer / 30) * 200;
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200 - (int)currTime, 50), Color.Gold);
+                    _spriteBatch.Draw(waveBar, new Rectangle(15, 80, 200 - (int)currTime, 50), Color.White);
 
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {
@@ -293,7 +347,7 @@ namespace BankShot
                     {
                         if (waveManager.Timer < 5)
                         {
-                            _spriteBatch.Draw(buttonTx, new Rectangle(Program.game.GetWindowSize().Width / 2 - 170, 130, 350, 50), Color.White);
+                            _spriteBatch.Draw(buttonTx, new Rectangle(Program.game.GetWindowSize().Width / 2 - 170, 130, 420, 50), Color.White);
 
                             _spriteBatch.DrawString(font,
                                 "Use WASD to move, and Left Click to shoot!",
@@ -305,19 +359,23 @@ namespace BankShot
                     waveManager.Draw(_spriteBatch);
                     break;
                 case GameState.Pause:
+                    _spriteBatch.Draw(pauseBG, new Vector2(0, 0), Color.White);
+
                     pauseMenu.Draw(_spriteBatch, _graphics);
 
                     break;
                 case GameState.Leaderboard:
+                    _spriteBatch.Draw(leaderboardBG, new Vector2(0, 0), Color.White);
                     leaderboardMenu.Draw(_spriteBatch, _graphics, buttonTx);
                     break;
                 case GameState.GameOver:
+                    _spriteBatch.Draw(gameoverBG, new Vector2(0, 0), Color.White);
                     gameOverMenu.Draw(_spriteBatch, _graphics, buttonTx);
                     break;
 
 
             }
-            //_spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.White);
+            //_spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.White);//
 
 
             _spriteBatch.End();

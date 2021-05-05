@@ -71,7 +71,7 @@ namespace BankShot
             waves = new List<List<string>>();
             ReadWaves();
             waveBreak = false;
-            timeBetweenWaves = 2;
+            timeBetweenWaves = 3;
             //This can be changed to change the amount of time before the first wave.
             timePassed = 0;
             warningsToDraw = new List<Rectangle>();
@@ -189,11 +189,12 @@ namespace BankShot
         {
             if (!waveChosen)
             {
-                waveToSpawn = rng.Next(0, 3);
+                waveToSpawn = rng.Next(0, 4);
                 waveChosen = true;
             }
             if (timePassed > timeBetweenWaves)
             {
+              
                 wave++;
                 timer = 0;
                 warningsToDraw.Clear();
@@ -248,6 +249,7 @@ namespace BankShot
             }
             else if (warningsToDraw.Count == 0)
             {
+                Game1.soundEffects[3].Play();
                 Rectangle rect = new Rectangle(0, 0, 100, 100);
                 string[] splitEntry = null;
                 for (int i = 0; i < waves[waveToSpawn].Count; i++)
@@ -255,6 +257,8 @@ namespace BankShot
                     splitEntry = waves[waveToSpawn][i].Split('|');
                     warningsToDraw.Add(new Rectangle(Convert.ToInt32(splitEntry[1]), Convert.ToInt32(splitEntry[2]), 100, 100));
                 }
+                //Game1.upgradeManager.EndShopping();
+                //
             }
 
         }
