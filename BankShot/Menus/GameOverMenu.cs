@@ -63,6 +63,7 @@ namespace BankShot
             } else if (Input.MouseClick(1) && leaderBtn.Contains(Input.MousePosition))
             {
                 //changes game state to leaderboard
+                Program.game.SortScores();
                 state = GameState.Leaderboard;
             } else
             {
