@@ -116,6 +116,18 @@
 /processorParam:Quality=Best
 /build:chaching.wav
 
+#begin Chester.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Chester.png
+
 #begin coin.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -164,6 +176,12 @@
 /processorParam:TextureFormat=Color
 /build:exclamationPoint.png
 
+#begin gameover.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:gameover.wav
+
 #begin GameOverScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -175,12 +193,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GameOverScreen.png
-
-#begin gameover.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:gameover.wav
 
 #begin GoldSlime.png
 /importer:TextureImporter
@@ -205,6 +217,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GunSprite.png
+
+#begin HealthBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:HealthBar.png
 
 #begin HealthIcon.png
 /importer:TextureImporter
@@ -485,6 +509,42 @@
 /processorParam:TextureFormat=Color
 /build:UpgradeIcons/HealthIcon.png
 
+#begin UpgradeIcons/HomingIcon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UpgradeIcons/HomingIcon.png
+
+#begin UpgradeIcons/JumpUpgradeIcon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UpgradeIcons/JumpUpgradeIcon.png
+
+#begin UpgradeIcons/ShieldUpgradeIcon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:UpgradeIcons/ShieldUpgradeIcon.png
+
 #begin UpgradeIcons/ShotSpeedIcon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -508,4 +568,16 @@
 
 #begin waves.data
 /copy:waves.data
+
+#begin WaveTimer.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:WaveTimer.png
 

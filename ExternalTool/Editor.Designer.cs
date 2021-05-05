@@ -187,14 +187,15 @@ namespace ExternalTool
             // 
             // statusStrip
             // 
+            this.statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel,
             this.loadingBar});
-            this.statusStrip.Location = new System.Drawing.Point(0, 545);
+            this.statusStrip.Location = new System.Drawing.Point(0, 543);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.statusStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.statusStrip.Size = new System.Drawing.Size(1129, 24);
+            this.statusStrip.Size = new System.Drawing.Size(1129, 26);
             this.statusStrip.TabIndex = 0;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -202,7 +203,7 @@ namespace ExternalTool
             // 
             this.statusLabel.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(73, 19);
+            this.statusLabel.Size = new System.Drawing.Size(90, 20);
             this.statusLabel.Text = "statusLabel";
             // 
             // loadingBar
@@ -216,12 +217,13 @@ namespace ExternalTool
             // menuStrip
             // 
             this.menuStrip.BackColor = System.Drawing.SystemColors.Control;
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(1129, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1129, 28);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -232,7 +234,7 @@ namespace ExternalTool
             this.saveMenuItem,
             this.exitMenuItem});
             this.fileMenuItem.Name = "fileMenuItem";
-            this.fileMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileMenuItem.Text = "File";
             // 
             // saveMenuItem
@@ -243,39 +245,39 @@ namespace ExternalTool
             this.saveStatsMenuItem,
             this.saveUpgradesMenuItem});
             this.saveMenuItem.Name = "saveMenuItem";
-            this.saveMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(123, 26);
             this.saveMenuItem.Text = "Save";
             this.saveMenuItem.Click += new System.EventHandler(this.saveMenuItem_Click);
             // 
             // saveAllMenuItem
             // 
             this.saveAllMenuItem.Name = "saveAllMenuItem";
-            this.saveAllMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveAllMenuItem.Size = new System.Drawing.Size(222, 26);
             this.saveAllMenuItem.Text = "Save all";
             // 
             // saveMapMenuItem
             // 
             this.saveMapMenuItem.Name = "saveMapMenuItem";
-            this.saveMapMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveMapMenuItem.Size = new System.Drawing.Size(222, 26);
             this.saveMapMenuItem.Text = "Save map";
             this.saveMapMenuItem.Click += new System.EventHandler(this.saveMapMenuItem_Click);
             // 
             // saveStatsMenuItem
             // 
             this.saveStatsMenuItem.Name = "saveStatsMenuItem";
-            this.saveStatsMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveStatsMenuItem.Size = new System.Drawing.Size(222, 26);
             this.saveStatsMenuItem.Text = "Save character stats";
             // 
             // saveUpgradesMenuItem
             // 
             this.saveUpgradesMenuItem.Name = "saveUpgradesMenuItem";
-            this.saveUpgradesMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.saveUpgradesMenuItem.Size = new System.Drawing.Size(222, 26);
             this.saveUpgradesMenuItem.Text = "Save upgrades";
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(123, 26);
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -293,10 +295,10 @@ namespace ExternalTool
             // mapTab
             // 
             this.mapTab.Controls.Add(this.mapDivider);
-            this.mapTab.Location = new System.Drawing.Point(4, 24);
+            this.mapTab.Location = new System.Drawing.Point(4, 28);
             this.mapTab.Name = "mapTab";
             this.mapTab.Padding = new System.Windows.Forms.Padding(3);
-            this.mapTab.Size = new System.Drawing.Size(1127, 492);
+            this.mapTab.Size = new System.Drawing.Size(1127, 488);
             this.mapTab.TabIndex = 0;
             this.mapTab.Text = "Map";
             this.mapTab.UseVisualStyleBackColor = true;
@@ -315,7 +317,7 @@ namespace ExternalTool
             // mapDivider.Panel2
             // 
             this.mapDivider.Panel2.Controls.Add(this.mapBackground);
-            this.mapDivider.Size = new System.Drawing.Size(1121, 486);
+            this.mapDivider.Size = new System.Drawing.Size(1121, 482);
             this.mapDivider.SplitterDistance = 311;
             this.mapDivider.TabIndex = 0;
             // 
@@ -336,10 +338,10 @@ namespace ExternalTool
             this.tabPage1.Controls.Add(this.tileList);
             this.tabPage1.Controls.Add(this.tilesLabel);
             this.tabPage1.Controls.Add(this.backgroundList);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(295, 452);
+            this.tabPage1.Size = new System.Drawing.Size(295, 448);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Map controls";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -349,7 +351,7 @@ namespace ExternalTool
             this.backgroundLabel.AutoSize = true;
             this.backgroundLabel.Location = new System.Drawing.Point(6, 3);
             this.backgroundLabel.Name = "backgroundLabel";
-            this.backgroundLabel.Size = new System.Drawing.Size(75, 15);
+            this.backgroundLabel.Size = new System.Drawing.Size(94, 19);
             this.backgroundLabel.TabIndex = 3;
             this.backgroundLabel.Text = "Backgrounds:";
             // 
@@ -382,7 +384,7 @@ namespace ExternalTool
             this.tilesLabel.AutoSize = true;
             this.tilesLabel.Location = new System.Drawing.Point(6, 181);
             this.tilesLabel.Name = "tilesLabel";
-            this.tilesLabel.Size = new System.Drawing.Size(35, 15);
+            this.tilesLabel.Size = new System.Drawing.Size(46, 19);
             this.tilesLabel.TabIndex = 4;
             this.tilesLabel.Text = "Tiles:";
             // 
@@ -416,10 +418,10 @@ namespace ExternalTool
             this.tabPage2.Controls.Add(this.enemySelect);
             this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.waveCounter);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(295, 452);
+            this.tabPage2.Size = new System.Drawing.Size(295, 448);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Wave controls";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -435,7 +437,7 @@ namespace ExternalTool
             "Flyer"});
             this.enemySelect.Location = new System.Drawing.Point(10, 76);
             this.enemySelect.Name = "enemySelect";
-            this.enemySelect.Size = new System.Drawing.Size(168, 23);
+            this.enemySelect.Size = new System.Drawing.Size(168, 27);
             this.enemySelect.TabIndex = 2;
             // 
             // label17
@@ -443,7 +445,7 @@ namespace ExternalTool
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(7, 11);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(37, 15);
+            this.label17.Size = new System.Drawing.Size(45, 19);
             this.label17.TabIndex = 1;
             this.label17.Text = "Wave";
             // 
@@ -457,7 +459,7 @@ namespace ExternalTool
             0});
             this.waveCounter.Name = "waveCounter";
             this.waveCounter.ReadOnly = true;
-            this.waveCounter.Size = new System.Drawing.Size(44, 23);
+            this.waveCounter.Size = new System.Drawing.Size(44, 27);
             this.waveCounter.TabIndex = 0;
             this.waveCounter.ValueChanged += new System.EventHandler(this.waveCounter_ValueChanged);
             // 
@@ -496,10 +498,10 @@ namespace ExternalTool
             this.upgradesTab.Controls.Add(this.upgradeImageDrop);
             this.upgradesTab.Controls.Add(this.upgradeIcon);
             this.upgradesTab.Controls.Add(this.upgradeList);
-            this.upgradesTab.Location = new System.Drawing.Point(4, 24);
+            this.upgradesTab.Location = new System.Drawing.Point(4, 28);
             this.upgradesTab.Name = "upgradesTab";
             this.upgradesTab.Padding = new System.Windows.Forms.Padding(3);
-            this.upgradesTab.Size = new System.Drawing.Size(1127, 492);
+            this.upgradesTab.Size = new System.Drawing.Size(1127, 488);
             this.upgradesTab.TabIndex = 1;
             this.upgradesTab.Text = "Upgrades";
             this.upgradesTab.UseVisualStyleBackColor = true;
@@ -533,7 +535,7 @@ namespace ExternalTool
             this.label16.BackColor = System.Drawing.SystemColors.Control;
             this.label16.Location = new System.Drawing.Point(120, 50);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(12, 15);
+            this.label16.Size = new System.Drawing.Size(15, 19);
             this.label16.TabIndex = 24;
             this.label16.Text = "1";
             // 
@@ -543,7 +545,7 @@ namespace ExternalTool
             this.trackBar16.Location = new System.Drawing.Point(6, 20);
             this.trackBar16.Maximum = 1000;
             this.trackBar16.Name = "trackBar16";
-            this.trackBar16.Size = new System.Drawing.Size(142, 45);
+            this.trackBar16.Size = new System.Drawing.Size(142, 56);
             this.trackBar16.TabIndex = 23;
             this.trackBar16.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar16.Value = 1;
@@ -567,7 +569,7 @@ namespace ExternalTool
             this.label15.BackColor = System.Drawing.SystemColors.Control;
             this.label15.Location = new System.Drawing.Point(120, 50);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(12, 15);
+            this.label15.Size = new System.Drawing.Size(15, 19);
             this.label15.TabIndex = 24;
             this.label15.Text = "1";
             // 
@@ -576,7 +578,7 @@ namespace ExternalTool
             this.trackBar15.LargeChange = 10;
             this.trackBar15.Location = new System.Drawing.Point(6, 20);
             this.trackBar15.Name = "trackBar15";
-            this.trackBar15.Size = new System.Drawing.Size(142, 45);
+            this.trackBar15.Size = new System.Drawing.Size(142, 56);
             this.trackBar15.TabIndex = 23;
             this.trackBar15.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar15.Value = 1;
@@ -588,7 +590,7 @@ namespace ExternalTool
             this.upgradeJump.AutoSize = true;
             this.upgradeJump.Location = new System.Drawing.Point(504, 448);
             this.upgradeJump.Name = "upgradeJump";
-            this.upgradeJump.Size = new System.Drawing.Size(73, 19);
+            this.upgradeJump.Size = new System.Drawing.Size(91, 23);
             this.upgradeJump.TabIndex = 37;
             this.upgradeJump.Text = "Add jump";
             this.upgradeJump.UseVisualStyleBackColor = true;
@@ -612,7 +614,7 @@ namespace ExternalTool
             this.label14.BackColor = System.Drawing.SystemColors.Control;
             this.label14.Location = new System.Drawing.Point(120, 50);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(14, 15);
+            this.label14.Size = new System.Drawing.Size(18, 19);
             this.label14.TabIndex = 24;
             this.label14.Text = "0";
             // 
@@ -622,7 +624,7 @@ namespace ExternalTool
             this.checkBox14.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox14.Location = new System.Drawing.Point(6, 46);
             this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(77, 19);
+            this.checkBox14.Size = new System.Drawing.Size(95, 23);
             this.checkBox14.TabIndex = 22;
             this.checkBox14.Text = "Multiplier";
             this.checkBox14.UseVisualStyleBackColor = false;
@@ -635,7 +637,7 @@ namespace ExternalTool
             this.trackBar14.Maximum = 20;
             this.trackBar14.Minimum = -20;
             this.trackBar14.Name = "trackBar14";
-            this.trackBar14.Size = new System.Drawing.Size(142, 45);
+            this.trackBar14.Size = new System.Drawing.Size(142, 56);
             this.trackBar14.TabIndex = 23;
             this.trackBar14.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar14.ValueChanged += new System.EventHandler(this.trackBar_Scroll);
@@ -659,7 +661,7 @@ namespace ExternalTool
             this.label13.BackColor = System.Drawing.SystemColors.Control;
             this.label13.Location = new System.Drawing.Point(120, 50);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(14, 15);
+            this.label13.Size = new System.Drawing.Size(18, 19);
             this.label13.TabIndex = 24;
             this.label13.Text = "0";
             // 
@@ -669,7 +671,7 @@ namespace ExternalTool
             this.checkBox13.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox13.Location = new System.Drawing.Point(6, 46);
             this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(77, 19);
+            this.checkBox13.Size = new System.Drawing.Size(95, 23);
             this.checkBox13.TabIndex = 22;
             this.checkBox13.Text = "Multiplier";
             this.checkBox13.UseVisualStyleBackColor = false;
@@ -682,7 +684,7 @@ namespace ExternalTool
             this.trackBar13.Maximum = 20;
             this.trackBar13.Minimum = -20;
             this.trackBar13.Name = "trackBar13";
-            this.trackBar13.Size = new System.Drawing.Size(142, 45);
+            this.trackBar13.Size = new System.Drawing.Size(142, 56);
             this.trackBar13.TabIndex = 23;
             this.trackBar13.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar13.ValueChanged += new System.EventHandler(this.trackBar_Scroll);
@@ -706,7 +708,7 @@ namespace ExternalTool
             this.label12.BackColor = System.Drawing.SystemColors.Control;
             this.label12.Location = new System.Drawing.Point(120, 50);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(14, 15);
+            this.label12.Size = new System.Drawing.Size(18, 19);
             this.label12.TabIndex = 24;
             this.label12.Text = "0";
             // 
@@ -716,7 +718,7 @@ namespace ExternalTool
             this.checkBox12.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox12.Location = new System.Drawing.Point(6, 46);
             this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(77, 19);
+            this.checkBox12.Size = new System.Drawing.Size(95, 23);
             this.checkBox12.TabIndex = 22;
             this.checkBox12.Text = "Multiplier";
             this.checkBox12.UseVisualStyleBackColor = false;
@@ -729,7 +731,7 @@ namespace ExternalTool
             this.trackBar12.Maximum = 2000;
             this.trackBar12.Minimum = -2000;
             this.trackBar12.Name = "trackBar12";
-            this.trackBar12.Size = new System.Drawing.Size(142, 45);
+            this.trackBar12.Size = new System.Drawing.Size(142, 56);
             this.trackBar12.TabIndex = 23;
             this.trackBar12.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar12.ValueChanged += new System.EventHandler(this.trackBar_DecScroll);
@@ -753,7 +755,7 @@ namespace ExternalTool
             this.label11.BackColor = System.Drawing.SystemColors.Control;
             this.label11.Location = new System.Drawing.Point(120, 50);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(14, 15);
+            this.label11.Size = new System.Drawing.Size(18, 19);
             this.label11.TabIndex = 24;
             this.label11.Text = "0";
             // 
@@ -763,7 +765,7 @@ namespace ExternalTool
             this.checkBox11.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox11.Location = new System.Drawing.Point(6, 46);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(77, 19);
+            this.checkBox11.Size = new System.Drawing.Size(95, 23);
             this.checkBox11.TabIndex = 22;
             this.checkBox11.Text = "Multiplier";
             this.checkBox11.UseVisualStyleBackColor = false;
@@ -776,7 +778,7 @@ namespace ExternalTool
             this.trackBar11.Maximum = 20;
             this.trackBar11.Minimum = -20;
             this.trackBar11.Name = "trackBar11";
-            this.trackBar11.Size = new System.Drawing.Size(142, 45);
+            this.trackBar11.Size = new System.Drawing.Size(142, 56);
             this.trackBar11.TabIndex = 23;
             this.trackBar11.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar11.ValueChanged += new System.EventHandler(this.trackBar_Scroll);
@@ -800,7 +802,7 @@ namespace ExternalTool
             this.label10.BackColor = System.Drawing.SystemColors.Control;
             this.label10.Location = new System.Drawing.Point(120, 50);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(14, 15);
+            this.label10.Size = new System.Drawing.Size(18, 19);
             this.label10.TabIndex = 24;
             this.label10.Text = "0";
             // 
@@ -810,7 +812,7 @@ namespace ExternalTool
             this.checkBox10.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox10.Location = new System.Drawing.Point(6, 46);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(77, 19);
+            this.checkBox10.Size = new System.Drawing.Size(95, 23);
             this.checkBox10.TabIndex = 22;
             this.checkBox10.Text = "Multiplier";
             this.checkBox10.UseVisualStyleBackColor = false;
@@ -823,7 +825,7 @@ namespace ExternalTool
             this.trackBar10.Maximum = 2000;
             this.trackBar10.Minimum = -2000;
             this.trackBar10.Name = "trackBar10";
-            this.trackBar10.Size = new System.Drawing.Size(142, 45);
+            this.trackBar10.Size = new System.Drawing.Size(142, 56);
             this.trackBar10.TabIndex = 23;
             this.trackBar10.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar10.Value = 1;
@@ -848,7 +850,7 @@ namespace ExternalTool
             this.label9.BackColor = System.Drawing.SystemColors.Control;
             this.label9.Location = new System.Drawing.Point(120, 50);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(14, 15);
+            this.label9.Size = new System.Drawing.Size(18, 19);
             this.label9.TabIndex = 24;
             this.label9.Text = "0";
             // 
@@ -858,7 +860,7 @@ namespace ExternalTool
             this.checkBox9.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox9.Location = new System.Drawing.Point(6, 46);
             this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(77, 19);
+            this.checkBox9.Size = new System.Drawing.Size(95, 23);
             this.checkBox9.TabIndex = 22;
             this.checkBox9.Text = "Multiplier";
             this.checkBox9.UseVisualStyleBackColor = false;
@@ -871,7 +873,7 @@ namespace ExternalTool
             this.trackBar9.Maximum = 2000;
             this.trackBar9.Minimum = -2000;
             this.trackBar9.Name = "trackBar9";
-            this.trackBar9.Size = new System.Drawing.Size(142, 45);
+            this.trackBar9.Size = new System.Drawing.Size(142, 56);
             this.trackBar9.TabIndex = 23;
             this.trackBar9.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar9.ValueChanged += new System.EventHandler(this.trackBar_DecScroll);
@@ -895,7 +897,7 @@ namespace ExternalTool
             this.label8.BackColor = System.Drawing.SystemColors.Control;
             this.label8.Location = new System.Drawing.Point(120, 50);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(14, 15);
+            this.label8.Size = new System.Drawing.Size(18, 19);
             this.label8.TabIndex = 24;
             this.label8.Text = "0";
             // 
@@ -905,7 +907,7 @@ namespace ExternalTool
             this.checkBox8.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox8.Location = new System.Drawing.Point(6, 46);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(77, 19);
+            this.checkBox8.Size = new System.Drawing.Size(95, 23);
             this.checkBox8.TabIndex = 22;
             this.checkBox8.Text = "Multiplier";
             this.checkBox8.UseVisualStyleBackColor = false;
@@ -918,7 +920,7 @@ namespace ExternalTool
             this.trackBar8.Maximum = 20;
             this.trackBar8.Minimum = -20;
             this.trackBar8.Name = "trackBar8";
-            this.trackBar8.Size = new System.Drawing.Size(142, 45);
+            this.trackBar8.Size = new System.Drawing.Size(142, 56);
             this.trackBar8.TabIndex = 23;
             this.trackBar8.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar8.ValueChanged += new System.EventHandler(this.trackBar_Scroll);
@@ -943,7 +945,7 @@ namespace ExternalTool
             this.label7.BackColor = System.Drawing.SystemColors.Control;
             this.label7.Location = new System.Drawing.Point(120, 50);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(13, 14);
+            this.label7.Size = new System.Drawing.Size(16, 18);
             this.label7.TabIndex = 24;
             this.label7.Text = "0";
             // 
@@ -953,7 +955,7 @@ namespace ExternalTool
             this.checkBox7.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox7.Location = new System.Drawing.Point(6, 46);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(73, 18);
+            this.checkBox7.Size = new System.Drawing.Size(89, 22);
             this.checkBox7.TabIndex = 22;
             this.checkBox7.Text = "Multiplier";
             this.checkBox7.UseVisualStyleBackColor = false;
@@ -966,7 +968,7 @@ namespace ExternalTool
             this.trackBar7.Maximum = 2000;
             this.trackBar7.Minimum = -2000;
             this.trackBar7.Name = "trackBar7";
-            this.trackBar7.Size = new System.Drawing.Size(142, 45);
+            this.trackBar7.Size = new System.Drawing.Size(142, 56);
             this.trackBar7.TabIndex = 23;
             this.trackBar7.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar7.ValueChanged += new System.EventHandler(this.trackBar_DecScroll);
@@ -990,7 +992,7 @@ namespace ExternalTool
             this.label6.BackColor = System.Drawing.SystemColors.Control;
             this.label6.Location = new System.Drawing.Point(120, 50);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 15);
+            this.label6.Size = new System.Drawing.Size(18, 19);
             this.label6.TabIndex = 24;
             this.label6.Text = "0";
             // 
@@ -1000,7 +1002,7 @@ namespace ExternalTool
             this.checkBox6.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox6.Location = new System.Drawing.Point(6, 46);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(77, 19);
+            this.checkBox6.Size = new System.Drawing.Size(95, 23);
             this.checkBox6.TabIndex = 22;
             this.checkBox6.Text = "Multiplier";
             this.checkBox6.UseVisualStyleBackColor = false;
@@ -1013,7 +1015,7 @@ namespace ExternalTool
             this.trackBar6.Maximum = 2000;
             this.trackBar6.Minimum = -2000;
             this.trackBar6.Name = "trackBar6";
-            this.trackBar6.Size = new System.Drawing.Size(142, 45);
+            this.trackBar6.Size = new System.Drawing.Size(142, 56);
             this.trackBar6.TabIndex = 23;
             this.trackBar6.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar6.ValueChanged += new System.EventHandler(this.trackBar_DecScroll);
@@ -1037,7 +1039,7 @@ namespace ExternalTool
             this.label5.BackColor = System.Drawing.SystemColors.Control;
             this.label5.Location = new System.Drawing.Point(120, 50);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(22, 15);
+            this.label5.Size = new System.Drawing.Size(27, 19);
             this.label5.TabIndex = 24;
             this.label5.Text = "1.0";
             // 
@@ -1050,7 +1052,7 @@ namespace ExternalTool
             this.checkBox5.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox5.Location = new System.Drawing.Point(6, 46);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(77, 19);
+            this.checkBox5.Size = new System.Drawing.Size(95, 23);
             this.checkBox5.TabIndex = 22;
             this.checkBox5.Text = "Multiplier";
             this.checkBox5.UseVisualStyleBackColor = false;
@@ -1061,7 +1063,7 @@ namespace ExternalTool
             this.trackBar5.Location = new System.Drawing.Point(6, 20);
             this.trackBar5.Maximum = 300;
             this.trackBar5.Name = "trackBar5";
-            this.trackBar5.Size = new System.Drawing.Size(142, 45);
+            this.trackBar5.Size = new System.Drawing.Size(142, 56);
             this.trackBar5.TabIndex = 23;
             this.trackBar5.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar5.Value = 1;
@@ -1086,7 +1088,7 @@ namespace ExternalTool
             this.label4.BackColor = System.Drawing.SystemColors.Control;
             this.label4.Location = new System.Drawing.Point(120, 50);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(14, 15);
+            this.label4.Size = new System.Drawing.Size(18, 19);
             this.label4.TabIndex = 24;
             this.label4.Text = "0";
             // 
@@ -1096,7 +1098,7 @@ namespace ExternalTool
             this.checkBox4.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox4.Location = new System.Drawing.Point(6, 46);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(77, 19);
+            this.checkBox4.Size = new System.Drawing.Size(95, 23);
             this.checkBox4.TabIndex = 22;
             this.checkBox4.Text = "Multiplier";
             this.checkBox4.UseVisualStyleBackColor = false;
@@ -1109,7 +1111,7 @@ namespace ExternalTool
             this.trackBar4.Maximum = 20;
             this.trackBar4.Minimum = -20;
             this.trackBar4.Name = "trackBar4";
-            this.trackBar4.Size = new System.Drawing.Size(142, 45);
+            this.trackBar4.Size = new System.Drawing.Size(142, 56);
             this.trackBar4.TabIndex = 23;
             this.trackBar4.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar4.ValueChanged += new System.EventHandler(this.trackBar_Scroll);
@@ -1133,7 +1135,7 @@ namespace ExternalTool
             this.label3.BackColor = System.Drawing.SystemColors.Control;
             this.label3.Location = new System.Drawing.Point(120, 50);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 15);
+            this.label3.Size = new System.Drawing.Size(18, 19);
             this.label3.TabIndex = 24;
             this.label3.Text = "0";
             // 
@@ -1143,7 +1145,7 @@ namespace ExternalTool
             this.checkBox3.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox3.Location = new System.Drawing.Point(6, 46);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(77, 19);
+            this.checkBox3.Size = new System.Drawing.Size(95, 23);
             this.checkBox3.TabIndex = 22;
             this.checkBox3.Text = "Multiplier";
             this.checkBox3.UseVisualStyleBackColor = false;
@@ -1156,7 +1158,7 @@ namespace ExternalTool
             this.trackBar3.Maximum = 2000;
             this.trackBar3.Minimum = -2000;
             this.trackBar3.Name = "trackBar3";
-            this.trackBar3.Size = new System.Drawing.Size(142, 45);
+            this.trackBar3.Size = new System.Drawing.Size(142, 56);
             this.trackBar3.TabIndex = 23;
             this.trackBar3.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar3.ValueChanged += new System.EventHandler(this.trackBar_DecScroll);
@@ -1180,7 +1182,7 @@ namespace ExternalTool
             this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(120, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(14, 15);
+            this.label1.Size = new System.Drawing.Size(18, 19);
             this.label1.TabIndex = 24;
             this.label1.Text = "0";
             // 
@@ -1190,7 +1192,7 @@ namespace ExternalTool
             this.checkBox2.BackColor = System.Drawing.SystemColors.Control;
             this.checkBox2.Location = new System.Drawing.Point(6, 46);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(77, 19);
+            this.checkBox2.Size = new System.Drawing.Size(95, 23);
             this.checkBox2.TabIndex = 22;
             this.checkBox2.Text = "Multiplier";
             this.checkBox2.UseVisualStyleBackColor = false;
@@ -1203,7 +1205,7 @@ namespace ExternalTool
             this.trackBar2.Maximum = 20;
             this.trackBar2.Minimum = -20;
             this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(142, 45);
+            this.trackBar2.Size = new System.Drawing.Size(142, 56);
             this.trackBar2.TabIndex = 23;
             this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trackBar2.ValueChanged += new System.EventHandler(this.trackBar_Scroll);
@@ -1229,7 +1231,7 @@ namespace ExternalTool
             this.label2.BackColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(120, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 15);
+            this.label2.Size = new System.Drawing.Size(18, 19);
             this.label2.TabIndex = 24;
             this.label2.Text = "0";
             // 
@@ -1239,7 +1241,7 @@ namespace ExternalTool
             this.UpgradeDmgMult.BackColor = System.Drawing.SystemColors.Control;
             this.UpgradeDmgMult.Location = new System.Drawing.Point(6, 46);
             this.UpgradeDmgMult.Name = "UpgradeDmgMult";
-            this.UpgradeDmgMult.Size = new System.Drawing.Size(77, 19);
+            this.UpgradeDmgMult.Size = new System.Drawing.Size(95, 23);
             this.UpgradeDmgMult.TabIndex = 22;
             this.UpgradeDmgMult.Text = "Multiplier";
             this.UpgradeDmgMult.UseVisualStyleBackColor = false;
@@ -1252,7 +1254,7 @@ namespace ExternalTool
             this.UpgradeDmgSlider.Maximum = 20;
             this.UpgradeDmgSlider.Minimum = -20;
             this.UpgradeDmgSlider.Name = "UpgradeDmgSlider";
-            this.UpgradeDmgSlider.Size = new System.Drawing.Size(142, 45);
+            this.UpgradeDmgSlider.Size = new System.Drawing.Size(142, 56);
             this.UpgradeDmgSlider.TabIndex = 23;
             this.UpgradeDmgSlider.TickStyle = System.Windows.Forms.TickStyle.None;
             this.UpgradeDmgSlider.ValueChanged += new System.EventHandler(this.trackBar_Scroll);
@@ -1286,7 +1288,7 @@ namespace ExternalTool
             this.upgradeName.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.upgradeName.Location = new System.Drawing.Point(853, 43);
             this.upgradeName.Name = "upgradeName";
-            this.upgradeName.Size = new System.Drawing.Size(182, 30);
+            this.upgradeName.Size = new System.Drawing.Size(182, 35);
             this.upgradeName.TabIndex = 15;
             this.upgradeName.Text = "Select an upgrade";
             this.upgradeName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1300,7 +1302,7 @@ namespace ExternalTool
             this.upgradeImageDrop.FormattingEnabled = true;
             this.upgradeImageDrop.Location = new System.Drawing.Point(157, 112);
             this.upgradeImageDrop.Name = "upgradeImageDrop";
-            this.upgradeImageDrop.Size = new System.Drawing.Size(100, 23);
+            this.upgradeImageDrop.Size = new System.Drawing.Size(100, 27);
             this.upgradeImageDrop.TabIndex = 2;
             this.upgradeImageDrop.SelectedIndexChanged += new System.EventHandler(this.upgradeImageDrop_SelectedIndexChanged);
             this.upgradeImageDrop.Leave += new System.EventHandler(this.UpdateUpgrade);
@@ -1361,7 +1363,7 @@ namespace ExternalTool
             // 
             // Editor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1129, 569);
             this.Controls.Add(this.tabSystem);
@@ -1372,6 +1374,7 @@ namespace ExternalTool
             this.Name = "Editor";
             this.Text = "Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Editor_FormClosing);
+            this.Load += new System.EventHandler(this.Editor_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
             this.menuStrip.ResumeLayout(false);

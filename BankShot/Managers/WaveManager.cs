@@ -189,7 +189,14 @@ namespace BankShot
         {
             if (!waveChosen)
             {
-                waveToSpawn = rng.Next(0, 3);
+                if (wave / 2 + 1 > 4)
+                {
+                    waveToSpawn = rng.Next(0, 4);
+                }
+                else
+                {
+                    waveToSpawn = rng.Next(0, wave / 2 + 1);
+                }
                 waveChosen = true;
             }
             if (timePassed > timeBetweenWaves)
@@ -257,6 +264,8 @@ namespace BankShot
                     splitEntry = waves[waveToSpawn][i].Split('|');
                     warningsToDraw.Add(new Rectangle(Convert.ToInt32(splitEntry[1]), Convert.ToInt32(splitEntry[2]), 100, 100));
                 }
+                //Game1.upgradeManager.EndShopping();
+                //
             }
 
         }

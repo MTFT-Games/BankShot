@@ -28,6 +28,7 @@ namespace BankShot
         public int AttackPower
         {
             get { return attackPower; }
+            set { attackPower = value; }
         }
         
         public float KnockbackDistance
