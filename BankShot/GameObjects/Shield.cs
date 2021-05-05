@@ -66,6 +66,14 @@ namespace BankShot
             }
         }
 
+        public double TimeSinceBreak
+        {
+            get
+            {
+                return timeSinceBreak;
+            }
+        }
+
         public float RegenRate
         {
             get
@@ -117,6 +125,10 @@ namespace BankShot
             X = (int)position.X;
             Y = (int)position.Y;
             timeSinceBreak += time.ElapsedGameTime.TotalSeconds;
+            if (timeSinceBreak > coolDown)
+            {
+                timeSinceBreak = coolDown;
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

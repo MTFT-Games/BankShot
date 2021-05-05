@@ -76,6 +76,7 @@ namespace BankShot
         // Font fields.
         // TODO: Find better fonts and make a proper button texture. 
         public static SpriteFont font;
+        public static SpriteFont largeFont;
 
         // TODO: Should we use accessors or just make them public? Look at
         // class guidelines
@@ -147,6 +148,7 @@ namespace BankShot
 
             // Load fonts.
             font = Content.Load<SpriteFont>("Arial12");
+            largeFont = Content.Load<SpriteFont>("Arial36");
 
             // Load Backgrounds
             titleBG = Content.Load<Texture2D>("TitleScreen");
@@ -329,6 +331,16 @@ namespace BankShot
 
                     _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200, 50), Color.Gray);
                     _spriteBatch.Draw(waveBar, new Rectangle(15, 80, 200 - (int)currTime, 50), Color.White);
+
+                    double currShieldCoolDown = (1 - ((double) player.CurrentShield.TimeSinceBreak / (double) player.CurrentShield.CoolDown)) * 200;
+
+                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 145, 200, 50), Color.Gray);
+                    _spriteBatch.Draw(waveBar, new Rectangle(15, 145, 200 - (int)currShieldCoolDown, 50), Color.Aqua);
+                    if ((int)currShieldCoolDown == 0)
+                    {
+                        _spriteBatch.DrawString(font, "Shield Ready", new Vector2(55, 160), Color.White);
+                    }
+
 
                     if (enemyManager.SpawnedEnemies.Count > 0)
                     {

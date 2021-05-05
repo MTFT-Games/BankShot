@@ -22,7 +22,7 @@ namespace BankShot
 
         public override void Destroy()
         {
-            this.position.Y -= 25;
+            this.position.Y -= 55;
             this.position.X -= 20;
             if (type == typeof(ChaserEnemy))
             {
