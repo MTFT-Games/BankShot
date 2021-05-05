@@ -58,7 +58,7 @@
 
 #begin BankShotRough.wav
 /importer:WavImporter
-/processor:SoundEffectProcessor
+/processor:SongProcessor
 /processorParam:Quality=Best
 /build:BankShotRough.wav
 
