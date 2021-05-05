@@ -279,6 +279,10 @@ namespace BankShot
                 {
                     sb.Draw(Program.game.warningTexture, rect, Color.White);
                 }
+                if (warningsToDraw.Count != 0)
+                {
+                    sb.DrawString(Game1.largeFont, $"WAVE INCOMING", new Vector2(450, 500), Color.Red);
+                }
             }
         }
     }
