@@ -17,8 +17,11 @@ namespace BankShot
         Shop
     }
 
+
+
     public class Game1 : Game
     {
+
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -126,6 +129,7 @@ namespace BankShot
             soundEffects.Add(Content.Load<SoundEffect>("shoproll"));
             soundEffects.Add(Content.Load<SoundEffect>("gameover"));
             soundEffects.Add(Content.Load<SoundEffect>("ouch"));
+            soundEffects.Add(Content.Load<SoundEffect>("shieldbreak"));
 
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -196,6 +200,8 @@ namespace BankShot
                     mainMenu.Update(out state);
                     break;
                 case GameState.Game:
+
+
                     //Testing gun and projectile creation.
                     projectileManager.UpdateProjectiles(gameTime);
                     player.Update(gameTime);
@@ -233,7 +239,7 @@ namespace BankShot
                     leaderboardMenu.Update(out state);
                     break;
                 case GameState.GameOver:
-                    MediaPlayer.Stop();
+                   
                     if (Input.MouseClick(1))
                     {
                         soundEffects[0].Play();
