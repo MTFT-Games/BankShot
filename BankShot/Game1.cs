@@ -17,8 +17,11 @@ namespace BankShot
         Shop
     }
 
+
+
     public class Game1 : Game
     {
+
         public GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -188,6 +191,16 @@ namespace BankShot
                     mainMenu.Update(out state);
                     break;
                 case GameState.Game:
+
+                    MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+                    void MediaPlayer_MediaStateChanged(object sender, System.
+                                          EventArgs e)
+                    {
+                    
+                        MediaPlayer.Play(song);
+                    }
+                   
+
                     //Testing gun and projectile creation.
                     projectileManager.UpdateProjectiles(gameTime);
                     player.Update(gameTime);
