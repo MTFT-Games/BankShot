@@ -19,27 +19,6 @@ HealthIcon.png
 3
 365
 
-Longer barrel
-You extend your barrel length to increase muzzle velocity. 1.5x Projectile Speed||
-False 0
-False 0
-False 0
-False 0
-1
-True 1.5
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-False
-ShotSpeedIcon.png
-0
-348
-
 Overengineered amunition
 Upgrade your ammo to APHEFSDSHEATHECBChttps://youtu.be/e7F0f0VWJnQ?t=47Armor Peircing High Explosive Fin StabilizedDiscarding Sabot HighExplosive Anti Tank High Explosive Capped Ballistic Capped2x Damage||
 True 2
@@ -102,4 +81,25 @@ True
 JumpUpgradeIcon.png
 0
 600
+
+Longer Barrel
+You extend your barrel length to increase muzzle velocity. 33% more projectile speed.||
+False 0
+False 0
+False 0
+True 1.33
+1
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False
+ShotSpeedIcon.png
+0
+243
 |||
