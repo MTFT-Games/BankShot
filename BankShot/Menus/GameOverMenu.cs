@@ -23,7 +23,7 @@ namespace BankShot
         {
             font = f;
             menuBtn = new Rectangle(200, 400, 150, 50);
-            leaderBtn = new Rectangle(200, 550, 150, 50);
+          
         }
 
         public void Draw(SpriteBatch sb, GraphicsDeviceManager g, Texture2D buttonTx)
@@ -46,11 +46,7 @@ namespace BankShot
                 "MAIN MENU",
                 new Vector2(210, 415),
                 Color.White);
-            //leaderboard button text
-            sb.DrawString(font,
-               "LEADERBOARD",
-               new Vector2(210, 570),
-               Color.White);
+           
         }
 
         public void Update(out GameState state)
@@ -60,12 +56,7 @@ namespace BankShot
                 //changes game state to main menu
                 state = GameState.MainMenu;
                 Program.game.resetGame();
-            } else if (Input.MouseClick(1) && leaderBtn.Contains(Input.MousePosition))
-            {
-                //changes game state to leaderboard
-                Program.game.SortScores();
-                state = GameState.Leaderboard;
-            } else
+            }else
             {
                 state = GameState.GameOver;
             }

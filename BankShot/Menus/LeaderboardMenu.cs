@@ -10,6 +10,9 @@ namespace BankShot
     /// <summary>
     /// AUTHOR: AIDAN VANBURGER
     /// PURPOSE: to manage the drawing and logic of the main menu
+    /// 
+    /// 
+    /// VESTIGIAL
     /// </summary>
     class LeaderboardMenu
     {
