@@ -206,7 +206,7 @@ namespace BankShot
                 }
             }
             //calls apply upgrade upon clicking on a chosen upgrade
-            if (!leaving)
+            if (!leaving && Game1.player.Rect.Intersects(rect))
             {
                 if (Input.MouseClick(1) && msLoc.Intersects(upgrade1Rect))
                 {

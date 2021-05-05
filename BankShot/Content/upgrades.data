@@ -16,7 +16,7 @@ False 0
 False 0
 False
 HealthIcon.png
-3
+5
 365
 
 Overengineered amunition
@@ -37,7 +37,7 @@ False 0
 False 0
 False
 DmgIcon.png
-10
+1
 1000
 
 Heat Seaking Bullets
@@ -58,7 +58,7 @@ False 0
 False 0
 False
 HomingIcon.png
-1
+3
 400
 
 Advanced Hydaulics
@@ -79,7 +79,7 @@ False 0
 False 0
 True
 JumpUpgradeIcon.png
-0
+5
 600
 
 Longer Barrel
@@ -100,6 +100,6 @@ False 0
 False 0
 False
 ShotSpeedIcon.png
-0
+7
 243
 |||
