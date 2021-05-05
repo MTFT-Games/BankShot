@@ -431,6 +431,12 @@
 /processorParam:TextureFormat=Color
 /build:Shield.png
 
+#begin shieldbreak.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:shieldbreak.wav
+
 #begin Shop.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -235,6 +235,7 @@ namespace BankShot
             projectileSpreadMods = new double[] { 1, 0 };
             projectileHoming = 1;
             numberOfJumps = 2;
+            //knockBackVector = new Vector2(5, 0);
         }
 
         //Methods

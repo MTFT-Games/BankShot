@@ -129,6 +129,7 @@ namespace BankShot
 
         public void BreakShield()
         {
+            Game1.soundEffects[7].Play();
             timeSinceBreak = 0;
             active = false;
         }
