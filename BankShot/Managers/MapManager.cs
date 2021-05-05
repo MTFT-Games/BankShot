@@ -114,6 +114,8 @@ namespace BankShot
         {
             Rectangle window = Program.game.GetWindowSize();
             sb.Draw(currentMap.BackgroundImage, window, Color.White);
+            //sb.Draw(Program.game.barUnderlay, new Rectangle(-115, -130, (int)(380 * 1.205), (int)(420 * 1.205)), Color.Gold);
+            sb.Draw(Program.game.barUnderlay, new Rectangle(-125, -130, (int) (380 * 1.2), (int)(415 * 1.2)), Color.Black);
             foreach (GameObject block in currentMap.MapArray)
             {
                 block.Draw(sb);

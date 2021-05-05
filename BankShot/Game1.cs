@@ -69,6 +69,7 @@ namespace BankShot
         public static Texture2D buttonTx;
         public Texture2D healthBar;
         public Texture2D waveBar;
+        public Texture2D barUnderlay;
 
         public Texture2D warningTexture;
         
@@ -160,6 +161,7 @@ namespace BankShot
             buttonTx = Content.Load<Texture2D>("Button");
             healthBar = Content.Load<Texture2D>("HealthBar");
             waveBar = Content.Load<Texture2D>("WaveTimer");
+            barUnderlay = Content.Load<Texture2D>("BarUnderlay");
 
             //Load Enemy Textures
             enemyTextureSlime = Content.Load<Texture2D>("GoldSlime");
@@ -299,7 +301,7 @@ namespace BankShot
                     break;
                 case GameState.Game:
 
-                  
+
 
                     //Commented these out because they were breaking everything
                     mapManager.Draw(_spriteBatch);
@@ -319,27 +321,31 @@ namespace BankShot
                     }
                     upgradeManager.Draw(_spriteBatch);
                     // health bar waves and timer
+         
 
                     double currHealthBar = ((double)player.Health / (double)player.MaxHealth) * 200;
 
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 15, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(healthBar, new Rectangle(15, 15, (int)currHealthBar, 50), Color.White);
+                    _spriteBatch.Draw(healthBar, new Rectangle(65, 60, 200, 50), Color.Gray);
+                    _spriteBatch.Draw(healthBar, new Rectangle(65, 60, (int)currHealthBar, 50), Color.White);
+                    _spriteBatch.DrawString(font, "Health", new Vector2(135, 75), Color.White);
 
-                    _spriteBatch.DrawString(font, $"Wave Number: {waveManager.Wave}", new Vector2(15, 65), Color.White);
+                    double currShieldCoolDown = (1 - ((double)player.CurrentShield.TimeSinceBreak / (double)player.CurrentShield.CoolDown)) * 200;
+
+                    _spriteBatch.Draw(waveBar, new Rectangle(65, 125, 200, 50), Color.Gray);
+                    _spriteBatch.Draw(waveBar, new Rectangle(65, 125, 200 - (int)currShieldCoolDown, 50), Color.Aqua);
+                    if ((int)currShieldCoolDown == 0)
+                    {
+                        _spriteBatch.DrawString(font, "Shield Ready", new Vector2(105, 140), Color.White);
+                    }
 
                     double currTime = (waveManager.Timer / 30) * 200;
 
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 80, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(waveBar, new Rectangle(15, 80, 200 - (int)currTime, 50), Color.White);
+                    _spriteBatch.Draw(waveBar, new Rectangle(65, 190, 200, 50), Color.Gray);
+                    _spriteBatch.Draw(waveBar, new Rectangle(65, 190, 200 - (int)currTime, 50), Color.White);
 
-                    double currShieldCoolDown = (1 - ((double) player.CurrentShield.TimeSinceBreak / (double) player.CurrentShield.CoolDown)) * 200;
+                    _spriteBatch.DrawString(font, $"Wave Number: {waveManager.Wave}", new Vector2(65, 260), Color.White);
 
-                    _spriteBatch.Draw(buttonTx, new Rectangle(15, 145, 200, 50), Color.Gray);
-                    _spriteBatch.Draw(waveBar, new Rectangle(15, 145, 200 - (int)currShieldCoolDown, 50), Color.Aqua);
-                    if ((int)currShieldCoolDown == 0)
-                    {
-                        _spriteBatch.DrawString(font, "Shield Ready", new Vector2(55, 160), Color.White);
-                    }
+
 
 
                     if (enemyManager.SpawnedEnemies.Count > 0)
@@ -351,8 +357,8 @@ namespace BankShot
                     //player wallet writing
                     _spriteBatch.DrawString(
                         font,
-                        "Current Haul: " + player.Money,
-                        new Vector2(Program.game.GetWindowSize().Width / 2, 0),
+                        "Current Haul: $" + player.Money,
+                        new Vector2(65, 290),
                         Color.White);
 
                     if (waveManager.Wave == 1)

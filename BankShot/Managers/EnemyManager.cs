@@ -88,7 +88,7 @@ namespace BankShot
                         true, 1.4, 13, new Vector2(0, 0),
                         Program.game.Content.Load<Texture2D>("CoinBullet"), new Rectangle(400, 100, 20, 20),
                         new List<Rectangle>(), 0, false, true, true, typeof(ChaserEnemy)),
-                2));
+                3));
 
             //Registering Basic Enemy
             enemies.Add(new Enemy(
