@@ -61,27 +61,6 @@ DmgIcon.png
 10
 1000
 
-Advanced Hydraulics
-You upgrade your ride and gain an extra jump!||
-False 0
-False 0
-False 0
-False 0
-0
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-False 0
-True
-JumpUpgradeIcon.png
-1
-1000
-
 Heat Seaking Bullets
 Your bullets now home to the closest enemy.||
 False 0
@@ -102,4 +81,25 @@ False
 HomingIcon.png
 1
 400
+
+Advanced Hydaulics
+You upgrade your ride and gain a jump!||
+False 0
+False 0
+False 0
+False 0
+1
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+False 0
+True
+JumpUpgradeIcon.png
+0
+600
 |||
