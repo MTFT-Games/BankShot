@@ -353,12 +353,6 @@
 /processorParam:TextureFormat=Color
 /build:MapTiles/upright.png
 
-#begin ouch.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:ouch.wav
-
 #begin PauseScreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -370,6 +364,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PauseScreen.png
+
+#begin ouch.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ouch.wav
 
 #begin PlayerBetaSprite.png
 /importer:TextureImporter
