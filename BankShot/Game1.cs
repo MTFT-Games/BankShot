@@ -129,6 +129,7 @@ namespace BankShot
             soundEffects.Add(Content.Load<SoundEffect>("shoproll"));
             soundEffects.Add(Content.Load<SoundEffect>("gameover"));
             soundEffects.Add(Content.Load<SoundEffect>("ouch"));
+            soundEffects.Add(Content.Load<SoundEffect>("shieldbreak"));
 
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -200,14 +201,6 @@ namespace BankShot
                     break;
                 case GameState.Game:
 
-                    MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-                    void MediaPlayer_MediaStateChanged(object sender, System.
-                                          EventArgs e)
-                    {
-                    
-                        MediaPlayer.Play(song);
-                    }
-                   
 
                     //Testing gun and projectile creation.
                     projectileManager.UpdateProjectiles(gameTime);
@@ -246,7 +239,7 @@ namespace BankShot
                     leaderboardMenu.Update(out state);
                     break;
                 case GameState.GameOver:
-                    MediaPlayer.Stop();
+                   
                     if (Input.MouseClick(1))
                     {
                         soundEffects[0].Play();
