@@ -28,7 +28,7 @@ namespace BankShot
         {
             font = f;
             resumeBtn = new Rectangle(200, 200, 100, 50);
-            testBtn = new Rectangle(200, 300, 100, 50);
+            testBtn = new Rectangle(200, 300, 200, 50);
             testingStatus = false;
             buttonTx = tx;
         }
@@ -51,7 +51,7 @@ namespace BankShot
             //resume button text
             sb.DrawString(font,
                 "RESUME",
-                new Vector2(200, 200),
+                new Vector2(215, 215),
                 Color.White);
             //test button text
             string testButtonText = "ENABLE TESTING MODE";
@@ -61,7 +61,7 @@ namespace BankShot
             }
             sb.DrawString(font,
                testButtonText,
-               new Vector2(200, 300),
+               new Vector2(215, 315),
                Color.White);
 
             //player stats

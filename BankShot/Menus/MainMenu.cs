@@ -31,12 +31,8 @@ namespace BankShot
 
         public void Draw(SpriteBatch sb, GraphicsDeviceManager g)
         {
-            //draws game title
-            sb.DrawString(font,
-                "BANK SHOT",
-                new Vector2(350,
-               100),
-                Color.White);
+          
+           
             //button textures to be incorporated
             //start button
             sb.Draw(buttonTx, startBtn, Color.White);
@@ -47,12 +43,12 @@ namespace BankShot
             //start button text
             sb.DrawString(font,
                 "START",
-                new Vector2(200, 200),
+                new Vector2(225, 215),
                 Color.White);
             //exit button text
             sb.DrawString(font,
                "EXIT",
-               new Vector2(200, 300),
+               new Vector2(225, 315),
                Color.White);
         }
 
