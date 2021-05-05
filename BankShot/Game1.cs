@@ -355,7 +355,7 @@ namespace BankShot
 
 
             }
-            //_spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.White);
+            //_spriteBatch.DrawString(font, $"{Input.MousePosition}", new Vector2(800, 200), Color.White);//
 
 
             _spriteBatch.End();
